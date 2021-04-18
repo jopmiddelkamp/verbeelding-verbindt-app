@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "590542503548",
+    "project_id": "t-sal-etaleert-develop",
+    "storage_bucket": "t-sal-etaleert-develop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590542503548:android:c9ae09822ca39fedc493f9",
+        "android_client_info": {
+          "package_name": "com.middelkampdev.tsal_etaleert.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "590542503548-ev2h7in7tjnn033o29uequjl2vle49g5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB853EarSetVpKYosgIP0fENtBcm_0_nRo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "590542503548-ev2h7in7tjnn033o29uequjl2vle49g5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
