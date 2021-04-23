@@ -8,9 +8,7 @@ class PermissionsRestrictedDialog extends StatelessWidget {
     return AlertDialog(
       title: const Text('Uw toegang wordt beperkt'),
       content: const Text(
-        '''Het lijkt erop dat op uw toestel de toegang to de locatie wordt 
-        beperkt. Dit kan komen doordat er bijvoorbeeld ouderlijk toezicht is 
-        ingeschakeld. De app kan in deze staat niet worden gebruikt.''',
+        'Het lijkt erop dat op uw toestel de toegang to de locatie wordt beperkt. Dit kan komen doordat er bijvoorbeeld ouderlijk toezicht is ingeschakeld. De app kan in deze staat niet worden gebruikt.',
       ),
       actions: <Widget>[
         TextButton(

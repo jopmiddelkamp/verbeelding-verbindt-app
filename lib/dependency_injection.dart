@@ -21,8 +21,12 @@ import 'src/route_planner/services/artist_service.dart';
 
 final sl = GetIt.instance;
 
-Future<void> initServiceLocator() async {
-  await _initEnvironment();
+Future<void> initServiceLocator(
+  Environment environment,
+) async {
+  await _initEnvironment(
+    environment,
+  );
 
   await sl.allReady();
 
@@ -32,11 +36,12 @@ Future<void> initServiceLocator() async {
   await sl.allReady();
 }
 
-Future<void> _initEnvironment() async {
-  final env = await _getEnvironment();
+Future<void> _initEnvironment(
+  Environment environment,
+) async {
   sl.registerSingletonAsync<EnvironmentVariables>(
     () async => EnvironmentVariablesImpl(
-      environment: env,
+      environment: environment,
     ),
   );
 }
@@ -127,18 +132,4 @@ Future<void> _initServices() async {
   //     packageInfo,
   //   ),
   // );
-}
-
-Future<Environment> _getEnvironment() async {
-  return Environment.dev;
-  // TODO: implement flavor
-  // final info = await PackageInfo.fromPlatform();
-  // final packageNameSplitted = info.packageName.split('.');
-  // if (packageNameSplitted.last.startsWith('sta')) {
-  //   return Environment.stag;
-  // } else if (packageNameSplitted.last.startsWith('dev')) {
-  //   return Environment.dev;
-  // } else {
-  //   return Environment.prod;
-  // }
 }

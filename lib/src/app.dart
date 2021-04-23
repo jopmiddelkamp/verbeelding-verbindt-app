@@ -41,10 +41,8 @@ class App extends StatelessWidget {
             showErrorDialog(
               context,
               title: 'Whoops!',
-              message: '''Er is een fout opgetreden bij het laden van de app. 
-                          Sluit de app en probeer het opnieuw. Blijf het fout 
-                          gaan neem dan contact op met de eigenaar van de app.
-                       ''',
+              message:
+                  'Er is een fout opgetreden bij het laden van de app. Sluit de app en probeer het opnieuw. Blijf het fout gaan neem dan contact op met de eigenaar van de app.',
             );
           }
         },

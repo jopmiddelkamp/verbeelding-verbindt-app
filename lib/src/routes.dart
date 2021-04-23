@@ -47,8 +47,6 @@ void _thowInvalidArgumentException(
   Type expectedType,
 ) {
   throw Exception(
-    '''$routeName: argument type mismatch. Arguments type is 
-       ${settings.arguments.runtimeType} but the expected type is 
-       $expectedType.''',
+    'routeName: argument type mismatch. Arguments type is ${settings.arguments.runtimeType} but the expected type is $expectedType.',
   );
 }

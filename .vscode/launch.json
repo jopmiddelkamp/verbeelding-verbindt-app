@@ -4,11 +4,13 @@
     {
       "name": "DEV DEBUG",
       "request": "launch",
+      "preLaunchTask": "buildDevelopmentFirebaseOptionsFiles",
       "type": "dart",
+      "program": "lib/main_development.dart",
       "args": [
-          "--flavor", "dev",
+          "--flavor", "development",
           "--dart-define", "ROUTE_XL_USERNAME=jopmiddelkamp",
-          "--dart-define", "ROUTE_XL_PASSWORD=@95&^Pw1@Qqf"
+          "--dart-define", "ROUTE_XL_PASSWORD=@95&^Pw1@Qqf",
       ]
   },
   {
@@ -17,7 +19,7 @@
       "type": "dart",
       "flutterMode": "profile",
       "args": [
-          "--flavor", "dev"
+          "--flavor", "development"
       ]
   },
   {
@@ -26,7 +28,7 @@
       "type": "dart",
       "flutterMode": "release",
       "args": [
-          "--flavor", "dev"
+          "--flavor", "development"
       ]
   },
   {
@@ -34,7 +36,7 @@
       "request": "launch",
       "type": "dart",
       "args": [
-          "--flavor", "stag",
+          "--flavor", "staging",
       ]
   },
   {
@@ -43,7 +45,7 @@
       "type": "dart",
       "flutterMode": "profile",
       "args": [
-          "--flavor", "stag",
+          "--flavor", "staging",
       ]
   },
   {
@@ -52,7 +54,7 @@
       "type": "dart",
       "flutterMode": "release",
       "args": [
-          "--flavor", "stag",
+          "--flavor", "staging",
       ]
   },
   {
@@ -60,7 +62,7 @@
       "request": "launch",
       "type": "dart",
       "args": [
-          "--flavor", "prod"
+          "--flavor", "production"
       ]
   },
   {
@@ -69,7 +71,7 @@
       "type": "dart",
       "flutterMode": "profile",
       "args": [
-          "--flavor", "prod"
+          "--flavor", "production"
       ]
   },
   {
@@ -78,7 +80,7 @@
       "type": "dart",
       "flutterMode": "release",
       "args": [
-          "--flavor", "prod"
+          "--flavor", "production"
       ]
   }
   ]
