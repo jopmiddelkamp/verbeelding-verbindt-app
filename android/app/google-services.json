@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "120064632888",
+    "project_id": "verbeelding-verbindt-dev",
+    "storage_bucket": "verbeelding-verbindt-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:120064632888:android:46a0d5bc726a4b52505ecd",
+        "android_client_info": {
+          "package_name": "dev.middelkamp.verbeeldingVerbindt.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "120064632888-revusb6d7tgq8gm9r50ojgpl83d6mmld.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9-SE9tLA2YrSbsJP2t3hlw_vkQ0kZyLg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "120064632888-revusb6d7tgq8gm9r50ojgpl83d6mmld.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -29,6 +29,7 @@ if (keystorePropertiesFile.exists()) {
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.google.gms.google-services'  // Google Services plugin
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
@@ -40,8 +41,8 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.verbeeldingVerbindt"
-        minSdkVersion 16
+        applicationId "dev.middelkamp.verbeeldingVerbindt"
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -70,14 +71,17 @@ android {
         production {
             dimension "default"
             applicationIdSuffix ""
+            versionNameSuffix ""
         }
         staging {
             dimension "default"
             applicationIdSuffix ".stg"
+            versionNameSuffix "-stag"
         }        
         development {
             dimension "default"
             applicationIdSuffix ".dev"
+            versionNameSuffix "-dev"
         }
     }
 
@@ -100,4 +104,6 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation platform('com.google.firebase:firebase-bom:27.1.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 }
