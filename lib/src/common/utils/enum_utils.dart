@@ -8,9 +8,12 @@ class EnumUtils {
 
   static T enumFromString<T>(
     List<T> values,
-    String value, {
+    String? value, {
     required T defaultValue,
   }) {
+    if (value == null) {
+      return defaultValue;
+    }
     return values.firstWhere(
       (v) => _compareEnumToString(v, value),
       orElse: () => defaultValue,

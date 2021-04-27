@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TSALListTile extends StatelessWidget {
-  const TSALListTile({
+class VVListTile extends StatelessWidget {
+  const VVListTile({
     Key? key,
     this.leading,
     this.title,

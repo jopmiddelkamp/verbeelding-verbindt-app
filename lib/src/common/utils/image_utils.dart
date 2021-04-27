@@ -35,7 +35,7 @@ class ImageUtils {
   ) async {
     final completer = Completer<ImageInfo>();
     image.image
-        .resolve(ImageConfiguration())
+        .resolve(const ImageConfiguration())
         .addListener(ImageStreamListener((imageInfo, _) {
       if (!completer.isCompleted) {
         completer.complete(imageInfo);

@@ -29,7 +29,7 @@ class Header extends StatelessWidget {
             '\'t Sal etaleert',
             style: context.textTheme.headline6!.copyWith(
               color: Colors.white,
-              fontWeight: TSALFontWeight.bold,
+              fontWeight: VVFontWeight.bold,
             ),
           ),
         ),

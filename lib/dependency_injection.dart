@@ -6,7 +6,7 @@ import 'environment_variable.dart';
 import 'src/common/services/barrel.dart';
 import 'src/common/services/location/geo_locator/location_service.dart';
 import 'src/common/services/location/location_service.dart';
-import 'src/common/services/permission/permission_handler/ph_location_permission_service.dart';
+import 'src/common/services/permission/permission_handler/ph_permission_service.dart';
 import 'src/common/services/permission/permission_service.dart';
 import 'src/common/services/persistent_storage/shared_preferences/sp_persistent_storage_service.dart';
 import 'src/route_planner/repositories/artist/artist_repository.dart';

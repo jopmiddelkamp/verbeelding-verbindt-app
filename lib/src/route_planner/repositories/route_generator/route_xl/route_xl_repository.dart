@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 
 import '../../../../../environment_variable.dart';
+import '../../../../common/repositories/dio_repository_base.dart';
 import '../../../models/artist_model.dart';
 import '../../../models/route_stop_model.dart';
-import '../../dio_repository_base.dart';
 import '../route_generator_repository.dart';
 import 'extensions/rx_tour_response_extensions.dart';
 import 'interceptors/rx_auth_interceptor.dart';

@@ -139,7 +139,7 @@ TextTheme _buildTextTheme() {
     ),
     // Used for text on [ElevatedButton], [TextButton] and [OutlinedButton].
     button: textTheme.button!.copyWith(
-      fontWeight: TSALFontWeight.bold,
+      fontWeight: VVFontWeight.bold,
       fontSize: 16,
     ),
   );
@@ -217,6 +217,6 @@ TextStyle buildChipThemeTextStyle({
   return TextStyle(
     color: color ?? ThemeColors.onPrimaryColor,
     fontSize: fontSize ?? textTheme?.button?.fontSize ?? 16,
-    fontWeight: TSALFontWeight.semiBold,
+    fontWeight: VVFontWeight.semiBold,
   );
 }

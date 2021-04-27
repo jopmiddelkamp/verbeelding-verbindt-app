@@ -1,6 +1,5 @@
-import 'package:verbeelding_verbindt/main.dart';
-
 import 'environment_variable.dart';
+import 'main.dart';
 
 void main() async {
   await mainDelegate(

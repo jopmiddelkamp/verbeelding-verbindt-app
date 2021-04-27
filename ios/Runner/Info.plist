@@ -4,8 +4,7 @@
 <dict>
 	<key>CFBundleLocalizations</key>
 	<array>
-		<string>en</string>
-		<string>es</string>
+		<string>nl</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
@@ -48,5 +47,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>${PRODUCT_NAME} needs access to location when open so it can guide you to your next destination.</string>
 </dict>
 </plist>

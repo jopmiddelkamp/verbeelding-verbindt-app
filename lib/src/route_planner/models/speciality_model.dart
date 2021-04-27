@@ -30,13 +30,18 @@ class SpecialityModel extends Equatable {
   @override
   String toString() => 'Speciality { id: $id, name: $name }';
 
-  static SpecialityModel fromMap(String id, Map<String, dynamic> map) =>
+  static SpecialityModel fromMap(
+    String id,
+    Map<String, dynamic> map,
+  ) =>
       SpecialityModel(
         id: id,
         name: TranslatableStringModel.fromMap(map['name']),
       );
 
-  static SpecialityModel fromJson(Map<String, dynamic> json) =>
+  static SpecialityModel fromJson(
+    Map<String, dynamic> json,
+  ) =>
       _$SpecialityModelFromJson(json);
   Map<String, dynamic> toJson() => _$SpecialityModelToJson(this);
 }

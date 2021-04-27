@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+import '../../../../typedefs.dart';
 import '../../dialogs/error_dialog.dart';
-import '../../typedefs.dart';
 
-class TSALSecondaryButton extends StatefulWidget {
-  const TSALSecondaryButton({
+class VVSecondaryButton extends StatefulWidget {
+  const VVSecondaryButton({
     required this.onTap,
     required this.label,
     this.icon,
@@ -18,10 +18,10 @@ class TSALSecondaryButton extends StatefulWidget {
   final Icon? icon;
 
   @override
-  _TSALSecondaryButtonState createState() => _TSALSecondaryButtonState();
+  _VVSecondaryButtonState createState() => _VVSecondaryButtonState();
 }
 
-class _TSALSecondaryButtonState extends State<TSALSecondaryButton> {
+class _VVSecondaryButtonState extends State<VVSecondaryButton> {
   bool busy = false;
   bool disposed = false;
 

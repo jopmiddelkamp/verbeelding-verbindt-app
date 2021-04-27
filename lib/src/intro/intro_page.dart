@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
+import '../common/extensions/build_context_extensions.dart';
 import '../common/services/persistent_storage/persistent_storage_service.dart';
-import 'bloc/intro_bloc.dart';
+import '../route_planner/pages/select_interests/select_interests_page.dart';
+import 'bloc/page_cubit.dart';
+import 'bloc/page_state.dart';
 import 'widgets/continue_button.dart';
 import 'widgets/description.dart';
 import 'widgets/header.dart';
@@ -15,10 +18,19 @@ class IntroPage extends StatelessWidget {
 
   static Widget blocProvider() {
     return BlocProvider(
-      create: (context) => IntroBloc(
+      create: (context) => PageCubit(
         persistentStorageService: sl<PersistentStorageService>(),
       ),
-      child: IntroPage._(),
+      child: BlocListener<PageCubit, PageState>(
+        listener: (context, state) async {
+          if (state.loaded && state.accepted!) {
+            await context.navigator.pushNamed(
+              SelectInterestsPage.routeName,
+            );
+          }
+        },
+        child: IntroPage._(),
+      ),
     );
   }
 

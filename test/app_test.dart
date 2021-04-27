@@ -6,7 +6,7 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:verbeelding_verbindt/src/app.dart';
+import 'package:verbeelding_verbindt/src/app/app.dart';
 
 void main() {
   group('App', () {

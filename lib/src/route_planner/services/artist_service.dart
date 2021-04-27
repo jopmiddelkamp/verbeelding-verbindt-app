@@ -3,7 +3,10 @@ import '../models/artist_model.dart';
 import '../repositories/artist/artist_repository.dart';
 
 abstract class ArtistService {
-  Stream<List<ArtistModel>> getArtistsBySpeciality(
+  Stream<List<ArtistModel>> streamArtistsBySpeciality(
+    List<String> specialityIds,
+  );
+  Future<List<ArtistModel>> getArtistsBySpeciality(
     List<String> specialityIds,
   );
 }
@@ -16,7 +19,16 @@ class ArtistServiceImpl extends ServiceBase implements ArtistService {
   final ArtistRepository _artistRepository;
 
   @override
-  Stream<List<ArtistModel>> getArtistsBySpeciality(
+  Stream<List<ArtistModel>> streamArtistsBySpeciality(
+    List<String> specialityIds,
+  ) {
+    return _artistRepository.streamArtistsBySpeciality(
+      specialityIds,
+    );
+  }
+
+  @override
+  Future<List<ArtistModel>> getArtistsBySpeciality(
     List<String> specialityIds,
   ) {
     return _artistRepository.getArtistsBySpeciality(

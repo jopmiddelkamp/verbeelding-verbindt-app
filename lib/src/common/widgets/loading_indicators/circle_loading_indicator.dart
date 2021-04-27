@@ -3,8 +3,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../extensions/build_context_extensions.dart';
 
-class TSALCircleLoadingIndicator extends StatelessWidget {
-  const TSALCircleLoadingIndicator({
+class VVCircleLoadingIndicator extends StatelessWidget {
+  const VVCircleLoadingIndicator({
     Key? key,
     this.size = 50,
   }) : super(key: key);

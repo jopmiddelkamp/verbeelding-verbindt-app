@@ -10,16 +10,10 @@ class FirestoreArtistRepository implements ArtistRepository {
   final CollectionReference _artistCollection;
 
   @override
-  Stream<List<ArtistModel>> getArtistsBySpeciality(
-      List<String> specialityIds) async* {
-    // ignore: unnecessary_cast
-    var query = _artistCollection as Query;
-    if (specialityIds.isNotEmpty == true) {
-      query = query.where(
-        'specialitiesKeys',
-        arrayContainsAny: specialityIds,
-      );
-    }
+  Stream<List<ArtistModel>> streamArtistsBySpeciality(
+    List<String> specialityIds,
+  ) async* {
+    final query = _filterArtistsBySpeciality(specialityIds);
 
     yield* query.snapshots().map<List<ArtistModel>>((snapshot) {
       final artists = snapshot.docs
@@ -30,5 +24,35 @@ class FirestoreArtistRepository implements ArtistRepository {
           .toList(growable: false);
       return artists;
     });
+  }
+
+  @override
+  Future<List<ArtistModel>> getArtistsBySpeciality(
+    List<String> specialityIds,
+  ) async {
+    final query = _filterArtistsBySpeciality(specialityIds);
+
+    final result = await query.get();
+
+    return result.docs
+        .map((doc) => ArtistModel.fromMap(
+              id: doc.id,
+              map: doc.data(),
+            ))
+        .toList(growable: false);
+  }
+
+  Query _filterArtistsBySpeciality(
+    List<String> specialityIds,
+  ) {
+    // ignore: unnecessary_cast
+    var query = _artistCollection as Query;
+    if (specialityIds.isNotEmpty == true) {
+      query = query.where(
+        'specialitiesKeys',
+        arrayContainsAny: specialityIds,
+      );
+    }
+    return query;
   }
 }

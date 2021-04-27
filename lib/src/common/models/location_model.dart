@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'location_model.g.dart';
@@ -30,15 +29,6 @@ class LocationModel extends Equatable {
     );
   }
 
-  factory LocationModel.fromPosition(
-    Position position,
-  ) {
-    return LocationModel(
-      latitude: position.latitude,
-      longitude: position.longitude,
-    );
-  }
-
   factory LocationModel.fromDynamic(
     dynamic object,
   ) {
@@ -46,8 +36,6 @@ class LocationModel extends Equatable {
       return LocationModel.fromMap(object as Map<String, dynamic>);
     } else if (object is GeoPoint) {
       return LocationModel.fromGeoPoint(object);
-    } else if (object is Position) {
-      return LocationModel.fromPosition(object);
     }
     throw Exception(
         'Unsupported source object type provided ${object.runtimeType}');

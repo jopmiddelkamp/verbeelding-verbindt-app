@@ -10,7 +10,7 @@ import 'package:get_it/get_it.dart';
 import 'dependency_injection.dart';
 import 'environment_variable.dart';
 import 'global_bloc_observer.dart';
-import 'src/app.dart';
+import 'src/app/app.dart';
 
 Future<void> mainDelegate(
   Environment environment,

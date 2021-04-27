@@ -1,4 +1,4 @@
-package com.example.verbeeldingVerbindt
+package dev.middelkamp.verbeeldingVerbindt
 
 import io.flutter.embedding.android.FlutterActivity
 

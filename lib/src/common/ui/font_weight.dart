@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-class TSALFontWeight {
+class VVFontWeight {
   /// Normal / regular / plain
   static const FontWeight regular = FontWeight.w400;
 

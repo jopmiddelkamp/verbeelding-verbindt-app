@@ -9,23 +9,31 @@ class TranslatableStringModel {
     this._data,
   );
 
-  final Map<String, dynamic> _data;
+  final Map<String, String> _data;
 
-  String? getValue([String countryCode = 'nl']) {
-    if (_data.containsKey(countryCode) != true) {
-      return null;
-    }
-    return _data[countryCode] as String?;
+  String get value {
+    final defaultCountryCode = 'nl';
+    return _data[defaultCountryCode] as String;
   }
 
   @override
   String toString() => 'TranslatableString { ${_data.keys.join(',')} }';
 
-  static TranslatableStringModel fromMap(Map<String, dynamic> map) =>
-      TranslatableStringModel(map);
+  static TranslatableStringModel fromMap(
+    Map<String, dynamic> map,
+  ) {
+    return TranslatableStringModel(
+      map.map((key, value) => MapEntry(key, value as String)),
+    );
+  }
 
-  static TranslatableStringModel fromJson(Map<String, dynamic> json) =>
-      TranslatableStringModel(json);
+  static TranslatableStringModel fromJson(
+    Map<String, dynamic> json,
+  ) {
+    return TranslatableStringModel(
+      json.map((key, value) => MapEntry(key, value as String)),
+    );
+  }
 
   Map<String, dynamic> toJson() => _data;
 }

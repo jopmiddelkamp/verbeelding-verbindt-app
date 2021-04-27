@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+import '../../../../typedefs.dart';
 import '../../dialogs/error_dialog.dart';
-import '../../typedefs.dart';
 
-class TSALPrimaryButton extends StatefulWidget {
-  const TSALPrimaryButton({
+class VVPrimaryButton extends StatefulWidget {
+  const VVPrimaryButton({
     required this.onTap,
     required this.label,
     this.icon,
@@ -18,10 +18,10 @@ class TSALPrimaryButton extends StatefulWidget {
   final Icon? icon;
 
   @override
-  _TSALPrimaryButtonState createState() => _TSALPrimaryButtonState();
+  _VVPrimaryButtonState createState() => _VVPrimaryButtonState();
 }
 
-class _TSALPrimaryButtonState extends State<TSALPrimaryButton> {
+class _VVPrimaryButtonState extends State<VVPrimaryButton> {
   bool busy = false;
   bool disposed = false;
 
