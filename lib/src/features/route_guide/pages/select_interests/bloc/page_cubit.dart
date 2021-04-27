@@ -47,6 +47,15 @@ class PageCubit extends Cubit<PageState> {
     ));
   }
 
+  void confirmSelection() {
+    if (!state.hasSelection) {
+      return;
+    }
+    emit(state.copyWith(
+      selectionConfirmed: true,
+    ));
+  }
+
   @override
   Future<void> close() {
     _specialitiesStreamSub.cancel();

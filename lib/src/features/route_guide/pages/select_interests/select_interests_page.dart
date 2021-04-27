@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../../../common/extensions/build_context_extensions.dart';
 import '../../services/speciality_service.dart';
+import '../route/route_page.dart';
 import 'bloc/barrel.dart';
 import 'widgets/next_button.dart';
 import 'widgets/specialties_list.dart';
@@ -19,7 +21,26 @@ class SelectInterestsPage extends StatelessWidget {
       create: (context) => PageCubit(
         specialityService: sl<SpecialityService>(),
       ),
-      child: SelectInterestsPage._(),
+      child: BlocListener<PageCubit, PageState>(
+        listener: (context, state) {
+          if (state.selectionConfirmed) {
+            _navigateToRoutePage(context, state);
+          }
+        },
+        child: SelectInterestsPage._(),
+      ),
+    );
+  }
+
+  static Future _navigateToRoutePage(
+    BuildContext context,
+    PageState state,
+  ) {
+    return context.navigator.pushNamed(
+      RoutePage.routeName,
+      arguments: CreateRoutePageArguments(
+        selectedSpecialityIds: state.selectedSpecialityIds,
+      ),
     );
   }
 

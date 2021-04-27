@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../common/extensions/build_context_extensions.dart';
 import '../../../../../common/widgets/buttons/tsal_primary_button.dart';
-import '../../route/route_page.dart';
 import '../bloc/barrel.dart';
 
 class NextButton extends StatelessWidget {
@@ -13,6 +12,7 @@ class NextButton extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
+    final cubit = context.blocProvider<PageCubit>();
     return BlocBuilder<PageCubit, PageState>(
       buildWhen: (previous, current) {
         final previousHashCode = previous.selectedSpecialityIds.hashCode;
@@ -22,14 +22,7 @@ class NextButton extends StatelessWidget {
       builder: (context, state) {
         return VVPrimaryButton(
           label: const Text('Verder'),
-          onTap: state.hasSelection
-              ? () => context.navigator.pushNamed(
-                    RoutePage.routeName,
-                    arguments: CreateRoutePageArguments(
-                      selectedSpecialityIds: state.selectedSpecialityIds,
-                    ),
-                  )
-              : null,
+          onTap: state.hasSelection ? cubit.confirmSelection : null,
         );
       },
     );
