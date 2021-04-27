@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'intro/intro_page.dart';
-import 'route_planner/pages/route/route_page.dart';
-import 'route_planner/pages/select_interests/select_interests_page.dart';
+import 'features/intro/intro_page.dart';
+import 'features/route_guide/pages/route/route_page.dart';
+import 'features/route_guide/pages/select_interests/select_interests_page.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
   // WidgetBuilder builder;

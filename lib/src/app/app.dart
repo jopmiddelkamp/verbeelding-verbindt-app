@@ -5,8 +5,8 @@ import 'package:get_it/get_it.dart';
 
 import '../common/services/barrel.dart';
 import '../constants.dart';
-import '../intro/intro_page.dart';
-import '../route_planner/pages/select_interests/select_interests_page.dart';
+import '../features/intro/intro_page.dart';
+import '../features/route_guide/pages/select_interests/select_interests_page.dart';
 import '../routes.dart';
 import '../theme.dart';
 import 'bloc/barrel.dart';

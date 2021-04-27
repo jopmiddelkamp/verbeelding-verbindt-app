@@ -9,15 +9,17 @@ import 'src/common/services/location/location_service.dart';
 import 'src/common/services/permission/permission_handler/ph_permission_service.dart';
 import 'src/common/services/permission/permission_service.dart';
 import 'src/common/services/persistent_storage/shared_preferences/sp_persistent_storage_service.dart';
-import 'src/route_planner/repositories/artist/artist_repository.dart';
-import 'src/route_planner/repositories/artist/firestore/firestore_artist_repository.dart';
-import 'src/route_planner/repositories/route/firestore/firestore_route_repository.dart';
-import 'src/route_planner/repositories/route/route_repository.dart';
-import 'src/route_planner/repositories/route_generator/route_generator_repository.dart';
-import 'src/route_planner/repositories/route_generator/route_xl/route_xl_repository.dart';
-import 'src/route_planner/repositories/speciality/firestore/firestore_speciality_repository.dart';
-import 'src/route_planner/repositories/speciality/speciality_repository.dart';
-import 'src/route_planner/services/artist_service.dart';
+import 'src/features/route_guide/repositories/artist/artist_repository.dart';
+import 'src/features/route_guide/repositories/artist/firestore/firestore_artist_repository.dart';
+import 'src/features/route_guide/repositories/route/firestore/firestore_route_repository.dart';
+import 'src/features/route_guide/repositories/route/route_repository.dart';
+import 'src/features/route_guide/repositories/route_generator/route_generator_repository.dart';
+import 'src/features/route_guide/repositories/route_generator/route_xl/route_xl_repository.dart';
+import 'src/features/route_guide/repositories/speciality/firestore/firestore_speciality_repository.dart';
+import 'src/features/route_guide/repositories/speciality/speciality_repository.dart';
+import 'src/features/route_guide/services/artist_service.dart';
+import 'src/features/route_guide/services/route_service.dart';
+import 'src/features/route_guide/services/speciality_service.dart';
 
 final sl = GetIt.instance;
 
