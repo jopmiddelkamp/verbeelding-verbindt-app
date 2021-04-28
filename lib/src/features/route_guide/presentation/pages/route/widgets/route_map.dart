@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../../../../constants.dart';
+import '../../../../../../shared/domain/models/extensions/location_extensions.dart';
 import '../../../../../../shared/domain/models/location_model.dart';
-import '../../../../../../shared/extensions/build_context_extensions.dart';
-import '../../../../../../shared/extensions/location_extensions.dart';
+import '../../../../../../shared/misc/utils/image_utils.dart';
+import '../../../../../../shared/misc/utils/marker_utils.dart';
+import '../../../../../../shared/presentation/extensions/build_context_extensions.dart';
 import '../../../../../../shared/presentation/widgets/loading_indicators/circle_loading_indicator.dart';
-import '../../../../../../shared/utils/image_utils.dart';
-import '../../../../../../shared/utils/marker_utils.dart';
 import '../../../../domain/models/artist_model.dart';
 import '../../../../domain/models/route_stop_model.dart';
 import '../bloc/barrel.dart';

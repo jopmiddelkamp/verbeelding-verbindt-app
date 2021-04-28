@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../shared/extensions/build_context_extensions.dart';
+import '../../../../shared/presentation/extensions/build_context_extensions.dart';
 import '../../../../shared/presentation/font_weight.dart';
 
 class Header extends StatelessWidget {

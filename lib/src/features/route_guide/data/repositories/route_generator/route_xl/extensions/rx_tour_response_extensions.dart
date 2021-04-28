@@ -1,4 +1,4 @@
-import '../../../../../../../shared/extensions/iterable_extensions.dart';
+import '../../../../../../../shared/misc/extensions/iterable_extensions.dart';
 import '../../../../../domain/models/artist_model.dart';
 import '../../../../../domain/models/route_stop_model.dart';
 import '../models/rx_tour_response_model.dart';

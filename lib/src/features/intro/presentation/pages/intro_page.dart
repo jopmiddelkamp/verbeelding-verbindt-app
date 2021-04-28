@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../../shared/domain/services/persistent_storage/persistent_storage_service.dart';
-import '../../../../shared/extensions/build_context_extensions.dart';
+import '../../../../shared/presentation/extensions/build_context_extensions.dart';
 import '../../../route_guide/presentation/pages/select_interests/select_interests_page.dart';
 import '../bloc/page_cubit.dart';
 import '../bloc/page_state.dart';

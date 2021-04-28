@@ -20,4 +20,17 @@ class GlLocationServiceImpl extends ServiceBase implements LocationService {
     }
     return lastPostion.toLocationModel();
   }
+
+  @override
+  double distanceBetween(
+    LocationModel locationA,
+    LocationModel locationB,
+  ) {
+    return Geolocator.distanceBetween(
+      locationA.latitude,
+      locationA.longitude,
+      locationB.latitude,
+      locationB.longitude,
+    );
+  }
 }

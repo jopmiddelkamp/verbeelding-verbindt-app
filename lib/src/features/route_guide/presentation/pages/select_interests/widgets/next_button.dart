@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../../shared/extensions/build_context_extensions.dart';
+import '../../../../../../shared/presentation/extensions/build_context_extensions.dart';
 import '../../../../../../shared/presentation/widgets/buttons/tsal_primary_button.dart';
 import '../bloc/barrel.dart';
 

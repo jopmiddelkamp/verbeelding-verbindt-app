@@ -1,4 +1,4 @@
-extension GenericdIterableExtensions<T> on Iterable<T> {
+extension GenericIterableExtensions<T> on Iterable<T> {
   Iterable<T> skipLast() {
     return take(length - 1);
   }

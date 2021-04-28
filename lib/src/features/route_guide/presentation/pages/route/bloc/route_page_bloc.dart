@@ -7,9 +7,10 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../../../../shared/domain/enums/permission_enum.dart';
 import '../../../../../../shared/domain/enums/permission_status_enum.dart';
 import '../../../../../../shared/domain/failures/permission/permission_failure.dart';
+import '../../../../../../shared/domain/models/location_model.dart';
 import '../../../../../../shared/domain/services/location/location_service.dart';
 import '../../../../../../shared/domain/services/permission/permission_service.dart';
-import '../../../../domain/extensions/artist_model_list_extensions.dart';
+import '../../../../domain/models/artist_model.dart';
 import '../../../../domain/services/artist_service.dart';
 import '../../../../domain/services/route_service.dart';
 import 'barrel.dart';
@@ -100,7 +101,10 @@ class PageBloc extends Cubit<PageState> {
       selectedSpecialityIds,
     );
     final location = await _locationService.getCurrentLocation();
-    artists.sortByDistance(location);
+    _sortArtitstByDistance(
+      artists,
+      sourceLocation: location,
+    );
 
     await _routeStreamSub?.cancel();
     await _routeService.createRoute(
@@ -108,6 +112,23 @@ class PageBloc extends Cubit<PageState> {
       artistToStartAt: artists.first,
     );
     await _openRoute();
+  }
+
+  void _sortArtitstByDistance(
+    List<ArtistModel> artists, {
+    required LocationModel sourceLocation,
+  }) {
+    artists.sort((a, b) {
+      final distanceToA = _locationService.distanceBetween(
+        sourceLocation,
+        a.location,
+      );
+      final distanceToB = _locationService.distanceBetween(
+        sourceLocation,
+        b.location,
+      );
+      return distanceToA.compareTo(distanceToB); // Sort by closest
+    });
   }
 
   void qrScanned(

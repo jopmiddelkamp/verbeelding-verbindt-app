@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../extensions/build_context_extensions.dart';
+import '../extensions/build_context_extensions.dart';
 
 class PermissionsRestrictedDialog extends StatelessWidget {
   @override

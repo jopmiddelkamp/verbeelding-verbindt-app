@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../../../shared/extensions/build_context_extensions.dart';
+import '../../../../../shared/presentation/extensions/build_context_extensions.dart';
 import '../../../domain/services/speciality_service.dart';
 import '../route/route_page.dart';
 import 'bloc/barrel.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../shared/extensions/build_context_extensions.dart';
+import '../../../../shared/presentation/extensions/build_context_extensions.dart';
 import '../../../../shared/presentation/widgets/buttons/tsal_primary_button.dart';
 import '../bloc/page_cubit.dart';
 

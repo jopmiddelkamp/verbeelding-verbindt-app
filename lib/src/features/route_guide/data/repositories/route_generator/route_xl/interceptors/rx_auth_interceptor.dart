@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../../../../../../../shared/extensions/string_extensions.dart';
+import '../../../../../../../shared/misc/extensions/string_extensions.dart';
 
 class RxAuthInterceptor extends Interceptor {
   RxAuthInterceptor({
