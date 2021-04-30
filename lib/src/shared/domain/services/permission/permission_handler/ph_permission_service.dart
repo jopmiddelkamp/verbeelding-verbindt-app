@@ -27,12 +27,15 @@ class PhLocationPermissionServiceImpl extends PermissionService {
           await _persistentStorage.getHasPermissionBeenRequested(
         permission,
       );
+      if (!requestedBefore) {
+        return PermissionStatus.undetermined;
+      }
       final nativePermission = _getNativePermission(
         permission,
       );
-      final result = await _requestDeviceForPermission(
-        nativePermission,
-        requestedBefore: requestedBefore,
+      final nativePermissionStatus = await nativePermission.status;
+      final result = await _getPermissionStatus(
+        nativePermissionStatus,
       );
       return result;
     } on TypeMismatchPersistentStorageFailure {
@@ -56,37 +59,30 @@ class PhLocationPermissionServiceImpl extends PermissionService {
   Future<PermissionRequestReponse> requestIfNeeded(
     Permission permission,
   ) async {
-    final nativePermission = _getNativePermission(permission);
-    if (await nativePermission.isGranted) {
+    final status = await getStatus(
+      permission,
+    );
+    if (status == PermissionStatus.granted) {
       return PermissionRequestReponse(
         oldStatus: PermissionStatus.granted,
         newStatus: PermissionStatus.granted,
       );
     }
-    final oldStatus = await getStatus(
-      permission,
-    );
-    final requestedBefore = oldStatus != PermissionStatus.undetermined;
-    final result = await _requestDeviceForPermission(
+    final nativePermission = _getNativePermission(permission);
+    final newStatus = await _requestDeviceForPermission(
       nativePermission,
-      requestedBefore: requestedBefore,
     );
     await _persistentStorage.setHasPermissionBeenRequested(
       permission: permission,
     );
     return PermissionRequestReponse(
-      oldStatus: oldStatus,
-      newStatus: result,
+      oldStatus: status,
+      newStatus: newStatus,
     );
   }
 
   Future<PermissionStatus> _getPermissionStatus(
-    ph.PermissionStatus status, {
-    bool requestedBefore = false,
-  }) async {
-    if (!requestedBefore) {
-      return PermissionStatus.undetermined;
-    }
+      ph.PermissionStatus status) async {
     if (await status.isRestricted) {
       return PermissionStatus.restricted;
     }
@@ -100,13 +96,11 @@ class PhLocationPermissionServiceImpl extends PermissionService {
   }
 
   Future<PermissionStatus> _requestDeviceForPermission(
-    ph.Permission permission, {
-    bool requestedBefore = false,
-  }) async {
+    ph.Permission permission,
+  ) async {
     final status = await permission.request();
     return _getPermissionStatus(
       status,
-      requestedBefore: requestedBefore,
     );
   }
 
