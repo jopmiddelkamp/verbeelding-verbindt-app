@@ -19,8 +19,6 @@ class SpPersistentStorageServiceImpl extends ServiceBase
   final SharedPreferences _sharedPreferences;
 
   static const String introAcceptedKey = 'SP_INTRO_ACCEPTED';
-  static const String lastLocationPermissionStatusKey =
-      'SP_LAST_LOCATION_PERMISSION_STATUS';
 
   @override
   Future<bool> getIsIntroAccepted() async {
@@ -53,8 +51,7 @@ class SpPersistentStorageServiceImpl extends ServiceBase
   Future<bool> getHasPermissionBeenRequested(
     Permission permission,
   ) async {
-    final key = EnumUtils.getStringValue(permission);
-    final value = _sharedPreferences.get(key);
+    final value = _sharedPreferences.get(permission.toString());
     if (value == null) {
       return false;
     }
