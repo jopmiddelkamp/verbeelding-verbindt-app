@@ -27,6 +27,9 @@ class SpPersistentStorageServiceImpl extends ServiceBase
     final value = _sharedPreferences.get(
       introAcceptedKey,
     );
+    if (value == null) {
+      return false;
+    }
     if (value is! bool) {
       throw TypeMismatchPersistentStorageFailure(
         expectedType: bool,
@@ -52,13 +55,16 @@ class SpPersistentStorageServiceImpl extends ServiceBase
   ) async {
     final key = EnumUtils.getStringValue(permission);
     final value = _sharedPreferences.get(key);
-    if (value is! bool?) {
+    if (value == null) {
+      return false;
+    }
+    if (value is! bool) {
       throw TypeMismatchPersistentStorageFailure(
         expectedType: bool,
         storageType: value.runtimeType,
       );
     }
-    return value ?? false;
+    return value;
   }
 
   @override
