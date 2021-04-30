@@ -1,14 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-// APPLICATION GLOBALS
-class Application {
-  static final navigatorKey = GlobalKey<NavigatorState>();
-
-  static NavigatorState get navigator => navigatorKey.currentState!;
-
-  static _DefaultSettings defaultSettings = const _DefaultSettings();
-}
+const kDefaultSettings = _DefaultSettings();
 
 class _DefaultSettings {
   const _DefaultSettings();

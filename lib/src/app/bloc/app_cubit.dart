@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../shared/domain/services/barrel.dart';
@@ -6,8 +7,9 @@ import 'app_state.dart';
 class AppCubit extends Cubit<AppState> {
   AppCubit({
     required PersistentStorageService persistentStorageService,
+    required GlobalKey<NavigatorState> navigatorKey,
   })   : _persistentStorage = persistentStorageService,
-        super(AppState.initialize()) {
+        super(AppState.initialize(navigatorKey)) {
     _init();
   }
 
@@ -15,14 +17,14 @@ class AppCubit extends Cubit<AppState> {
 
   Future<void> _init() async {
     final isIntroAccepted = await _persistentStorage.getIsIntroAccepted();
-    emit(AppState.load(
+    emit(state.copyWith(
       introAccepted: isIntroAccepted,
     ));
   }
 
   Future<void> accept() async {
     await _persistentStorage.setIntroAccepted(true);
-    emit(AppState.load(
+    emit(state.copyWith(
       introAccepted: true,
     ));
   }

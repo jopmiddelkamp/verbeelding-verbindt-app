@@ -13,7 +13,7 @@ class Header extends StatelessWidget {
     return Stack(
       children: [
         LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) {
+          builder: (context, constraints) {
             return Image.asset(
               'assets/images/intro-header.jpg',
               fit: BoxFit.cover,

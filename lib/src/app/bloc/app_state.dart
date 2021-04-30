@@ -1,23 +1,32 @@
+import 'package:flutter/material.dart';
+
 class AppState {
   const AppState._({
-    this.introAccepted,
+    required this.navigatorKey,
+    required this.introAccepted,
   });
 
-  factory AppState.initialize() {
+  factory AppState.initialize(
+    GlobalKey<NavigatorState> navigatorKey,
+  ) {
     return AppState._(
+      navigatorKey: GlobalKey<NavigatorState>(),
       introAccepted: null,
     );
   }
 
-  factory AppState.load({
-    required bool introAccepted,
-  }) {
-    return AppState._(
-      introAccepted: introAccepted,
-    );
-  }
+  final GlobalKey<NavigatorState> navigatorKey;
 
   final bool? introAccepted;
 
   bool get loaded => introAccepted != null;
+
+  AppState copyWith({
+    bool? introAccepted,
+  }) {
+    return AppState._(
+      navigatorKey: navigatorKey,
+      introAccepted: introAccepted ?? this.introAccepted,
+    );
+  }
 }

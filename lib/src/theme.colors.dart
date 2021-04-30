@@ -1,24 +1,16 @@
 import 'package:flutter/material.dart';
 
-class ThemeColors {
-  static Color primaryColor = Colors.orange.shade500;
-  static Color primaryColorDarker = Colors.orange.shade700;
-  static const Color onPrimaryColor = Color.fromRGBO(255, 255, 255, 1);
-
-  static const Color accentColor = Color.fromRGBO(2, 119, 189, 1);
-  static const Color accentColorLighter = Color.fromRGBO(227, 243, 255, 1);
-  static const Color onAccentColor = Color.fromRGBO(255, 255, 255, 1);
-
-  static const Color backgroundColor = Color.fromRGBO(255, 255, 255, 1);
-  static const Color surfaceColor = Color.fromRGBO(255, 255, 255, 1);
-
-  static const Color onSurfaceColor = Color.fromRGBO(87, 87, 87, 1);
-  static const Color onSurfaceColorLighter = Color.fromRGBO(97, 97, 97, 1);
-
-  static const Color borderColor = Color.fromRGBO(235, 235, 235, 1);
-
-  static const Color dividerColor = Color.fromRGBO(235, 235, 235, 1);
-
-  static const Color errorColor = Colors.redAccent;
-  static const Color onErrorColor = Color.fromRGBO(255, 255, 255, 1);
-}
+Color kPrimaryColor = Colors.orange.shade500;
+Color kPrimaryColorDarker = Colors.orange.shade700;
+const Color kOnPrimaryColor = Color.fromRGBO(255, 255, 255, 1);
+const Color kAccentColor = Color.fromRGBO(2, 119, 189, 1);
+const Color kAccentColorLighter = Color.fromRGBO(227, 243, 255, 1);
+const Color kOnAccentColor = Color.fromRGBO(255, 255, 255, 1);
+const Color kBackgroundColor = Color.fromRGBO(255, 255, 255, 1);
+const Color kSurfaceColor = Color.fromRGBO(255, 255, 255, 1);
+const Color kOnSurfaceColor = Color.fromRGBO(87, 87, 87, 1);
+const Color kOnSurfaceColorLighter = Color.fromRGBO(97, 97, 97, 1);
+const Color kBorderColor = Color.fromRGBO(235, 235, 235, 1);
+const Color kDividerColor = Color.fromRGBO(235, 235, 235, 1);
+const Color kErrorColor = Colors.redAccent;
+const Color kOnErrorColor = Color.fromRGBO(255, 255, 255, 1);

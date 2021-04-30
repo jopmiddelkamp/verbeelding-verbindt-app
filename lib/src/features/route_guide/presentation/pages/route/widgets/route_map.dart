@@ -80,8 +80,7 @@ class RouteMap extends StatelessWidget {
     return GoogleMap(
       myLocationEnabled: true,
       compassEnabled: true,
-      initialCameraPosition:
-          Application.defaultSettings.getGoogleMapsCameraPosition(
+      initialCameraPosition: kDefaultSettings.getGoogleMapsCameraPosition(
         initialMapLocation.toLatLng(),
       ),
       onMapCreated: (controller) {
@@ -119,7 +118,7 @@ class RouteMap extends StatelessWidget {
   }) {
     if (!artist.profile.hasPersonalImage) {
       return ImageUtils.getUiImageFromAsset(
-        Application.defaultSettings.artistFallbackImagePath,
+        kDefaultSettings.artistFallbackImagePath,
       );
     }
     return ImageUtils.getUiImageFromUrl(

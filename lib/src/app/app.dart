@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
-import '../constants.dart';
 import '../features/intro/presentation/pages/intro_page.dart';
 import '../features/route_guide/presentation/pages/select_interests/select_interests_page.dart';
 import '../routes.dart';
@@ -16,12 +15,15 @@ final sl = GetIt.instance;
 class App extends StatelessWidget {
   App._();
 
-  static Widget blocProvider() {
+  static Widget blocProvider({
+    required GlobalKey<NavigatorState> navigatorKey,
+  }) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (context) => AppCubit(
             persistentStorageService: sl<PersistentStorageService>(),
+            navigatorKey: navigatorKey,
           ),
         ),
       ],
@@ -30,29 +32,37 @@ class App extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: '\'t Sal etaleert',
-      theme: buildAppTheme(context),
-      home: BlocBuilder<AppCubit, AppState>(
-        builder: (context, state) {
-          if (!state.loaded) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          if (state.introAccepted != true) {
-            return IntroPage.blocProvider();
-          }
-          return SelectInterestsPage.blocProvider();
-        },
-      ),
-      builder: BotToastInit(),
-      navigatorObservers: [
-        BotToastNavigatorObserver(),
-      ],
-      onGenerateRoute: onGenerateRoute,
-      navigatorKey: Application.navigatorKey,
+  Widget build(
+    BuildContext context,
+  ) {
+    return BlocBuilder<AppCubit, AppState>(
+      builder: (context, state) {
+        return MaterialApp(
+          title: '\'t Sal etaleert',
+          theme: buildAppTheme(context),
+          home: _buildHome(state),
+          builder: BotToastInit(),
+          navigatorObservers: [
+            BotToastNavigatorObserver(),
+          ],
+          onGenerateRoute: onGenerateRoute,
+          navigatorKey: state.navigatorKey,
+        );
+      },
     );
+  }
+
+  Widget _buildHome(
+    AppState state,
+  ) {
+    if (!state.loaded) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    if (state.introAccepted != true) {
+      return IntroPage.blocProvider();
+    }
+    return SelectInterestsPage.blocProvider();
   }
 }

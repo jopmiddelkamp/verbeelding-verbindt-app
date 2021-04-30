@@ -19,18 +19,18 @@ ThemeData buildAppTheme(
   return ThemeData(
     // TODO: Could be removed soon as the PR for the fix for the app bar is
     // already completed
-    primaryColor: ThemeColors.primaryColor,
+    primaryColor: kPrimaryColor,
     primaryColorBrightness: Brightness.dark,
 
     colorScheme: colorScheme,
 
-    scaffoldBackgroundColor: ThemeColors.backgroundColor,
-    cardColor: ThemeColors.surfaceColor,
-    dividerColor: ThemeColors.dividerColor,
+    scaffoldBackgroundColor: kBackgroundColor,
+    cardColor: kSurfaceColor,
+    dividerColor: kDividerColor,
 
     textTheme: textTheme,
     iconTheme: const IconThemeData.fallback().copyWith(
-      color: ThemeColors.onSurfaceColor,
+      color: kOnSurfaceColor,
     ),
     buttonTheme: ButtonThemeData(
       shape: RoundedRectangleBorder(
@@ -50,17 +50,17 @@ ThemeData buildAppTheme(
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        primary: ThemeColors.accentColor,
+        primary: kAccentColor,
         padding: const EdgeInsets.all(20.0),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         backgroundColor: Colors.transparent,
-        primary: ThemeColors.onSurfaceColor,
+        primary: kOnSurfaceColor,
         padding: const EdgeInsets.all(20.0),
         side: const BorderSide(
-          color: ThemeColors.borderColor,
+          color: kBorderColor,
           width: 1.5,
         ),
       ),
@@ -74,18 +74,18 @@ ThemeData buildAppTheme(
 
 ColorScheme _buildColorScheme() {
   return ColorScheme(
-    primary: ThemeColors.primaryColor,
-    primaryVariant: ThemeColors.primaryColorDarker,
-    secondary: ThemeColors.accentColor,
-    secondaryVariant: ThemeColors.accentColorLighter,
-    surface: ThemeColors.onSurfaceColor,
-    background: ThemeColors.backgroundColor,
-    error: ThemeColors.errorColor,
-    onPrimary: ThemeColors.onPrimaryColor,
-    onSecondary: ThemeColors.onPrimaryColor,
-    onSurface: ThemeColors.onSurfaceColor,
-    onBackground: ThemeColors.onSurfaceColor,
-    onError: ThemeColors.onErrorColor,
+    primary: kPrimaryColor,
+    primaryVariant: kPrimaryColorDarker,
+    secondary: kAccentColor,
+    secondaryVariant: kAccentColorLighter,
+    surface: kOnSurfaceColor,
+    background: kBackgroundColor,
+    error: kErrorColor,
+    onPrimary: kOnPrimaryColor,
+    onSecondary: kOnPrimaryColor,
+    onSurface: kOnSurfaceColor,
+    onBackground: kOnSurfaceColor,
+    onError: kOnErrorColor,
     brightness: Brightness.light,
   );
 }
@@ -167,10 +167,10 @@ ChipThemeData buildChipTheme({
   double? elevation,
   double? pressElevation,
 }) {
-  backgroundColor = backgroundColor ?? ThemeColors.primaryColor;
-  disabledColor = disabledColor ?? ThemeColors.primaryColor.withOpacity(0.4);
-  selectedColor = selectedColor ?? ThemeColors.primaryColor;
-  secondarySelectedColor = secondarySelectedColor ?? ThemeColors.primaryColor;
+  backgroundColor = backgroundColor ?? kPrimaryColor;
+  disabledColor = disabledColor ?? kPrimaryColor.withOpacity(0.4);
+  selectedColor = selectedColor ?? kPrimaryColor;
+  secondarySelectedColor = secondarySelectedColor ?? kPrimaryColor;
   padding =
       padding ?? const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0);
   shape = shape ??
@@ -190,14 +190,14 @@ ChipThemeData buildChipTheme({
 
   return ChipThemeData(
     backgroundColor: backgroundColor,
-    deleteIconColor: deleteIconColor ?? ThemeColors.onPrimaryColor,
+    deleteIconColor: deleteIconColor ?? kOnPrimaryColor,
     disabledColor: disabledColor,
     selectedColor: selectedColor,
     secondarySelectedColor: secondarySelectedColor,
     shadowColor: shadowColor,
     selectedShadowColor: selectedShadowColor,
     showCheckmark: showCheckmark,
-    checkmarkColor: checkmarkColor ?? ThemeColors.onPrimaryColor,
+    checkmarkColor: checkmarkColor ?? kOnPrimaryColor,
     labelPadding: labelPadding ?? const EdgeInsets.fromLTRB(6, 4, 6, 4),
     padding: padding,
     shape: shape as OutlinedBorder?,
@@ -215,7 +215,7 @@ TextStyle buildChipThemeTextStyle({
   double? fontSize,
 }) {
   return TextStyle(
-    color: color ?? ThemeColors.onPrimaryColor,
+    color: color ?? kOnPrimaryColor,
     fontSize: fontSize ?? textTheme?.button?.fontSize ?? 16,
     fontWeight: VVFontWeight.semiBold,
   );

@@ -29,10 +29,13 @@ Future<void> mainDelegate(
   };
   final env = GetIt.instance<EnvironmentVariables>().environment;
   if (env == Environment.prod) {
-    debugPrint = (String? message, {int? wrapWidth}) {};
+    debugPrint = (message, {wrapWidth}) {};
   }
+  final appNavigatorKey = GlobalKey<NavigatorState>();
   runZonedGuarded(
-    () => runApp(App.blocProvider()),
+    () => runApp(App.blocProvider(
+      navigatorKey: appNavigatorKey,
+    )),
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }
