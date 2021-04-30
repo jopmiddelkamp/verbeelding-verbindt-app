@@ -3,7 +3,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'profile_model.g.dart';
 
-@JsonSerializable()
+// Settings a default value build.yaml didn't work - 30-04-2020
+@JsonSerializable(explicitToJson: true)
 class ProfileModel extends Equatable {
   const ProfileModel({
     required this.firstName,
@@ -34,14 +35,6 @@ class ProfileModel extends Equatable {
                             lastName: $lastName, 
                             personalImage: $personalImage 
                           }''';
-
-  // ignore: sort_constructors_first
-  static ProfileModel fromMap(Map<String, dynamic> map) => ProfileModel(
-        firstName: map['firstName'],
-        middleName: map['middleName'],
-        lastName: map['lastName'],
-        personalImage: map['personalImage'],
-      );
 
   ProfileModel copyWith({
     String? firstName,

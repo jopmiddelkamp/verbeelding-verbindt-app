@@ -1,23 +1,21 @@
 import 'package:json_annotation/json_annotation.dart';
 
-@JsonSerializable(
-  createFactory: false,
-  createToJson: false,
-)
+// Settings a default value build.yaml didn't work - 30-04-2020
+@JsonSerializable(explicitToJson: true)
 class TranslatableStringModel {
   const TranslatableStringModel(
-    this._data,
+    this.data,
   );
 
-  final Map<String, String> _data;
+  final Map<String, String> data;
 
   String get value {
     final defaultCountryCode = 'nl';
-    return _data[defaultCountryCode] as String;
+    return data[defaultCountryCode] as String;
   }
 
   @override
-  String toString() => 'TranslatableString { ${_data.keys.join(',')} }';
+  String toString() => 'TranslatableString { ${data.keys.join(',')} }';
 
   static TranslatableStringModel fromMap(
     Map<String, dynamic> map,
@@ -35,5 +33,5 @@ class TranslatableStringModel {
     );
   }
 
-  Map<String, dynamic> toJson() => _data;
+  Map<String, dynamic> toJson() => data;
 }

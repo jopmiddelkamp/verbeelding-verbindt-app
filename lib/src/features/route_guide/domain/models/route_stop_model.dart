@@ -4,7 +4,8 @@ import 'artist_model.dart';
 
 part 'route_stop_model.g.dart';
 
-@JsonSerializable()
+// Settings a default value build.yaml didn't work - 30-04-2020
+@JsonSerializable(explicitToJson: true)
 class RouteStopModel {
   const RouteStopModel({
     required this.artist,

@@ -5,7 +5,8 @@ import 'rx_route_step_model.dart';
 
 part 'rx_tour_response_model.g.dart';
 
-@JsonSerializable()
+// Settings a default value build.yaml didn't work - 30-04-2020
+@JsonSerializable(explicitToJson: true)
 class RxTourResponseModel extends Equatable {
   const RxTourResponseModel({
     required this.id,

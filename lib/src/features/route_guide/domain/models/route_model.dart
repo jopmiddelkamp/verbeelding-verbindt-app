@@ -4,7 +4,8 @@ import 'route_stop_model.dart';
 
 part 'route_model.g.dart';
 
-@JsonSerializable()
+// Settings a default value build.yaml didn't work - 30-04-2020
+@JsonSerializable(explicitToJson: true)
 class RouteModel {
   const RouteModel({
     required this.id,

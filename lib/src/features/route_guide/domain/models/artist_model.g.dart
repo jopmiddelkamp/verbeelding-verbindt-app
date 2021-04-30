@@ -15,6 +15,8 @@ ArtistModel _$ArtistModelFromJson(Map<String, dynamic> json) {
           MapEntry(k, SpecialityModel.fromJson(e as Map<String, dynamic>)),
     ),
     location: LocationModel.fromJson(json['location'] as Map<String, dynamic>),
+    previewContent: ArtistRoutePreviewModel.fromJson(
+        json['previewContent'] as Map<String, dynamic>),
   );
 }
 
@@ -25,4 +27,5 @@ Map<String, dynamic> _$ArtistModelToJson(ArtistModel instance) =>
       'specialities':
           instance.specialities.map((k, e) => MapEntry(k, e.toJson())),
       'location': instance.location.toJson(),
+      'previewContent': instance.previewContent.toJson(),
     };

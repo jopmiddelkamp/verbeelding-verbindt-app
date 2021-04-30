@@ -3,7 +3,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'rx_location_model.g.dart';
 
-@JsonSerializable()
+// Settings a default value build.yaml didn't work - 30-04-2020
+@JsonSerializable(explicitToJson: true)
 class RxLocationModel extends Equatable {
   const RxLocationModel({
     required this.name,

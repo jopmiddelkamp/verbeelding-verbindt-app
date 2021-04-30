@@ -5,7 +5,8 @@ import 'rx_location_model.dart';
 
 part 'rx_tour_request_model.g.dart';
 
-@JsonSerializable()
+// Settings a default value build.yaml didn't work - 30-04-2020
+@JsonSerializable(explicitToJson: true)
 class RxTourRequestModel extends Equatable {
   const RxTourRequestModel({
     required this.locations,

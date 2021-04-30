@@ -4,7 +4,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'location_model.g.dart';
 
-@JsonSerializable()
+// Settings a default value build.yaml didn't work - 30-04-2020
+@JsonSerializable(explicitToJson: true)
 class LocationModel extends Equatable {
   const LocationModel({
     required this.latitude,
