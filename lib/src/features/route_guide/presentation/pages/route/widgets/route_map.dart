@@ -38,11 +38,10 @@ class RouteMap extends StatelessWidget {
       width: width,
       height: height,
       color: Colors.grey.shade100,
-      child: FutureBuilder<Set<Marker>>(
-          future: _generateMarkers(
+      child: FutureBuilder<Marker>(
+          future: _buildMarker(
             context,
-            stops: stops,
-            currentStop: currentStop,
+            artist: currentStop.artist,
           ),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
@@ -50,27 +49,13 @@ class RouteMap extends StatelessWidget {
                 child: VVCircleLoadingIndicator(),
               );
             }
+            final marker = snapshot.data!;
             return _buildGoogleMap(
               context,
-              snapshot.data!,
+              {marker},
             );
           }),
     );
-  }
-
-  Future<Set<Marker>> _generateMarkers(
-    BuildContext context, {
-    required List<RouteStopModel> stops,
-    required RouteStopModel currentStop,
-  }) async {
-    final markers = await Future.wait(stops.map(
-      (e) => _buildMarker(
-        context,
-        artist: e.artist,
-        current: e.artist == currentStop.artist,
-      ),
-    ));
-    return markers.toSet();
   }
 
   Widget _buildGoogleMap(
@@ -90,15 +75,10 @@ class RouteMap extends StatelessWidget {
     );
   }
 
-  Future<Marker> _buildMarker(
-    BuildContext context, {
-    required ArtistModel artist,
-    required bool current,
-  }) async {
+  Future<Marker> _buildMarker(BuildContext context,
+      {required ArtistModel artist}) async {
     final size = const Size(200, 200);
-    final shadowColor = current
-        ? context.theme.colorScheme.primary
-        : context.theme.colorScheme.secondary;
+    final shadowColor = context.theme.colorScheme.primary;
     return Marker(
       markerId: MarkerId(artist.id ?? artist.profile.fullName),
       // TODO: Abstract markers solution
