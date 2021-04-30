@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:verbeelding_verbindt/src/shared/domain/models/translatable_string_model.dart';
 
 import '../../../../shared/domain/models/image_model.dart';
 
@@ -13,7 +14,7 @@ class ArtistRoutePreviewModel extends Equatable {
     required this.images,
   });
 
-  final String text;
+  final TranslatableStringModel text;
   final List<ImageModel> images;
 
   @override

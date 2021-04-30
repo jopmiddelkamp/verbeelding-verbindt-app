@@ -9,7 +9,8 @@ part of 'artist_route_preview_model.dart';
 ArtistRoutePreviewModel _$ArtistRoutePreviewModelFromJson(
     Map<String, dynamic> json) {
   return ArtistRoutePreviewModel(
-    text: json['text'] as String,
+    text:
+        TranslatableStringModel.fromJson(json['text'] as Map<String, dynamic>),
     images: (json['images'] as List<dynamic>)
         .map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
         .toList(),
@@ -19,6 +20,6 @@ ArtistRoutePreviewModel _$ArtistRoutePreviewModelFromJson(
 Map<String, dynamic> _$ArtistRoutePreviewModelToJson(
         ArtistRoutePreviewModel instance) =>
     <String, dynamic>{
-      'text': instance.text,
+      'text': instance.text.toJson(),
       'images': instance.images.map((e) => e.toJson()).toList(),
     };
