@@ -75,7 +75,7 @@ class ArtistModel extends Equatable {
     ProfileModel? profile,
     List<String>? specialities,
     LocationModel? location,
-    ArtistRoutePreviewModel? routePreviewContent,
+    ArtistRoutePreviewModel? previewContent,
   }) {
     return ArtistModel(
       id: id,
@@ -83,7 +83,7 @@ class ArtistModel extends Equatable {
       specialities:
           specialities as Map<String, SpecialityModel>? ?? this.specialities,
       location: location ?? this.location,
-      previewContent: routePreviewContent ?? this.previewContent,
+      previewContent: previewContent ?? this.previewContent,
     );
   }
 
