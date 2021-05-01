@@ -1,5 +1,10 @@
+import 'dart:io';
+
+import 'package:device_info/device_info.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
+import 'package:package_info/package_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'environment_variable.dart';
@@ -14,6 +19,8 @@ import 'src/features/route_guide/data/repositories/speciality/speciality_reposit
 import 'src/features/route_guide/domain/services/artist_service.dart';
 import 'src/features/route_guide/domain/services/route_service.dart';
 import 'src/features/route_guide/domain/services/speciality_service.dart';
+import 'src/shared/domain/models/device_info_model.dart';
+import 'src/shared/domain/models/package_info_model.dart';
 import 'src/shared/domain/services/barrel.dart';
 import 'src/shared/domain/services/location/geo_locator/location_service.dart';
 import 'src/shared/domain/services/location/location_service.dart';
@@ -21,7 +28,7 @@ import 'src/shared/domain/services/permission/permission_handler/ph_permission_s
 import 'src/shared/domain/services/permission/permission_service.dart';
 import 'src/shared/domain/services/persistent_storage/shared_preferences/sp_persistent_storage_service.dart';
 
-final sl = GetIt.instance;
+final serviceLocator = GetIt.instance;
 
 Future<void> initServiceLocator(
   Environment environment,
@@ -30,18 +37,21 @@ Future<void> initServiceLocator(
     environment,
   );
 
-  await sl.allReady();
+  await serviceLocator.allReady();
 
   _initRepositories();
   await _initServices();
 
-  await sl.allReady();
+  await serviceLocator.allReady();
+
+  await _initDeviceInfo();
+  await _initPackageInfo();
 }
 
 Future<void> _initEnvironment(
   Environment environment,
 ) async {
-  sl.registerSingletonAsync<EnvironmentVariables>(
+  serviceLocator.registerSingletonAsync<EnvironmentVariables>(
     () async => EnvironmentVariablesImpl(
       environment: environment,
     ),
@@ -49,7 +59,7 @@ Future<void> _initEnvironment(
 }
 
 void _initRepositories() {
-  sl
+  serviceLocator
     ..registerSingletonAsync<Dio>(
       () async => Dio(),
       dispose: (dio) => dio.close(),
@@ -66,7 +76,7 @@ void _initRepositories() {
     ..registerSingletonWithDependencies<RouteGeneratorRepository>(
       () => RouteXlRouteGeneratorRepository(
         http: Dio(), // Need custom
-        env: sl<EnvironmentVariables>(),
+        env: serviceLocator<EnvironmentVariables>(),
       ),
       dependsOn: [
         Dio,
@@ -77,10 +87,10 @@ void _initRepositories() {
 
 Future<void> _initServices() async {
   final sp = await SharedPreferences.getInstance();
-  sl
+  serviceLocator
     ..registerSingletonWithDependencies<ArtistService>(
       () => ArtistServiceImpl(
-        artistRepository: sl<ArtistRepository>(),
+        artistRepository: serviceLocator<ArtistRepository>(),
       ),
       dependsOn: [
         ArtistRepository,
@@ -88,7 +98,7 @@ Future<void> _initServices() async {
     )
     ..registerSingletonWithDependencies<SpecialityService>(
       () => SpecialityServiceImpl(
-        specialityRepository: sl<SpecialityRepository>(),
+        specialityRepository: serviceLocator<SpecialityRepository>(),
       ),
       dependsOn: [
         SpecialityRepository,
@@ -96,8 +106,8 @@ Future<void> _initServices() async {
     )
     ..registerSingletonWithDependencies<RouteService>(
       () => RouteServiceImpl(
-        routeRepository: sl<RouteRepository>(),
-        routeGeneratorRepository: sl<RouteGeneratorRepository>(),
+        routeRepository: serviceLocator<RouteRepository>(),
+        routeGeneratorRepository: serviceLocator<RouteGeneratorRepository>(),
       ),
       dependsOn: [
         RouteRepository,
@@ -114,24 +124,47 @@ Future<void> _initServices() async {
     )
     ..registerSingletonWithDependencies<PermissionService>(
       () => PhLocationPermissionServiceImpl(
-        persistentStorageService: sl<PersistentStorageService>(),
+        persistentStorageService: serviceLocator<PersistentStorageService>(),
       ),
       dependsOn: [
         PersistentStorageService,
       ],
     );
-  // final deviceInfo = DeviceInfoPlugin();
-  // sl.registerSingletonAsync<DeviceInfoService>(
-  //   () async => DeviceInfoServicePackageInfoImpl(
-  //     iosDeviceInfo: Platform.isIOS ? await deviceInfo.iosInfo : null,
-  //     androidDeviceInfo:
-  //         Platform.isAndroid ? await deviceInfo.androidInfo : null,
-  //   ),
-  // );
-  // final packageInfo = await PackageInfo.fromPlatform();
-  // sl.registerSingletonAsync<PackageInfoService>(
-  //   () async => PackageInfoServiceImpl(
-  //     packageInfo,
-  //   ),
-  // );
+}
+
+Future<void> _initDeviceInfo() async {
+  if (Platform.isIOS) {
+    final deviceInfoPlugin = await DeviceInfoPlugin().iosInfo;
+    final deviceInfo = IosDeviceInfoModel(
+      name: deviceInfoPlugin.name,
+      systemName: deviceInfoPlugin.systemName,
+      systemVersion: deviceInfoPlugin.systemVersion,
+      model: deviceInfoPlugin.model,
+      isPhysicalDevice: deviceInfoPlugin.isPhysicalDevice,
+    );
+    serviceLocator.registerSingleton(deviceInfo);
+  } else if (Platform.isAndroid) {
+    final deviceInfoPlugin = await DeviceInfoPlugin().androidInfo;
+    final deviceInfo = AndroidDeviceInfoModel(
+      manufacturer: deviceInfoPlugin.manufacturer,
+      model: deviceInfoPlugin.model,
+      androidVersion: deviceInfoPlugin.version.release,
+      androidSDK: deviceInfoPlugin.version.sdkInt,
+      isPhysicalDevice: deviceInfoPlugin.isPhysicalDevice,
+    );
+    serviceLocator.registerSingleton(deviceInfo);
+  } else {
+    debugPrint(
+        'No device info support for current platform. ${Platform.executable}');
+  }
+}
+
+Future<void> _initPackageInfo() async {
+  final packageInfoPlugin = await PackageInfo.fromPlatform();
+  final packageInfo = PackageInfoModel(
+    packageName: packageInfoPlugin.packageName,
+    buildNumber: packageInfoPlugin.buildNumber,
+    version: packageInfoPlugin.version,
+  );
+  serviceLocator.registerSingleton(packageInfo);
 }

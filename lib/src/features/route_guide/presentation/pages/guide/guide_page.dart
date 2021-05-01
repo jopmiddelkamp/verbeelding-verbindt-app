@@ -13,7 +13,7 @@ import 'guide_state.dart';
 import 'widgets/route_list_item.dart';
 import 'widgets/route_map.dart';
 
-final sl = GetIt.instance;
+final serviceLocator = GetIt.instance;
 
 class GuidePage extends StatelessWidget {
   const GuidePage._();
@@ -25,18 +25,18 @@ class GuidePage extends StatelessWidget {
       create: (context) {
         if (arguments is CreateRoutePageArguments) {
           return GuideBloc.createRoute(
-            artistService: sl<ArtistService>(),
-            permissionService: sl<PermissionService>(),
-            locationService: sl<LocationService>(),
-            routeService: sl<RouteService>(),
+            artistService: serviceLocator<ArtistService>(),
+            permissionService: serviceLocator<PermissionService>(),
+            locationService: serviceLocator<LocationService>(),
+            routeService: serviceLocator<RouteService>(),
             selectedSpecialityIds: arguments.selectedSpecialityIds,
           );
         }
         return GuideBloc.openRoute(
-          artistService: sl<ArtistService>(),
-          permissionService: sl<PermissionService>(),
-          locationService: sl<LocationService>(),
-          routeService: sl<RouteService>(),
+          artistService: serviceLocator<ArtistService>(),
+          permissionService: serviceLocator<PermissionService>(),
+          locationService: serviceLocator<LocationService>(),
+          routeService: serviceLocator<RouteService>(),
         );
       },
       child: const GuidePage._(),

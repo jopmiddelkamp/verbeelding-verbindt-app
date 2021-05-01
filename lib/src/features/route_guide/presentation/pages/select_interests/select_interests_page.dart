@@ -10,7 +10,7 @@ import 'select_interests_state.dart';
 import 'widgets/next_button.dart';
 import 'widgets/specialties_list.dart';
 
-final sl = GetIt.instance;
+final serviceLocator = GetIt.instance;
 
 class SelectInterestsPage extends StatelessWidget {
   SelectInterestsPage._();
@@ -20,7 +20,7 @@ class SelectInterestsPage extends StatelessWidget {
   static Widget blocProvider() {
     return BlocProvider(
       create: (context) => SelectInterestsCubit(
-        specialityService: sl<SpecialityService>(),
+        specialityService: serviceLocator<SpecialityService>(),
       ),
       child: BlocListener<SelectInterestsCubit, SelectInterestsState>(
         listener: (context, state) async {

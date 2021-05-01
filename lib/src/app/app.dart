@@ -6,11 +6,11 @@ import 'package:get_it/get_it.dart';
 import '../features/intro/presentation/pages/intro/intro_page.dart';
 import '../features/route_guide/presentation/pages/select_interests/select_interests_page.dart';
 import '../routes.dart';
-import '../shared/domain/services/barrel.dart';
+import '../shared/presentation/widgets/misc/flavor_banner.dart';
 import '../theme.dart';
 import 'bloc/barrel.dart';
 
-final sl = GetIt.instance;
+final serviceLocator = GetIt.instance;
 
 class App extends StatelessWidget {
   App._();
@@ -22,7 +22,7 @@ class App extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => AppCubit(
-            persistentStorageService: sl<PersistentStorageService>(),
+            persistentStorageService: serviceLocator(),
             navigatorKey: navigatorKey,
           ),
         ),
@@ -37,11 +37,17 @@ class App extends StatelessWidget {
   ) {
     return BlocBuilder<AppCubit, AppState>(
       builder: (context, state) {
+        final botToastBuilder = BotToastInit();
         return MaterialApp(
           title: '\'t Sal etaleert',
           theme: buildAppTheme(context),
           home: _buildHome(state),
-          builder: BotToastInit(),
+          builder: (context, child) {
+            return FlavorBanner(
+              child: botToastBuilder(context, child),
+              navigatorKey: state.navigatorKey,
+            );
+          },
           navigatorObservers: [
             BotToastNavigatorObserver(),
           ],

@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../domain/enums/permission_enum.dart';
 import '../../../../domain/failures/persistent_storage/persistent_storage_failure.dart';
-import '../../../../misc/utils/enum_utils.dart';
+import '../../../utils/enum_utils.dart';
 import '../../barrel.dart';
 import '../../service_base.dart';
 

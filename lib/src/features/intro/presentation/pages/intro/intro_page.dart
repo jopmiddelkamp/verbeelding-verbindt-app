@@ -11,7 +11,7 @@ import 'widgets/continue_button.dart';
 import 'widgets/description.dart';
 import 'widgets/header.dart';
 
-final sl = GetIt.instance;
+final serviceLocator = GetIt.instance;
 
 class IntroPage extends StatelessWidget {
   IntroPage._();
@@ -19,7 +19,7 @@ class IntroPage extends StatelessWidget {
   static Widget blocProvider() {
     return BlocProvider(
       create: (context) => IntroCubit(
-        persistentStorageService: sl<PersistentStorageService>(),
+        persistentStorageService: serviceLocator<PersistentStorageService>(),
       ),
       child: BlocListener<IntroCubit, IntroState>(
         listener: (context, state) async {
