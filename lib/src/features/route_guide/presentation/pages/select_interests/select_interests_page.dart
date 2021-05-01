@@ -22,9 +22,10 @@ class SelectInterestsPage extends StatelessWidget {
         specialityService: sl<SpecialityService>(),
       ),
       child: BlocListener<PageCubit, PageState>(
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state.selectionConfirmed) {
-            _navigateToRoutePage(context, state);
+            await _navigateToRoutePage(context, state);
+            context.blocProvider<PageCubit>().toggleSelectionConfirmation();
           }
         },
         child: SelectInterestsPage._(),

@@ -22,7 +22,7 @@ class NextButton extends StatelessWidget {
       builder: (context, state) {
         return VVPrimaryButton(
           label: const Text('Verder'),
-          onTap: state.hasSelection ? cubit.confirmSelection : null,
+          onTap: state.hasSelection ? cubit.toggleSelectionConfirmation : null,
         );
       },
     );

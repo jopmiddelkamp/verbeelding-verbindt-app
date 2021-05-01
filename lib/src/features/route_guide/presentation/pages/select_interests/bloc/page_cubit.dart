@@ -47,12 +47,9 @@ class PageCubit extends Cubit<PageState> {
     ));
   }
 
-  void confirmSelection() {
-    if (!state.hasSelection) {
-      return;
-    }
+  void toggleSelectionConfirmation() {
     emit(state.copyWith(
-      selectionConfirmed: true,
+      selectionConfirmed: !state.selectionConfirmed,
     ));
   }
 
