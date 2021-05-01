@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../shared/presentation/extensions/build_context_extensions.dart';
 import '../../scan_qr/scan_qr_page.dart';
-import '../guide_bloc.dart';
+import '../guide_cubit.dart';
 
 class ScanQrButton extends StatelessWidget {
   const ScanQrButton({

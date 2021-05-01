@@ -12,7 +12,7 @@ import '../../../../../../shared/presentation/extensions/build_context_extension
 import '../../../../../../shared/presentation/widgets/loading_indicators/circle_loading_indicator.dart';
 import '../../../../domain/models/artist_model.dart';
 import '../../../../domain/models/route_stop_model.dart';
-import '../guide_bloc.dart';
+import '../guide_cubit.dart';
 
 class RouteMap extends StatelessWidget {
   const RouteMap({
