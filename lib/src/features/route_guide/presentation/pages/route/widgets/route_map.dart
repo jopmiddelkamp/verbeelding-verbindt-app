@@ -65,6 +65,7 @@ class RouteMap extends StatelessWidget {
     return GoogleMap(
       myLocationEnabled: true,
       compassEnabled: true,
+      mapType: MapType.satellite,
       initialCameraPosition: kDefaultSettings.getGoogleMapsCameraPosition(
         initialMapLocation.toLatLng(),
       ),
