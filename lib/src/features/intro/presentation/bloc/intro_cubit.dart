@@ -1,13 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../shared/domain/services/barrel.dart';
-import 'page_state.dart';
+import 'intro_state.dart';
 
-class PageCubit extends Cubit<PageState> {
-  PageCubit({
+class IntroCubit extends Cubit<IntroState> {
+  IntroCubit({
     required PersistentStorageService persistentStorageService,
   })   : _persistentStorage = persistentStorageService,
-        super(PageState.initialize()) {
+        super(IntroState.initialize()) {
     _init();
   }
 
@@ -15,14 +15,14 @@ class PageCubit extends Cubit<PageState> {
 
   Future<void> _init() async {
     final isIntroAccepted = await _persistentStorage.getIsIntroAccepted();
-    emit(PageState.load(
+    emit(IntroState.load(
       accepted: isIntroAccepted,
     ));
   }
 
   Future<void> accept() async {
     await _persistentStorage.setIntroAccepted(true);
-    emit(PageState.load(
+    emit(IntroState.load(
       accepted: true,
     ));
   }

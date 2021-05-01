@@ -5,8 +5,8 @@ import 'package:get_it/get_it.dart';
 import '../../../../shared/domain/services/persistent_storage/persistent_storage_service.dart';
 import '../../../../shared/presentation/extensions/build_context_extensions.dart';
 import '../../../route_guide/presentation/pages/select_interests/select_interests_page.dart';
-import '../bloc/page_cubit.dart';
-import '../bloc/page_state.dart';
+import '../bloc/intro_cubit.dart';
+import '../bloc/intro_state.dart';
 import '../widgets/continue_button.dart';
 import '../widgets/description.dart';
 import '../widgets/header.dart';
@@ -18,10 +18,10 @@ class IntroPage extends StatelessWidget {
 
   static Widget blocProvider() {
     return BlocProvider(
-      create: (context) => PageCubit(
+      create: (context) => IntroCubit(
         persistentStorageService: sl<PersistentStorageService>(),
       ),
-      child: BlocListener<PageCubit, PageState>(
+      child: BlocListener<IntroCubit, IntroState>(
         listener: (context, state) async {
           if (state.loaded && state.accepted!) {
             await context.navigator.pushNamed(

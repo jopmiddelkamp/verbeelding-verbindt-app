@@ -1,18 +1,18 @@
-class PageState {
-  const PageState._({
+class IntroState {
+  const IntroState._({
     this.accepted,
   });
 
-  factory PageState.initialize() {
-    return PageState._(
+  factory IntroState.initialize() {
+    return IntroState._(
       accepted: null,
     );
   }
 
-  factory PageState.load({
+  factory IntroState.load({
     required bool accepted,
   }) {
-    return PageState._(
+    return IntroState._(
       accepted: accepted,
     );
   }
