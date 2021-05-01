@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../../../../shared/domain/enums/permission_enum.dart';
@@ -14,8 +13,6 @@ import '../../../../domain/models/artist_model.dart';
 import '../../../../domain/services/artist_service.dart';
 import '../../../../domain/services/route_service.dart';
 import 'barrel.dart';
-
-final gl = GeolocatorPlatform.instance;
 
 class PageBloc extends Cubit<PageState> {
   PageBloc.createRoute({
@@ -100,13 +97,14 @@ class PageBloc extends Cubit<PageState> {
     final artists = await _artistService.getArtistsBySpeciality(
       selectedSpecialityIds,
     );
-    final location = await _locationService.getCurrentLocation();
+    final location = await _locationService.getCurrentLocation(
+      locationAccuracy: LocationAccuracy.lowest,
+    );
     _sortArtitstByDistance(
       artists,
       sourceLocation: location,
     );
 
-    await _routeStreamSub?.cancel();
     await _routeService.createRoute(
       artists: artists.toSet(),
       artistToStartAt: artists.first,
