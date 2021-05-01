@@ -67,7 +67,7 @@ class RoutePage extends StatelessWidget {
           if (!state.stopsLoaded) {
             return Center(
               child: const VVCircleLoadingIndicator(
-                label: 'Bezig met opzetten van route...',
+                label: 'Bezig met opzetten van route..',
               ),
             );
           }

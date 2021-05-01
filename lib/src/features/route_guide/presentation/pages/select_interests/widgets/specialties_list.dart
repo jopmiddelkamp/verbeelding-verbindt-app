@@ -16,11 +16,13 @@ class SpecialitiesList extends StatelessWidget {
     return BlocBuilder<PageCubit, PageState>(
       builder: (context, state) {
         if (!state.specialitiesLoaded) {
-          return const VVCircleLoadingIndicator();
+          return const VVCircleLoadingIndicator(
+            label: 'Bezig met het laden van interesses..',
+          );
         }
         if (!state.hasSpecialities) {
           return const Center(
-            child: Text('No specialities to display..'),
+            child: Text('Geen interesses om weer te geven..'),
           );
         }
         return ListView.builder(

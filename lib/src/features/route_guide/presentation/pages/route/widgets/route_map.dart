@@ -46,7 +46,10 @@ class RouteMap extends StatelessWidget {
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return const Center(
-                child: VVCircleLoadingIndicator(),
+                child: VVCircleLoadingIndicator(
+                  size: 35,
+                  label: 'Bezig met het laden van de map..',
+                ),
               );
             }
             final marker = snapshot.data!;
