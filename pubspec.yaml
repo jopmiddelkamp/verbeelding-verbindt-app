@@ -34,6 +34,7 @@ dependencies:
   permission_handler: ^7.1.0
   platform_device_id: ^1.0.1
   pretty_dio_logger: ^1.1.1
+  qr_code_scanner: ^0.4.0
   shared_preferences: ^2.0.5
 
 dev_dependencies:
