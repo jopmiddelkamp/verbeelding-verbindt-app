@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'features/intro/presentation/pages/intro_page.dart';
-import 'features/route_guide/presentation/pages/route/route_page.dart';
+import 'features/route_guide/presentation/pages/guide/guide_page.dart';
 import 'features/route_guide/presentation/pages/select_interests/select_interests_page.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -13,15 +13,15 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return IntroPage.route();
     case SelectInterestsPage.routeName:
       return SelectInterestsPage.route();
-    case RoutePage.routeName:
+    case GuidePage.routeName:
       if (settings.arguments is! RoutePageArguments) {
         _thowInvalidArgumentException(
-          RoutePage.routeName,
+          GuidePage.routeName,
           settings,
           RoutePageArguments,
         );
       }
-      return RoutePage.route(
+      return GuidePage.route(
         settings.arguments as RoutePageArguments,
       );
     default:

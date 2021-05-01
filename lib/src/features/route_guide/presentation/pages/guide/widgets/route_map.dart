@@ -73,7 +73,7 @@ class RouteMap extends StatelessWidget {
         initialMapLocation.toLatLng(),
       ),
       onMapCreated: (controller) {
-        context.blocProvider<PageBloc>().setMapController(controller);
+        context.blocProvider<GuideBloc>().setMapController(controller);
       },
       markers: markers,
     );

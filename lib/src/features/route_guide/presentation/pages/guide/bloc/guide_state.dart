@@ -4,8 +4,8 @@ import '../../../../../../shared/domain/failures/failure.dart';
 import '../../../../../../shared/domain/models/location_model.dart';
 import '../../../../domain/models/route_stop_model.dart';
 
-class PageState {
-  const PageState._({
+class GuideState {
+  const GuideState._({
     required this.stops,
     required this.currentStop,
     required this.initialMapLocation,
@@ -13,8 +13,8 @@ class PageState {
     required this.failure,
   });
 
-  factory PageState.initialize() {
-    return PageState._(
+  factory GuideState.initialize() {
+    return GuideState._(
       stops: null,
       currentStop: null,
       initialMapLocation: null,
@@ -23,13 +23,13 @@ class PageState {
     );
   }
 
-  factory PageState.load({
+  factory GuideState.load({
     required List<RouteStopModel> stops,
     required LocationModel initialMapLocation,
     GoogleMapController? mapController,
   }) {
     final currentStop = _getCurrentStop(stops);
-    return PageState._(
+    return GuideState._(
       stops: stops,
       currentStop: currentStop,
       initialMapLocation: initialMapLocation,
@@ -67,14 +67,14 @@ class PageState {
                             failure: $failure 
                           }''';
 
-  PageState copyWith({
+  GuideState copyWith({
     List<RouteStopModel>? stops,
     LocationModel? initialMapLocation,
     GoogleMapController? mapController,
     Failure? failure,
   }) {
     final updatedStops = stops ?? this.stops;
-    return PageState._(
+    return GuideState._(
       stops: updatedStops,
       currentStop: updatedStops != null ? _getCurrentStop(updatedStops) : null,
       initialMapLocation: initialMapLocation ?? this.initialMapLocation,

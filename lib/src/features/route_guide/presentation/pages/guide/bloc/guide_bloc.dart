@@ -14,8 +14,8 @@ import '../../../../domain/services/artist_service.dart';
 import '../../../../domain/services/route_service.dart';
 import 'barrel.dart';
 
-class PageBloc extends Cubit<PageState> {
-  PageBloc.createRoute({
+class GuideBloc extends Cubit<GuideState> {
+  GuideBloc.createRoute({
     required ArtistService artistService,
     required PermissionService permissionService,
     required RouteService routeService,
@@ -25,13 +25,13 @@ class PageBloc extends Cubit<PageState> {
         _permissionService = permissionService,
         _routeService = routeService,
         _locationService = locationService,
-        super(PageState.initialize()) {
+        super(GuideState.initialize()) {
     _createRoute(
       selectedSpecialityIds: selectedSpecialityIds,
     );
   }
 
-  PageBloc.openRoute({
+  GuideBloc.openRoute({
     required ArtistService artistService,
     required PermissionService permissionService,
     required RouteService routeService,
@@ -40,7 +40,7 @@ class PageBloc extends Cubit<PageState> {
         _permissionService = permissionService,
         _routeService = routeService,
         _locationService = locationService,
-        super(PageState.initialize()) {
+        super(GuideState.initialize()) {
     _openRoute();
   }
 
@@ -66,7 +66,7 @@ class PageBloc extends Cubit<PageState> {
             return;
           }
           if (!state.stopsLoaded) {
-            emit(PageState.load(
+            emit(GuideState.load(
               stops: route.stops,
               initialMapLocation: lastPos,
             ));

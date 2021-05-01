@@ -14,8 +14,8 @@ import 'widgets/route_map.dart';
 
 final sl = GetIt.instance;
 
-class RoutePage extends StatelessWidget {
-  const RoutePage._();
+class GuidePage extends StatelessWidget {
+  const GuidePage._();
 
   static Widget blocProvider(
     RoutePageArguments arguments,
@@ -23,7 +23,7 @@ class RoutePage extends StatelessWidget {
     return BlocProvider(
       create: (context) {
         if (arguments is CreateRoutePageArguments) {
-          return PageBloc.createRoute(
+          return GuideBloc.createRoute(
             artistService: sl<ArtistService>(),
             permissionService: sl<PermissionService>(),
             locationService: sl<LocationService>(),
@@ -31,14 +31,14 @@ class RoutePage extends StatelessWidget {
             selectedSpecialityIds: arguments.selectedSpecialityIds,
           );
         }
-        return PageBloc.openRoute(
+        return GuideBloc.openRoute(
           artistService: sl<ArtistService>(),
           permissionService: sl<PermissionService>(),
           locationService: sl<LocationService>(),
           routeService: sl<RouteService>(),
         );
       },
-      child: const RoutePage._(),
+      child: const GuidePage._(),
     );
   }
 
@@ -46,13 +46,13 @@ class RoutePage extends StatelessWidget {
     RoutePageArguments arguments,
   ) {
     return MaterialPageRoute(
-      builder: (context) => RoutePage.blocProvider(
+      builder: (context) => GuidePage.blocProvider(
         arguments,
       ),
     );
   }
 
-  static const String routeName = '/route';
+  static const String routeName = 'route_guide/guide';
 
   @override
   Widget build(
@@ -60,9 +60,9 @@ class RoutePage extends StatelessWidget {
   ) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Route'),
+        title: const Text('Zoek de volgende kunstenaar'),
       ),
-      body: BlocBuilder<PageBloc, PageState>(
+      body: BlocBuilder<GuideBloc, GuideState>(
         builder: (context, state) {
           if (!state.stopsLoaded) {
             return Center(
