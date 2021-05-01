@@ -7,16 +7,32 @@ class VVCircleLoadingIndicator extends StatelessWidget {
   const VVCircleLoadingIndicator({
     Key? key,
     this.size = 50,
+    this.label,
   }) : super(key: key);
 
   final double size;
+  final String? label;
 
   @override
-  Widget build(BuildContext context) {
-    return SpinKitRing(
-      color: context.theme.colorScheme.onBackground.withOpacity(0.25),
-      lineWidth: size / 15,
-      size: size,
+  Widget build(
+    BuildContext context,
+  ) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SpinKitRing(
+          color: context.theme.colorScheme.onBackground.withOpacity(0.25),
+          lineWidth: size / 15,
+          size: size,
+        ),
+        if (label != null) ...[
+          const SizedBox(height: 8),
+          Text(
+            label!,
+            style: TextStyle(fontSize: size / 3),
+          ),
+        ],
+      ],
     );
   }
 }

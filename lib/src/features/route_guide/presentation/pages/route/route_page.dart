@@ -65,7 +65,11 @@ class RoutePage extends StatelessWidget {
       body: BlocBuilder<PageBloc, PageState>(
         builder: (context, state) {
           if (!state.stopsLoaded) {
-            return const VVCircleLoadingIndicator();
+            return Center(
+              child: const VVCircleLoadingIndicator(
+                label: 'Bezig met opzetten van route...',
+              ),
+            );
           }
           return LayoutBuilder(
             builder: (context, constraints) {
