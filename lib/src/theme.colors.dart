@@ -14,3 +14,4 @@ const Color kBorderColor = Color.fromRGBO(235, 235, 235, 1);
 const Color kDividerColor = Color.fromRGBO(235, 235, 235, 1);
 const Color kErrorColor = Colors.redAccent;
 const Color kOnErrorColor = Color.fromRGBO(255, 255, 255, 1);
+const Color kShadowColor = Colors.black;

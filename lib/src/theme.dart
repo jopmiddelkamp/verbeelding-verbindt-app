@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'shared/presentation/extensions/build_context_extensions.dart';
 import 'shared/presentation/font_weight.dart';
 import 'theme.colors.dart';
 import 'theme.sizes.dart';
@@ -27,6 +28,7 @@ ThemeData buildAppTheme(
     scaffoldBackgroundColor: kBackgroundColor,
     cardColor: kSurfaceColor,
     dividerColor: kDividerColor,
+    shadowColor: kShadowColor,
 
     textTheme: textTheme,
     iconTheme: const IconThemeData.fallback().copyWith(
@@ -41,7 +43,6 @@ ThemeData buildAppTheme(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(ThemeSizes.mediumBorderRadius),
       ),
-      shadowColor: Colors.black26,
     ),
     dialogTheme: DialogTheme(
       shape: RoundedRectangleBorder(
@@ -218,5 +219,24 @@ TextStyle buildChipThemeTextStyle({
     color: color ?? kOnPrimaryColor,
     fontSize: fontSize ?? textTheme?.button?.fontSize ?? 16,
     fontWeight: VVFontWeight.semiBold,
+  );
+}
+
+BoxDecoration getTopShadowBoxDecoration(
+  BuildContext context,
+) {
+  return BoxDecoration(
+    color: context.theme.colorScheme.background,
+    boxShadow: [
+      BoxShadow(
+        color: context.theme.shadowColor,
+        blurRadius: 10.0, // soften the shadow
+        spreadRadius: 5.0, //extend the shadow
+        offset: Offset(
+          15.0, // Move to right 10  horizontally
+          15.0, // Move to bottom 10 Vertically
+        ),
+      ),
+    ],
   );
 }

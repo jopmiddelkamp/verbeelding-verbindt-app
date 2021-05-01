@@ -4,12 +4,12 @@ import 'package:get_it/get_it.dart';
 
 import '../../../../../shared/domain/services/location/location_service.dart';
 import '../../../../../shared/domain/services/permission/permission_service.dart';
-import '../../../../../shared/presentation/font_weight.dart';
 import '../../../../../shared/presentation/widgets/loading_indicators/circle_loading_indicator.dart';
+import '../../../../../theme.dart';
 import '../../../domain/services/artist_service.dart';
 import '../../../domain/services/route_service.dart';
 import 'bloc/barrel.dart';
-import 'widgets/route_list_indicator.dart';
+import 'widgets/route_list_item.dart';
 import 'widgets/route_map.dart';
 
 final sl = GetIt.instance;
@@ -79,30 +79,17 @@ class RoutePage extends StatelessWidget {
                     initialMapLocation: state.initialMapLocation!,
                   ),
                   Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                    child: Container(
+                      decoration: getTopShadowBoxDecoration(context),
                       child: ListView.builder(
                         itemCount: state.stops!.length,
                         itemBuilder: (context, index) {
                           final stop = state.stops![index];
-                          final isActiveStop = state.currentStop == stop;
-                          return Row(
-                            children: [
-                              RouteListIndicator(
-                                count: state.stops!.length,
-                                index: index,
-                                active: isActiveStop,
-                              ),
-                              const SizedBox(width: 8),
-                              Text(
-                                stop.artist.profile.fullName,
-                                style: isActiveStop
-                                    ? const TextStyle(
-                                        fontWeight: VVFontWeight.bold,
-                                      )
-                                    : null,
-                              ),
-                            ],
+                          return RouteListItem(
+                            count: state.stops!.length,
+                            index: index,
+                            stop: stop,
+                            active: state.currentStop == stop,
                           );
                         },
                       ),
