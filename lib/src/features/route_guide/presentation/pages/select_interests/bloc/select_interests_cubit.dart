@@ -6,11 +6,11 @@ import '../../../../domain/models/speciality_model.dart';
 import '../../../../domain/services/speciality_service.dart';
 import 'barrel.dart';
 
-class PageCubit extends Cubit<PageState> {
-  PageCubit({
+class SelectInterestsCubit extends Cubit<SelectInterestsState> {
+  SelectInterestsCubit({
     required SpecialityService specialityService,
   })   : _specialityService = specialityService,
-        super(PageState.initialize()) {
+        super(SelectInterestsState.initialize()) {
     _init();
   }
 
@@ -26,7 +26,7 @@ class PageCubit extends Cubit<PageState> {
   void _loadSpecialities(
     List<SpecialityModel> specialities,
   ) {
-    emit(PageState.load(specialities));
+    emit(SelectInterestsState.load(specialities));
   }
 
   void toggleSpeciality(

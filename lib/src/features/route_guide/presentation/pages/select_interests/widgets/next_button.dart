@@ -12,8 +12,8 @@ class NextButton extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    final cubit = context.blocProvider<PageCubit>();
-    return BlocBuilder<PageCubit, PageState>(
+    final cubit = context.blocProvider<SelectInterestsCubit>();
+    return BlocBuilder<SelectInterestsCubit, SelectInterestsState>(
       buildWhen: (previous, current) {
         final previousHashCode = previous.selectedSpecialityIds.hashCode;
         final currentHashCode = current.selectedSpecialityIds.hashCode;

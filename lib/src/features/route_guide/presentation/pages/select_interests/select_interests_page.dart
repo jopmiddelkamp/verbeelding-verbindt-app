@@ -18,14 +18,16 @@ class SelectInterestsPage extends StatelessWidget {
 
   static Widget blocProvider() {
     return BlocProvider(
-      create: (context) => PageCubit(
+      create: (context) => SelectInterestsCubit(
         specialityService: sl<SpecialityService>(),
       ),
-      child: BlocListener<PageCubit, PageState>(
+      child: BlocListener<SelectInterestsCubit, SelectInterestsState>(
         listener: (context, state) async {
           if (state.selectionConfirmed) {
             await _navigateToRoutePage(context, state);
-            context.blocProvider<PageCubit>().toggleSelectionConfirmation();
+            context
+                .blocProvider<SelectInterestsCubit>()
+                .toggleSelectionConfirmation();
           }
         },
         child: SelectInterestsPage._(),
@@ -35,7 +37,7 @@ class SelectInterestsPage extends StatelessWidget {
 
   static Future _navigateToRoutePage(
     BuildContext context,
-    PageState state,
+    SelectInterestsState state,
   ) {
     return context.navigator.pushNamed(
       GuidePage.routeName,

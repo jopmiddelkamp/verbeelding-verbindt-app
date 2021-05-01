@@ -13,7 +13,7 @@ class SpecialitiesList extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    return BlocBuilder<PageCubit, PageState>(
+    return BlocBuilder<SelectInterestsCubit, SelectInterestsState>(
       builder: (context, state) {
         if (!state.specialitiesLoaded) {
           return const VVCircleLoadingIndicator(
@@ -34,7 +34,9 @@ class SpecialitiesList extends StatelessWidget {
                 category.name.value,
               ),
               onTap: () {
-                context.blocProvider<PageCubit>().toggleSpeciality(category.id);
+                context
+                    .blocProvider<SelectInterestsCubit>()
+                    .toggleSpeciality(category.id);
               },
               selected: state.selectedSpecialityIds.contains(category.id),
             );

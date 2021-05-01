@@ -1,16 +1,16 @@
 import '../../../../../../shared/domain/failures/failure.dart';
 import '../../../../domain/models/speciality_model.dart';
 
-class PageState {
-  const PageState._({
+class SelectInterestsState {
+  const SelectInterestsState._({
     this.specialities,
     this.selectedSpecialityIds = const [],
     this.selectionConfirmed = false,
     this.failure,
   }) : super();
 
-  factory PageState.initialize() {
-    return PageState._(
+  factory SelectInterestsState.initialize() {
+    return SelectInterestsState._(
       specialities: null,
       selectedSpecialityIds: const [],
       selectionConfirmed: false,
@@ -18,10 +18,10 @@ class PageState {
     );
   }
 
-  factory PageState.load(
+  factory SelectInterestsState.load(
     List<SpecialityModel> specialities,
   ) {
-    return PageState._(
+    return SelectInterestsState._(
       specialities: specialities,
       selectedSpecialityIds: const [],
       selectionConfirmed: false,
@@ -50,13 +50,13 @@ class PageState {
               }''';
   }
 
-  PageState copyWith({
+  SelectInterestsState copyWith({
     List<SpecialityModel>? specialities,
     List<String>? selectedSpecialityIds,
     bool? selectionConfirmed,
     Failure? failure,
   }) {
-    return PageState._(
+    return SelectInterestsState._(
       specialities: specialities ?? this.specialities,
       selectedSpecialityIds:
           selectedSpecialityIds ?? this.selectedSpecialityIds,
