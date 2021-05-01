@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../shared/presentation/dialogs/not_implemented_dialog.dart';
 import '../../../../../../shared/presentation/extensions/build_context_extensions.dart';
 import '../../../../../../shared/presentation/font_weight.dart';
 import '../../../../domain/models/route_stop_model.dart';
+import 'more_info_button.dart';
 import 'route_list_indicator.dart';
+import 'scan_qr_button.dart';
 
 class RouteListItem extends StatelessWidget {
   final int count;
@@ -71,25 +72,24 @@ class RouteListItem extends StatelessWidget {
                     maxLines: 4,
                   ),
                 ],
-                if (active)
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        child: Text('Meer info'),
-                        onPressed: () => showNotImplementedDialog(context),
-                      ),
-                      TextButton(
-                        child: Text('Scan QR'),
-                        onPressed: () => showNotImplementedDialog(context),
-                      ),
-                    ],
-                  ),
+                if (active) _buildActionRow(context),
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildActionRow(
+    BuildContext context,
+  ) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        MoreInfoButton(),
+        ScanQrButton(),
+      ],
     );
   }
 }

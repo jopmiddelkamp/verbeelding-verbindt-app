@@ -14,8 +14,8 @@ import '../../../domain/services/artist_service.dart';
 import '../../../domain/services/route_service.dart';
 import 'guide_state.dart';
 
-class GuideBloc extends Cubit<GuideState> {
-  GuideBloc.createRoute({
+class GuideCubit extends Cubit<GuideState> {
+  GuideCubit.createRoute({
     required ArtistService artistService,
     required PermissionService permissionService,
     required RouteService routeService,
@@ -31,7 +31,7 @@ class GuideBloc extends Cubit<GuideState> {
     );
   }
 
-  GuideBloc.openRoute({
+  GuideCubit.openRoute({
     required ArtistService artistService,
     required PermissionService permissionService,
     required RouteService routeService,
@@ -98,7 +98,7 @@ class GuideBloc extends Cubit<GuideState> {
       selectedSpecialityIds,
     );
     final location = await _locationService.getCurrentLocation(
-      locationAccuracy: LocationAccuracy.lowest,
+      locationAccuracy: LocationAccuracy.medium,
     );
     _sortArtitstByDistance(
       artists,
@@ -129,9 +129,7 @@ class GuideBloc extends Cubit<GuideState> {
     });
   }
 
-  void qrScanned(
-    String value,
-  ) {
+  void next() {
     throw UnimplementedError();
   }
 

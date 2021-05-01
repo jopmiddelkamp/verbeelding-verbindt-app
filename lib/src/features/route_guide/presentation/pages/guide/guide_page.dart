@@ -24,7 +24,7 @@ class GuidePage extends StatelessWidget {
     return BlocProvider(
       create: (context) {
         if (arguments is CreateRoutePageArguments) {
-          return GuideBloc.createRoute(
+          return GuideCubit.createRoute(
             artistService: serviceLocator<ArtistService>(),
             permissionService: serviceLocator<PermissionService>(),
             locationService: serviceLocator<LocationService>(),
@@ -32,7 +32,7 @@ class GuidePage extends StatelessWidget {
             selectedSpecialityIds: arguments.selectedSpecialityIds,
           );
         }
-        return GuideBloc.openRoute(
+        return GuideCubit.openRoute(
           artistService: serviceLocator<ArtistService>(),
           permissionService: serviceLocator<PermissionService>(),
           locationService: serviceLocator<LocationService>(),
@@ -61,9 +61,9 @@ class GuidePage extends StatelessWidget {
   ) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Zoek de volgende kunstenaar'),
+        title: const Text('Zoek de kunstenaar'),
       ),
-      body: BlocBuilder<GuideBloc, GuideState>(
+      body: BlocBuilder<GuideCubit, GuideState>(
         builder: (context, state) {
           if (!state.stopsLoaded) {
             return Center(
