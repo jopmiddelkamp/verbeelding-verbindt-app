@@ -8,7 +8,8 @@ import '../../../../../shared/presentation/widgets/loading_indicators/circle_loa
 import '../../../../../theme.dart';
 import '../../../domain/services/artist_service.dart';
 import '../../../domain/services/route_service.dart';
-import 'bloc/barrel.dart';
+import 'guide_bloc.dart';
+import 'guide_state.dart';
 import 'widgets/route_list_item.dart';
 import 'widgets/route_map.dart';
 

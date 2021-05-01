@@ -3,16 +3,16 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../../../../../shared/domain/enums/permission_enum.dart';
-import '../../../../../../shared/domain/enums/permission_status_enum.dart';
-import '../../../../../../shared/domain/failures/permission/permission_failure.dart';
-import '../../../../../../shared/domain/models/location_model.dart';
-import '../../../../../../shared/domain/services/location/location_service.dart';
-import '../../../../../../shared/domain/services/permission/permission_service.dart';
-import '../../../../domain/models/artist_model.dart';
-import '../../../../domain/services/artist_service.dart';
-import '../../../../domain/services/route_service.dart';
-import 'barrel.dart';
+import '../../../../../shared/domain/enums/permission_enum.dart';
+import '../../../../../shared/domain/enums/permission_status_enum.dart';
+import '../../../../../shared/domain/failures/permission/permission_failure.dart';
+import '../../../../../shared/domain/models/location_model.dart';
+import '../../../../../shared/domain/services/location/location_service.dart';
+import '../../../../../shared/domain/services/permission/permission_service.dart';
+import '../../../domain/models/artist_model.dart';
+import '../../../domain/services/artist_service.dart';
+import '../../../domain/services/route_service.dart';
+import 'guide_state.dart';
 
 class GuideBloc extends Cubit<GuideState> {
   GuideBloc.createRoute({

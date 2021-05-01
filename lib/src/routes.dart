@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'features/intro/presentation/pages/intro_page.dart';
+import 'features/intro/presentation/pages/intro/intro_page.dart';
 import 'features/route_guide/presentation/pages/guide/guide_page.dart';
 import 'features/route_guide/presentation/pages/select_interests/select_interests_page.dart';
 

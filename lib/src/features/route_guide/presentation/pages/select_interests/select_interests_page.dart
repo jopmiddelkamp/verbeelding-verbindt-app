@@ -5,7 +5,8 @@ import 'package:get_it/get_it.dart';
 import '../../../../../shared/presentation/extensions/build_context_extensions.dart';
 import '../../../domain/services/speciality_service.dart';
 import '../guide/guide_page.dart';
-import 'bloc/barrel.dart';
+import 'select_interests_cubit.dart';
+import 'select_interests_state.dart';
 import 'widgets/next_button.dart';
 import 'widgets/specialties_list.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../shared/domain/services/barrel.dart';
+import '../../../../../shared/domain/services/persistent_storage/persistent_storage_service.dart';
 import 'intro_state.dart';
 
 class IntroCubit extends Cubit<IntroState> {

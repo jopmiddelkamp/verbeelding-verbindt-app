@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../../shared/domain/services/persistent_storage/persistent_storage_service.dart';
-import '../../../../shared/presentation/extensions/build_context_extensions.dart';
-import '../../../route_guide/presentation/pages/select_interests/select_interests_page.dart';
-import '../bloc/intro_cubit.dart';
-import '../bloc/intro_state.dart';
-import '../widgets/continue_button.dart';
-import '../widgets/description.dart';
-import '../widgets/header.dart';
+import '../../../../../shared/domain/services/persistent_storage/persistent_storage_service.dart';
+import '../../../../../shared/presentation/extensions/build_context_extensions.dart';
+import '../../../../route_guide/presentation/pages/select_interests/select_interests_page.dart';
+import 'intro_cubit.dart';
+import 'intro_state.dart';
+import 'widgets/continue_button.dart';
+import 'widgets/description.dart';
+import 'widgets/header.dart';
 
 final sl = GetIt.instance;
 

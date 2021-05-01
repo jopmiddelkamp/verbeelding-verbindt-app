@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../shared/presentation/extensions/build_context_extensions.dart';
+import '../../../../../../shared/presentation/extensions/build_context_extensions.dart';
 
 class Description extends StatelessWidget {
   const Description({Key? key}) : super(key: key);

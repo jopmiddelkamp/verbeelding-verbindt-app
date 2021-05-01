@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../shared/presentation/extensions/build_context_extensions.dart';
 import '../../../../../../shared/presentation/widgets/list_tiles/list_tile.dart';
 import '../../../../../../shared/presentation/widgets/loading_indicators/circle_loading_indicator.dart';
-import '../bloc/barrel.dart';
+import '../select_interests_cubit.dart';
+import '../select_interests_state.dart';
 
 class SpecialitiesList extends StatelessWidget {
   const SpecialitiesList({Key? key}) : super(key: key);

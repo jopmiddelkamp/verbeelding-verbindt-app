@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../shared/presentation/extensions/build_context_extensions.dart';
 import '../../../../../../shared/presentation/widgets/buttons/tsal_primary_button.dart';
-import '../bloc/barrel.dart';
+import '../select_interests_cubit.dart';
+import '../select_interests_state.dart';
 
 class NextButton extends StatelessWidget {
   const NextButton({Key? key}) : super(key: key);

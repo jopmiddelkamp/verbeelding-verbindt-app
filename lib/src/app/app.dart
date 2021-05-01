@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
-import '../features/intro/presentation/pages/intro_page.dart';
+import '../features/intro/presentation/pages/intro/intro_page.dart';
 import '../features/route_guide/presentation/pages/select_interests/select_interests_page.dart';
 import '../routes.dart';
 import '../shared/domain/services/barrel.dart';

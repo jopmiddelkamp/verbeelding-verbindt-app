@@ -1,8 +1,8 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../../../../../shared/domain/failures/failure.dart';
-import '../../../../../../shared/domain/models/location_model.dart';
-import '../../../../domain/models/route_stop_model.dart';
+import '../../../../../shared/domain/failures/failure.dart';
+import '../../../../../shared/domain/models/location_model.dart';
+import '../../../domain/models/route_stop_model.dart';
 
 class GuideState {
   const GuideState._({

@@ -1,5 +1,5 @@
-import '../../../../../../shared/domain/failures/failure.dart';
-import '../../../../domain/models/speciality_model.dart';
+import '../../../../../shared/domain/failures/failure.dart';
+import '../../../domain/models/speciality_model.dart';
 
 class SelectInterestsState {
   const SelectInterestsState._({

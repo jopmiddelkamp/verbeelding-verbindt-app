@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../domain/models/speciality_model.dart';
-import '../../../../domain/services/speciality_service.dart';
-import 'barrel.dart';
+import '../../../domain/models/speciality_model.dart';
+import '../../../domain/services/speciality_service.dart';
+import 'select_interests_state.dart';
 
 class SelectInterestsCubit extends Cubit<SelectInterestsState> {
   SelectInterestsCubit({
