@@ -26,7 +26,7 @@ class VVCircleLoadingIndicator extends StatelessWidget {
           size: size,
         ),
         if (label != null) ...[
-          const SizedBox(height: 8),
+          SizedBox(height: size / 3),
           Text(
             label!,
             style: TextStyle(fontSize: size / 3),
