@@ -1,0 +1,26 @@
+name: verbeelding_verbindt_core
+description: A new Flutter package project.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.12.0-0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  equatable: ^2.0.0
+  get_it: ^6.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  bloc_test: ^8.0.0
+  build_runner: ^2.0.1
+  effective_dart: ^1.3.1
+  json_serializable: ^4.0.3
+  mocktail: ^0.1.0
+
+flutter:
+  uses-material-design: true
+  generate: true
