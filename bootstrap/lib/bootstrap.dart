@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:device_info/device_info.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:package_info/package_info.dart';
@@ -22,7 +21,8 @@ class Bootstrap {
   static Future<void> boot(
     Environment environment,
   ) async {
-    await Firebase.initializeApp();
+    /// Has to be run first in respect to [WidgetsFlutterBinding]
+    await pres.Module.initialize(environment);
 
     await _initEnvironment(environment);
     await _initDeviceInfo();
@@ -34,7 +34,6 @@ class Bootstrap {
       routeXlUsername: EnvironmentVariables.routeXlUsername,
       routeXlPassword: EnvironmentVariables.routeXlPassword,
     );
-    await pres.Module.initialize();
     await core.Module.initialize();
   }
 }
