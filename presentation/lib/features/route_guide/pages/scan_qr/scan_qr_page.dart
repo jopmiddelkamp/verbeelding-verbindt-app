@@ -27,7 +27,7 @@ class ScanQrPage extends StatelessWidget {
   static MaterialPageRoute route(
     ScanQrPageArguments arguments,
   ) {
-    return MaterialPageRoute(
+    return MaterialPageRoute<bool>(
       builder: (context) => ScanQrPage.blocProvider(
         arguments,
       ),

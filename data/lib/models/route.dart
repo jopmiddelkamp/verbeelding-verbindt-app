@@ -23,7 +23,7 @@ class RouteDataModel {
       .toSet()
       .toList(growable: false);
 
-  static RouteDataModel fromMap(
+  static RouteDataModel fromFirebaseMap(
     String id,
     Map<String, dynamic> map,
   ) =>
@@ -37,7 +37,7 @@ class RouteDataModel {
   ) {
     return stops.map((value) {
       if (value is Map<String, dynamic>) {
-        return RouteStopDataModel.fromMap(value);
+        return RouteStopDataModel.fromFirebaseMap(value);
       }
       throw Exception('$RouteDataModel._mapStops: unsupported value provided.');
     }).toList();

@@ -12,7 +12,7 @@ class TranslatableStringDataModel {
   @override
   String toString() => 'TranslatableString { ${data.keys.join(',')} }';
 
-  static TranslatableStringDataModel fromMap(
+  static TranslatableStringDataModel fromFirebaseMap(
     Map<String, dynamic> map,
   ) {
     return TranslatableStringDataModel(

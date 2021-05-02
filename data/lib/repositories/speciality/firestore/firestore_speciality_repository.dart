@@ -23,7 +23,7 @@ class FirestoreSpecialityRepository implements SpecialityRepository {
     }
     return query.snapshots().map((docs) {
       return docs.docs
-          .map((doc) => SpecialityDataModel.fromMap(
+          .map((doc) => SpecialityDataModel.fromFirebaseMap(
                 doc.id,
                 doc.data(),
               ).toEntity())

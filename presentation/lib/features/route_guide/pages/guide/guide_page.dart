@@ -19,7 +19,7 @@ class GuidePage extends StatelessWidget {
   const GuidePage._();
 
   static Widget blocProvider(
-    RoutePageArguments arguments,
+    GuidePageArguments arguments,
   ) {
     return BlocProvider(
       create: (context) {
@@ -44,7 +44,7 @@ class GuidePage extends StatelessWidget {
   }
 
   static MaterialPageRoute route(
-    RoutePageArguments arguments,
+    GuidePageArguments arguments,
   ) {
     return MaterialPageRoute(
       builder: (context) => GuidePage.blocProvider(
@@ -110,11 +110,11 @@ class GuidePage extends StatelessWidget {
   }
 }
 
-abstract class RoutePageArguments {
-  const RoutePageArguments();
+abstract class GuidePageArguments {
+  const GuidePageArguments();
 }
 
-class CreateRoutePageArguments extends RoutePageArguments {
+class CreateRoutePageArguments extends GuidePageArguments {
   const CreateRoutePageArguments({
     required this.selectedSpecialityIds,
   });
@@ -122,6 +122,6 @@ class CreateRoutePageArguments extends RoutePageArguments {
   final List<String> selectedSpecialityIds;
 }
 
-class OpenExistingRoutePageArguments extends RoutePageArguments {
+class OpenExistingRoutePageArguments extends GuidePageArguments {
   const OpenExistingRoutePageArguments();
 }

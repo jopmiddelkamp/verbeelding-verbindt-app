@@ -25,12 +25,13 @@ class RouteStopDataModel {
     );
   }
 
-  static RouteStopDataModel fromMap(
+  static RouteStopDataModel fromFirebaseMap(
     Map<String, dynamic> map,
   ) {
+    final artistId = map['artist']['id'] ?? map['artistId'];
     return RouteStopDataModel(
-      artist: ArtistDataModel.fromMap(
-        id: map['artistId'],
+      artist: ArtistDataModel.fromFirebaseMap(
+        id: artistId as String,
         map: map['artist'],
       ),
       completed: map['completed'],

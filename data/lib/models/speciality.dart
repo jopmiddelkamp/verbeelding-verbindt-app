@@ -31,13 +31,13 @@ class SpecialityDataModel extends Equatable {
   @override
   String toString() => 'Speciality { id: $id, name: $name }';
 
-  static SpecialityDataModel fromMap(
+  static SpecialityDataModel fromFirebaseMap(
     String id,
     Map<String, dynamic> map,
   ) =>
       SpecialityDataModel(
         id: id,
-        name: TranslatableStringDataModel.fromMap(map['name']),
+        name: TranslatableStringDataModel.fromFirebaseMap(map['name']),
       );
 
   static SpecialityDataModel fromJson(

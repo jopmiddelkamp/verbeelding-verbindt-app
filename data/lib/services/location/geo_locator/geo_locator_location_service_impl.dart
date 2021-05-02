@@ -10,6 +10,8 @@ class GlLocationServiceImpl extends ServiceBase implements LocationService {
   Future<LocationEntity> getCurrentLocation({
     LocationAccuracy locationAccuracy = LocationAccuracy.best,
   }) async {
+    // TODO: remove when Geo Locattor is working again
+    return LocationEntity(latitude: 52.393309, longitude: 6.1430403);
     final position = await gl.Geolocator.getCurrentPosition(
       desiredAccuracy: accuracyMap[locationAccuracy]!,
     );
@@ -18,6 +20,8 @@ class GlLocationServiceImpl extends ServiceBase implements LocationService {
 
   @override
   Future<LocationEntity?> getLastKnownLocation() async {
+    // TODO: remove when Geo Locattor is working again
+    return LocationEntity(latitude: 52.393309, longitude: 6.1430403);
     final lastPostion = await gl.Geolocator.getLastKnownPosition();
     if (lastPostion == null) {
       return await getCurrentLocation();

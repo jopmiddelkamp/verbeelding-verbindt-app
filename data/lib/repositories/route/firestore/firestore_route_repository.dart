@@ -26,7 +26,7 @@ class FirestoreRouteRepository implements RouteRepository {
       if (!snapshot.exists) {
         return null;
       }
-      return RouteDataModel.fromMap(
+      return RouteDataModel.fromFirebaseMap(
         snapshot.id,
         snapshot.data()!,
       ).toEntity();

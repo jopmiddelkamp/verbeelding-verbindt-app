@@ -43,14 +43,14 @@ class ArtistDataModel extends Equatable {
                             previewContent: $previewContent,
                           }''';
 
-  static ArtistDataModel fromMap({
+  static ArtistDataModel fromFirebaseMap({
     String? id,
     required Map<String, dynamic> map,
   }) {
     final specialities = <String, SpecialityDataModel>{};
     (map['specialities'] as Map).forEach((key, value) {
       final specialityMap = value as Map;
-      final speciality = SpecialityDataModel.fromMap(
+      final speciality = SpecialityDataModel.fromFirebaseMap(
         key,
         specialityMap as Map<String, dynamic>,
       );

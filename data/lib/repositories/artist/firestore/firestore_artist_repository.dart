@@ -19,7 +19,7 @@ class FirestoreArtistRepository implements ArtistRepository {
 
     yield* query.snapshots().map<List<ArtistEntity>>((snapshot) {
       final artists = snapshot.docs
-          .map((doc) => ArtistDataModel.fromMap(
+          .map((doc) => ArtistDataModel.fromFirebaseMap(
                 id: doc.id,
                 map: doc.data(),
               ))
@@ -37,7 +37,7 @@ class FirestoreArtistRepository implements ArtistRepository {
     final result = await query.get();
 
     return result.docs
-        .map((doc) => ArtistDataModel.fromMap(
+        .map((doc) => ArtistDataModel.fromFirebaseMap(
               id: doc.id,
               map: doc.data(),
             ).toEntity())

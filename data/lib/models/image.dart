@@ -11,7 +11,7 @@ class ImageDataModel extends Equatable {
     required this.url,
   });
 
-  factory ImageDataModel.fromMap(
+  factory ImageDataModel.fromFirebaseMap(
     Map<String, dynamic> map,
   ) {
     return ImageDataModel(
