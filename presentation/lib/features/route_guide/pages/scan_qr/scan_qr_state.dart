@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:verbeelding_verbindt_core/failures/failure.dart';
@@ -5,7 +7,7 @@ import 'package:verbeelding_verbindt_core/failures/failure.dart';
 import '../../../../shared/bloc/state_base.dart';
 
 class ScanQrState extends StateBase {
-  const ScanQrState._({
+  ScanQrState._({
     required this.qrKey,
     required this.validArtistId,
     required this.scannedArtistId,
@@ -33,6 +35,7 @@ class ScanQrState extends StateBase {
   final QRViewController? qrController;
 
   bool get loaded => qrController != null;
+  bool get validScan => validArtistId == scannedArtistId;
 
   @override
   String toString() => '''$runtimeType { 
@@ -41,6 +44,7 @@ class ScanQrState extends StateBase {
                             scannedArtistId: $scannedArtistId, 
                             qrController: $qrController,
                             failure: $failure, 
+                            validScan: $validScan,
                           }''';
 
   ScanQrState copyWith({
@@ -60,5 +64,6 @@ class ScanQrState extends StateBase {
   @override
   Future<void> dispose() async {
     qrController?.dispose();
+    await super.dispose();
   }
 }

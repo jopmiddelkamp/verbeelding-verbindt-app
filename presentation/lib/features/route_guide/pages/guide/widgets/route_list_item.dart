@@ -63,7 +63,8 @@ class RouteListItem extends StatelessWidget {
                         : null,
                   ),
                 ),
-                if (stop.artist.previewContent.text.value.isNotEmpty) ...[
+                if (active &&
+                    stop.artist.previewContent.text.value.isNotEmpty) ...[
                   const SizedBox(height: 4),
                   Text(
                     stop.artist.previewContent.text.value,

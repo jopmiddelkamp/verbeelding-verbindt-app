@@ -130,7 +130,11 @@ class GuideCubit extends Cubit<GuideState> {
   }
 
   void next() {
-    throw UnimplementedError();
+    emit(state.copyWith(
+      stops: state.stops!
+          .map((e) => e != state.currentStop ? e : e.copyWith(completed: true))
+          .toList(),
+    ));
   }
 
   void setMapController(

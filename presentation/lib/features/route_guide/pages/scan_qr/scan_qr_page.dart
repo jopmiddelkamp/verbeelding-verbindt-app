@@ -20,16 +20,13 @@ class ScanQrPage extends StatelessWidget {
       create: (context) {
         return ScanQrCubit(arguments);
       },
-      child: const ScanQrPage._(),
-    );
-  }
-
-  static MaterialPageRoute route(
-    ScanQrPageArguments arguments,
-  ) {
-    return MaterialPageRoute<bool>(
-      builder: (context) => ScanQrPage.blocProvider(
-        arguments,
+      child: BlocListener<ScanQrCubit, ScanQrState>(
+        listener: (context, state) {
+          if (state.validScan) {
+            context.navigator.pop(true);
+          }
+        },
+        child: const ScanQrPage._(),
       ),
     );
   }

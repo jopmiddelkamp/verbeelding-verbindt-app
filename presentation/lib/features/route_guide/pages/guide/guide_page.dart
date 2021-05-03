@@ -43,16 +43,6 @@ class GuidePage extends StatelessWidget {
     );
   }
 
-  static MaterialPageRoute route(
-    GuidePageArguments arguments,
-  ) {
-    return MaterialPageRoute(
-      builder: (context) => GuidePage.blocProvider(
-        arguments,
-      ),
-    );
-  }
-
   static const String routeName = 'route_guide/guide';
 
   @override

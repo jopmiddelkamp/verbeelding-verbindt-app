@@ -23,6 +23,8 @@ dependencies:
   intl: ^0.17.0
   json_annotation: ^4.0.1
   qr_code_scanner: ^0.4.0
+  rxdart: ^0.26.0
+  supercharged: ^2.0.0
   verbeelding_verbindt_core:
     path: ../core
 
@@ -35,13 +37,9 @@ dev_dependencies:
   json_serializable: ^4.0.3
   mocktail: ^0.1.0
 
-
 flutter_intl:
   enabled: true
 
 flutter:
   uses-material-design: true
   generate: true
-  assets:
-    - assets/images/intro-header.jpg
-    - assets/images/unknown-artist.jpg

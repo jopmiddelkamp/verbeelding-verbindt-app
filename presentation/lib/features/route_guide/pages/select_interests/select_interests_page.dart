@@ -48,13 +48,6 @@ class SelectInterestsPage extends StatelessWidget {
     );
   }
 
-  // TODO: implement Flutter navigtor 2.0
-  static MaterialPageRoute route() {
-    return MaterialPageRoute(
-      builder: (context) => SelectInterestsPage.blocProvider(),
-    );
-  }
-
   @override
   Widget build(
     BuildContext context,

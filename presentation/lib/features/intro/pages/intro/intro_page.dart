@@ -34,12 +34,6 @@ class IntroPage extends StatelessWidget {
     );
   }
 
-  static MaterialPageRoute route() {
-    return MaterialPageRoute(
-      builder: (context) => IntroPage.blocProvider(),
-    );
-  }
-
   static const String routeName = '/route_guide/intro';
 
   @override

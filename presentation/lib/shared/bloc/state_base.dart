@@ -1,11 +1,14 @@
+import 'package:flutter/foundation.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:verbeelding_verbindt_core/failures/failure.dart';
 
 abstract class StateBase {
-  const StateBase({
+  StateBase({
     required this.failure,
   });
 
   final Failure? failure;
+  final PublishSubject<Null> dispose$ = PublishSubject<Null>();
 
   bool get hasFailure => failure == null;
 
@@ -14,5 +17,8 @@ abstract class StateBase {
                             failure: $failure, 
                           }''';
 
-  Future<void> dispose();
+  @mustCallSuper
+  Future<void> dispose() async {
+    dispose$.add(null);
+  }
 }
