@@ -19,7 +19,7 @@ class SelectInterestsPage extends StatelessWidget {
   static Widget blocProvider() {
     return BlocProvider(
       create: (context) => SelectInterestsCubit(
-        specialityService: serviceLocator(),
+        specialityRepository: serviceLocator(),
       ),
       child: BlocListener<SelectInterestsCubit, SelectInterestsState>(
         listener: (context, state) async {

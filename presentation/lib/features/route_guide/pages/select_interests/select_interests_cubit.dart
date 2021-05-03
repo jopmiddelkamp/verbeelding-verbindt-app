@@ -1,32 +1,33 @@
-import 'dart:async';
-
+import 'package:rxdart/rxdart.dart';
 import 'package:verbeelding_verbindt_core/entities/speciality.dart';
-import 'package:verbeelding_verbindt_core/services/speciality_service.dart';
+import 'package:verbeelding_verbindt_core/repositories/speciality_repository.dart';
 
 import '../../../../shared/bloc/cubit_base.dart';
 import 'select_interests_state.dart';
 
 class SelectInterestsCubit extends CubitBase<SelectInterestsState> {
   SelectInterestsCubit({
-    required SpecialityService specialityService,
-  })   : _specialityService = specialityService,
+    required SpecialityRepository specialityRepository,
+  })   : _specialityRepository = specialityRepository,
         super(SelectInterestsState.initialize()) {
     _init();
   }
 
-  final SpecialityService _specialityService;
-
-  late StreamSubscription _specialitiesStreamSub;
+  final SpecialityRepository _specialityRepository;
 
   void _init() {
-    _specialitiesStreamSub =
-        _specialityService.getSpecialities().listen(_loadSpecialities);
+    _specialityRepository
+        .getSpecialities()
+        .takeUntil(dispose$)
+        .listen(_loadSpecialities);
   }
 
   void _loadSpecialities(
     List<SpecialityEntity> specialities,
   ) {
-    emit(SelectInterestsState.load(specialities));
+    emit(SelectInterestsState.load(
+      specialities,
+    ));
   }
 
   void toggleSpeciality(
@@ -51,11 +52,5 @@ class SelectInterestsCubit extends CubitBase<SelectInterestsState> {
     emit(state.copyWith(
       selectionConfirmed: !state.selectionConfirmed,
     ));
-  }
-
-  @override
-  Future<void> close() {
-    _specialitiesStreamSub.cancel();
-    return super.close();
   }
 }

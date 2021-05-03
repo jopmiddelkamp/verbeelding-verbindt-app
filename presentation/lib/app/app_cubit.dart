@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:verbeelding_verbindt_core/services/persistent_storage_service.dart';
 
+import '../shared/services/persistent_storage/persistent_storage_service.dart';
 import 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {

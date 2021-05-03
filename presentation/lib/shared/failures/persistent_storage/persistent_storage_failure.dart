@@ -1,4 +1,4 @@
-import '../failure.dart';
+import 'package:verbeelding_verbindt_core/failures/failure.dart';
 
 abstract class PersistentStorageFailure implements Failure {
   const PersistentStorageFailure();

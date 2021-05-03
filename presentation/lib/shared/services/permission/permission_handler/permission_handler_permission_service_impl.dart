@@ -1,10 +1,11 @@
 import 'package:permission_handler/permission_handler.dart' as ph;
-import 'package:verbeelding_verbindt_core/enums/permission_enum.dart';
-import 'package:verbeelding_verbindt_core/enums/permission_status_enum.dart';
-import 'package:verbeelding_verbindt_core/failures/permission/unsupported_permission_failure.dart';
-import 'package:verbeelding_verbindt_core/failures/persistent_storage/persistent_storage_failure.dart';
-import 'package:verbeelding_verbindt_core/services/permission_service.dart';
-import 'package:verbeelding_verbindt_core/services/persistent_storage_service.dart';
+
+import '../../../enums/permission_enum.dart';
+import '../../../enums/permission_status_enum.dart';
+import '../../../failures/permission/unsupported_permission_failure.dart';
+import '../../../failures/persistent_storage/persistent_storage_failure.dart';
+import '../../persistent_storage/persistent_storage_service.dart';
+import '../permission_service.dart';
 
 class PhLocationPermissionServiceImpl extends PermissionService {
   PhLocationPermissionServiceImpl({

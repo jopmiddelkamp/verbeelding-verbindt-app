@@ -1,7 +1,6 @@
 import 'dart:async';
 
-import '../enums/permission_enum.dart';
-import '../failures/persistent_storage/persistent_storage_failure.dart';
+import '../../enums/permission_enum.dart';
 
 abstract class PersistentStorageService {
   /// Returns if the intro has been accepted. Returns [bool] if successful or

@@ -6,17 +6,17 @@ import 'package:verbeelding_verbindt_core/entities/artist.dart';
 import 'package:verbeelding_verbindt_core/entities/device_info.dart';
 import 'package:verbeelding_verbindt_core/entities/location.dart';
 import 'package:verbeelding_verbindt_core/entities/route.dart';
-import 'package:verbeelding_verbindt_core/enums/permission_enum.dart';
-import 'package:verbeelding_verbindt_core/enums/permission_status_enum.dart';
-import 'package:verbeelding_verbindt_core/failures/permission/permission_failure.dart';
 import 'package:verbeelding_verbindt_core/repositories/artist_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/route_generator_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/route_repository.dart';
-import 'package:verbeelding_verbindt_core/services/location_service.dart';
-import 'package:verbeelding_verbindt_core/services/permission_service.dart';
 import 'package:verbeelding_verbindt_core/utils/location_utils.dart';
 
 import '../../../../shared/bloc/cubit_base.dart';
+import '../../../../shared/enums/permission_enum.dart';
+import '../../../../shared/enums/permission_status_enum.dart';
+import '../../../../shared/failures/permission/permission_failure.dart';
+import '../../../../shared/services/location/location_service.dart';
+import '../../../../shared/services/permission/permission_service.dart';
 import 'guide_state.dart';
 
 class GuideCubit extends CubitBase<GuideState> {

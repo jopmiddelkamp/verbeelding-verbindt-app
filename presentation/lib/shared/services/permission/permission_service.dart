@@ -1,5 +1,5 @@
-import '../enums/permission_enum.dart';
-import '../enums/permission_status_enum.dart';
+import '../../enums/permission_enum.dart';
+import '../../enums/permission_status_enum.dart';
 
 abstract class PermissionService {
   Future<PermissionStatus> getStatus(

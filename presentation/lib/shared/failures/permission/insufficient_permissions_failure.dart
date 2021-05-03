@@ -1,5 +1,5 @@
 import '../../enums/permission_enum.dart';
-import '../../services/permission_service.dart';
+import '../../services/permission/permission_service.dart';
 import 'permission_failure.dart';
 
 class InsufficientPermissionsFailure extends PermissionFailure {

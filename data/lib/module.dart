@@ -5,7 +5,6 @@ import 'package:verbeelding_verbindt_core/repositories/artist_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/route_generator_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/route_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/speciality_repository.dart';
-import 'package:verbeelding_verbindt_core/services/speciality_service.dart';
 
 import 'repositories/artist/firestore/firestore_artist_repository.dart';
 import 'repositories/route/firestore/firestore_route_repository.dart';
@@ -26,7 +25,6 @@ class Module {
       routeXlUsername: routeXlUsername,
       routeXlPassword: routeXlPassword,
     );
-    _initServices();
   }
 
   static void _initRepositories({
@@ -55,18 +53,6 @@ class Module {
           username: routeXlUsername,
           password: routeXlPassword,
         ),
-      );
-  }
-
-  static void _initServices() {
-    serviceLocator
-      ..registerSingletonWithDependencies<SpecialityService>(
-        () => SpecialityServiceImpl(
-          specialityRepository: serviceLocator(),
-        ),
-        dependsOn: [
-          SpecialityRepository,
-        ],
       );
   }
 }
