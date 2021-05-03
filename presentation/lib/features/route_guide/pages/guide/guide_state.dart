@@ -3,14 +3,18 @@ import 'package:verbeelding_verbindt_core/entities/location.dart';
 import 'package:verbeelding_verbindt_core/entities/route_stop.dart';
 import 'package:verbeelding_verbindt_core/failures/failure.dart';
 
-class GuideState {
-  const GuideState._({
+import '../../../../shared/bloc/state_base.dart';
+
+class GuideState extends StateBase {
+  GuideState._({
     required this.stops,
     required this.currentStop,
     required this.initialMapLocation,
     required this.mapController,
-    required this.failure,
-  });
+    Failure? failure,
+  }) : super(
+          failure: failure,
+        );
 
   factory GuideState.initialize() {
     return GuideState._(
@@ -41,12 +45,10 @@ class GuideState {
   final RouteStopEntity? currentStop;
   final LocationEntity? initialMapLocation;
   final GoogleMapController? mapController;
-  final Failure? failure;
 
   bool get stopsLoaded => stops != null && currentStop != null;
   bool get hasStops => stopsLoaded && stops!.isNotEmpty;
   bool get mapLoaded => mapController != null;
-  bool get hasFailure => failure == null;
 
   static RouteStopEntity _getCurrentStop(
     List<RouteStopEntity> stops,
@@ -63,7 +65,7 @@ class GuideState {
                             currentStop: $currentStop, 
                             initialMapLocation: $initialMapLocation, 
                             mapController: $mapController,
-                            failure: $failure 
+                            failure: $failure
                           }''';
 
   GuideState copyWith({

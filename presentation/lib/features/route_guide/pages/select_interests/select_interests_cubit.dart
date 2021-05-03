@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:verbeelding_verbindt_core/entities/speciality.dart';
 import 'package:verbeelding_verbindt_core/services/speciality_service.dart';
 
+import '../../../../shared/bloc/cubit_base.dart';
 import 'select_interests_state.dart';
 
-class SelectInterestsCubit extends Cubit<SelectInterestsState> {
+class SelectInterestsCubit extends CubitBase<SelectInterestsState> {
   SelectInterestsCubit({
     required SpecialityService specialityService,
   })   : _specialityService = specialityService,

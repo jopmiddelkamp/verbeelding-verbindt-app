@@ -1,7 +1,14 @@
-class IntroState {
-  const IntroState._({
+import 'package:verbeelding_verbindt_core/failures/failure.dart';
+
+import '../../../../shared/bloc/state_base.dart';
+
+class IntroState extends StateBase {
+  IntroState._({
     this.accepted,
-  });
+    Failure? failure,
+  }) : super(
+          failure: failure,
+        );
 
   factory IntroState.initialize() {
     return IntroState._(

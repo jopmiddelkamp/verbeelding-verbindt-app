@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:verbeelding_verbindt_core/entities/artist.dart';
 import 'package:verbeelding_verbindt_core/entities/location.dart';
 import 'package:verbeelding_verbindt_core/enums/permission_enum.dart';
@@ -12,9 +12,10 @@ import 'package:verbeelding_verbindt_core/services/location_service.dart';
 import 'package:verbeelding_verbindt_core/services/permission_service.dart';
 import 'package:verbeelding_verbindt_core/services/route_service.dart';
 
+import '../../../../shared/bloc/cubit_base.dart';
 import 'guide_state.dart';
 
-class GuideCubit extends Cubit<GuideState> {
+class GuideCubit extends CubitBase<GuideState> {
   GuideCubit.createRoute({
     required ArtistService artistService,
     required PermissionService permissionService,
@@ -49,8 +50,6 @@ class GuideCubit extends Cubit<GuideState> {
   final RouteService _routeService;
   final LocationService _locationService;
 
-  StreamSubscription? _routeStreamSub;
-
   Future<void> _openRoute() async {
     // TODO: add retry mechanism
     try {
@@ -59,8 +58,7 @@ class GuideCubit extends Cubit<GuideState> {
       );
       final lastPos = await _locationService.getLastKnownLocation();
       if (lastPos != null) {
-        await _routeStreamSub?.cancel();
-        _routeStreamSub = _routeService.getRoute().listen((route) {
+        _routeService.getRoute().takeUntil(dispose$).listen((route) {
           if (route == null) {
             // TODO: handle situation
             return;
@@ -143,11 +141,5 @@ class GuideCubit extends Cubit<GuideState> {
     emit(state.copyWith(
       mapController: mapController,
     ));
-  }
-
-  @override
-  Future<void> close() async {
-    await _routeStreamSub?.cancel();
-    return super.close();
   }
 }
