@@ -13,7 +13,7 @@ class FirestoreArtistRepository implements ArtistRepository {
 
   @override
   Stream<List<ArtistEntity>> streamArtistsBySpeciality(
-    List<String> specialityIds,
+    Iterable<String> specialityIds,
   ) async* {
     final query = _filterArtistsBySpeciality(specialityIds);
 
@@ -30,7 +30,7 @@ class FirestoreArtistRepository implements ArtistRepository {
 
   @override
   Future<List<ArtistEntity>> getArtistsBySpeciality(
-    List<String> specialityIds,
+    Iterable<String> specialityIds,
   ) async {
     final query = _filterArtistsBySpeciality(specialityIds);
 
@@ -45,14 +45,14 @@ class FirestoreArtistRepository implements ArtistRepository {
   }
 
   Query _filterArtistsBySpeciality(
-    List<String> specialityIds,
+    Iterable<String> specialityIds,
   ) {
     // ignore: unnecessary_cast
     var query = _artistCollection as Query;
     if (specialityIds.isNotEmpty == true) {
       query = query.where(
         'specialitiesKeys',
-        arrayContainsAny: specialityIds,
+        arrayContainsAny: specialityIds.toList(),
       );
     }
     return query;

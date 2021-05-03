@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:verbeelding_verbindt_core/services/persistent_storage_service.dart';
 
 import '../../../../features/route_guide/pages/select_interests/select_interests_page.dart';
 import '../../../../shared/extensions/build_context_extensions.dart';
@@ -19,7 +18,7 @@ class IntroPage extends StatelessWidget {
   static Widget blocProvider() {
     return BlocProvider(
       create: (context) => IntroCubit(
-        persistentStorageService: serviceLocator<PersistentStorageService>(),
+        persistentStorageService: serviceLocator(),
       ),
       child: BlocListener<IntroCubit, IntroState>(
         listener: (context, state) async {

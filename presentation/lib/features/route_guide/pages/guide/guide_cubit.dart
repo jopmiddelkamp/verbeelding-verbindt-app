@@ -3,28 +3,36 @@ import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:verbeelding_verbindt_core/entities/artist.dart';
+import 'package:verbeelding_verbindt_core/entities/device_info.dart';
 import 'package:verbeelding_verbindt_core/entities/location.dart';
+import 'package:verbeelding_verbindt_core/entities/route.dart';
 import 'package:verbeelding_verbindt_core/enums/permission_enum.dart';
 import 'package:verbeelding_verbindt_core/enums/permission_status_enum.dart';
 import 'package:verbeelding_verbindt_core/failures/permission/permission_failure.dart';
-import 'package:verbeelding_verbindt_core/services/artist_service.dart';
+import 'package:verbeelding_verbindt_core/repositories/artist_repository.dart';
+import 'package:verbeelding_verbindt_core/repositories/route_generator_repository.dart';
+import 'package:verbeelding_verbindt_core/repositories/route_repository.dart';
 import 'package:verbeelding_verbindt_core/services/location_service.dart';
 import 'package:verbeelding_verbindt_core/services/permission_service.dart';
-import 'package:verbeelding_verbindt_core/services/route_service.dart';
+import 'package:verbeelding_verbindt_core/utils/location_utils.dart';
 
 import '../../../../shared/bloc/cubit_base.dart';
 import 'guide_state.dart';
 
 class GuideCubit extends CubitBase<GuideState> {
   GuideCubit.createRoute({
-    required ArtistService artistService,
+    required DeviceInfoEntity deviceInfo,
+    required ArtistRepository artistRepository,
     required PermissionService permissionService,
-    required RouteService routeService,
+    required RouteRepository routeRepository,
+    required RouteGeneratorRepository routeGeneratorRepository,
     required LocationService locationService,
     required List<String> selectedSpecialityIds,
-  })   : _artistService = artistService,
+  })   : _deviceInfo = deviceInfo,
+        _artistRepository = artistRepository,
         _permissionService = permissionService,
-        _routeService = routeService,
+        _routeRepository = routeRepository,
+        _routeGeneratorRepository = routeGeneratorRepository,
         _locationService = locationService,
         super(GuideState.initialize()) {
     _createRoute(
@@ -33,21 +41,27 @@ class GuideCubit extends CubitBase<GuideState> {
   }
 
   GuideCubit.openRoute({
-    required ArtistService artistService,
+    required DeviceInfoEntity deviceInfo,
+    required ArtistRepository artistRepository,
     required PermissionService permissionService,
-    required RouteService routeService,
+    required RouteRepository routeRepository,
+    required RouteGeneratorRepository routeGeneratorRepository,
     required LocationService locationService,
-  })   : _artistService = artistService,
+  })   : _deviceInfo = deviceInfo,
+        _artistRepository = artistRepository,
         _permissionService = permissionService,
-        _routeService = routeService,
+        _routeRepository = routeRepository,
+        _routeGeneratorRepository = routeGeneratorRepository,
         _locationService = locationService,
         super(GuideState.initialize()) {
     _openRoute();
   }
 
-  final ArtistService _artistService;
+  final DeviceInfoEntity _deviceInfo;
+  final ArtistRepository _artistRepository;
   final PermissionService _permissionService;
-  final RouteService _routeService;
+  final RouteRepository _routeRepository;
+  final RouteGeneratorRepository _routeGeneratorRepository;
   final LocationService _locationService;
 
   Future<void> _openRoute() async {
@@ -58,19 +72,22 @@ class GuideCubit extends CubitBase<GuideState> {
       );
       final lastPos = await _locationService.getLastKnownLocation();
       if (lastPos != null) {
-        _routeService.getRoute().takeUntil(dispose$).listen((route) {
+        _routeRepository
+            .getRoute(_deviceInfo.id)
+            .takeUntil(dispose$)
+            .listen((route) {
           if (route == null) {
             // TODO: handle situation
             return;
           }
-          if (!state.stopsLoaded) {
+          if (!state.routeLoaded) {
             emit(GuideState.load(
-              stops: route.stops,
+              route: route,
               initialMapLocation: lastPos,
             ));
           } else {
             emit(state.copyWith(
-              stops: route.stops,
+              route: route,
             ));
           }
         });
@@ -92,21 +109,29 @@ class GuideCubit extends CubitBase<GuideState> {
       // TODO add solution
       return;
     }
-    final artists = await _artistService.getArtistsBySpeciality(
-      selectedSpecialityIds,
-    );
+
     final location = await _locationService.getCurrentLocation(
       locationAccuracy: LocationAccuracy.medium,
     );
+
+    final artistsList = await _artistRepository.getArtistsBySpeciality(
+      selectedSpecialityIds,
+    );
     _sortArtitstByDistance(
-      artists,
+      artistsList,
       sourceLocation: location,
     );
+    final artists = artistsList.toSet();
 
-    await _routeService.createRoute(
-      artists: artists.toSet(),
+    final stops = await _routeGeneratorRepository.generateRouteStops(
       artistToStartAt: artists.first,
+      artistsToVisit: artists,
     );
+    final data = RouteEntity(
+      id: _deviceInfo.id,
+      stops: stops,
+    );
+    await _routeRepository.createRoute(data);
     await _openRoute();
   }
 
@@ -115,11 +140,11 @@ class GuideCubit extends CubitBase<GuideState> {
     required LocationEntity sourceLocation,
   }) {
     artists.sort((a, b) {
-      final distanceToA = _locationService.distanceBetween(
+      final distanceToA = LocationUtils.distance(
         sourceLocation,
         a.location,
       );
-      final distanceToB = _locationService.distanceBetween(
+      final distanceToB = LocationUtils.distance(
         sourceLocation,
         b.location,
       );
@@ -127,12 +152,14 @@ class GuideCubit extends CubitBase<GuideState> {
     });
   }
 
-  void next() {
-    emit(state.copyWith(
-      stops: state.stops!
-          .map((e) => e != state.currentStop ? e : e.copyWith(completed: true))
-          .toList(),
-    ));
+  Future<void> next() async {
+    if (!state.hasCurrentStop) {
+      return;
+    }
+    await _routeRepository.completeRouteStop(
+      routeId: state.route!.id!,
+      stopIndex: state.currentStopIndex!,
+    );
   }
 
   void setMapController(

@@ -29,19 +29,6 @@ class GlLocationServiceImpl extends ServiceBase implements LocationService {
     return lastPostion.toLocationModel();
   }
 
-  @override
-  double distanceBetween(
-    LocationEntity locationA,
-    LocationEntity locationB,
-  ) {
-    return gl.Geolocator.distanceBetween(
-      locationA.latitude,
-      locationA.longitude,
-      locationB.latitude,
-      locationB.longitude,
-    );
-  }
-
   Map<LocationAccuracy, gl.LocationAccuracy> accuracyMap = {
     LocationAccuracy.lowest: gl.LocationAccuracy.lowest,
     LocationAccuracy.low: gl.LocationAccuracy.low,

@@ -2,7 +2,6 @@ import '../entities/speciality.dart';
 import '../repositories/speciality_repository.dart';
 import '../services/service_base.dart';
 
-// ignore: one_member_abstracts
 abstract class SpecialityService {
   Stream<List<SpecialityEntity>> getSpecialities([
     List<String>? ids,

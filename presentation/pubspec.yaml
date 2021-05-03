@@ -17,13 +17,16 @@ dependencies:
   equatable: ^2.0.0
   flutter_bloc: ^7.0.0
   flutter_spinkit: ^5.0.0
+  geolocator: ^7.0.3
   get_it: ^6.1.1
   google_fonts: ^2.0.0
   google_maps_flutter: ^2.0.3
   intl: ^0.17.0
   json_annotation: ^4.0.1
+  permission_handler: ^7.1.0
   qr_code_scanner: ^0.4.0
   rxdart: ^0.26.0
+  shared_preferences: ^2.0.5
   supercharged: ^2.0.0
   verbeelding_verbindt_core:
     path: ../core

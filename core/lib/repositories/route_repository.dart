@@ -8,4 +8,9 @@ abstract class RouteRepository {
   Stream<RouteEntity?> getRoute(
     String id,
   );
+
+  Future<void> completeRouteStop({
+    required String routeId,
+    required int stopIndex,
+  });
 }

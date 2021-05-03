@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:verbeelding_verbindt_core/services/speciality_service.dart';
 
 import '../../../../shared/extensions/build_context_extensions.dart';
 import '../guide/guide_page.dart';
@@ -20,7 +19,7 @@ class SelectInterestsPage extends StatelessWidget {
   static Widget blocProvider() {
     return BlocProvider(
       create: (context) => SelectInterestsCubit(
-        specialityService: serviceLocator<SpecialityService>(),
+        specialityService: serviceLocator(),
       ),
       child: BlocListener<SelectInterestsCubit, SelectInterestsState>(
         listener: (context, state) async {

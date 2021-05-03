@@ -1,5 +1,6 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:verbeelding_verbindt_core/entities/location.dart';
+import 'package:verbeelding_verbindt_core/entities/route.dart';
 import 'package:verbeelding_verbindt_core/entities/route_stop.dart';
 import 'package:verbeelding_verbindt_core/failures/failure.dart';
 
@@ -7,8 +8,9 @@ import '../../../../shared/bloc/state_base.dart';
 
 class GuideState extends StateBase {
   GuideState._({
-    required this.stops,
+    required this.route,
     required this.currentStop,
+    required this.currentStopIndex,
     required this.initialMapLocation,
     required this.mapController,
     Failure? failure,
@@ -18,8 +20,9 @@ class GuideState extends StateBase {
 
   factory GuideState.initialize() {
     return GuideState._(
-      stops: null,
+      route: null,
       currentStop: null,
+      currentStopIndex: null,
       initialMapLocation: null,
       mapController: null,
       failure: null,
@@ -27,57 +30,68 @@ class GuideState extends StateBase {
   }
 
   factory GuideState.load({
-    required List<RouteStopEntity> stops,
+    required RouteEntity route,
     required LocationEntity initialMapLocation,
     GoogleMapController? mapController,
   }) {
-    final currentStop = _getCurrentStop(stops);
+    final currentIndex = _getCurrentIndex(route.stops);
+    final currentStop = currentIndex != null ? route.stops[currentIndex] : null;
     return GuideState._(
-      stops: stops,
+      route: route,
       currentStop: currentStop,
+      currentStopIndex: currentIndex,
       initialMapLocation: initialMapLocation,
       mapController: mapController,
       failure: null,
     );
   }
 
-  final List<RouteStopEntity>? stops;
+  final RouteEntity? route;
   final RouteStopEntity? currentStop;
+  final int? currentStopIndex;
   final LocationEntity? initialMapLocation;
   final GoogleMapController? mapController;
 
-  bool get stopsLoaded => stops != null && currentStop != null;
-  bool get hasStops => stopsLoaded && stops!.isNotEmpty;
+  bool get routeLoaded => route != null;
+  bool get hasStops => routeLoaded && route!.stops.isNotEmpty;
+  bool get hasCurrentStop => routeLoaded && currentStop != null;
   bool get mapLoaded => mapController != null;
 
-  static RouteStopEntity _getCurrentStop(
+  static int? _getCurrentIndex(
     List<RouteStopEntity> stops,
   ) {
-    return stops.firstWhere(
-      (stop) => !stop.completed,
-      orElse: null,
-    );
+    for (var i = 0; i < stops.length; i++) {
+      if (!stops[i].completed) return i;
+    }
   }
 
   @override
   String toString() => '''$runtimeType { 
-                            stops: ${stops?.length}, 
+                            route: $route, 
                             currentStop: $currentStop, 
+                            currentStopIndex: $currentStopIndex, 
                             initialMapLocation: $initialMapLocation, 
                             mapController: $mapController,
                             failure: $failure
                           }''';
 
   GuideState copyWith({
-    List<RouteStopEntity>? stops,
+    RouteEntity? route,
     LocationEntity? initialMapLocation,
     GoogleMapController? mapController,
     Failure? failure,
   }) {
-    final updatedStops = stops ?? this.stops;
+    int? currentStopIndex;
+    RouteStopEntity? currentStop;
+    if (route != null) {
+      currentStopIndex = _getCurrentIndex(route.stops);
+      final hasCurrentStop = currentStopIndex != null;
+      currentStop = hasCurrentStop ? route.stops[currentStopIndex!] : null;
+    }
     return GuideState._(
-      stops: updatedStops,
-      currentStop: updatedStops != null ? _getCurrentStop(updatedStops) : null,
+      route: route ?? this.route,
+      currentStop: currentStop ?? this.currentStop,
+      currentStopIndex: currentStopIndex ?? this.currentStopIndex,
       initialMapLocation: initialMapLocation ?? this.initialMapLocation,
       mapController: mapController ?? this.mapController,
       failure: failure ?? this.failure,

@@ -68,6 +68,7 @@ Future<String> _initDeviceInfo() async {
       model: deviceInfoPlugin.model,
       isPhysicalDevice: deviceInfoPlugin.isPhysicalDevice,
     );
+    serviceLocator.registerSingleton<DeviceInfoEntity>(deviceInfo);
     serviceLocator.registerSingleton(deviceInfo);
     return deviceInfo.id;
   }
@@ -80,6 +81,7 @@ Future<String> _initDeviceInfo() async {
     androidSDK: deviceInfoPlugin.version.sdkInt,
     isPhysicalDevice: deviceInfoPlugin.isPhysicalDevice,
   );
+  serviceLocator.registerSingleton<DeviceInfoEntity>(deviceInfo);
   serviceLocator.registerSingleton(deviceInfo);
   return deviceInfo.id;
 }

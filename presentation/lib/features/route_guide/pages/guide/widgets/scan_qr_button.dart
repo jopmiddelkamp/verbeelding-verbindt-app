@@ -25,7 +25,7 @@ class ScanQrButton extends StatelessWidget {
       builder: (context, state) {
         return TextButton(
           child: const Text('Scan QR'),
-          onPressed: state.stopsLoaded
+          onPressed: state.routeLoaded
               ? () => _onPressed(context, state.currentStop!)
               : null,
         );

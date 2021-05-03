@@ -7,6 +7,7 @@ extension RouteStopModelExtensions on RouteStopDataModel {
   RouteStopEntity toEntity() {
     return RouteStopEntity(
       artist: artist.toEntity(),
+      completed: completed,
     );
   }
 }
@@ -25,6 +26,7 @@ extension RouteStopEntityExtensions on RouteStopEntity {
   RouteStopDataModel toDataModel() {
     return RouteStopDataModel(
       artist: artist.toDataModel(),
+      completed: completed,
     );
   }
 }

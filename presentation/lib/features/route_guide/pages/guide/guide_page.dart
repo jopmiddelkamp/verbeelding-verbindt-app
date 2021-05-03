@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:verbeelding_verbindt_core/services/artist_service.dart';
-import 'package:verbeelding_verbindt_core/services/location_service.dart';
-import 'package:verbeelding_verbindt_core/services/permission_service.dart';
-import 'package:verbeelding_verbindt_core/services/route_service.dart';
 
 import '../../../../shared/widgets/loading_indicators/circle_loading_indicator.dart';
 import '../../../../theme.dart';
@@ -25,18 +21,22 @@ class GuidePage extends StatelessWidget {
       create: (context) {
         if (arguments is CreateRoutePageArguments) {
           return GuideCubit.createRoute(
-            artistService: serviceLocator<ArtistService>(),
-            permissionService: serviceLocator<PermissionService>(),
-            locationService: serviceLocator<LocationService>(),
-            routeService: serviceLocator<RouteService>(),
+            deviceInfo: serviceLocator(),
+            artistRepository: serviceLocator(),
+            permissionService: serviceLocator(),
+            locationService: serviceLocator(),
+            routeRepository: serviceLocator(),
+            routeGeneratorRepository: serviceLocator(),
             selectedSpecialityIds: arguments.selectedSpecialityIds,
           );
         }
         return GuideCubit.openRoute(
-          artistService: serviceLocator<ArtistService>(),
-          permissionService: serviceLocator<PermissionService>(),
-          locationService: serviceLocator<LocationService>(),
-          routeService: serviceLocator<RouteService>(),
+          deviceInfo: serviceLocator(),
+          artistRepository: serviceLocator(),
+          permissionService: serviceLocator(),
+          locationService: serviceLocator(),
+          routeRepository: serviceLocator(),
+          routeGeneratorRepository: serviceLocator(),
         );
       },
       child: const GuidePage._(),
@@ -55,7 +55,7 @@ class GuidePage extends StatelessWidget {
       ),
       body: BlocBuilder<GuideCubit, GuideState>(
         builder: (context, state) {
-          if (!state.stopsLoaded) {
+          if (!state.routeLoaded) {
             return Center(
               child: const VVCircleLoadingIndicator(
                 label: 'Bezig met opzetten van route..',
@@ -69,7 +69,7 @@ class GuidePage extends StatelessWidget {
                   RouteMap(
                     width: constraints.maxWidth,
                     height: constraints.maxHeight / 3,
-                    stops: state.stops!,
+                    stops: state.route!.stops,
                     currentStop: state.currentStop!,
                     initialMapLocation: state.initialMapLocation!,
                   ),
@@ -77,11 +77,11 @@ class GuidePage extends StatelessWidget {
                     child: Container(
                       decoration: getTopShadowBoxDecoration(context),
                       child: ListView.builder(
-                        itemCount: state.stops!.length,
+                        itemCount: state.route!.stops.length,
                         itemBuilder: (context, index) {
-                          final stop = state.stops![index];
+                          final stop = state.route!.stops[index];
                           return RouteListItem(
-                            count: state.stops!.length,
+                            count: state.route!.stops.length,
                             index: index,
                             stop: stop,
                             active: state.currentStop == stop,

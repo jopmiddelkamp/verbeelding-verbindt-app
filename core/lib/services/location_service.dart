@@ -7,8 +7,4 @@ abstract class LocationService {
     LocationAccuracy locationAccuracy = LocationAccuracy.best,
   });
   Future<LocationEntity?> getLastKnownLocation();
-  double distanceBetween(
-    LocationEntity locationA,
-    LocationEntity locationB,
-  );
 }

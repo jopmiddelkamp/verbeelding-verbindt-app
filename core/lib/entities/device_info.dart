@@ -1,5 +1,12 @@
-class IosDeviceInfoEntity {
+abstract class DeviceInfoEntity {
   final String id;
+
+  const DeviceInfoEntity({
+    required this.id,
+  });
+}
+
+class IosDeviceInfoEntity extends DeviceInfoEntity {
   final String name;
   final String systemName;
   final String systemVersion;
@@ -7,17 +14,16 @@ class IosDeviceInfoEntity {
   final bool isPhysicalDevice;
 
   const IosDeviceInfoEntity({
-    required this.id,
+    required String id,
     required this.name,
     required this.systemName,
     required this.systemVersion,
     required this.model,
     required this.isPhysicalDevice,
-  });
+  }) : super(id: id);
 }
 
-class AndroidDeviceInfoEntity {
-  final String id;
+class AndroidDeviceInfoEntity extends DeviceInfoEntity {
   final String manufacturer;
   final String model;
   final String androidVersion;
@@ -25,11 +31,11 @@ class AndroidDeviceInfoEntity {
   final bool isPhysicalDevice;
 
   const AndroidDeviceInfoEntity({
-    required this.id,
+    required String id,
     required this.manufacturer,
     required this.model,
     required this.androidVersion,
     required this.androidSDK,
     required this.isPhysicalDevice,
-  });
+  }) : super(id: id);
 }
