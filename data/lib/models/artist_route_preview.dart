@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../models/image.dart';
 import '../models/translatable_string.dart';
 
 part 'artist_route_preview.g.dart';
@@ -10,16 +9,13 @@ part 'artist_route_preview.g.dart';
 class ArtistRoutePreviewDataModel {
   const ArtistRoutePreviewDataModel({
     required this.text,
-    required this.images,
   });
 
   final TranslatableStringDataModel text;
-  final List<ImageDataModel> images;
 
   @override
   String toString() => '''$runtimeType { 
                             text: $text,
-                            images: $images,
                           }''';
 
   static ArtistRoutePreviewDataModel fromJson(Map<String, dynamic> json) =>

@@ -1,14 +1,12 @@
 import 'package:verbeelding_verbindt_core/entities/artist_route_preview.dart';
 
 import '../models/artist_route_preview.dart';
-import 'image_mapper_extension.dart';
 import 'translatable_string_mapper_extensions.dart';
 
 extension ArtistRoutePreviewModelExtensions on ArtistRoutePreviewDataModel {
   ArtistRoutePreviewEntity toEntity() {
     return ArtistRoutePreviewEntity(
       text: text.toEntity(),
-      images: images.map((e) => e.toEntity()).toList(),
     );
   }
 }
@@ -28,7 +26,6 @@ extension ArtistRoutePreviewEntityExtensions on ArtistRoutePreviewEntity {
   ArtistRoutePreviewDataModel toDataModel() {
     return ArtistRoutePreviewDataModel(
       text: text.toDataModel(),
-      images: images.map((e) => e.toDataModel()).toList(),
     );
   }
 }

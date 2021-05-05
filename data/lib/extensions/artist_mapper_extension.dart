@@ -1,6 +1,7 @@
 import 'package:verbeelding_verbindt_core/entities/artist.dart';
 
 import '../models/artist.dart';
+import 'artist_route_details_mapper_extensions.dart';
 import 'artist_route_preview_mapper_extensions.dart';
 import 'location_mapper_extensions.dart';
 import 'profile_mapper_extensions.dart';
@@ -14,6 +15,8 @@ extension ArtistModelExtensions on ArtistDataModel {
       specialities: specialities.map((k, v) => MapEntry(k, v.toEntity())),
       location: location.toEntity(),
       previewContent: previewContent.toEntity(),
+      detailsContent: detailsContent.toEntity(),
+      website: website,
     );
   }
 }
@@ -36,6 +39,8 @@ extension ArtistEntityExtensions on ArtistEntity {
       specialities: specialities.map((k, v) => MapEntry(k, v.toDataModel())),
       location: location.toDataModel(),
       previewContent: previewContent.toDataModel(),
+      detailsContent: detailsContent.toDataModel(),
+      website: website,
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../models/location.dart';
+import 'artist_route_details.dart';
 import 'artist_route_preview.dart';
 import 'profile.dart';
 import 'speciality.dart';
@@ -17,6 +18,8 @@ class ArtistDataModel extends Equatable {
     required this.specialities,
     required this.location,
     required this.previewContent,
+    required this.detailsContent,
+    required this.website,
   });
 
   final String? id;
@@ -24,6 +27,8 @@ class ArtistDataModel extends Equatable {
   final Map<String, SpecialityDataModel> specialities;
   final LocationDataModel location;
   final ArtistRoutePreviewDataModel previewContent;
+  final ArtistRouteDetailsDataModel detailsContent;
+  final String website;
 
   @override
   List<Object?> get props => [
@@ -32,6 +37,8 @@ class ArtistDataModel extends Equatable {
         specialities,
         location,
         previewContent,
+        detailsContent,
+        website,
       ];
 
   @override
@@ -41,6 +48,8 @@ class ArtistDataModel extends Equatable {
                             specialities: $specialities,
                             location: $location,
                             previewContent: $previewContent,
+                            detailsContent: $detailsContent,
+                            website: $website,
                           }''';
 
   static ArtistDataModel fromFirebaseMap({
@@ -68,6 +77,10 @@ class ArtistDataModel extends Equatable {
       previewContent: ArtistRoutePreviewDataModel.fromJson(
         map['previewContent'],
       ),
+      detailsContent: ArtistRouteDetailsDataModel.fromJson(
+        map['detailsContent'],
+      ),
+      website: map['website'],
     );
   }
 
@@ -76,6 +89,8 @@ class ArtistDataModel extends Equatable {
     List<String>? specialities,
     LocationDataModel? location,
     ArtistRoutePreviewDataModel? previewContent,
+    ArtistRouteDetailsDataModel? detailsContent,
+    String? website,
   }) {
     return ArtistDataModel(
       id: id,
@@ -84,6 +99,8 @@ class ArtistDataModel extends Equatable {
           this.specialities,
       location: location ?? this.location,
       previewContent: previewContent ?? this.previewContent,
+      detailsContent: detailsContent ?? this.detailsContent,
+      website: website ?? this.website,
     );
   }
 

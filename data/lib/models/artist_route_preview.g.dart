@@ -11,9 +11,6 @@ ArtistRoutePreviewDataModel _$ArtistRoutePreviewDataModelFromJson(
   return ArtistRoutePreviewDataModel(
     text: TranslatableStringDataModel.fromJson(
         json['text'] as Map<String, dynamic>),
-    images: (json['images'] as List<dynamic>)
-        .map((e) => ImageDataModel.fromJson(e as Map<String, dynamic>))
-        .toList(),
   );
 }
 
@@ -21,5 +18,4 @@ Map<String, dynamic> _$ArtistRoutePreviewDataModelToJson(
         ArtistRoutePreviewDataModel instance) =>
     <String, dynamic>{
       'text': instance.text.toJson(),
-      'images': instance.images.map((e) => e.toJson()).toList(),
     };

@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 import '../entities/location.dart';
+import 'artist_route_details.dart';
 import 'artist_route_preview.dart';
 import 'profile.dart';
 import 'speciality.dart';
@@ -12,6 +13,8 @@ class ArtistEntity extends Equatable {
     required this.specialities,
     required this.location,
     required this.previewContent,
+    required this.detailsContent,
+    required this.website,
   });
 
   final String? id;
@@ -19,6 +22,8 @@ class ArtistEntity extends Equatable {
   final Map<String, SpecialityEntity> specialities;
   final LocationEntity location;
   final ArtistRoutePreviewEntity previewContent;
+  final ArtistRouteDetailsEntity detailsContent;
+  final String website;
 
   @override
   List<Object?> get props => [
@@ -27,6 +32,8 @@ class ArtistEntity extends Equatable {
         specialities,
         location,
         previewContent,
+        detailsContent,
+        website,
       ];
 
   ArtistEntity copyWith({
@@ -34,6 +41,8 @@ class ArtistEntity extends Equatable {
     List<String>? specialities,
     LocationEntity? location,
     ArtistRoutePreviewEntity? previewContent,
+    ArtistRouteDetailsEntity? detailsContent,
+    String? website,
   }) {
     return ArtistEntity(
       id: id,
@@ -42,6 +51,8 @@ class ArtistEntity extends Equatable {
           specialities as Map<String, SpecialityEntity>? ?? this.specialities,
       location: location ?? this.location,
       previewContent: previewContent ?? this.previewContent,
+      detailsContent: detailsContent ?? this.detailsContent,
+      website: website ?? this.website,
     );
   }
 }
