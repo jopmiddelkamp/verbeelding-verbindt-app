@@ -1,8 +1,8 @@
 cd bootstrap
-flutter test --no-pub --coverage --test-randomize-ordering-seed random
+flutter format --set-exit-if-changed lib #test
 cd ../core
-flutter test --no-pub --coverage --test-randomize-ordering-seed random
+flutter format --set-exit-if-changed lib #test
 cd ../data
-flutter test --no-pub --coverage --test-randomize-ordering-seed random
+flutter format --set-exit-if-changed lib #test
 cd ../presentation
-flutter test --no-pub --coverage --test-randomize-ordering-seed random
+flutter format --set-exit-if-changed lib #test

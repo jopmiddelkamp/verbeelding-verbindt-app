@@ -1,8 +1,8 @@
 cd bootstrap
-flutter pub get
+flutter analyze lib #test
 cd ../core
-flutter pub get
+flutter analyze lib #test
 cd ../data
-flutter pub get
+flutter analyze lib #test
 cd ../presentation
-flutter pub get
+flutter analyze lib #test
