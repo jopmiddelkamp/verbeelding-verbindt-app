@@ -11,13 +11,13 @@ jobs:
       - uses: subosito/flutter-action@v1.4.0
 
       - name: Install Dependencies
-        run: ./flutter_pub_get packages get
+        run: .github/flutter_pub_get.sh
 
       - name: Format
-        run: flutter format --set-exit-if-changed lib test
+        run: .github/flutter_format.sh
 
       - name: Analyze
-        run: flutter analyze lib test
+        run: .github/flutter_analyze.sh
 
       - name: Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
