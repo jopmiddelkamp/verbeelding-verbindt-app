@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 import '../models/image.dart';
 import '../models/translatable_string.dart';
+import 'video.dart';
 
 part 'artist_route_details.g.dart';
 
@@ -9,18 +10,18 @@ part 'artist_route_details.g.dart';
 @JsonSerializable(explicitToJson: true)
 class ArtistRouteDetailsDataModel {
   const ArtistRouteDetailsDataModel({
-    required this.videoUrl,
+    required this.video,
     required this.text,
     required this.images,
   });
 
-  final String videoUrl;
+  final VideoDataModel video;
   final TranslatableStringDataModel text;
   final List<ImageDataModel> images;
 
   @override
   String toString() => '''$runtimeType { 
-                            videoUrl: $videoUrl,
+                            video: $video,
                             text: $text,
                             images: $images,
                           }''';

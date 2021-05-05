@@ -7,6 +7,7 @@ import '../../../../theme.sizes.dart';
 import 'artist_details_cubit.dart';
 import 'artist_details_state.dart';
 import 'widgets/image_list.dart';
+import 'widgets/intro_video.dart';
 import 'widgets/visit_website_button.dart';
 
 final serviceLocator = GetIt.instance;
@@ -45,9 +46,9 @@ class ArtistDetailsPage extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Placeholder(
-                        fallbackHeight: 200,
-                        color: Colors.orangeAccent.shade100,
+                      IntroVideo(
+                        video: state.artist.detailsContent.video,
+                        controller: state.videoController,
                       ),
                       const SizedBox(height: kDefaultSpacing),
                       Padding(
@@ -57,7 +58,7 @@ class ArtistDetailsPage extends StatelessWidget {
                       const SizedBox(height: kDefaultSpacing),
                       ImageList(
                         state.artist.detailsContent.images,
-                        padding: EdgeInsets.fromLTRB(
+                        padding: const EdgeInsets.fromLTRB(
                           kDefaultPadding,
                           0,
                           kDefaultPadding,
@@ -70,7 +71,7 @@ class ArtistDetailsPage extends StatelessWidget {
               ),
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.fromLTRB(
+                padding: const EdgeInsets.fromLTRB(
                   kDefaultPadding,
                   0,
                   kDefaultPadding,

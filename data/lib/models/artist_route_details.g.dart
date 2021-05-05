@@ -9,7 +9,7 @@ part of 'artist_route_details.dart';
 ArtistRouteDetailsDataModel _$ArtistRouteDetailsDataModelFromJson(
     Map<String, dynamic> json) {
   return ArtistRouteDetailsDataModel(
-    videoUrl: json['videoUrl'] as String,
+    video: VideoDataModel.fromJson(json['video'] as Map<String, dynamic>),
     text: TranslatableStringDataModel.fromJson(
         json['text'] as Map<String, dynamic>),
     images: (json['images'] as List<dynamic>)
@@ -21,7 +21,7 @@ ArtistRouteDetailsDataModel _$ArtistRouteDetailsDataModelFromJson(
 Map<String, dynamic> _$ArtistRouteDetailsDataModelToJson(
         ArtistRouteDetailsDataModel instance) =>
     <String, dynamic>{
-      'videoUrl': instance.videoUrl,
+      'video': instance.video.toJson(),
       'text': instance.text.toJson(),
       'images': instance.images.map((e) => e.toJson()).toList(),
     };

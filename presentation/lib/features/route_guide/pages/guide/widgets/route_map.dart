@@ -12,7 +12,6 @@ import '../../../../../shared/extensions/location_extensions.dart';
 import '../../../../../shared/utils/image_utils.dart';
 import '../../../../../shared/utils/marker_utils.dart';
 import '../../../../../shared/widgets/loading_indicators/circle_loading_indicator.dart';
-import '../../../../../theme.sizes.dart';
 import '../guide_cubit.dart';
 
 class RouteMap extends StatelessWidget {
@@ -69,7 +68,7 @@ class RouteMap extends StatelessWidget {
     return GoogleMap(
       myLocationEnabled: true,
       compassEnabled: false,
-      padding: const EdgeInsets.all(kDefaultPadding * 1.5),
+      // padding: const EdgeInsets.all(kDefaultPadding),
       mapType: MapType.satellite,
       initialCameraPosition: kDefaultSettings.getGoogleMapsCameraPosition(
         initialMapLocation.toLatLng(),
