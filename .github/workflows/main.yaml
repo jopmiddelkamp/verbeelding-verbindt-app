@@ -19,8 +19,8 @@ jobs:
       - name: Analyze
         run: .github/flutter_pub_analyze.sh
 
-      - name: Run tests
-        run: .github/flutter_pub_run_tests.sh
+      # - name: Run tests
+      #   run: .github/flutter_pub_run_tests.sh
 
       - name: Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
