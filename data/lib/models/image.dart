@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import 'size.dart';
+
 part 'image.g.dart';
 
 // Settings a default value build.yaml didn't work - 30-04-2020
@@ -9,25 +11,23 @@ class ImageDataModel extends Equatable {
   const ImageDataModel({
     required this.blurhash,
     required this.url,
+    required this.size,
   });
-
-  factory ImageDataModel.fromFirebaseMap(
-    Map<String, dynamic> map,
-  ) {
-    return ImageDataModel(
-      blurhash: map['blurhash'],
-      url: map['url'],
-    );
-  }
 
   final String blurhash;
   final String url;
+  final SizeDataModel size;
 
   @override
-  String toString() => '$runtimeType { blurhash: $blurhash, url: $url }';
+  String toString() =>
+      '$runtimeType { blurhash: $blurhash, url: $url, size: $size }';
 
   @override
-  List<Object> get props => [blurhash, url];
+  List<Object> get props => [
+        blurhash,
+        url,
+        size,
+      ];
 
   static ImageDataModel fromJson(Map<String, dynamic> json) =>
       _$ImageDataModelFromJson(json);

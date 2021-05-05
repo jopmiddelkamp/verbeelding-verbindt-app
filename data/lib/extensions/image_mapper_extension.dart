@@ -1,12 +1,14 @@
 import 'package:verbeelding_verbindt_core/entities/image.dart';
 
 import '../models/image.dart';
+import 'size_mapper_extension.dart';
 
 extension ImageModelExtensions on ImageDataModel {
   ImageEntity toEntity() {
     return ImageEntity(
       blurhash: blurhash,
       url: url,
+      size: size.toEntity(),
     );
   }
 }
@@ -26,6 +28,7 @@ extension ImageEntityExtensions on ImageEntity {
     return ImageDataModel(
       blurhash: blurhash,
       url: url,
+      size: size.toDataModel(),
     );
   }
 }

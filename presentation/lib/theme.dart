@@ -36,17 +36,17 @@ ThemeData buildAppTheme(
     ),
     buttonTheme: ButtonThemeData(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(ThemeSizes.smallBorderRadius),
+        borderRadius: BorderRadius.circular(kSmallBorderRadius),
       ),
     ),
     cardTheme: CardTheme(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(ThemeSizes.mediumBorderRadius),
+        borderRadius: BorderRadius.circular(kMediumBorderRadius),
       ),
     ),
     dialogTheme: DialogTheme(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(ThemeSizes.mediumBorderRadius),
+        borderRadius: BorderRadius.circular(kMediumBorderRadius),
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(

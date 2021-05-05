@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:verbeelding_verbindt_presentation/features/route_guide/pages/artist_details/artist_details_page.dart';
 
 import 'features/intro/pages/intro/intro_page.dart';
 import 'features/route_guide/pages/guide/guide_page.dart';
@@ -49,6 +50,19 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
         ScanQrPage.routeName,
         settings,
         ScanQrPageArguments,
+      );
+    case ArtistDetailsPage.routeName:
+      if (arguments is ArtistDetailsPageArguments) {
+        return buildMaterialPageRoute<bool>(
+          settings: settings,
+          builder: (_) => ArtistDetailsPage.blocProvider(arguments),
+          fullscreenDialog: false,
+        );
+      }
+      throw _thowInvalidArgumentException(
+        ArtistDetailsPage.routeName,
+        settings,
+        ArtistDetailsPageArguments,
       );
     default:
       throw Exception('Invalid route: ${settings.name}');
