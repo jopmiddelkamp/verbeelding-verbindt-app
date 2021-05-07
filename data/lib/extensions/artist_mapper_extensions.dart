@@ -1,4 +1,4 @@
-import 'package:verbeelding_verbindt_core/entities/artist.dart';
+import 'package:verbeelding_verbindt_core/entities/common/artist.dart';
 
 import '../models/artist.dart';
 import 'artist_route_details_mapper_extensions.dart';
@@ -7,7 +7,7 @@ import 'location_mapper_extensions.dart';
 import 'profile_mapper_extensions.dart';
 import 'speciality_mapper_extensions.dart';
 
-extension ArtistModelExtensions on ArtistDataModel {
+extension ArtistDataModelExtensions on ArtistDataModel {
   ArtistEntity toEntity() {
     return ArtistEntity(
       id: id,
@@ -21,7 +21,7 @@ extension ArtistModelExtensions on ArtistDataModel {
   }
 }
 
-extension ArtistModelListExtensions on Iterable<ArtistDataModel> {
+extension ArtistDataModelListExtensions on Iterable<ArtistDataModel> {
   List<ArtistEntity> toEntityList() {
     return map((e) => e.toEntity()).toList();
   }

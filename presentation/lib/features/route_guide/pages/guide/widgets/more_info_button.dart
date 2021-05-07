@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:verbeelding_verbindt_core/entities/artist.dart';
+import 'package:verbeelding_verbindt_core/entities/common/artist.dart';
 
 import '../../../../../shared/extensions/build_context_extensions.dart';
 import '../../artist_details/artist_details_page.dart';

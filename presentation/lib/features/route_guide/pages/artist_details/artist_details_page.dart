@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:verbeelding_verbindt_core/entities/artist.dart';
+import 'package:verbeelding_verbindt_core/entities/common/artist.dart';
 
 import '../../../../theme.sizes.dart';
 import 'artist_details_cubit.dart';

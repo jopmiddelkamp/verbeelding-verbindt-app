@@ -1,7 +1,7 @@
-import 'package:verbeelding_verbindt_core/entities/route_stop.dart';
+import 'package:verbeelding_verbindt_core/entities/common/route_stop.dart';
 
 import '../models/route_stop.dart';
-import 'artist_mapper_extension.dart';
+import 'artist_mapper_extensions.dart';
 
 extension RouteStopModelExtensions on RouteStopDataModel {
   RouteStopEntity toEntity() {

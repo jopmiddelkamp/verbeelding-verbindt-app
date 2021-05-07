@@ -1,4 +1,4 @@
-import 'package:verbeelding_verbindt_core/entities/speciality.dart';
+import 'package:verbeelding_verbindt_core/entities/common/speciality.dart';
 
 import '../models/speciality.dart';
 import 'translatable_string_mapper_extensions.dart';

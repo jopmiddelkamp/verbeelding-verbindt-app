@@ -1,4 +1,4 @@
-import '../entities/artist.dart';
+import '../entities/common/artist.dart';
 
 abstract class ArtistRepository {
   Stream<List<ArtistEntity>> streamArtistsBySpeciality(

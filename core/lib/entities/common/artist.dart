@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-import '../entities/location.dart';
 import 'artist_route_details.dart';
 import 'artist_route_preview.dart';
+import 'location.dart';
 import 'profile.dart';
 import 'speciality.dart';
 

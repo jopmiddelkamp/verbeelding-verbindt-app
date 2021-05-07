@@ -1,3 +1,6 @@
+import 'package:rxdart/rxdart.dart';
+import 'package:verbeelding_verbindt_core/repositories/page_content_repository.dart';
+
 import '../../../../shared/bloc/cubit_base.dart';
 import '../../../../shared/services/persistent_storage/persistent_storage_service.dart';
 import 'intro_state.dart';
@@ -5,23 +8,30 @@ import 'intro_state.dart';
 class IntroCubit extends CubitBase<IntroState> {
   IntroCubit({
     required PersistentStorageService persistentStorageService,
+    required PageContentRepository pageContentRepository,
   })   : _persistentStorage = persistentStorageService,
+        _pageContentRepository = pageContentRepository,
         super(IntroState.initialize()) {
     _init();
   }
 
   final PersistentStorageService _persistentStorage;
+  final PageContentRepository _pageContentRepository;
 
   Future<void> _init() async {
-    final isIntroAccepted = await _persistentStorage.getIsIntroAccepted();
-    emit(IntroState.load(
-      accepted: isIntroAccepted,
-    ));
+    await _pageContentRepository
+        .getIntroPageContent()
+        .takeUntil(dispose$)
+        .listen((pageContent) {
+      emit(IntroState.load(
+        content: pageContent,
+      ));
+    });
   }
 
   Future<void> accept() async {
     await _persistentStorage.setIntroAccepted(true);
-    emit(IntroState.load(
+    emit(state.copyWith(
       accepted: true,
     ));
   }

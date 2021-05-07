@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:verbeelding_verbindt_core/entities/image.dart';
+import 'package:verbeelding_verbindt_core/entities/common/image.dart';
 
 import '../../../../../shared/widgets/images/image_with_blurhash.dart';
 import '../../../../../theme.sizes.dart';
@@ -35,6 +35,7 @@ class ImageList extends StatelessWidget {
           images[index],
           width: 30,
           height: 20,
+          borderRadius: kSmallBorderRadius,
         );
       },
     );

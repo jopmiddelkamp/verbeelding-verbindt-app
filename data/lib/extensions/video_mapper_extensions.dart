@@ -1,4 +1,4 @@
-import 'package:verbeelding_verbindt_core/entities/video.dart';
+import 'package:verbeelding_verbindt_core/entities/common/video.dart';
 
 import '../models/video.dart';
 

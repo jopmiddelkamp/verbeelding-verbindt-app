@@ -1,4 +1,4 @@
-import 'package:verbeelding_verbindt_core/entities/translatable_string.dart';
+import 'package:verbeelding_verbindt_core/entities/common/translatable_string.dart';
 
 import '../models/translatable_string.dart';
 

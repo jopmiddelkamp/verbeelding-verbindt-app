@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-import '../entities/image.dart';
-import '../entities/translatable_string.dart';
+import 'image.dart';
+import 'translatable_string.dart';
 import 'video.dart';
 
 class ArtistRouteDetailsEntity extends Equatable {

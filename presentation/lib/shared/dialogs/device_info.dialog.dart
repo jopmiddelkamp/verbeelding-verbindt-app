@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:verbeelding_verbindt_core/entities/device_info.dart';
-import 'package:verbeelding_verbindt_core/entities/environment.dart';
-import 'package:verbeelding_verbindt_core/entities/package_info.dart';
+import 'package:verbeelding_verbindt_core/entities/common/device_info.dart';
+import 'package:verbeelding_verbindt_core/entities/common/environment.dart';
+import 'package:verbeelding_verbindt_core/entities/common/package_info.dart';
 
 import '../extensions/build_context_extensions.dart';
 import '../font_weight.dart';

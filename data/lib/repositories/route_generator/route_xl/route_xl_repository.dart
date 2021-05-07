@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:verbeelding_verbindt_core/entities/artist.dart';
-import 'package:verbeelding_verbindt_core/entities/route_stop.dart';
+import 'package:verbeelding_verbindt_core/entities/common/artist.dart';
+import 'package:verbeelding_verbindt_core/entities/common/route_stop.dart';
 import 'package:verbeelding_verbindt_core/repositories/route_generator_repository.dart';
 
-import '../../../extensions/artist_mapper_extension.dart';
+import '../../../extensions/artist_mapper_extensions.dart';
 import '../../../extensions/route_stop_mapper_extensions.dart';
 import '../../dio_repository_base.dart';
 import 'extensions/rx_tour_response_extensions.dart';

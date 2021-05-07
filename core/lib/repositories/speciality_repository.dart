@@ -1,4 +1,4 @@
-import '../entities/speciality.dart';
+import '../entities/common/speciality.dart';
 
 abstract class SpecialityRepository {
   Stream<List<SpecialityEntity>> getSpecialities([

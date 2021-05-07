@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:verbeelding_verbindt_core/entities/artist.dart';
-import 'package:verbeelding_verbindt_core/entities/device_info.dart';
-import 'package:verbeelding_verbindt_core/entities/location.dart';
-import 'package:verbeelding_verbindt_core/entities/route.dart';
+import 'package:verbeelding_verbindt_core/entities/common/artist.dart';
+import 'package:verbeelding_verbindt_core/entities/common/device_info.dart';
+import 'package:verbeelding_verbindt_core/entities/common/location.dart';
+import 'package:verbeelding_verbindt_core/entities/common/route.dart';
 import 'package:verbeelding_verbindt_core/repositories/artist_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/route_generator_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/route_repository.dart';

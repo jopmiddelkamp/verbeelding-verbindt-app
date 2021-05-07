@@ -1,4 +1,4 @@
-import '../entities/route.dart';
+import '../entities/common/route.dart';
 
 abstract class RouteRepository {
   Future<void> createRoute(

@@ -2,9 +2,9 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:verbeelding_verbindt_core/entities/artist.dart';
-import 'package:verbeelding_verbindt_core/entities/location.dart';
-import 'package:verbeelding_verbindt_core/entities/route_stop.dart';
+import 'package:verbeelding_verbindt_core/entities/common/artist.dart';
+import 'package:verbeelding_verbindt_core/entities/common/location.dart';
+import 'package:verbeelding_verbindt_core/entities/common/route_stop.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../shared/extensions/build_context_extensions.dart';

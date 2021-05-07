@@ -1,5 +1,5 @@
-import '../entities/artist.dart';
-import '../entities/route_stop.dart';
+import '../entities/common/artist.dart';
+import '../entities/common/route_stop.dart';
 
 abstract class RouteGeneratorRepository {
   Future<List<RouteStopEntity>> generateRouteStops({

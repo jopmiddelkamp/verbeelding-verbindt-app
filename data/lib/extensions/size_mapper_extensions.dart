@@ -1,4 +1,4 @@
-import 'package:verbeelding_verbindt_core/entities/size.dart';
+import 'package:verbeelding_verbindt_core/entities/common/size.dart';
 
 import '../models/size.dart';
 

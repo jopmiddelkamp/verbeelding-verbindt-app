@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
-import 'package:verbeelding_verbindt_core/entities/image.dart';
-import 'package:verbeelding_verbindt_core/entities/size.dart';
+import 'package:verbeelding_verbindt_core/entities/common/image.dart';
+import 'package:verbeelding_verbindt_core/entities/common/size.dart';
 
 import '../../shared/extensions/build_context_extensions.dart';
 import '../../theme.sizes.dart';

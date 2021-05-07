@@ -1,4 +1,4 @@
-import 'package:verbeelding_verbindt_core/entities/artist_route_preview.dart';
+import 'package:verbeelding_verbindt_core/entities/common/artist_route_preview.dart';
 
 import '../models/artist_route_preview.dart';
 import 'translatable_string_mapper_extensions.dart';

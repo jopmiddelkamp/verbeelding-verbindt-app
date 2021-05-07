@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:verbeelding_verbindt_core/entities/environment.dart';
+import 'package:verbeelding_verbindt_core/entities/common/environment.dart';
 import 'package:verbeelding_verbindt_core/enums/environment_enum.dart';
 import 'package:verbeelding_verbindt_core/utils/enum_utils.dart';
 

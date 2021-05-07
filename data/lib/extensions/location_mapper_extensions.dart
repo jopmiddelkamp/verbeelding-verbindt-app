@@ -1,4 +1,4 @@
-import 'package:verbeelding_verbindt_core/entities/location.dart';
+import 'package:verbeelding_verbindt_core/entities/common/location.dart';
 
 import '../models/location.dart';
 

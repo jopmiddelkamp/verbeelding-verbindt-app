@@ -1,6 +1,6 @@
 import 'dart:math' show cos, sqrt, asin;
 
-import '../entities/location.dart';
+import '../entities/common/location.dart';
 
 class LocationUtils {
   // TODO: replace by the Latlng package as soon as it has up to date

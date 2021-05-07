@@ -2,10 +2,10 @@ import 'package:bitmap/bitmap.dart';
 import 'package:blurhash_dart/blurhash_dart.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:verbeelding_verbindt_core/entities/image.dart';
+import 'package:supercharged/supercharged.dart';
+import 'package:verbeelding_verbindt_core/entities/common/image.dart';
 
 import '../../../theme.colors.dart';
-import '../../../theme.sizes.dart';
 import '../../dialogs/image_dialog.dart';
 
 enum ImageType { network }
@@ -16,16 +16,28 @@ class ImageWithBlurhash extends StatelessWidget {
     Key? key,
     required this.width,
     required this.height,
+    this.borderRadius,
   });
 
   final ImageEntity image;
   final double width;
   final double height;
+  final double? borderRadius;
 
   @override
   Widget build(
     BuildContext context,
   ) {
+    BoxDecoration? boxDecoration;
+    Clip? clipBehavior;
+    if (borderRadius != null) {
+      boxDecoration = BoxDecoration(
+        borderRadius: BorderRadius.circular(borderRadius!),
+        border: Border.all(color: kBorderColor),
+      );
+      clipBehavior = Clip.antiAlias;
+    }
+
     return GestureDetector(
       onTap: () {
         showImageDialog(
@@ -36,11 +48,8 @@ class ImageWithBlurhash extends StatelessWidget {
       child: Container(
         height: height,
         width: width,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(kSmallBorderRadius),
-          border: Border.all(color: kBorderColor),
-        ),
-        clipBehavior: Clip.antiAlias,
+        decoration: boxDecoration,
+        clipBehavior: clipBehavior ?? Clip.none,
         child: _buildImage(),
       ),
     );
@@ -48,6 +57,7 @@ class ImageWithBlurhash extends StatelessWidget {
 
   Widget _buildImage() {
     return CachedNetworkImage(
+      fadeInDuration: 300.milliseconds,
       fit: BoxFit.cover,
       imageUrl: image.url,
       placeholder: (context, url) {

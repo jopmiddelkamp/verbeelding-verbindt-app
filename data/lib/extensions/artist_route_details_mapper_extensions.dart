@@ -1,7 +1,7 @@
-import 'package:verbeelding_verbindt_core/entities/artist_route_details.dart';
+import 'package:verbeelding_verbindt_core/entities/common/artist_route_details.dart';
 
 import '../models/artist_route_details.dart';
-import 'image_mapper_extension.dart';
+import 'image_mapper_extensions.dart';
 import 'translatable_string_mapper_extensions.dart';
 import 'video_mapper_extensions.dart';
 

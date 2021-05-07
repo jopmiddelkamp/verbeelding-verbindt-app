@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:verbeelding_verbindt_core/entities/video.dart';
+import 'package:verbeelding_verbindt_core/entities/common/video.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../../../shared/widgets/loading_indicators/circle_loading_indicator.dart';

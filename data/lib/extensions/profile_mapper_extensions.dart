@@ -1,4 +1,4 @@
-import 'package:verbeelding_verbindt_core/entities/profile.dart';
+import 'package:verbeelding_verbindt_core/entities/common/profile.dart';
 
 import '../models/profile.dart';
 

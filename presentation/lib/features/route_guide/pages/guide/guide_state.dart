@@ -1,7 +1,7 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:verbeelding_verbindt_core/entities/location.dart';
-import 'package:verbeelding_verbindt_core/entities/route.dart';
-import 'package:verbeelding_verbindt_core/entities/route_stop.dart';
+import 'package:verbeelding_verbindt_core/entities/common/location.dart';
+import 'package:verbeelding_verbindt_core/entities/common/route.dart';
+import 'package:verbeelding_verbindt_core/entities/common/route_stop.dart';
 import 'package:verbeelding_verbindt_core/failures/failure.dart';
 
 import '../../../../shared/bloc/state_base.dart';

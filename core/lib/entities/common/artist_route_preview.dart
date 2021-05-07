@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../entities/translatable_string.dart';
+import 'translatable_string.dart';
 
 class ArtistRoutePreviewEntity extends Equatable {
   const ArtistRoutePreviewEntity({

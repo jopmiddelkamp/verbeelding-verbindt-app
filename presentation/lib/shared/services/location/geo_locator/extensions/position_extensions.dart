@@ -1,5 +1,5 @@
 import 'package:geolocator/geolocator.dart';
-import 'package:verbeelding_verbindt_core/entities/location.dart';
+import 'package:verbeelding_verbindt_core/entities/common/location.dart';
 
 extension PositionExtensions on Position {
   LocationEntity toLocationModel() {

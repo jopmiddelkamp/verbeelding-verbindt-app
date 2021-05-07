@@ -1,4 +1,4 @@
-import 'package:verbeelding_verbindt_core/entities/artist.dart';
+import 'package:verbeelding_verbindt_core/entities/common/artist.dart';
 import 'package:verbeelding_verbindt_core/failures/failure.dart';
 import 'package:video_player/video_player.dart';
 

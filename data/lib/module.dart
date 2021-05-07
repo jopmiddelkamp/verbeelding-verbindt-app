@@ -2,11 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 import 'package:verbeelding_verbindt_core/repositories/artist_repository.dart';
+import 'package:verbeelding_verbindt_core/repositories/page_content_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/route_generator_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/route_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/speciality_repository.dart';
 
 import 'repositories/artist/firestore/firestore_artist_repository.dart';
+import 'repositories/page_content/firestore/firestore_page_content_repository.dart';
 import 'repositories/route/firestore/firestore_route_repository.dart';
 import 'repositories/route_generator/route_xl/route_xl_repository.dart';
 import 'repositories/speciality/firestore/firestore_speciality_repository.dart';
@@ -53,6 +55,9 @@ class Module {
           username: routeXlUsername,
           password: routeXlPassword,
         ),
+      )
+      ..registerSingletonAsync<PageContentRepository>(
+        () async => FirestorePageContentRepository(),
       );
   }
 }

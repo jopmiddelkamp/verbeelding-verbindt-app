@@ -1,4 +1,4 @@
-import '../entities/artist.dart';
+import '../entities/common/artist.dart';
 
 extension ArtistListExtensions on List<ArtistEntity> {
   ArtistEntity findByFullName(

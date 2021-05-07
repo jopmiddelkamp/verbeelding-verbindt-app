@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:verbeelding_verbindt_core/entities/route_stop.dart';
+import 'package:verbeelding_verbindt_core/entities/common/route_stop.dart';
 
 import '../../../../../shared/extensions/build_context_extensions.dart';
 import '../../scan_qr/scan_qr_page.dart';
