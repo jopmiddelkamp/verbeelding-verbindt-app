@@ -24,8 +24,8 @@ class IntroPage extends StatelessWidget {
       ),
       child: BlocListener<IntroCubit, IntroState>(
         listener: (context, state) async {
-          if (state.loaded && state.accepted!) {
-            await context.navigator.pushNamed(
+          if (state.loaded && state.accepted == true) {
+            await context.navigator.pushReplacementNamed(
               SelectInterestsPage.routeName,
             );
           }
