@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get_it/get_it.dart';
+import 'package:verbeelding_verbindt_presentation/features/route_guide/pages/completed/dialogs/confirm_lose_progress_dialog.dart';
 
 import '../../../../shared/widgets/loading_indicators/circle_loading_indicator.dart';
 import 'completed_cubit.dart';
@@ -28,16 +29,21 @@ class CompletedPage extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      body: BlocBuilder<CompletedCubit, CompletedState>(
-        builder: (context, state) {
-          return _buildBody(state);
-        },
+    return WillPopScope(
+      onWillPop: () {
+        return showConfirmLoseProgressDialog(context);
+      },
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+        body: BlocBuilder<CompletedCubit, CompletedState>(
+          builder: (context, state) {
+            return _buildBody(state);
+          },
+        ),
       ),
     );
   }
