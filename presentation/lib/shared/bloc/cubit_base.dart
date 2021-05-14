@@ -16,6 +16,7 @@ abstract class CubitBase<TState extends StateBase> extends Cubit<TState> {
   @override
   @mustCallSuper
   Future<void> close() async {
+    state.dispose();
     dispose$.add(null);
     await super.close();
   }
