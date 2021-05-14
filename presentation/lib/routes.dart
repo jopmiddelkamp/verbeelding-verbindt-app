@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:verbeelding_verbindt_presentation/features/route_guide/pages/completed/completed_page.dart';
 
 import 'features/intro/pages/intro/intro_page.dart';
 import 'features/route_guide/pages/artist_details/artist_details_page.dart';
@@ -63,6 +64,12 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
         ArtistDetailsPage.routeName,
         settings,
         ArtistDetailsPageArguments,
+      );
+    case CompletedPage.routeName:
+      return buildMaterialPageRoute(
+        settings: settings,
+        builder: (_) => CompletedPage.blocProvider(),
+        fullscreenDialog: true,
       );
     default:
       throw Exception('Invalid route: ${settings.name}');

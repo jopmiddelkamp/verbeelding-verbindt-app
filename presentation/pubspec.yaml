@@ -21,8 +21,8 @@ dependencies:
   flutter_bloc: ^7.0.0
   flutter_markdown: ^0.6.1
   flutter_spinkit: ^5.0.0
-  geolocator: ^7.0.3
-  get_it: ^6.1.1
+  geolocator: ^7.0.0-nullsafety.0
+  get_it: ^7.1.3
   google_fonts: ^2.0.0
   google_maps_flutter: ^2.0.3
   intl: ^0.17.0
@@ -30,7 +30,7 @@ dependencies:
   permission_handler: ^7.1.0
   photo_view: ^0.11.1
   qr_code_scanner: ^0.4.0
-  rxdart: ^0.26.0
+  rxdart: ^0.27.0
   shared_preferences: ^2.0.5
   supercharged: ^2.0.0
   url_launcher: ^6.0.3

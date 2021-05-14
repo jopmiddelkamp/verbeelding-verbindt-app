@@ -56,6 +56,7 @@ class GuideState extends StateBase {
   bool get hasStops => routeLoaded && route!.stops.isNotEmpty;
   bool get hasCurrentStop => routeLoaded && currentStop != null;
   bool get mapLoaded => mapController != null;
+  bool get completed => route?.stops.every((stop) => stop.completed) ?? false;
 
   static int? _getCurrentIndex(
     List<RouteStopEntity> stops,

@@ -12,7 +12,7 @@ dependencies:
   bot_toast: ^4.0.1
   device_info: ^2.0.0
   equatable: ^2.0.0
-  get_it: ^6.1.1
+  get_it: ^7.1.3
   package_info: ^2.0.0
   verbeelding_verbindt_core:
     path: ../core

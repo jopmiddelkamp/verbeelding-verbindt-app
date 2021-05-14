@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:verbeelding_verbindt_core/entities/common/image.dart';
-import 'package:verbeelding_verbindt_core/entities/common/translatable_string.dart';
 
 import '../../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../../shared/font_weight.dart';
@@ -14,7 +13,7 @@ class Header extends StatelessWidget {
   }) : super(key: key);
 
   final ImageEntity image;
-  final TranslatableStringEntity title;
+  final Widget title;
 
   @override
   Widget build(
@@ -33,12 +32,12 @@ class Header extends StatelessWidget {
           Positioned(
             bottom: 16,
             left: 16,
-            child: Text(
-              title.value,
+            child: DefaultTextStyle(
               style: context.textTheme.headline6!.copyWith(
                 color: Colors.white,
                 fontWeight: VVFontWeight.bold,
               ),
+              child: title,
             ),
           ),
         ],

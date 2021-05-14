@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../shared/widgets/loading_indicators/circle_loading_indicator.dart';
 import '../../../../theme.dart';
+import '../completed/completed_page.dart';
 import 'guide_cubit.dart';
 import 'guide_state.dart';
 import 'widgets/route_list_item.dart';
@@ -39,7 +41,16 @@ class GuidePage extends StatelessWidget {
           routeGeneratorRepository: serviceLocator(),
         );
       },
-      child: const GuidePage._(),
+      child: BlocListener<GuideCubit, GuideState>(
+        listener: (context, state) {
+          if (state.completed) {
+            context.navigator.pushReplacementNamed(
+              CompletedPage.routeName,
+            );
+          }
+        },
+        child: const GuidePage._(),
+      ),
     );
   }
 

@@ -17,12 +17,14 @@ class ImageWithBlurhash extends StatelessWidget {
     required this.width,
     required this.height,
     this.borderRadius,
+    this.openOnTap = true,
   });
 
   final ImageEntity image;
   final double width;
   final double height;
   final double? borderRadius;
+  final bool openOnTap;
 
   @override
   Widget build(
@@ -38,21 +40,27 @@ class ImageWithBlurhash extends StatelessWidget {
       clipBehavior = Clip.antiAlias;
     }
 
-    return GestureDetector(
-      onTap: () {
-        showImageDialog(
-          context,
-          image: image,
-        );
-      },
-      child: Container(
-        height: height,
-        width: width,
-        decoration: boxDecoration,
-        clipBehavior: clipBehavior ?? Clip.none,
-        child: _buildImage(),
-      ),
+    Widget result = Container(
+      height: height,
+      width: width,
+      decoration: boxDecoration,
+      clipBehavior: clipBehavior ?? Clip.none,
+      child: _buildImage(),
     );
+
+    if (openOnTap) {
+      result = GestureDetector(
+        onTap: () {
+          showImageDialog(
+            context,
+            image: image,
+          );
+        },
+        child: result,
+      );
+    }
+
+    return result;
   }
 
   Widget _buildImage() {

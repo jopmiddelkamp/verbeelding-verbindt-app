@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:verbeelding_verbindt_core/entities/common/device_info.dart';
 import 'package:verbeelding_verbindt_core/entities/common/environment.dart';
 import 'package:verbeelding_verbindt_core/entities/common/package_info.dart';
+import 'package:verbeelding_verbindt_core/utils/enum_utils.dart';
 
 import '../extensions/build_context_extensions.dart';
 import '../font_weight.dart';
@@ -139,12 +140,12 @@ class DeviceInfoDialog extends StatelessWidget {
       ..._buildTile(
         context,
         'Environment',
-        environment.environment.toString(),
+        EnumUtils.getStringValue(environment.environment),
       ),
       ..._buildTile(
         context,
         'Build mode',
-        environment.buildMode.toString(),
+        EnumUtils.getStringValue(environment.buildMode),
       ),
     ];
   }

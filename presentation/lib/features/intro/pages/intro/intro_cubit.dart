@@ -23,6 +23,10 @@ class IntroCubit extends CubitBase<IntroState> {
         .getIntroPageContent()
         .takeUntil(dispose$)
         .listen((pageContent) {
+      // TODO: Handle no data found
+      if (pageContent == null) {
+        return;
+      }
       emit(IntroState.load(
         content: pageContent,
       ));

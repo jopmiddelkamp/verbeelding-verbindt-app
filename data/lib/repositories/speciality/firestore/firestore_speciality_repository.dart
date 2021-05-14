@@ -7,26 +7,34 @@ import '../../../models/speciality.dart';
 
 class FirestoreSpecialityRepository implements SpecialityRepository {
   FirestoreSpecialityRepository()
-      : _specialityCollection =
-            FirebaseFirestore.instance.collection('specialities');
+      : _specialityCollection = FirebaseFirestore.instance
+            .collection('specialities')
+            .withConverter<SpecialityDataModel>(
+          fromFirestore: (snapshot, _) {
+            return SpecialityDataModel.fromFirebaseMap(
+              snapshot.id,
+              snapshot.data()!,
+            );
+          },
+          toFirestore: (value, _) {
+            return value.toJson();
+          },
+        );
 
-  final CollectionReference _specialityCollection;
+  final CollectionReference<SpecialityDataModel> _specialityCollection;
 
   @override
   Stream<List<SpecialityEntity>> getSpecialities([
     List<String>? ids,
   ]) {
     // ignore: unnecessary_cast
-    var query = _specialityCollection as Query;
+    var query = _specialityCollection as Query<SpecialityDataModel>;
     if (ids != null) {
       query = query.where('id', whereIn: ids);
     }
-    return query.snapshots().map((docs) {
+    return query.snapshots().map<List<SpecialityEntity>>((docs) {
       return docs.docs
-          .map((doc) => SpecialityDataModel.fromFirebaseMap(
-                doc.id,
-                doc.data(),
-              ).toEntity())
+          .map<SpecialityEntity>((doc) => doc.data().toEntity())
           .toList(growable: false);
     });
   }

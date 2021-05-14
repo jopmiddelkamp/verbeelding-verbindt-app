@@ -44,10 +44,11 @@ class RouteDataModel {
   }
 
   RouteDataModel copyWith({
+    String? id,
     List<RouteStopDataModel>? stops,
   }) {
     return RouteDataModel(
-      id: id,
+      id: id ?? this.id,
       stops: stops ?? this.stops,
     );
   }

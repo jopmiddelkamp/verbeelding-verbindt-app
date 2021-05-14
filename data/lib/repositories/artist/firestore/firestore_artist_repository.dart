@@ -7,9 +7,21 @@ import '../../../models/artist.dart';
 
 class FirestoreArtistRepository implements ArtistRepository {
   FirestoreArtistRepository()
-      : _artistCollection = FirebaseFirestore.instance.collection('artists');
+      : _artistCollection = FirebaseFirestore.instance
+            .collection('artists')
+            .withConverter<ArtistDataModel>(
+          fromFirestore: (snapshot, _) {
+            return ArtistDataModel.fromFirebaseMap(
+              id: snapshot.id,
+              map: snapshot.data()!,
+            );
+          },
+          toFirestore: (value, _) {
+            return value.toJson();
+          },
+        );
 
-  final CollectionReference _artistCollection;
+  final CollectionReference<ArtistDataModel> _artistCollection;
 
   @override
   Stream<List<ArtistEntity>> streamArtistsBySpeciality(
@@ -18,13 +30,10 @@ class FirestoreArtistRepository implements ArtistRepository {
     final query = _filterArtistsBySpeciality(specialityIds);
 
     yield* query.snapshots().map<List<ArtistEntity>>((snapshot) {
-      final artists = snapshot.docs
-          .map((doc) => ArtistDataModel.fromFirebaseMap(
-                id: doc.id,
-                map: doc.data(),
-              ))
-          .toList(growable: false);
-      return artists.toEntityList();
+      final artists = snapshot.docs.map<ArtistEntity>((doc) {
+        return doc.data().toEntity();
+      }).toList(growable: false);
+      return artists;
     });
   }
 
@@ -36,19 +45,16 @@ class FirestoreArtistRepository implements ArtistRepository {
 
     final result = await query.get();
 
-    return result.docs
-        .map((doc) => ArtistDataModel.fromFirebaseMap(
-              id: doc.id,
-              map: doc.data(),
-            ).toEntity())
-        .toList(growable: false);
+    return result.docs.map<ArtistEntity>((doc) {
+      return doc.data().toEntity();
+    }).toList(growable: false);
   }
 
-  Query _filterArtistsBySpeciality(
+  Query<ArtistDataModel> _filterArtistsBySpeciality(
     Iterable<String> specialityIds,
   ) {
     // ignore: unnecessary_cast
-    var query = _artistCollection as Query;
+    var query = _artistCollection as Query<ArtistDataModel>;
     if (specialityIds.isNotEmpty == true) {
       query = query.where(
         'specialitiesKeys',
