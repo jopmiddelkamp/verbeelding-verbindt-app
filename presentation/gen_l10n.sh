@@ -95,3 +95,11 @@ flutter gen-l10n \
     --output-localization-file permissions_removed_localizations.dart \
     --output-class PermissionsRemovedDialogLocalizations \
     --no-synthetic-package
+
+flutter gen-l10n \
+    --arb-dir lib/shared/dialogs/permissions_restricted/l10n \
+    --template-arb-file nl.arb \
+    --output-dir=lib/shared/dialogs/permissions_restricted/l10n/generated \
+    --output-localization-file permissions_restricted_localizations.dart \
+    --output-class PermissionsRestrictedDialogLocalizations \
+    --no-synthetic-package
