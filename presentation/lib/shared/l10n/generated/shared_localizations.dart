@@ -104,6 +104,12 @@ abstract class SharedLocalizations {
   /// **'Annuleer'**
   String get cancel;
 
+  /// No description provided for @close.
+  ///
+  /// In nl, this message translates to:
+  /// **'Sluiten'**
+  String get close;
+
   /// No description provided for @continuee.
   ///
   /// In nl, this message translates to:

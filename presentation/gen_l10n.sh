@@ -79,3 +79,11 @@ flutter gen-l10n \
     --output-localization-file not_implemented_localizations.dart \
     --output-class NotImplementedDialogLocalizations \
     --no-synthetic-package
+
+flutter gen-l10n \
+    --arb-dir lib/shared/dialogs/permissions_denied/l10n \
+    --template-arb-file nl.arb \
+    --output-dir=lib/shared/dialogs/permissions_denied/l10n/generated \
+    --output-localization-file permissions_denied_localizations.dart \
+    --output-class PermissionsDeniedDialogLocalizations \
+    --no-synthetic-package

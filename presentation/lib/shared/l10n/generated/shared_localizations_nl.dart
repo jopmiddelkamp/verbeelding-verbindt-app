@@ -14,6 +14,9 @@ class SharedLocalizationsNl extends SharedLocalizations {
   String get cancel => 'Annuleer';
 
   @override
+  String get close => 'Sluiten';
+
+  @override
   String get continuee => 'Ga verder';
 
   @override

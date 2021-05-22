@@ -6,21 +6,21 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
-import 'not_implemented_localizations_nl.dart';
+import 'permissions_denied_localizations_nl.dart';
 
-/// Callers can lookup localized strings with an instance of NotImplementedDialogLocalizations returned
-/// by `NotImplementedDialogLocalizations.of(context)`.
+/// Callers can lookup localized strings with an instance of PermissionsDeniedDialogLocalizations returned
+/// by `PermissionsDeniedDialogLocalizations.of(context)`.
 ///
-/// Applications need to include `NotImplementedDialogLocalizations.delegate()` in their app's
+/// Applications need to include `PermissionsDeniedDialogLocalizations.delegate()` in their app's
 /// localizationDelegates list, and the locales they support in the app's
 /// supportedLocales list. For example:
 ///
 /// ```
-/// import 'generated/not_implemented_localizations.dart';
+/// import 'generated/permissions_denied_localizations.dart';
 ///
 /// return MaterialApp(
-///   localizationsDelegates: NotImplementedDialogLocalizations.localizationsDelegates,
-///   supportedLocales: NotImplementedDialogLocalizations.supportedLocales,
+///   localizationsDelegates: PermissionsDeniedDialogLocalizations.localizationsDelegates,
+///   supportedLocales: PermissionsDeniedDialogLocalizations.supportedLocales,
 ///   home: MyApplicationHome(),
 /// );
 /// ```
@@ -57,18 +57,18 @@ import 'not_implemented_localizations_nl.dart';
 /// Select and expand the newly-created Localizations item then, for each
 /// locale your application supports, add a new item and select the locale
 /// you wish to add from the pop-up menu in the Value field. This list should
-/// be consistent with the languages listed in the NotImplementedDialogLocalizations.supportedLocales
+/// be consistent with the languages listed in the PermissionsDeniedDialogLocalizations.supportedLocales
 /// property.
-abstract class NotImplementedDialogLocalizations {
-  NotImplementedDialogLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+abstract class PermissionsDeniedDialogLocalizations {
+  PermissionsDeniedDialogLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
-  static NotImplementedDialogLocalizations of(BuildContext context) {
-    return Localizations.of<NotImplementedDialogLocalizations>(context, NotImplementedDialogLocalizations)!;
+  static PermissionsDeniedDialogLocalizations of(BuildContext context) {
+    return Localizations.of<PermissionsDeniedDialogLocalizations>(context, PermissionsDeniedDialogLocalizations)!;
   }
 
-  static const LocalizationsDelegate<NotImplementedDialogLocalizations> delegate = _NotImplementedDialogLocalizationsDelegate();
+  static const LocalizationsDelegate<PermissionsDeniedDialogLocalizations> delegate = _PermissionsDeniedDialogLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -95,43 +95,43 @@ abstract class NotImplementedDialogLocalizations {
   /// No description provided for @content.
   ///
   /// In nl, this message translates to:
-  /// **'Deze functionaliteit is not niet geimplementeerd.'**
+  /// **'We hebben geconstateerd dat u ons verzoek voor de rechten tot het uitlezen van uw locatie gegeven heeft geweigerd. Om deze app te kunnen gebruiken zult u deze actie ongedaan moeten maken.'**
   String get content;
 
   /// No description provided for @title.
   ///
   /// In nl, this message translates to:
-  /// **'Nog niet geimplementeerd!'**
+  /// **'Rechten geweigerd'**
   String get title;
 }
 
-class _NotImplementedDialogLocalizationsDelegate extends LocalizationsDelegate<NotImplementedDialogLocalizations> {
-  const _NotImplementedDialogLocalizationsDelegate();
+class _PermissionsDeniedDialogLocalizationsDelegate extends LocalizationsDelegate<PermissionsDeniedDialogLocalizations> {
+  const _PermissionsDeniedDialogLocalizationsDelegate();
 
   @override
-  Future<NotImplementedDialogLocalizations> load(Locale locale) {
-    return SynchronousFuture<NotImplementedDialogLocalizations>(_lookupNotImplementedDialogLocalizations(locale));
+  Future<PermissionsDeniedDialogLocalizations> load(Locale locale) {
+    return SynchronousFuture<PermissionsDeniedDialogLocalizations>(_lookupPermissionsDeniedDialogLocalizations(locale));
   }
 
   @override
   bool isSupported(Locale locale) => <String>['nl'].contains(locale.languageCode);
 
   @override
-  bool shouldReload(_NotImplementedDialogLocalizationsDelegate old) => false;
+  bool shouldReload(_PermissionsDeniedDialogLocalizationsDelegate old) => false;
 }
 
-NotImplementedDialogLocalizations _lookupNotImplementedDialogLocalizations(Locale locale) {
+PermissionsDeniedDialogLocalizations _lookupPermissionsDeniedDialogLocalizations(Locale locale) {
   
 
 
 // Lookup logic when only language code is specified.
 switch (locale.languageCode) {
-  case 'nl': return NotImplementedDialogLocalizationsNl();
+  case 'nl': return PermissionsDeniedDialogLocalizationsNl();
 }
 
 
   throw FlutterError(
-    'NotImplementedDialogLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'PermissionsDeniedDialogLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
     'that was used.'

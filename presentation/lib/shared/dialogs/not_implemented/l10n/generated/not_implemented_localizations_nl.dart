@@ -8,9 +8,6 @@ class NotImplementedDialogLocalizationsNl extends NotImplementedDialogLocalizati
   NotImplementedDialogLocalizationsNl([String locale = 'nl']) : super(locale);
 
   @override
-  String get close => 'Sluiten';
-
-  @override
   String get content => 'Deze functionaliteit is not niet geimplementeerd.';
 
   @override
