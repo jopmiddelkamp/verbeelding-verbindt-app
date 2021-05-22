@@ -4,8 +4,8 @@ import 'package:photo_view/photo_view.dart';
 import 'package:verbeelding_verbindt_core/entities/common/image.dart';
 import 'package:verbeelding_verbindt_core/entities/common/size.dart';
 
-import '../../shared/extensions/build_context_extensions.dart';
-import '../../theme.sizes.dart';
+import '../../../theme.sizes.dart';
+import '../../extensions/build_context_extensions.dart';
 
 class ImageDialog extends StatelessWidget {
   const ImageDialog(

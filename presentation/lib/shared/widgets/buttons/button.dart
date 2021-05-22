@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../../typedefs.dart';
-import '../../dialogs/error_dialog/error_dialog.dart';
+import '../../dialogs/error/error_dialog.dart';
 import '../../extensions/build_context_extensions.dart';
 import 'button_cubit.dart';
 

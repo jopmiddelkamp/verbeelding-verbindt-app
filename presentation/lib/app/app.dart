@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
-import 'package:verbeelding_verbindt_presentation/shared/dialogs/device_info/l10n/generated/device_info_dialog_localizations.dart';
-import 'package:verbeelding_verbindt_presentation/shared/dialogs/error_dialog/l10n/generated/error_dialog_localizations.dart';
 
 import '../features/intro/pages/intro/intro_page.dart';
 import '../features/intro/pages/intro/l10n/generated/intro_page_localizations.dart';
@@ -15,6 +13,8 @@ import '../features/route_guide/pages/scan_qr/l10n/generated/scan_qr_page_locali
 import '../features/route_guide/pages/select_interests/l10n/generated/select_interests_page_localizations.dart';
 import '../features/route_guide/pages/select_interests/select_interests_page.dart';
 import '../routes.dart';
+import '../shared/dialogs/device_info/l10n/generated/device_info_dialog_localizations.dart';
+import '../shared/dialogs/error/l10n/generated/error_dialog_localizations.dart';
 import '../shared/l10n/generated/shared_localizations.dart';
 import '../shared/services/localization/localization_service.dart';
 import '../shared/widgets/misc/flavor_banner.dart';

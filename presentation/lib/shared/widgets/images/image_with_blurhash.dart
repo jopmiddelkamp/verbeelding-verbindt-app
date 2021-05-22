@@ -6,7 +6,7 @@ import 'package:supercharged/supercharged.dart';
 import 'package:verbeelding_verbindt_core/entities/common/image.dart';
 
 import '../../../theme.colors.dart';
-import '../../dialogs/image_dialog.dart';
+import '../../dialogs/image/image_dialog.dart';
 
 enum ImageType { network }
 
