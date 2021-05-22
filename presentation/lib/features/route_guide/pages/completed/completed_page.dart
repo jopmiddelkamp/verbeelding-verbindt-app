@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../../../shared/dialogs/confirm/confirm_dialog.dart';
 import '../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../shared/widgets/loading_indicators/circle_loading_indicator.dart';
 import '../../../../shared/widgets/text/translatable_markdown.dart';
 import '../../../../shared/widgets/text/translatable_text.dart';
 import 'completed_cubit.dart';
 import 'completed_state.dart';
-import 'dialogs/confirm_lose_progress_dialog.dart';
 import 'widgets/header.dart';
 
 final serviceLocator = GetIt.instance;
@@ -33,7 +33,10 @@ class CompletedPage extends StatelessWidget {
   ) {
     return WillPopScope(
       onWillPop: () {
-        return showConfirmLoseProgressDialog(context);
+        return showConfirmDialog(
+          context,
+          content: (c, _) => c.l10n.completedPage.popConfirmMessage,
+        );
       },
       child: Scaffold(
         extendBodyBehindAppBar: true,

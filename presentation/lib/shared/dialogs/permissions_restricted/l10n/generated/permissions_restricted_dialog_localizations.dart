@@ -6,21 +6,21 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
-import 'completed_page_localizations_nl.dart';
+import 'permissions_restricted_dialog_localizations_nl.dart';
 
-/// Callers can lookup localized strings with an instance of CompletedPageLocalizations returned
-/// by `CompletedPageLocalizations.of(context)`.
+/// Callers can lookup localized strings with an instance of PermissionsRestrictedDialogLocalizations returned
+/// by `PermissionsRestrictedDialogLocalizations.of(context)`.
 ///
-/// Applications need to include `CompletedPageLocalizations.delegate()` in their app's
+/// Applications need to include `PermissionsRestrictedDialogLocalizations.delegate()` in their app's
 /// localizationDelegates list, and the locales they support in the app's
 /// supportedLocales list. For example:
 ///
 /// ```
-/// import 'generated/completed_page_localizations.dart';
+/// import 'generated/permissions_restricted_dialog_localizations.dart';
 ///
 /// return MaterialApp(
-///   localizationsDelegates: CompletedPageLocalizations.localizationsDelegates,
-///   supportedLocales: CompletedPageLocalizations.supportedLocales,
+///   localizationsDelegates: PermissionsRestrictedDialogLocalizations.localizationsDelegates,
+///   supportedLocales: PermissionsRestrictedDialogLocalizations.supportedLocales,
 ///   home: MyApplicationHome(),
 /// );
 /// ```
@@ -57,18 +57,18 @@ import 'completed_page_localizations_nl.dart';
 /// Select and expand the newly-created Localizations item then, for each
 /// locale your application supports, add a new item and select the locale
 /// you wish to add from the pop-up menu in the Value field. This list should
-/// be consistent with the languages listed in the CompletedPageLocalizations.supportedLocales
+/// be consistent with the languages listed in the PermissionsRestrictedDialogLocalizations.supportedLocales
 /// property.
-abstract class CompletedPageLocalizations {
-  CompletedPageLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+abstract class PermissionsRestrictedDialogLocalizations {
+  PermissionsRestrictedDialogLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
-  static CompletedPageLocalizations of(BuildContext context) {
-    return Localizations.of<CompletedPageLocalizations>(context, CompletedPageLocalizations)!;
+  static PermissionsRestrictedDialogLocalizations of(BuildContext context) {
+    return Localizations.of<PermissionsRestrictedDialogLocalizations>(context, PermissionsRestrictedDialogLocalizations)!;
   }
 
-  static const LocalizationsDelegate<CompletedPageLocalizations> delegate = _CompletedPageLocalizationsDelegate();
+  static const LocalizationsDelegate<PermissionsRestrictedDialogLocalizations> delegate = _PermissionsRestrictedDialogLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -92,52 +92,46 @@ abstract class CompletedPageLocalizations {
     Locale('nl')
   ];
 
-  /// No description provided for @popConfirmMessage.
+  /// No description provided for @content.
   ///
   /// In nl, this message translates to:
-  /// **'Als u bevestigd terug te willen gaan zult u uw bewijs van afronden van de tour verliezen.'**
-  String get popConfirmMessage;
-
-  /// No description provided for @text.
-  ///
-  /// In nl, this message translates to:
-  /// **'Dit is de introductie text joe joe Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.\n\n##### Meer info header\nDit is de introductie text Lorem Ipsum is simply dummy text of the printing and typesetting industry. When an unknown printer took a galley of type and scrambled it to make a type specimen book.  Dit is de introductie text Lorem Ipsum is simply dummy. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n\n###### Rechten\nOm de app te kunnen gebruik hebben wij uw locatie gegevens nodig. Wij gebruiken uw locatie gegevens alleen om u van plaats naar plaats te begeleiden.'**
-  String get text;
+  /// **'We hebben geconstateerd dat u ons de rechten tot het uitlezen van uw locatie gegeven heeft ontnomen. Om deze app te kunnen gebruiken zult u deze actie ongedaan moeten maken.'**
+  String get content;
 
   /// No description provided for @title.
   ///
   /// In nl, this message translates to:
-  /// **'Goed gedaan!'**
+  /// **'Rechten ontnomen'**
   String get title;
 }
 
-class _CompletedPageLocalizationsDelegate extends LocalizationsDelegate<CompletedPageLocalizations> {
-  const _CompletedPageLocalizationsDelegate();
+class _PermissionsRestrictedDialogLocalizationsDelegate extends LocalizationsDelegate<PermissionsRestrictedDialogLocalizations> {
+  const _PermissionsRestrictedDialogLocalizationsDelegate();
 
   @override
-  Future<CompletedPageLocalizations> load(Locale locale) {
-    return SynchronousFuture<CompletedPageLocalizations>(_lookupCompletedPageLocalizations(locale));
+  Future<PermissionsRestrictedDialogLocalizations> load(Locale locale) {
+    return SynchronousFuture<PermissionsRestrictedDialogLocalizations>(_lookupPermissionsRestrictedDialogLocalizations(locale));
   }
 
   @override
   bool isSupported(Locale locale) => <String>['nl'].contains(locale.languageCode);
 
   @override
-  bool shouldReload(_CompletedPageLocalizationsDelegate old) => false;
+  bool shouldReload(_PermissionsRestrictedDialogLocalizationsDelegate old) => false;
 }
 
-CompletedPageLocalizations _lookupCompletedPageLocalizations(Locale locale) {
+PermissionsRestrictedDialogLocalizations _lookupPermissionsRestrictedDialogLocalizations(Locale locale) {
   
 
 
 // Lookup logic when only language code is specified.
 switch (locale.languageCode) {
-  case 'nl': return CompletedPageLocalizationsNl();
+  case 'nl': return PermissionsRestrictedDialogLocalizationsNl();
 }
 
 
   throw FlutterError(
-    'CompletedPageLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'PermissionsRestrictedDialogLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
     'that was used.'

@@ -3,13 +3,22 @@ import 'package:flutter/material.dart';
 import '../../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../../shared/widgets/text/translatable_text.dart';
 
-class ConfirmLoseProgressDialog extends StatelessWidget {
+class _ConfirmDialog extends StatelessWidget {
+  _ConfirmDialog({
+    this.title,
+    required this.content,
+  });
+
+  final TranslatedTextCallback? title;
+  final TranslatedTextCallback content;
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     return AlertDialog(
-      title: const Text('Weet u het zeker?'),
-      content: const Text(
-          'Als u bevestigd terug te willen gaan zult u uw bewijs van afronden van de tour verliezen.'),
+      title: TranslatedText(title ?? (c, _) => c.l10n.confirmDialog.title),
+      content: TranslatedText(content),
       actions: <Widget>[
         TextButton(
           child: TranslatedText(
@@ -28,12 +37,17 @@ class ConfirmLoseProgressDialog extends StatelessWidget {
   }
 }
 
-Future<bool> showConfirmLoseProgressDialog(
-  BuildContext context,
-) async {
+Future<bool> showConfirmDialog(
+  BuildContext context, {
+  TranslatedTextCallback? title,
+  required TranslatedTextCallback content,
+}) async {
   final result = await showDialog<bool>(
     context: context,
-    builder: (context) => ConfirmLoseProgressDialog(),
+    builder: (context) => _ConfirmDialog(
+      title: title,
+      content: content,
+    ),
   );
   return result ?? false;
 }

@@ -6,7 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
-import 'not_implemented_localizations_nl.dart';
+import 'not_implemented_dialog_localizations_nl.dart';
 
 /// Callers can lookup localized strings with an instance of NotImplementedDialogLocalizations returned
 /// by `NotImplementedDialogLocalizations.of(context)`.
@@ -16,7 +16,7 @@ import 'not_implemented_localizations_nl.dart';
 /// supportedLocales list. For example:
 ///
 /// ```
-/// import 'generated/not_implemented_localizations.dart';
+/// import 'generated/not_implemented_dialog_localizations.dart';
 ///
 /// return MaterialApp(
 ///   localizationsDelegates: NotImplementedDialogLocalizations.localizationsDelegates,

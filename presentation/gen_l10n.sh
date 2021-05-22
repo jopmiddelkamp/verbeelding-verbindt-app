@@ -76,7 +76,7 @@ flutter gen-l10n \
     --arb-dir lib/shared/dialogs/not_implemented/l10n \
     --template-arb-file nl.arb \
     --output-dir=lib/shared/dialogs/not_implemented/l10n/generated \
-    --output-localization-file not_implemented_localizations.dart \
+    --output-localization-file not_implemented_dialog_localizations.dart \
     --output-class NotImplementedDialogLocalizations \
     --no-synthetic-package
 
@@ -84,7 +84,7 @@ flutter gen-l10n \
     --arb-dir lib/shared/dialogs/permissions_denied/l10n \
     --template-arb-file nl.arb \
     --output-dir=lib/shared/dialogs/permissions_denied/l10n/generated \
-    --output-localization-file permissions_denied_localizations.dart \
+    --output-localization-file permissions_denied_dialog_localizations.dart \
     --output-class PermissionsDeniedDialogLocalizations \
     --no-synthetic-package
 
@@ -92,7 +92,7 @@ flutter gen-l10n \
     --arb-dir lib/shared/dialogs/permissions_removed/l10n \
     --template-arb-file nl.arb \
     --output-dir=lib/shared/dialogs/permissions_removed/l10n/generated \
-    --output-localization-file permissions_removed_localizations.dart \
+    --output-localization-file permissions_removed_dialog_localizations.dart \
     --output-class PermissionsRemovedDialogLocalizations \
     --no-synthetic-package
 
@@ -100,6 +100,14 @@ flutter gen-l10n \
     --arb-dir lib/shared/dialogs/permissions_restricted/l10n \
     --template-arb-file nl.arb \
     --output-dir=lib/shared/dialogs/permissions_restricted/l10n/generated \
-    --output-localization-file permissions_restricted_localizations.dart \
+    --output-localization-file permissions_restricted_dialog_localizations.dart \
     --output-class PermissionsRestrictedDialogLocalizations \
+    --no-synthetic-package
+
+flutter gen-l10n \
+    --arb-dir lib/shared/dialogs/confirm/l10n \
+    --template-arb-file nl.arb \
+    --output-dir=lib/shared/dialogs/confirm/l10n/generated \
+    --output-localization-file confirm_dialog_localizations.dart \
+    --output-class ConfirmDialogLocalizations \
     --no-synthetic-package

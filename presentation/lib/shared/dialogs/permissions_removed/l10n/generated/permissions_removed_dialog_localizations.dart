@@ -6,21 +6,21 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
-import 'permissions_restricted_localizations_nl.dart';
+import 'permissions_removed_dialog_localizations_nl.dart';
 
-/// Callers can lookup localized strings with an instance of PermissionsRestrictedDialogLocalizations returned
-/// by `PermissionsRestrictedDialogLocalizations.of(context)`.
+/// Callers can lookup localized strings with an instance of PermissionsRemovedDialogLocalizations returned
+/// by `PermissionsRemovedDialogLocalizations.of(context)`.
 ///
-/// Applications need to include `PermissionsRestrictedDialogLocalizations.delegate()` in their app's
+/// Applications need to include `PermissionsRemovedDialogLocalizations.delegate()` in their app's
 /// localizationDelegates list, and the locales they support in the app's
 /// supportedLocales list. For example:
 ///
 /// ```
-/// import 'generated/permissions_restricted_localizations.dart';
+/// import 'generated/permissions_removed_dialog_localizations.dart';
 ///
 /// return MaterialApp(
-///   localizationsDelegates: PermissionsRestrictedDialogLocalizations.localizationsDelegates,
-///   supportedLocales: PermissionsRestrictedDialogLocalizations.supportedLocales,
+///   localizationsDelegates: PermissionsRemovedDialogLocalizations.localizationsDelegates,
+///   supportedLocales: PermissionsRemovedDialogLocalizations.supportedLocales,
 ///   home: MyApplicationHome(),
 /// );
 /// ```
@@ -57,18 +57,18 @@ import 'permissions_restricted_localizations_nl.dart';
 /// Select and expand the newly-created Localizations item then, for each
 /// locale your application supports, add a new item and select the locale
 /// you wish to add from the pop-up menu in the Value field. This list should
-/// be consistent with the languages listed in the PermissionsRestrictedDialogLocalizations.supportedLocales
+/// be consistent with the languages listed in the PermissionsRemovedDialogLocalizations.supportedLocales
 /// property.
-abstract class PermissionsRestrictedDialogLocalizations {
-  PermissionsRestrictedDialogLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+abstract class PermissionsRemovedDialogLocalizations {
+  PermissionsRemovedDialogLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
-  static PermissionsRestrictedDialogLocalizations of(BuildContext context) {
-    return Localizations.of<PermissionsRestrictedDialogLocalizations>(context, PermissionsRestrictedDialogLocalizations)!;
+  static PermissionsRemovedDialogLocalizations of(BuildContext context) {
+    return Localizations.of<PermissionsRemovedDialogLocalizations>(context, PermissionsRemovedDialogLocalizations)!;
   }
 
-  static const LocalizationsDelegate<PermissionsRestrictedDialogLocalizations> delegate = _PermissionsRestrictedDialogLocalizationsDelegate();
+  static const LocalizationsDelegate<PermissionsRemovedDialogLocalizations> delegate = _PermissionsRemovedDialogLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -105,33 +105,33 @@ abstract class PermissionsRestrictedDialogLocalizations {
   String get title;
 }
 
-class _PermissionsRestrictedDialogLocalizationsDelegate extends LocalizationsDelegate<PermissionsRestrictedDialogLocalizations> {
-  const _PermissionsRestrictedDialogLocalizationsDelegate();
+class _PermissionsRemovedDialogLocalizationsDelegate extends LocalizationsDelegate<PermissionsRemovedDialogLocalizations> {
+  const _PermissionsRemovedDialogLocalizationsDelegate();
 
   @override
-  Future<PermissionsRestrictedDialogLocalizations> load(Locale locale) {
-    return SynchronousFuture<PermissionsRestrictedDialogLocalizations>(_lookupPermissionsRestrictedDialogLocalizations(locale));
+  Future<PermissionsRemovedDialogLocalizations> load(Locale locale) {
+    return SynchronousFuture<PermissionsRemovedDialogLocalizations>(_lookupPermissionsRemovedDialogLocalizations(locale));
   }
 
   @override
   bool isSupported(Locale locale) => <String>['nl'].contains(locale.languageCode);
 
   @override
-  bool shouldReload(_PermissionsRestrictedDialogLocalizationsDelegate old) => false;
+  bool shouldReload(_PermissionsRemovedDialogLocalizationsDelegate old) => false;
 }
 
-PermissionsRestrictedDialogLocalizations _lookupPermissionsRestrictedDialogLocalizations(Locale locale) {
+PermissionsRemovedDialogLocalizations _lookupPermissionsRemovedDialogLocalizations(Locale locale) {
   
 
 
 // Lookup logic when only language code is specified.
 switch (locale.languageCode) {
-  case 'nl': return PermissionsRestrictedDialogLocalizationsNl();
+  case 'nl': return PermissionsRemovedDialogLocalizationsNl();
 }
 
 
   throw FlutterError(
-    'PermissionsRestrictedDialogLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'PermissionsRemovedDialogLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
     'that was used.'

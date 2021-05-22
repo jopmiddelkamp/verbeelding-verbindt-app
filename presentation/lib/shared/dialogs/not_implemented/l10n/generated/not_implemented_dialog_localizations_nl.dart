@@ -1,7 +1,7 @@
 
 
 
-import 'not_implemented_localizations.dart';
+import 'not_implemented_dialog_localizations.dart';
 
 /// The translations for Dutch Flemish (`nl`).
 class NotImplementedDialogLocalizationsNl extends NotImplementedDialogLocalizations {

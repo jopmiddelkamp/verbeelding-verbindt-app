@@ -1,7 +1,7 @@
 
 
 
-import 'permissions_restricted_localizations.dart';
+import 'permissions_restricted_dialog_localizations.dart';
 
 /// The translations for Dutch Flemish (`nl`).
 class PermissionsRestrictedDialogLocalizationsNl extends PermissionsRestrictedDialogLocalizations {
