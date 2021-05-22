@@ -11,7 +11,9 @@ class ErrorDialog extends StatelessWidget {
   final String message;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     return AlertDialog(
       title: Row(
         children: [
@@ -42,5 +44,16 @@ void showErrorDialog(
       title: title,
       message: message,
     ),
+  );
+}
+
+void showUnknownErrorDialog(
+  BuildContext context, {
+  required Exception exception,
+}) {
+  showErrorDialog(
+    context,
+    title: 'Onbekende foutmelding',
+    message: 'Er is een onverwachte foutmelding opgetreden. $exception',
   );
 }

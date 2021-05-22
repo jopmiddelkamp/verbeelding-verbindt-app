@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../shared/extensions/build_context_extensions.dart';
-import '../../../../../shared/widgets/buttons/tsal_primary_button.dart';
+import '../../../../../shared/widgets/buttons/primary_button.dart';
 import '../../../../../shared/widgets/text/translatable_text.dart';
 import '../intro_cubit.dart';
 
@@ -26,9 +26,11 @@ class ContinueButton extends StatelessWidget {
     return _buildButton(context);
   }
 
-  VVPrimaryButton _buildButton(BuildContext context) {
+  Widget _buildButton(
+    BuildContext context,
+  ) {
     final introBloc = context.blocProvider<IntroCubit>();
-    return VVPrimaryButton(
+    return PrimaryButton.blocProvider(
       label: TranslatedText(
         (c, _) => c.l10n.shared.continuee,
       ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:verbeelding_verbindt_presentation/shared/widgets/text/translatable_text.dart';
 
 import '../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../shared/widgets/loading_indicators/circle_loading_indicator.dart';
+import '../../../../shared/widgets/text/translatable_text.dart';
 import '../../../../theme.dart';
 import '../completed/completed_page.dart';
 import 'guide_cubit.dart';
