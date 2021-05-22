@@ -11,6 +11,7 @@ import '../dialogs/device_info/l10n/generated/device_info_dialog_localizations.d
 import '../dialogs/error/l10n/generated/error_dialog_localizations.dart';
 import '../dialogs/not_implemented/l10n/generated/not_implemented_localizations.dart';
 import '../dialogs/permissions_denied/l10n/generated/permissions_denied_localizations.dart';
+import '../dialogs/permissions_removed/l10n/generated/permissions_removed_localizations.dart';
 import '../services/localization/localization_service.dart';
 import 'generated/shared_localizations.dart';
 
@@ -26,6 +27,7 @@ class L10n {
   final ErrorDialogLocalizations errorDialog;
   final NotImplementedDialogLocalizations notImplementedDialog;
   final PermissionsDeniedDialogLocalizations permissionsDeniedDialog;
+  final PermissionsRemovedDialogLocalizations permissionsRemovedDialog;
 
   L10n({
     required this.shared,
@@ -39,6 +41,7 @@ class L10n {
     required this.errorDialog,
     required this.notImplementedDialog,
     required this.permissionsDeniedDialog,
+    required this.permissionsRemovedDialog,
   });
 
   static L10n of(
@@ -59,6 +62,8 @@ class L10n {
       errorDialog: ErrorDialogLocalizations.of(context),
       notImplementedDialog: NotImplementedDialogLocalizations.of(context),
       permissionsDeniedDialog: PermissionsDeniedDialogLocalizations.of(context),
+      permissionsRemovedDialog:
+          PermissionsRemovedDialogLocalizations.of(context),
     );
   }
 
@@ -78,5 +83,6 @@ class L10n {
     ErrorDialogLocalizations.delegate.load(locale);
     NotImplementedDialogLocalizations.delegate.load(locale);
     PermissionsDeniedDialogLocalizations.delegate.load(locale);
+    PermissionsRemovedDialogLocalizations.delegate.load(locale);
   }
 }

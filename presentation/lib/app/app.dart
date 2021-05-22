@@ -17,6 +17,7 @@ import '../shared/dialogs/device_info/l10n/generated/device_info_dialog_localiza
 import '../shared/dialogs/error/l10n/generated/error_dialog_localizations.dart';
 import '../shared/dialogs/not_implemented/l10n/generated/not_implemented_localizations.dart';
 import '../shared/dialogs/permissions_denied/l10n/generated/permissions_denied_localizations.dart';
+import '../shared/dialogs/permissions_removed/l10n/generated/permissions_removed_localizations.dart';
 import '../shared/l10n/generated/shared_localizations.dart';
 import '../shared/services/localization/localization_service.dart';
 import '../shared/widgets/misc/flavor_banner.dart';
@@ -84,6 +85,7 @@ class App extends StatelessWidget {
             ErrorDialogLocalizations.delegate,
             NotImplementedDialogLocalizations.delegate,
             PermissionsDeniedDialogLocalizations.delegate,
+            PermissionsRemovedDialogLocalizations.delegate,
           ],
           supportedLocales: SharedLocalizations.supportedLocales,
           localeResolutionCallback: (_, __) {
