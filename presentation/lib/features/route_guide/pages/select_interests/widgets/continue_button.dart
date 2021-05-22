@@ -3,11 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../../shared/widgets/buttons/tsal_primary_button.dart';
+import '../../../../../shared/widgets/text/translatable_text.dart';
 import '../select_interests_cubit.dart';
 import '../select_interests_state.dart';
 
-class NextButton extends StatelessWidget {
-  const NextButton({Key? key}) : super(key: key);
+class ContinueButton extends StatelessWidget {
+  const ContinueButton({Key? key}) : super(key: key);
 
   @override
   Widget build(
@@ -22,7 +23,9 @@ class NextButton extends StatelessWidget {
       },
       builder: (context, state) {
         return VVPrimaryButton(
-          label: const Text('Verder'),
+          label: TranslatedText(
+            (c, _) => c.l10n.shared.continuee,
+          ),
           onTap: state.hasSelection ? cubit.toggleSelectionConfirmation : null,
         );
       },

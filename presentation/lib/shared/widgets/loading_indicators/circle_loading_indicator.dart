@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../extensions/build_context_extensions.dart';
+import '../text/translatable_text.dart';
 
 class VVCircleLoadingIndicator extends StatelessWidget {
   const VVCircleLoadingIndicator({
     Key? key,
     this.size = 50,
-    this.label,
+    this.text,
   }) : super(key: key);
 
   final double size;
-  final String? label;
+  final TranslatedTextCallback? text;
 
   @override
   Widget build(
@@ -25,13 +26,13 @@ class VVCircleLoadingIndicator extends StatelessWidget {
           lineWidth: size / 15,
           size: size,
         ),
-        if (label != null) ...[
-          SizedBox(height: size / 3),
-          Text(
-            label!,
-            style: TextStyle(fontSize: size / 3),
+        SizedBox(height: size / 3),
+        TranslatedText(
+          text ?? (c, _) => c.l10n.shared.busyLoading,
+          style: TextStyle(
+            fontSize: size / 3,
           ),
-        ],
+        ),
       ],
     );
   }

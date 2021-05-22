@@ -1,0 +1,9 @@
+{
+    "@@locale": "nl",
+
+    "busyLoadingMap": "Bezig met het laden van de map..",
+    "busySettingUpRoute": "Bezig met opzetten van route..",
+    "moreInfo": "Meer info",
+    "scanQr": "Scan QR",
+    "title": "Zoek de kunstenaar"
+}

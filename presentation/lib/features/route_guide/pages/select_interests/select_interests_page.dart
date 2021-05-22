@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:verbeelding_verbindt_presentation/shared/widgets/text/translatable_text.dart';
 
 import '../../../../shared/extensions/build_context_extensions.dart';
 import '../guide/guide_page.dart';
 import 'select_interests_cubit.dart';
 import 'select_interests_state.dart';
-import 'widgets/next_button.dart';
+import 'widgets/continue_button.dart';
 import 'widgets/specialties_list.dart';
 
 final serviceLocator = GetIt.instance;
@@ -53,14 +54,18 @@ class SelectInterestsPage extends StatelessWidget {
   ) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Interesses'),
+        title: TranslatedText(
+          (c, _) => c.l10n.selectInterestsPage.title,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Text('Maak hier uw selectie:'),
+            TranslatedText(
+              (c, _) => c.l10n.selectInterestsPage.makeYourSelection,
+            ),
             const SizedBox(height: 16),
             Expanded(
               child: SpecialitiesList(),
@@ -69,7 +74,7 @@ class SelectInterestsPage extends StatelessWidget {
             const Divider(height: 2),
             Container(
               width: double.infinity,
-              child: NextButton(),
+              child: ContinueButton(),
             ),
           ],
         ),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:verbeelding_verbindt_core/entities/common/artist.dart';
 
 import '../../../../../shared/extensions/build_context_extensions.dart';
+import '../../../../../shared/widgets/text/translatable_text.dart';
 import '../../artist_details/artist_details_page.dart';
 import '../guide_cubit.dart';
 import '../guide_state.dart';
@@ -20,7 +21,9 @@ class MoreInfoButton extends StatelessWidget {
       },
       builder: (context, state) {
         return TextButton(
-          child: Text('Meer info'),
+          child: TranslatedText(
+            (c, _) => c.l10n.guidePage.moreInfo,
+          ),
           onPressed: state.routeLoaded
               ? () => _onPressed(context, state.currentStop!.artist)
               : null,

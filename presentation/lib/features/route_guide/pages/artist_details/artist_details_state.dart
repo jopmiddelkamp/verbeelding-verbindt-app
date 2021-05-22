@@ -7,7 +7,6 @@ import '../../../../shared/bloc/state_base.dart';
 class ArtistDetailsState extends StateBase {
   ArtistDetailsState._({
     required this.artist,
-    required this.videoController,
     required Failure? failure,
   }) : super(
           failure: failure,
@@ -18,35 +17,26 @@ class ArtistDetailsState extends StateBase {
   }) {
     return ArtistDetailsState._(
       artist: artist,
-      videoController: null,
       failure: null,
     );
   }
 
   final ArtistEntity artist;
-  final VideoPlayerController? videoController;
 
   @override
   String toString() => '''$runtimeType { 
                             artist: $artist, 
-                            videoController: $videoController, 
                             failure: $failure, 
                           }''';
 
   ArtistDetailsState copyWith({
     VideoPlayerController? videoController,
+    bool? videoPlaying,
     Failure? failure,
   }) {
     return ArtistDetailsState._(
       artist: artist,
-      videoController: videoController ?? this.videoController,
       failure: failure ?? this.failure,
     );
-  }
-
-  @override
-  Future<void> dispose() {
-    videoController?.dispose();
-    return super.dispose();
   }
 }

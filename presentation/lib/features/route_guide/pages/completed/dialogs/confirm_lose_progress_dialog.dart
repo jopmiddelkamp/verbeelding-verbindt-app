@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../shared/extensions/build_context_extensions.dart';
+import '../../../../../shared/widgets/text/translatable_text.dart';
 
 class ConfirmLoseProgressDialog extends StatelessWidget {
   @override
@@ -11,11 +12,15 @@ class ConfirmLoseProgressDialog extends StatelessWidget {
           'Als u bevestigd terug te willen gaan zult u uw bewijs van afronden van de tour verliezen.'),
       actions: <Widget>[
         TextButton(
-          child: const Text('Ga terug'),
+          child: TranslatedText(
+            (c, _) => c.l10n.shared.goBack,
+          ),
           onPressed: () => context.navigator.pop(true),
         ),
         TextButton(
-          child: const Text('Annuleer'),
+          child: TranslatedText(
+            (c, _) => c.l10n.shared.cancel,
+          ),
           onPressed: context.navigator.pop,
         ),
       ],

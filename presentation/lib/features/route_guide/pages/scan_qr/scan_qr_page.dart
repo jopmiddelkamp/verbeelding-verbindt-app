@@ -38,8 +38,10 @@ class ScanQrPage extends StatelessWidget {
     BuildContext context,
   ) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Scan QR code'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
       body: BlocBuilder<ScanQrCubit, ScanQrState>(
         builder: (context, state) {
@@ -65,8 +67,8 @@ class ScanQrPage extends StatelessWidget {
     return Container(
       color: context.theme.colorScheme.background,
       child: Center(
-        child: const VVCircleLoadingIndicator(
-          label: 'Bezig met laden van de camera..',
+        child: VVCircleLoadingIndicator(
+          text: (c, _) => c.l10n.scanQrPage.busyLoadingCamera,
         ),
       ),
     );

@@ -23,4 +23,13 @@ abstract class PersistentStorageService {
   Future<void> setHasPermissionBeenRequested({
     required Permission permission,
   });
+
+  String? getString(
+    String key,
+  );
+
+  Future<void> setString(
+    String key,
+    String value,
+  );
 }

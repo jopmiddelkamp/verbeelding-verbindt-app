@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../../shared/widgets/list_tiles/list_tile.dart';
 import '../../../../../shared/widgets/loading_indicators/circle_loading_indicator.dart';
+import '../../../../../shared/widgets/text/translatable_text.dart';
 import '../select_interests_cubit.dart';
 import '../select_interests_state.dart';
 
@@ -17,13 +18,15 @@ class SpecialitiesList extends StatelessWidget {
     return BlocBuilder<SelectInterestsCubit, SelectInterestsState>(
       builder: (context, state) {
         if (!state.specialitiesLoaded) {
-          return const VVCircleLoadingIndicator(
-            label: 'Bezig met het laden van interesses..',
+          return VVCircleLoadingIndicator(
+            text: (c, _) => c.l10n.selectInterestsPage.busyLoadingInterests,
           );
         }
         if (!state.hasSpecialities) {
-          return const Center(
-            child: Text('Geen interesses om weer te geven..'),
+          return Center(
+            child: TranslatedText(
+              (c, _) => c.l10n.selectInterestsPage.noInterestsToDisplay,
+            ),
           );
         }
         return ListView.builder(

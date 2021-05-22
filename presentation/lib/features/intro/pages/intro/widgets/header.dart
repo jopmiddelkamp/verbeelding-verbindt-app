@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:verbeelding_verbindt_core/entities/common/image.dart';
-import 'package:verbeelding_verbindt_core/entities/common/translatable_string.dart';
 
 import '../../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../../shared/font_weight.dart';
 import '../../../../../shared/widgets/images/image_with_blurhash.dart';
+import '../../../../../shared/widgets/text/translatable_text.dart';
 
 class Header extends StatelessWidget {
   const Header({
@@ -14,7 +14,7 @@ class Header extends StatelessWidget {
   }) : super(key: key);
 
   final ImageEntity image;
-  final TranslatableStringEntity title;
+  final TranslatedTextCallback title;
 
   @override
   Widget build(
@@ -23,6 +23,7 @@ class Header extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 1.75,
       child: Stack(
+        clipBehavior: Clip.hardEdge,
         children: [
           ImageWithBlurhash(
             image,
@@ -33,9 +34,9 @@ class Header extends StatelessWidget {
           Positioned(
             bottom: 16,
             left: 16,
-            child: Text(
-              title.value,
-              style: context.textTheme.headline6!.copyWith(
+            child: TranslatedText(
+              title,
+              style: context.textTheme.headline4!.copyWith(
                 color: Colors.white,
                 fontWeight: VVFontWeight.bold,
               ),

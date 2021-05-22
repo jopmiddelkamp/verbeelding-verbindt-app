@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:verbeelding_verbindt_core/entities/common/artist.dart';
 
+import '../../../../shared/widgets/video/video.dart';
 import '../../../../theme.sizes.dart';
 import 'artist_details_cubit.dart';
 import 'artist_details_state.dart';
 import 'widgets/image_list.dart';
-import 'widgets/intro_video.dart';
 import 'widgets/visit_website_button.dart';
 
 final serviceLocator = GetIt.instance;
@@ -46,9 +46,8 @@ class ArtistDetailsPage extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      IntroVideo(
-                        video: state.artist.detailsContent.video,
-                        controller: state.videoController,
+                      Video.blocProvider(
+                        state.artist.detailsContent.video,
                       ),
                       const SizedBox(height: kDefaultSpacing),
                       Padding(

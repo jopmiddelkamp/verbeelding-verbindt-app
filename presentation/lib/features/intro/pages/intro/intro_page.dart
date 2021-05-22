@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../../features/route_guide/pages/select_interests/select_interests_page.dart';
 import '../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../shared/widgets/loading_indicators/circle_loading_indicator.dart';
+import '../../../../shared/widgets/text/translatable_markdown.dart';
 import 'intro_cubit.dart';
 import 'intro_state.dart';
 import 'widgets/continue_button.dart';
@@ -54,20 +54,18 @@ class IntroPage extends StatelessWidget {
     IntroState state,
   ) {
     if (!state.loaded) {
-      return VVCircleLoadingIndicator(
-        label: 'Bezig met laden..',
-      );
+      return VVCircleLoadingIndicator();
     }
     final content = state.content!;
     return Column(
       children: <Widget>[
         Header(
           image: content.headerImage,
-          title: content.title,
+          title: (c, _) => c.l10n.introPage.title,
         ),
         Expanded(
-          child: Markdown(
-            data: content.text.value,
+          child: TranslatedMarkdown(
+            (c, _) => c.l10n.introPage.text,
             padding: const EdgeInsets.all(16),
           ),
         ),

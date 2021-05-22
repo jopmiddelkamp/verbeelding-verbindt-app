@@ -45,10 +45,10 @@ class RouteMap extends StatelessWidget {
           ),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
-              return const Center(
+              return Center(
                 child: VVCircleLoadingIndicator(
                   size: 35,
-                  label: 'Bezig met het laden van de map..',
+                  text: (c, _) => c.l10n.guidePage.busyLoadingMap,
                 ),
               );
             }

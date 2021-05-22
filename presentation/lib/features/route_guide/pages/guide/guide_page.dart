@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:verbeelding_verbindt_presentation/shared/widgets/text/translatable_text.dart';
 
 import '../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../shared/widgets/loading_indicators/circle_loading_indicator.dart';
@@ -62,14 +63,16 @@ class GuidePage extends StatelessWidget {
   ) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Zoek de kunstenaar'),
+        title: TranslatedText(
+          (c, _) => c.l10n.guidePage.title,
+        ),
       ),
       body: BlocBuilder<GuideCubit, GuideState>(
         builder: (context, state) {
           if (!state.routeLoaded) {
             return Center(
-              child: const VVCircleLoadingIndicator(
-                label: 'Bezig met opzetten van route..',
+              child: VVCircleLoadingIndicator(
+                text: (c, _) => c.l10n.guidePage.busySettingUpRoute,
               ),
             );
           }

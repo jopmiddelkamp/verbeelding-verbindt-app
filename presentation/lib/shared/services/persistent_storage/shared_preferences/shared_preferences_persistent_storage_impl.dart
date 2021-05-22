@@ -73,4 +73,24 @@ class SpPersistentStorageServiceImpl extends ServiceBase
       true,
     );
   }
+
+  @override
+  String? getString(
+    String key,
+  ) {
+    return _sharedPreferences.getString(
+      key,
+    );
+  }
+
+  @override
+  Future<void> setString(
+    String key,
+    String value,
+  ) async {
+    await _sharedPreferences.setString(
+      key,
+      value,
+    );
+  }
 }

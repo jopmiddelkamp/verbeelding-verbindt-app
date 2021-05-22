@@ -58,10 +58,8 @@ class Video extends StatelessWidget {
   }) {
     if (state.loaded != true) {
       return VVCircleLoadingIndicator(
-        text: (context, _) {
-          // TODO: move to shared translation
-          return context.l10n.artistDetailsPage.busyLoadingVideo;
-        },
+        // TODO: move to shared translation
+        text: (c, _) => c.l10n.artistDetailsPage.busyLoadingVideo,
       );
     }
     return _buildVideo(
