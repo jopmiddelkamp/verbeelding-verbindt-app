@@ -65,9 +65,17 @@ flutter gen-l10n \
     --no-synthetic-package
 
 flutter gen-l10n \
-    --arb-dir lib/shared/dialogs/error_dialog/l10n \
+    --arb-dir lib/shared/dialogs/error/l10n \
     --template-arb-file nl.arb \
-    --output-dir=lib/shared/dialogs/error_dialog/l10n/generated \
+    --output-dir=lib/shared/dialogs/error/l10n/generated \
     --output-localization-file error_dialog_localizations.dart \
     --output-class ErrorDialogLocalizations \
+    --no-synthetic-package
+
+flutter gen-l10n \
+    --arb-dir lib/shared/dialogs/not_implemented/l10n \
+    --template-arb-file nl.arb \
+    --output-dir=lib/shared/dialogs/not_implemented/l10n/generated \
+    --output-localization-file not_implemented_localizations.dart \
+    --output-class NotImplementedDialogLocalizations \
     --no-synthetic-package

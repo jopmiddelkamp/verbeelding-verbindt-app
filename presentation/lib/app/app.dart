@@ -15,6 +15,7 @@ import '../features/route_guide/pages/select_interests/select_interests_page.dar
 import '../routes.dart';
 import '../shared/dialogs/device_info/l10n/generated/device_info_dialog_localizations.dart';
 import '../shared/dialogs/error/l10n/generated/error_dialog_localizations.dart';
+import '../shared/dialogs/not_implemented/l10n/generated/not_implemented_localizations.dart';
 import '../shared/l10n/generated/shared_localizations.dart';
 import '../shared/services/localization/localization_service.dart';
 import '../shared/widgets/misc/flavor_banner.dart';
@@ -80,6 +81,7 @@ class App extends StatelessWidget {
             // Dialogs
             DeviceInfoDialogLocalizations.delegate,
             ErrorDialogLocalizations.delegate,
+            NotImplementedDialogLocalizations.delegate,
           ],
           supportedLocales: SharedLocalizations.supportedLocales,
           localeResolutionCallback: (_, __) {

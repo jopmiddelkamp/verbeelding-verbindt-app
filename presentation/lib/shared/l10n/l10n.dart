@@ -9,6 +9,7 @@ import '../../features/route_guide/pages/scan_qr/l10n/generated/scan_qr_page_loc
 import '../../features/route_guide/pages/select_interests/l10n/generated/select_interests_page_localizations.dart';
 import '../dialogs/device_info/l10n/generated/device_info_dialog_localizations.dart';
 import '../dialogs/error/l10n/generated/error_dialog_localizations.dart';
+import '../dialogs/not_implemented/l10n/generated/not_implemented_localizations.dart';
 import '../services/localization/localization_service.dart';
 import 'generated/shared_localizations.dart';
 
@@ -22,6 +23,7 @@ class L10n {
   final CompletedPageLocalizations completedPage;
   final DeviceInfoDialogLocalizations deviceInfoDialog;
   final ErrorDialogLocalizations errorDialog;
+  final NotImplementedDialogLocalizations notImplementedDialog;
 
   L10n({
     required this.shared,
@@ -33,6 +35,7 @@ class L10n {
     required this.completedPage,
     required this.deviceInfoDialog,
     required this.errorDialog,
+    required this.notImplementedDialog,
   });
 
   static L10n of(
@@ -51,6 +54,7 @@ class L10n {
       // Dialogs
       deviceInfoDialog: DeviceInfoDialogLocalizations.of(context),
       errorDialog: ErrorDialogLocalizations.of(context),
+      notImplementedDialog: NotImplementedDialogLocalizations.of(context),
     );
   }
 
@@ -68,5 +72,6 @@ class L10n {
     CompletedPageLocalizations.delegate.load(locale);
     DeviceInfoDialogLocalizations.delegate.load(locale);
     ErrorDialogLocalizations.delegate.load(locale);
+    NotImplementedDialogLocalizations.delegate.load(locale);
   }
 }
