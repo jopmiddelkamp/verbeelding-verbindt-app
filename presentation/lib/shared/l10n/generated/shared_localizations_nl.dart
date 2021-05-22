@@ -23,5 +23,8 @@ class SharedLocalizationsNl extends SharedLocalizations {
   String get no => 'Nee';
 
   @override
+  String get ok => 'Oke';
+
+  @override
   String get yes => 'Ja';
 }

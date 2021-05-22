@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../extensions/build_context_extensions.dart';
+import '../../widgets/text/translatable_text.dart';
+
 class ErrorDialog extends StatelessWidget {
   const ErrorDialog({
     Key? key,
@@ -7,8 +10,8 @@ class ErrorDialog extends StatelessWidget {
     required this.message,
   }) : super(key: key);
 
-  final String title;
-  final String message;
+  final TranslatedTextCallback title;
+  final TranslatedTextCallback message;
 
   @override
   Widget build(
@@ -19,14 +22,16 @@ class ErrorDialog extends StatelessWidget {
         children: [
           const Icon(Icons.error),
           const SizedBox(width: 4),
-          Text(title),
+          TranslatedText(title),
         ],
       ),
-      content: Text(message),
+      content: TranslatedText(message),
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Oke'),
+          child: TranslatedText(
+            (c, _) => c.l10n.shared.ok,
+          ),
         )
       ],
     );
@@ -35,8 +40,8 @@ class ErrorDialog extends StatelessWidget {
 
 void showErrorDialog(
   BuildContext context, {
-  required String title,
-  required String message,
+  required TranslatedTextCallback title,
+  required TranslatedTextCallback message,
 }) {
   showDialog(
     context: context,
@@ -53,7 +58,7 @@ void showUnknownErrorDialog(
 }) {
   showErrorDialog(
     context,
-    title: 'Onbekende foutmelding',
-    message: 'Er is een onverwachte foutmelding opgetreden. $exception',
+    title: (c, _) => c.l10n.errorDialog.unknownErrorTitle,
+    message: (c, _) => c.l10n.errorDialog.unknownErrorMessage,
   );
 }

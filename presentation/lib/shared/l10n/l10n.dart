@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:verbeelding_verbindt_core/utils/enum_utils.dart';
+import 'package:verbeelding_verbindt_presentation/shared/dialogs/error_dialog/l10n/generated/error_dialog_localizations.dart';
 
 import '../../features/intro/pages/intro/l10n/generated/intro_page_localizations.dart';
 import '../../features/route_guide/pages/artist_details/l10n/generated/artist_details_page_localizations.dart';
@@ -20,6 +21,7 @@ class L10n {
   final SelectInterestsPageLocalizations selectInterestsPage;
   final CompletedPageLocalizations completedPage;
   final DeviceInfoDialogLocalizations deviceInfoDialog;
+  final ErrorDialogLocalizations errorDialog;
 
   L10n({
     required this.shared,
@@ -30,20 +32,25 @@ class L10n {
     required this.selectInterestsPage,
     required this.completedPage,
     required this.deviceInfoDialog,
+    required this.errorDialog,
   });
 
   static L10n of(
     BuildContext context,
   ) {
     return L10n(
+      // Shared
       shared: SharedLocalizations.of(context),
+      // Pages
       introPage: IntroPageLocalizations.of(context),
       artistDetailsPage: ArtistDetailsPageLocalizations.of(context),
       guidePage: GuidePageLocalizations.of(context),
       scanQrPage: ScanQrPageLocalizations.of(context),
       selectInterestsPage: SelectInterestsPageLocalizations.of(context),
       completedPage: CompletedPageLocalizations.of(context),
+      // Dialogs
       deviceInfoDialog: DeviceInfoDialogLocalizations.of(context),
+      errorDialog: ErrorDialogLocalizations.of(context),
     );
   }
 
@@ -60,5 +67,6 @@ class L10n {
     SelectInterestsPageLocalizations.delegate.load(locale);
     CompletedPageLocalizations.delegate.load(locale);
     DeviceInfoDialogLocalizations.delegate.load(locale);
+    ErrorDialogLocalizations.delegate.load(locale);
   }
 }

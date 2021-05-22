@@ -6,21 +6,21 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
-import 'shared_localizations_nl.dart';
+import 'error_dialog_localizations_nl.dart';
 
-/// Callers can lookup localized strings with an instance of SharedLocalizations returned
-/// by `SharedLocalizations.of(context)`.
+/// Callers can lookup localized strings with an instance of ErrorDialogLocalizations returned
+/// by `ErrorDialogLocalizations.of(context)`.
 ///
-/// Applications need to include `SharedLocalizations.delegate()` in their app's
+/// Applications need to include `ErrorDialogLocalizations.delegate()` in their app's
 /// localizationDelegates list, and the locales they support in the app's
 /// supportedLocales list. For example:
 ///
 /// ```
-/// import 'generated/shared_localizations.dart';
+/// import 'generated/error_dialog_localizations.dart';
 ///
 /// return MaterialApp(
-///   localizationsDelegates: SharedLocalizations.localizationsDelegates,
-///   supportedLocales: SharedLocalizations.supportedLocales,
+///   localizationsDelegates: ErrorDialogLocalizations.localizationsDelegates,
+///   supportedLocales: ErrorDialogLocalizations.supportedLocales,
 ///   home: MyApplicationHome(),
 /// );
 /// ```
@@ -57,18 +57,18 @@ import 'shared_localizations_nl.dart';
 /// Select and expand the newly-created Localizations item then, for each
 /// locale your application supports, add a new item and select the locale
 /// you wish to add from the pop-up menu in the Value field. This list should
-/// be consistent with the languages listed in the SharedLocalizations.supportedLocales
+/// be consistent with the languages listed in the ErrorDialogLocalizations.supportedLocales
 /// property.
-abstract class SharedLocalizations {
-  SharedLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+abstract class ErrorDialogLocalizations {
+  ErrorDialogLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
-  static SharedLocalizations of(BuildContext context) {
-    return Localizations.of<SharedLocalizations>(context, SharedLocalizations)!;
+  static ErrorDialogLocalizations of(BuildContext context) {
+    return Localizations.of<ErrorDialogLocalizations>(context, ErrorDialogLocalizations)!;
   }
 
-  static const LocalizationsDelegate<SharedLocalizations> delegate = _SharedLocalizationsDelegate();
+  static const LocalizationsDelegate<ErrorDialogLocalizations> delegate = _ErrorDialogLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -92,76 +92,46 @@ abstract class SharedLocalizations {
     Locale('nl')
   ];
 
-  /// No description provided for @busyLoading.
+  /// No description provided for @unknownErrorTitle.
   ///
   /// In nl, this message translates to:
-  /// **'Bezig met laden..'**
-  String get busyLoading;
+  /// **'Onbekende foutmelding'**
+  String get unknownErrorTitle;
 
-  /// No description provided for @cancel.
+  /// No description provided for @unknownErrorMessage.
   ///
   /// In nl, this message translates to:
-  /// **'Annuleer'**
-  String get cancel;
-
-  /// No description provided for @continuee.
-  ///
-  /// In nl, this message translates to:
-  /// **'Ga verder'**
-  String get continuee;
-
-  /// No description provided for @goBack.
-  ///
-  /// In nl, this message translates to:
-  /// **'Ga terug'**
-  String get goBack;
-
-  /// No description provided for @no.
-  ///
-  /// In nl, this message translates to:
-  /// **'Nee'**
-  String get no;
-
-  /// No description provided for @ok.
-  ///
-  /// In nl, this message translates to:
-  /// **'Oke'**
-  String get ok;
-
-  /// No description provided for @yes.
-  ///
-  /// In nl, this message translates to:
-  /// **'Ja'**
-  String get yes;
+  /// **'Er is een onverwachte foutmelding opgetreden.'**
+  String get unknownErrorMessage;
 }
 
-class _SharedLocalizationsDelegate extends LocalizationsDelegate<SharedLocalizations> {
-  const _SharedLocalizationsDelegate();
+class _ErrorDialogLocalizationsDelegate extends LocalizationsDelegate<ErrorDialogLocalizations> {
+  const _ErrorDialogLocalizationsDelegate();
 
   @override
-  Future<SharedLocalizations> load(Locale locale) {
-    return SynchronousFuture<SharedLocalizations>(_lookupSharedLocalizations(locale));
+  Future<ErrorDialogLocalizations> load(Locale locale) {
+    return SynchronousFuture<ErrorDialogLocalizations>(_lookupErrorDialogLocalizations(locale));
   }
 
   @override
   bool isSupported(Locale locale) => <String>['nl'].contains(locale.languageCode);
 
   @override
-  bool shouldReload(_SharedLocalizationsDelegate old) => false;
+  bool shouldReload(_ErrorDialogLocalizationsDelegate old) => false;
 }
 
-SharedLocalizations _lookupSharedLocalizations(Locale locale) {
+ErrorDialogLocalizations _lookupErrorDialogLocalizations(Locale locale) {
   
 
 
 // Lookup logic when only language code is specified.
 switch (locale.languageCode) {
-  case 'nl': return SharedLocalizationsNl();
+  case 'nl': return ErrorDialogLocalizationsNl();
 }
 
 
   throw FlutterError(
-    'SharedLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'ErrorDialogLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
     'that was used.'

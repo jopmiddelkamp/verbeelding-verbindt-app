@@ -63,3 +63,11 @@ flutter gen-l10n \
     --output-localization-file device_info_dialog_localizations.dart \
     --output-class DeviceInfoDialogLocalizations \
     --no-synthetic-package
+
+flutter gen-l10n \
+    --arb-dir lib/shared/dialogs/error_dialog/l10n \
+    --template-arb-file nl.arb \
+    --output-dir=lib/shared/dialogs/error_dialog/l10n/generated \
+    --output-localization-file error_dialog_localizations.dart \
+    --output-class ErrorDialogLocalizations \
+    --no-synthetic-package
