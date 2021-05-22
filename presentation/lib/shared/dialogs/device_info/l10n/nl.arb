@@ -1,0 +1,17 @@
+{
+    "@@locale": "nl",
+    "androidSdk": "Android SDK",
+    "androidVersion": "Android versie",
+    "buildMode": "Build nummer",
+    "buildName": "Build nummer",
+    "device": "Apparaat",
+    "environment": "Omgeving",
+    "manufacturer": "Fabrikant",
+    "model": "Model",
+    "packageName": "Pakket naam",
+    "physicalDevice": "Fysiek apparaat",
+    "systemName": "Systeem naam",
+    "systemVersion": "Systeem versie",
+    "title": "Apparaat informatie",
+    "version": "Versie"
+}

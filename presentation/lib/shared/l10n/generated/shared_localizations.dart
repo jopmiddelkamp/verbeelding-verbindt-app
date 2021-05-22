@@ -115,6 +115,18 @@ abstract class SharedLocalizations {
   /// In nl, this message translates to:
   /// **'Ga terug'**
   String get goBack;
+
+  /// No description provided for @no.
+  ///
+  /// In nl, this message translates to:
+  /// **'Nee'**
+  String get no;
+
+  /// No description provided for @yes.
+  ///
+  /// In nl, this message translates to:
+  /// **'Ja'**
+  String get yes;
 }
 
 class _SharedLocalizationsDelegate extends LocalizationsDelegate<SharedLocalizations> {

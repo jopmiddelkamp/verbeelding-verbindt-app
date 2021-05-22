@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
+import 'package:verbeelding_verbindt_presentation/shared/dialogs/device_info/l10n/generated/device_info_dialog_localizations.dart';
 
 import '../features/intro/pages/intro/intro_page.dart';
 import '../features/intro/pages/intro/l10n/generated/intro_page_localizations.dart';
@@ -73,6 +74,7 @@ class App extends StatelessWidget {
             ScanQrPageLocalizations.delegate,
             SelectInterestsPageLocalizations.delegate,
             CompletedPageLocalizations.delegate,
+            DeviceInfoDialogLocalizations.delegate,
           ],
           supportedLocales: SharedLocalizations.supportedLocales,
           localeResolutionCallback: (_, __) {

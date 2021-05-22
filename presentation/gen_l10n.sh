@@ -55,3 +55,11 @@ flutter gen-l10n \
     --output-localization-file completed_page_localizations.dart \
     --output-class CompletedPageLocalizations \
     --no-synthetic-package
+
+flutter gen-l10n \
+    --arb-dir lib/shared/dialogs/device_info/l10n \
+    --template-arb-file nl.arb \
+    --output-dir=lib/shared/dialogs/device_info/l10n/generated \
+    --output-localization-file device_info_dialog_localizations.dart \
+    --output-class DeviceInfoDialogLocalizations \
+    --no-synthetic-package

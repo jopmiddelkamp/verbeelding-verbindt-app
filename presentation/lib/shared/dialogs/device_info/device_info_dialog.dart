@@ -7,8 +7,9 @@ import 'package:verbeelding_verbindt_core/entities/common/environment.dart';
 import 'package:verbeelding_verbindt_core/entities/common/package_info.dart';
 import 'package:verbeelding_verbindt_core/utils/enum_utils.dart';
 
-import '../extensions/build_context_extensions.dart';
-import '../font_weight.dart';
+import '../../extensions/build_context_extensions.dart';
+import '../../font_weight.dart';
+import '../../widgets/text/translatable_text.dart';
 
 final serviceLocator = GetIt.instance;
 
@@ -20,8 +21,8 @@ class DeviceInfoDialog extends StatelessWidget {
     BuildContext context,
   ) {
     return AlertDialog(
-      title: Text(
-        'Device Info',
+      title: TranslatedText(
+        (c, _) => c.l10n.deviceInfoDialog.title,
       ),
       content: _getContent(context),
     );
@@ -50,18 +51,18 @@ class DeviceInfoDialog extends StatelessWidget {
     return [
       ..._buildTile(
         context,
-        'Package name',
-        package.packageName,
+        (c, _) => c.l10n.deviceInfoDialog.packageName,
+        (_, __) => package.packageName,
       ),
       ..._buildTile(
         context,
-        'Build number',
-        package.buildNumber,
+        (c, _) => c.l10n.deviceInfoDialog.buildName,
+        (_, __) => package.buildNumber,
       ),
       ..._buildTile(
         context,
-        'Version',
-        package.version,
+        (c, _) => c.l10n.deviceInfoDialog.version,
+        (_, __) => package.version,
       ),
     ];
   }
@@ -73,28 +74,30 @@ class DeviceInfoDialog extends StatelessWidget {
     return [
       ..._buildTile(
         context,
-        'Physical device?',
-        device.isPhysicalDevice.toString(),
+        (c, _) => c.l10n.deviceInfoDialog.physicalDevice,
+        (_, __) {
+          return device.isPhysicalDevice.toString();
+        },
       ),
       ..._buildTile(
         context,
-        'Device',
-        device.name,
+        (c, _) => c.l10n.deviceInfoDialog.device,
+        (_, __) => device.name,
       ),
       ..._buildTile(
         context,
-        'Entity',
-        device.model,
+        (c, _) => c.l10n.deviceInfoDialog.model,
+        (_, __) => device.model,
       ),
       ..._buildTile(
         context,
-        'System name',
-        device.systemName,
+        (c, _) => c.l10n.deviceInfoDialog.systemName,
+        (_, __) => device.systemName,
       ),
       ..._buildTile(
         context,
-        'System version',
-        device.systemVersion,
+        (c, _) => c.l10n.deviceInfoDialog.systemVersion,
+        (_, __) => device.systemVersion,
       )
     ];
   }
@@ -106,28 +109,28 @@ class DeviceInfoDialog extends StatelessWidget {
     return [
       ..._buildTile(
         context,
-        'Physical device?',
-        '${device.isPhysicalDevice}',
+        (c, _) => c.l10n.deviceInfoDialog.physicalDevice,
+        _getTranslation(device.isPhysicalDevice),
       ),
       ..._buildTile(
         context,
-        'Manufacturer',
-        '${device.manufacturer}',
+        (c, _) => c.l10n.deviceInfoDialog.manufacturer,
+        (_, __) => device.manufacturer,
       ),
       ..._buildTile(
         context,
-        'Entity',
-        '${device.model}',
+        (c, _) => c.l10n.deviceInfoDialog.model,
+        (_, __) => device.model,
       ),
       ..._buildTile(
         context,
-        'Android version',
-        '${device.androidVersion}',
+        (c, _) => c.l10n.deviceInfoDialog.androidVersion,
+        (_, __) => device.androidVersion,
       ),
       ..._buildTile(
         context,
-        'Android SDK',
-        '${device.androidSDK}',
+        (c, _) => c.l10n.deviceInfoDialog.androidSdk,
+        (_, __) => device.androidSDK.toString(),
       )
     ];
   }
@@ -139,33 +142,44 @@ class DeviceInfoDialog extends StatelessWidget {
     return [
       ..._buildTile(
         context,
-        'Environment',
-        EnumUtils.getStringValue(environment.environment),
+        (c, _) => c.l10n.deviceInfoDialog.environment,
+        (_, __) => EnumUtils.getStringValue(environment.environment),
       ),
       ..._buildTile(
         context,
-        'Build mode',
-        EnumUtils.getStringValue(environment.buildMode),
+        (c, _) => c.l10n.deviceInfoDialog.buildName,
+        (_, __) => EnumUtils.getStringValue(environment.buildMode),
       ),
     ];
   }
 
   List<Widget> _buildTile(
     BuildContext context,
-    String key,
-    String value,
+    TranslatedTextCallback key,
+    TranslatedTextCallback value,
   ) {
     final theme = context.theme;
     return [
-      Text(
+      TranslatedText(
         key,
         style: theme.textTheme.bodyText2!.copyWith(
           fontWeight: VVFontWeight.bold,
         ),
       ),
-      Text(value),
+      TranslatedText(value),
       const SizedBox(height: 8),
     ];
+  }
+
+  TranslatedTextCallback _getTranslation(
+    bool value,
+  ) {
+    return (c, _) {
+      if (value) {
+        return c.l10n.shared.yes;
+      }
+      return c.l10n.shared.no;
+    };
   }
 }
 

@@ -3,5 +3,7 @@
     "busyLoading": "Bezig met laden..",
     "cancel": "Annuleer",
     "continuee": "Ga verder",
-    "goBack": "Ga terug"
+    "goBack": "Ga terug",
+    "no": "Nee",
+    "yes": "Ja"
 }

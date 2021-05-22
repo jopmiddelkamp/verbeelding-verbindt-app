@@ -18,4 +18,10 @@ class SharedLocalizationsNl extends SharedLocalizations {
 
   @override
   String get goBack => 'Ga terug';
+
+  @override
+  String get no => 'Nee';
+
+  @override
+  String get yes => 'Ja';
 }

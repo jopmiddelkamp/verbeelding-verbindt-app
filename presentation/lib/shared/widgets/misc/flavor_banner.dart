@@ -4,7 +4,7 @@ import 'package:verbeelding_verbindt_core/entities/common/environment.dart';
 import 'package:verbeelding_verbindt_core/enums/environment_enum.dart';
 import 'package:verbeelding_verbindt_core/utils/enum_utils.dart';
 
-import '../../dialogs/device_info.dialog.dart';
+import '../../dialogs/device_info/device_info_dialog.dart';
 
 final serviceLocator = GetIt.instance;
 
