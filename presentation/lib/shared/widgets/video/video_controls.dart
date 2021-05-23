@@ -44,9 +44,10 @@ class VideoControls extends StatelessWidget {
               return previous.isVisible != current.isVisible;
             },
             builder: (_, state) {
+              // TODO: add better animation
               return AnimatedSwitcher(
-                duration: 50.milliseconds,
-                reverseDuration: 200.milliseconds,
+                duration: 300.milliseconds,
+                reverseDuration: 300.milliseconds,
                 child: state.isVisible
                     ? _buildControls(context, cubit: cubit)
                     : Container(),
