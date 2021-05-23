@@ -81,15 +81,6 @@ class Video extends StatelessWidget {
         VideoControls.blocProvider(
           state.controller!,
         ),
-        VideoProgressIndicator(
-          state.controller!,
-          allowScrubbing: true,
-          colors: VideoProgressColors(
-            backgroundColor: Colors.black12,
-            bufferedColor: context.theme.colorScheme.primary.withOpacity(0.4),
-            playedColor: context.theme.colorScheme.primary.withOpacity(0.8),
-          ),
-        )
       ],
     );
   }

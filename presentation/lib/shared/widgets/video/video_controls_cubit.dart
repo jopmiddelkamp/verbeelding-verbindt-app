@@ -8,19 +8,39 @@ class VideoControlsCubit extends CubitBase<VideoControlsState> {
     VideoPlayerController controller,
   ) : super(VideoControlsState.initialize(
           controller: controller,
-        )) {
-    controller.addListener(() {
-      var isDirty = false;
-      var newState = state;
-      if (controller.value.isPlaying != state.isPlaying) {
-        newState = newState.copyWith(
-          isPlaying: controller.value.isPlaying,
-        );
-        isDirty = true;
-      }
-      if (isDirty) {
-        emit(newState);
-      }
-    });
+        ));
+
+  void togglePlay() {
+    state.isPlaying ? state.controller.pause() : state.controller.play();
+    emit(state.copyWith(
+      isPlaying: !state.isPlaying,
+    ));
+  }
+
+  void toggleVisibility() {
+    emit(state.copyWith(
+      isVisible: !state.isVisible,
+    ));
+    if (state.isNotVisible && state.isNotPlaying) {
+      togglePlay();
+    }
+  }
+
+  void setVolume(
+    double value,
+  ) {
+    state.controller.setVolume(value);
+    emit(state.copyWith(
+      volume: value,
+    ));
+  }
+
+  void toggleMute() {
+    var newState = state.copyWith(
+      volume: state.isMute ? state.volumeBeforeMute : 0,
+      volumeBeforeMute: state.isNotMute ? state.volume : state.volumeBeforeMute,
+    );
+    state.controller.setVolume(newState.volume);
+    emit(newState);
   }
 }

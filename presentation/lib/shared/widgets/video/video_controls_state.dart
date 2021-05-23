@@ -7,6 +7,9 @@ class VideoControlsState extends StateBase {
   VideoControlsState._({
     required this.controller,
     required this.isPlaying,
+    required this.volume,
+    required this.volumeBeforeMute,
+    required this.isVisible,
     required Failure? failure,
   }) : super(
           failure: failure,
@@ -18,29 +21,44 @@ class VideoControlsState extends StateBase {
     return VideoControlsState._(
       controller: controller,
       isPlaying: controller.value.isPlaying,
+      volume: controller.value.volume,
+      volumeBeforeMute: controller.value.volume,
+      isVisible: false,
       failure: null,
     );
   }
 
   final VideoPlayerController controller;
   final bool isPlaying;
+  final double volume;
+  final double volumeBeforeMute;
+  final bool isVisible;
 
-  @override
-  String toString() => '''$runtimeType { 
-                            controller: $controller, 
-                            isPlaying: $isPlaying, 
-                            failure: $failure, 
-                          }''';
+  bool get isNotPlaying => !isPlaying;
+  bool get isNotVisible => !isVisible;
+  bool get isMute => volume <= 0;
+  bool get isNotMute => volume > 0;
 
   VideoControlsState copyWith({
     VideoPlayerController? controller,
     bool? isPlaying,
+    double? volume,
+    double? volumeBeforeMute,
+    bool? isVisible,
     Failure? failure,
   }) {
     return VideoControlsState._(
       controller: controller ?? this.controller,
       isPlaying: isPlaying ?? this.isPlaying,
+      volume: volume ?? this.volume,
+      volumeBeforeMute: volumeBeforeMute ?? this.volumeBeforeMute,
+      isVisible: isVisible ?? this.isVisible,
       failure: failure ?? this.failure,
     );
+  }
+
+  @override
+  String toString() {
+    return "$runtimeType { isPlaying: $isPlaying, volume: $volume, volumeBeforeMute: $volumeBeforeMute, visible: $isVisible }";
   }
 }
