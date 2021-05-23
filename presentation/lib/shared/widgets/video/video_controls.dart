@@ -116,10 +116,10 @@ class VideoControls extends StatelessWidget {
       if (volume == 0) {
         return Icons.volume_off_rounded;
       }
-      if (volume < 25) {
+      if (volume < 0.25) {
         return Icons.volume_mute_rounded;
       }
-      if (volume < 75) {
+      if (volume < 0.5) {
         return Icons.volume_down_rounded;
       }
       return Icons.volume_up_rounded;
