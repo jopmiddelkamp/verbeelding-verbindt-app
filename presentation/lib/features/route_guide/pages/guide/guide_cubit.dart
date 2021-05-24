@@ -3,26 +3,24 @@ import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:verbeelding_verbindt_core/entities/common/artist.dart';
-import 'package:verbeelding_verbindt_core/entities/common/device_info.dart';
 import 'package:verbeelding_verbindt_core/entities/common/location.dart';
 import 'package:verbeelding_verbindt_core/entities/common/route.dart';
+import 'package:verbeelding_verbindt_core/enums/permission_enum.dart';
+import 'package:verbeelding_verbindt_core/enums/permission_status_enum.dart';
+import 'package:verbeelding_verbindt_core/failures/permission_failure.dart';
 import 'package:verbeelding_verbindt_core/repositories/artist_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/auth_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/route_generator_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/route_repository.dart';
+import 'package:verbeelding_verbindt_core/services/location_service.dart';
+import 'package:verbeelding_verbindt_core/services/permission_service.dart';
 import 'package:verbeelding_verbindt_core/utils/location_utils.dart';
 
 import '../../../../shared/bloc/cubit_base.dart';
-import '../../../../shared/enums/permission_enum.dart';
-import '../../../../shared/enums/permission_status_enum.dart';
-import '../../../../shared/failures/permission/permission_failure.dart';
-import '../../../../shared/services/location/location_service.dart';
-import '../../../../shared/services/permission/permission_service.dart';
 import 'guide_state.dart';
 
 class GuideCubit extends CubitBase<GuideState> {
   GuideCubit.createRoute({
-    required DeviceInfoEntity deviceInfo,
     required ArtistRepository artistRepository,
     required PermissionService permissionService,
     required RouteRepository routeRepository,
@@ -30,8 +28,7 @@ class GuideCubit extends CubitBase<GuideState> {
     required LocationService locationService,
     required AuthRepository authRepository,
     required List<String> selectedSpecialityIds,
-  })  : _deviceInfo = deviceInfo,
-        _artistRepository = artistRepository,
+  })  : _artistRepository = artistRepository,
         _permissionService = permissionService,
         _routeRepository = routeRepository,
         _routeGeneratorRepository = routeGeneratorRepository,
@@ -43,16 +40,14 @@ class GuideCubit extends CubitBase<GuideState> {
     );
   }
 
-  GuideCubit.openRoute(
-      {required DeviceInfoEntity deviceInfo,
-      required ArtistRepository artistRepository,
-      required PermissionService permissionService,
-      required RouteRepository routeRepository,
-      required RouteGeneratorRepository routeGeneratorRepository,
-      required LocationService locationService,
-      required AuthRepository authRepository})
-      : _deviceInfo = deviceInfo,
-        _artistRepository = artistRepository,
+  GuideCubit.openRoute({
+    required ArtistRepository artistRepository,
+    required PermissionService permissionService,
+    required RouteRepository routeRepository,
+    required RouteGeneratorRepository routeGeneratorRepository,
+    required LocationService locationService,
+    required AuthRepository authRepository,
+  })  : _artistRepository = artistRepository,
         _permissionService = permissionService,
         _routeRepository = routeRepository,
         _routeGeneratorRepository = routeGeneratorRepository,
@@ -62,7 +57,6 @@ class GuideCubit extends CubitBase<GuideState> {
     _openRoute();
   }
 
-  final DeviceInfoEntity _deviceInfo;
   final ArtistRepository _artistRepository;
   final PermissionService _permissionService;
   final RouteRepository _routeRepository;

@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:verbeelding_verbindt_core/enums/permission_enum.dart';
+import 'package:verbeelding_verbindt_core/services/persistent_storage_service.dart';
 import 'package:verbeelding_verbindt_core/services/service_base.dart';
 import 'package:verbeelding_verbindt_core/utils/enum_utils.dart';
 
-import '../../../enums/permission_enum.dart';
 import '../../../failures/persistent_storage/persistent_storage_failure.dart';
-import '../persistent_storage_service.dart';
 
 // PersistentStorageService implementation based on the SharedPreferences
 // Flutter package

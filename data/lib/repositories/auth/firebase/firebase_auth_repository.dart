@@ -4,7 +4,7 @@ import 'package:verbeelding_verbindt_core/repositories/auth_repository.dart';
 
 import 'extensions/firebase_user_extensions.dart';
 
-class FirebaseAuthRepository implements AuthRepository {
+class FirebaseAuthRepository extends AuthRepository {
   FirebaseAuthRepository({
     FirebaseAuth? firebaseAuth,
   }) : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:verbeelding_verbindt_core/repositories/auth_repository.dart';
+import 'package:verbeelding_verbindt_core/services/persistent_storage_service.dart';
 
 import '../shared/bloc/cubit_base.dart';
-import '../shared/services/persistent_storage/persistent_storage_service.dart';
 import 'app_state.dart';
 
 class AppCubit extends CubitBase<AppState> {

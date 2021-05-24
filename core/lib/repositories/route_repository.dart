@@ -1,6 +1,7 @@
 import '../entities/common/route.dart';
+import 'repository_base.dart';
 
-abstract class RouteRepository {
+abstract class RouteRepository extends RepositoryBase {
   Future<void> createRoute(
     RouteEntity data,
   );

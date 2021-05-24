@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:verbeelding_verbindt_core/enums/language_code_enum.dart';
 import 'package:verbeelding_verbindt_core/utils/enum_utils.dart';
 
 import '../../features/intro/pages/intro/l10n/generated/intro_page_localizations.dart';
@@ -14,7 +15,6 @@ import '../dialogs/not_implemented/l10n/generated/not_implemented_dialog_localiz
 import '../dialogs/permissions_denied/l10n/generated/permissions_denied_dialog_localizations.dart';
 import '../dialogs/permissions_removed/l10n/generated/permissions_removed_dialog_localizations.dart';
 import '../dialogs/permissions_restricted/l10n/generated/permissions_restricted_dialog_localizations.dart';
-import '../services/localization/localization_service.dart';
 import 'generated/shared_localizations.dart';
 
 class L10n {

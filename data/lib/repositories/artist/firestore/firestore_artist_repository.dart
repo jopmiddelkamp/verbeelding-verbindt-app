@@ -5,7 +5,7 @@ import 'package:verbeelding_verbindt_core/repositories/artist_repository.dart';
 import '../../../extensions/artist_mapper_extensions.dart';
 import '../../../models/artist.dart';
 
-class FirestoreArtistRepository implements ArtistRepository {
+class FirestoreArtistRepository extends ArtistRepository {
   FirestoreArtistRepository({
     FirebaseFirestore? firestore,
   }) : _artistCollection = (firestore ?? FirebaseFirestore.instance)

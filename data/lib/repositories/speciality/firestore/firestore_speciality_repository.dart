@@ -5,7 +5,7 @@ import 'package:verbeelding_verbindt_core/repositories/speciality_repository.dar
 import '../../../extensions/speciality_mapper_extensions.dart';
 import '../../../models/speciality.dart';
 
-class FirestoreSpecialityRepository implements SpecialityRepository {
+class FirestoreSpecialityRepository extends SpecialityRepository {
   FirestoreSpecialityRepository({
     FirebaseFirestore? firestore,
   }) : _specialityCollection = (firestore ?? FirebaseFirestore.instance)

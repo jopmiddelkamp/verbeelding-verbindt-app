@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
+import 'package:verbeelding_verbindt_core/services/localization_service.dart';
 
 import '../features/intro/pages/intro/intro_page.dart';
 import '../features/intro/pages/intro/l10n/generated/intro_page_localizations.dart';
@@ -21,7 +22,6 @@ import '../shared/dialogs/permissions_denied/l10n/generated/permissions_denied_d
 import '../shared/dialogs/permissions_removed/l10n/generated/permissions_removed_dialog_localizations.dart';
 import '../shared/dialogs/permissions_restricted/l10n/generated/permissions_restricted_dialog_localizations.dart';
 import '../shared/l10n/generated/shared_localizations.dart';
-import '../shared/services/localization/localization_service.dart';
 import '../shared/widgets/misc/flavor_banner.dart';
 import '../theme.dart';
 import 'app_cubit.dart';

@@ -1,4 +1,4 @@
-import '../../enums/permission_enum.dart';
+import '../enums/permission_enum.dart';
 import 'permission_failure.dart';
 
 class UnsupportedPermissionFailure extends PermissionFailure {

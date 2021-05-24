@@ -1,4 +1,4 @@
-import 'package:verbeelding_verbindt_core/entities/common/location.dart';
+import '../entities/common/location.dart';
 
 enum LocationAccuracy { lowest, low, medium, high, best, bestForNavigation }
 

@@ -8,7 +8,7 @@ import '../../../extensions/route_completed_page_content_mapper_extension.dart';
 import '../../../models/intro_page_content.dart';
 import '../../../models/route_completed_page_content.dart';
 
-class FirestorePageContentRepository implements PageContentRepository {
+class FirestorePageContentRepository extends PageContentRepository {
   FirestorePageContentRepository({
     FirebaseFirestore? firestore,
   }) : _collection =

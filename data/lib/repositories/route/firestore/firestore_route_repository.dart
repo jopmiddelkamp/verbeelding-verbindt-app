@@ -6,7 +6,7 @@ import '../../../extensions/route_mapper_extensions.dart';
 import '../../../models/route.dart';
 import '../../../models/route_stop.dart';
 
-class FirestoreRouteRepository implements RouteRepository {
+class FirestoreRouteRepository extends RouteRepository {
   FirestoreRouteRepository({
     FirebaseFirestore? firestore,
   }) : _routeCollection = (firestore ?? FirebaseFirestore.instance)

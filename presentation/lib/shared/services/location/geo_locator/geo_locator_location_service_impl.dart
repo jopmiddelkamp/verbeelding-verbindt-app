@@ -1,8 +1,7 @@
 import 'package:geolocator/geolocator.dart' as gl;
 import 'package:verbeelding_verbindt_core/entities/common/location.dart';
+import 'package:verbeelding_verbindt_core/services/location_service.dart';
 import 'package:verbeelding_verbindt_core/services/service_base.dart';
-
-import '../location_service.dart';
 
 class GlLocationServiceImpl extends ServiceBase implements LocationService {
   @override

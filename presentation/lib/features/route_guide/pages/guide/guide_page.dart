@@ -24,7 +24,6 @@ class GuidePage extends StatelessWidget {
       create: (context) {
         if (arguments is CreateRoutePageArguments) {
           return GuideCubit.createRoute(
-            deviceInfo: serviceLocator(),
             artistRepository: serviceLocator(),
             permissionService: serviceLocator(),
             locationService: serviceLocator(),
@@ -35,7 +34,6 @@ class GuidePage extends StatelessWidget {
           );
         }
         return GuideCubit.openRoute(
-          deviceInfo: serviceLocator(),
           artistRepository: serviceLocator(),
           permissionService: serviceLocator(),
           locationService: serviceLocator(),

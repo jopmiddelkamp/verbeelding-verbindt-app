@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:verbeelding_verbindt_core/repositories/repository_base.dart';
 
 typedef RequestFunction = Future<Response> Function();
 
-abstract class DioRepositoryBase {
+abstract class DioRepositoryBase extends RepositoryBase {
   DioRepositoryBase({
     required this.http,
     required this.baseUrl,

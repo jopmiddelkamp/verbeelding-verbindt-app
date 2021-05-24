@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get_it/get_it.dart';
 import 'package:verbeelding_verbindt_core/entities/common/locale.dart';
+import 'package:verbeelding_verbindt_core/services/localization_service.dart';
 
 import '../../extensions/build_context_extensions.dart';
-import '../../services/localization/localization_service.dart';
 import 'translatable_text.dart';
 
 final serviceLocator = GetIt.instance;

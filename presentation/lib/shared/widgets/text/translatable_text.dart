@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:verbeelding_verbindt_core/entities/common/locale.dart';
-
-import '../../services/localization/localization_service.dart';
+import 'package:verbeelding_verbindt_core/services/localization_service.dart';
 
 final serviceLocator = GetIt.instance;
 
