@@ -6,8 +6,9 @@ import '../../../extensions/artist_mapper_extensions.dart';
 import '../../../models/artist.dart';
 
 class FirestoreArtistRepository implements ArtistRepository {
-  FirestoreArtistRepository()
-      : _artistCollection = FirebaseFirestore.instance
+  FirestoreArtistRepository({
+    FirebaseFirestore? firestore,
+  }) : _artistCollection = (firestore ?? FirebaseFirestore.instance)
             .collection('artists')
             .withConverter<ArtistDataModel>(
           fromFirestore: (snapshot, _) {

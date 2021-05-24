@@ -6,8 +6,9 @@ import '../../../extensions/speciality_mapper_extensions.dart';
 import '../../../models/speciality.dart';
 
 class FirestoreSpecialityRepository implements SpecialityRepository {
-  FirestoreSpecialityRepository()
-      : _specialityCollection = FirebaseFirestore.instance
+  FirestoreSpecialityRepository({
+    FirebaseFirestore? firestore,
+  }) : _specialityCollection = (firestore ?? FirebaseFirestore.instance)
             .collection('specialities')
             .withConverter<SpecialityDataModel>(
           fromFirestore: (snapshot, _) {

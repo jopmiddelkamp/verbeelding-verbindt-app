@@ -9,8 +9,10 @@ import '../../../models/intro_page_content.dart';
 import '../../../models/route_completed_page_content.dart';
 
 class FirestorePageContentRepository implements PageContentRepository {
-  FirestorePageContentRepository()
-      : _collection = FirebaseFirestore.instance.collection('pageData');
+  FirestorePageContentRepository({
+    FirebaseFirestore? firestore,
+  }) : _collection =
+            (firestore ?? FirebaseFirestore.instance).collection('pageData');
 
   final CollectionReference _collection;
 

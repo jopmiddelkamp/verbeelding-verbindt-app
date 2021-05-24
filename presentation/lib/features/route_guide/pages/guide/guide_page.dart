@@ -30,6 +30,7 @@ class GuidePage extends StatelessWidget {
             locationService: serviceLocator(),
             routeRepository: serviceLocator(),
             routeGeneratorRepository: serviceLocator(),
+            authRepository: serviceLocator(),
             selectedSpecialityIds: arguments.selectedSpecialityIds,
           );
         }
@@ -40,6 +41,7 @@ class GuidePage extends StatelessWidget {
           locationService: serviceLocator(),
           routeRepository: serviceLocator(),
           routeGeneratorRepository: serviceLocator(),
+          authRepository: serviceLocator(),
         );
       },
       child: BlocListener<GuideCubit, GuideState>(

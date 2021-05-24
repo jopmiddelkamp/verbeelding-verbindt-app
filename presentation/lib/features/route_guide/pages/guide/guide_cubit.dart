@@ -7,6 +7,7 @@ import 'package:verbeelding_verbindt_core/entities/common/device_info.dart';
 import 'package:verbeelding_verbindt_core/entities/common/location.dart';
 import 'package:verbeelding_verbindt_core/entities/common/route.dart';
 import 'package:verbeelding_verbindt_core/repositories/artist_repository.dart';
+import 'package:verbeelding_verbindt_core/repositories/auth_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/route_generator_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/route_repository.dart';
 import 'package:verbeelding_verbindt_core/utils/location_utils.dart';
@@ -27,32 +28,36 @@ class GuideCubit extends CubitBase<GuideState> {
     required RouteRepository routeRepository,
     required RouteGeneratorRepository routeGeneratorRepository,
     required LocationService locationService,
+    required AuthRepository authRepository,
     required List<String> selectedSpecialityIds,
-  })   : _deviceInfo = deviceInfo,
+  })  : _deviceInfo = deviceInfo,
         _artistRepository = artistRepository,
         _permissionService = permissionService,
         _routeRepository = routeRepository,
         _routeGeneratorRepository = routeGeneratorRepository,
         _locationService = locationService,
+        _authRepository = authRepository,
         super(GuideState.initialize()) {
     _createRoute(
       selectedSpecialityIds: selectedSpecialityIds,
     );
   }
 
-  GuideCubit.openRoute({
-    required DeviceInfoEntity deviceInfo,
-    required ArtistRepository artistRepository,
-    required PermissionService permissionService,
-    required RouteRepository routeRepository,
-    required RouteGeneratorRepository routeGeneratorRepository,
-    required LocationService locationService,
-  })   : _deviceInfo = deviceInfo,
+  GuideCubit.openRoute(
+      {required DeviceInfoEntity deviceInfo,
+      required ArtistRepository artistRepository,
+      required PermissionService permissionService,
+      required RouteRepository routeRepository,
+      required RouteGeneratorRepository routeGeneratorRepository,
+      required LocationService locationService,
+      required AuthRepository authRepository})
+      : _deviceInfo = deviceInfo,
         _artistRepository = artistRepository,
         _permissionService = permissionService,
         _routeRepository = routeRepository,
         _routeGeneratorRepository = routeGeneratorRepository,
         _locationService = locationService,
+        _authRepository = authRepository,
         super(GuideState.initialize()) {
     _openRoute();
   }
@@ -63,6 +68,7 @@ class GuideCubit extends CubitBase<GuideState> {
   final RouteRepository _routeRepository;
   final RouteGeneratorRepository _routeGeneratorRepository;
   final LocationService _locationService;
+  final AuthRepository _authRepository;
 
   Future<void> _openRoute() async {
     // TODO: add retry mechanism
@@ -73,7 +79,7 @@ class GuideCubit extends CubitBase<GuideState> {
       final lastPos = await _locationService.getLastKnownLocation();
       if (lastPos != null) {
         _routeRepository
-            .getRoute(_deviceInfo.id)
+            .getRoute(_authRepository.currentUser.id)
             .takeUntil(dispose$)
             .listen((route) {
           if (route == null) {
@@ -128,7 +134,7 @@ class GuideCubit extends CubitBase<GuideState> {
       artistsToVisit: artists,
     );
     final data = RouteEntity(
-      id: _deviceInfo.id,
+      id: _authRepository.currentUser.id,
       stops: stops,
     );
     await _routeRepository.createRoute(data);

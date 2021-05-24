@@ -7,8 +7,9 @@ import '../../../models/route.dart';
 import '../../../models/route_stop.dart';
 
 class FirestoreRouteRepository implements RouteRepository {
-  FirestoreRouteRepository()
-      : _routeCollection = FirebaseFirestore.instance
+  FirestoreRouteRepository({
+    FirebaseFirestore? firestore,
+  }) : _routeCollection = (firestore ?? FirebaseFirestore.instance)
             .collection('routes')
             .withConverter<RouteDataModel>(
           fromFirestore: (snapshot, _) {

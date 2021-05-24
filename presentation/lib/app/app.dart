@@ -39,6 +39,7 @@ class App extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => AppCubit(
+            authRepository: serviceLocator(),
             persistentStorageService: serviceLocator(),
             navigatorKey: navigatorKey,
           ),
@@ -109,7 +110,8 @@ class App extends StatelessWidget {
         child: CircularProgressIndicator(),
       );
     }
-    if (state.introAccepted != true) {
+    //if (state.isSignedIn != true) {}
+    if (state.isIntroAccepted != true) {
       return IntroPage.blocProvider();
     }
     return SelectInterestsPage.blocProvider();
