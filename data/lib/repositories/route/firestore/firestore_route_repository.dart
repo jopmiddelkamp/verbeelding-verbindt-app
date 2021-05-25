@@ -33,7 +33,7 @@ class FirestoreRouteRepository extends RouteRepository {
   }
 
   @override
-  Stream<RouteEntity?> getRoute(
+  Stream<RouteEntity?> getRouteStream(
     String id,
   ) async* {
     yield* _routeCollection.doc(id).snapshots().map((snapshot) {
@@ -80,5 +80,20 @@ class FirestoreRouteRepository extends RouteRepository {
         completed: index == indexToComplete ? true : routeStop.completed,
       ),
     );
+  }
+
+  @override
+  Future<bool> routeExists(
+    String id,
+  ) async {
+    final snapshot = await _routeCollection.doc(id).get();
+    return snapshot.exists;
+  }
+
+  @override
+  Future<void> delete(
+    String id,
+  ) async {
+    await _routeCollection.doc(id).delete();
   }
 }

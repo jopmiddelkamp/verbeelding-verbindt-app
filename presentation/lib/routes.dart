@@ -9,7 +9,9 @@ import 'features/route_guide/pages/scan_qr/scan_qr_page.dart';
 import 'features/route_guide/pages/select_interests/select_interests_page.dart';
 import 'routes_utils.dart';
 
-Route<dynamic> onGenerateRoute(RouteSettings settings) {
+Route<dynamic> onGenerateRoute(
+  RouteSettings settings,
+) {
   // WidgetBuilder? builder;
   // var fullscreenDialog = false;
   final arguments = settings.arguments;
@@ -31,7 +33,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
         return buildMaterialPageRoute(
           settings: settings,
           builder: (_) => GuidePage.blocProvider(arguments),
-          fullscreenDialog: false,
+          fullscreenDialog: true,
         );
       }
       throw _thowInvalidArgumentException(
@@ -69,7 +71,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return buildMaterialPageRoute(
         settings: settings,
         builder: (_) => CompletedPage.blocProvider(),
-        fullscreenDialog: true,
+        fullscreenDialog: false,
       );
     default:
       throw Exception('Invalid route: ${settings.name}');

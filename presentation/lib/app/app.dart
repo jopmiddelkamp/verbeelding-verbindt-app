@@ -9,6 +9,7 @@ import '../features/intro/pages/intro/intro_page.dart';
 import '../features/intro/pages/intro/l10n/generated/intro_page_localizations.dart';
 import '../features/route_guide/pages/artist_details/l10n/generated/artist_details_page_localizations.dart';
 import '../features/route_guide/pages/completed/l10n/generated/completed_page_localizations.dart';
+import '../features/route_guide/pages/guide/guide_page.dart';
 import '../features/route_guide/pages/guide/l10n/generated/guide_page_localizations.dart';
 import '../features/route_guide/pages/scan_qr/l10n/generated/scan_qr_page_localizations.dart';
 import '../features/route_guide/pages/select_interests/l10n/generated/select_interests_page_localizations.dart';
@@ -21,6 +22,7 @@ import '../shared/dialogs/not_implemented/l10n/generated/not_implemented_dialog_
 import '../shared/dialogs/permissions_denied/l10n/generated/permissions_denied_dialog_localizations.dart';
 import '../shared/dialogs/permissions_removed/l10n/generated/permissions_removed_dialog_localizations.dart';
 import '../shared/dialogs/permissions_restricted/l10n/generated/permissions_restricted_dialog_localizations.dart';
+import '../shared/extensions/build_context_extensions.dart';
 import '../shared/l10n/generated/shared_localizations.dart';
 import '../shared/widgets/misc/flavor_banner.dart';
 import '../theme.dart';
@@ -41,6 +43,7 @@ class App extends StatelessWidget {
           create: (context) => AppCubit(
             authRepository: serviceLocator(),
             persistentStorageService: serviceLocator(),
+            routeRepository: serviceLocator(),
             navigatorKey: navigatorKey,
           ),
         ),
@@ -59,7 +62,7 @@ class App extends StatelessWidget {
         return MaterialApp(
           title: 'Verbeelding Verbindt',
           theme: buildAppTheme(context),
-          home: _buildHome(state),
+          home: _buildHome(),
           builder: (context, child) {
             return FlavorBanner(
               child: botToastBuilder(context, child),
@@ -102,18 +105,36 @@ class App extends StatelessWidget {
     );
   }
 
-  Widget _buildHome(
-    AppState state,
-  ) {
-    if (!state.loaded) {
-      return const Center(
+  Widget _buildHome() {
+    return BlocListener<AppCubit, AppState>(
+      listener: (context, state) {
+        if (!state.loaded) {
+          return;
+        }
+        if (state.isIntroAccepted != true) {
+          context.navigator.pushReplacementNamed(
+            IntroPage.routeName,
+          );
+          return;
+        }
+        if (state.hasOpenRoute == true) {
+          context.navigator.pushReplacementNamed(
+            SelectInterestsPage.routeName,
+            arguments: OpenRoutePageArguments(),
+          );
+          context.navigator.pushNamed(
+            GuidePage.routeName,
+            arguments: OpenRoutePageArguments(),
+          );
+          return;
+        }
+        context.navigator.pushReplacementNamed(
+          SelectInterestsPage.routeName,
+        );
+      },
+      child: const Center(
         child: CircularProgressIndicator(),
-      );
-    }
-    //if (state.isSignedIn != true) {}
-    if (state.isIntroAccepted != true) {
-      return IntroPage.blocProvider();
-    }
-    return SelectInterestsPage.blocProvider();
+      ),
+    );
   }
 }

@@ -93,4 +93,18 @@ class SpPersistentStorageServiceImpl extends ServiceBase
       value,
     );
   }
+
+  @override
+  bool containsKey(
+    String key,
+  ) {
+    return _sharedPreferences.containsKey(key);
+  }
+
+  @override
+  Future<bool> remove(
+    String key,
+  ) async {
+    return await _sharedPreferences.remove(key);
+  }
 }

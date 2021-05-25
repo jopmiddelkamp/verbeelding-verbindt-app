@@ -31,7 +31,7 @@ class ScanQrPage extends StatelessWidget {
     );
   }
 
-  static const String routeName = 'route_guide/scan_qr';
+  static const String routeName = 'route_guide_scan_qr';
 
   @override
   Widget build(

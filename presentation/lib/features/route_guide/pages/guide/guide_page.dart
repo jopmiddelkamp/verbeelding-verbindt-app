@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:verbeelding_verbindt_presentation/shared/dialogs/confirm/confirm_dialog.dart';
 
 import '../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../shared/widgets/loading_indicators/circle_loading_indicator.dart';
@@ -55,60 +56,73 @@ class GuidePage extends StatelessWidget {
     );
   }
 
-  static const String routeName = 'route_guide/guide';
+  static const String routeName = 'route_guide_guide';
 
   @override
   Widget build(
     BuildContext context,
   ) {
-    return Scaffold(
-      appBar: AppBar(
-        title: TranslatedText(
-          (c, _) => c.l10n.guidePage.title,
+    final cubit = context.blocProvider<GuideCubit>();
+    return WillPopScope(
+      onWillPop: () async {
+        final result = await showConfirmDialog(
+          context,
+          content: (c, _) => c.l10n.guidePage.popConfirmMessage,
+        );
+        if (result) {
+          await cubit.delete();
+        }
+        return result;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: TranslatedText(
+            (c, _) => c.l10n.guidePage.title,
+          ),
         ),
-      ),
-      body: BlocBuilder<GuideCubit, GuideState>(
-        builder: (context, state) {
-          if (!state.routeLoaded) {
-            return Center(
-              child: VVCircleLoadingIndicator(
-                text: (c, _) => c.l10n.guidePage.busySettingUpRoute,
-              ),
-            );
-          }
-          return LayoutBuilder(
-            builder: (context, constraints) {
-              return Column(
-                children: [
-                  RouteMap(
-                    width: constraints.maxWidth,
-                    height: constraints.maxHeight / 3,
-                    stops: state.route!.stops,
-                    currentStop: state.currentStop!,
-                    initialMapLocation: state.initialMapLocation!,
-                  ),
-                  Expanded(
-                    child: Container(
-                      decoration: getTopShadowBoxDecoration(context),
-                      child: ListView.builder(
-                        itemCount: state.route!.stops.length,
-                        itemBuilder: (context, index) {
-                          final stop = state.route!.stops[index];
-                          return RouteListItem(
-                            count: state.route!.stops.length,
-                            index: index,
-                            stop: stop,
-                            active: state.currentStop == stop,
-                          );
-                        },
+        body: BlocBuilder<GuideCubit, GuideState>(
+          builder: (context, state) {
+            if (!state.routeLoaded) {
+              return Center(
+                child: VVCircleLoadingIndicator(
+                  text: (c, _) => c.l10n.guidePage.busySettingUpRoute,
+                ),
+              );
+            }
+            return LayoutBuilder(
+              builder: (context, constraints) {
+                return Column(
+                  children: [
+                    RouteMap(
+                      width: constraints.maxWidth,
+                      height: constraints.maxHeight / 3,
+                      stops: state.route!.stops,
+                      currentStop: state.currentStop!,
+                      initialMapLocation: state.initialMapLocation!,
+                    ),
+                    Expanded(
+                      child: Container(
+                        decoration: getTopShadowBoxDecoration(context),
+                        child: ListView.builder(
+                          itemCount: state.route!.stops.length,
+                          itemBuilder: (context, index) {
+                            final stop = state.route!.stops[index];
+                            return RouteListItem(
+                              count: state.route!.stops.length,
+                              index: index,
+                              stop: stop,
+                              active: state.currentStop == stop,
+                            );
+                          },
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              );
-            },
-          );
-        },
+                  ],
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }
@@ -126,6 +140,6 @@ class CreateRoutePageArguments extends GuidePageArguments {
   final List<String> selectedSpecialityIds;
 }
 
-class OpenExistingRoutePageArguments extends GuidePageArguments {
-  const OpenExistingRoutePageArguments();
+class OpenRoutePageArguments extends GuidePageArguments {
+  const OpenRoutePageArguments();
 }

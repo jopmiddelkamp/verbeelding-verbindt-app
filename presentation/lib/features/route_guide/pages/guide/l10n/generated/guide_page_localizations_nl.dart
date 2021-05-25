@@ -17,6 +17,9 @@ class GuidePageLocalizationsNl extends GuidePageLocalizations {
   String get moreInfo => 'Meer info';
 
   @override
+  String get popConfirmMessage => 'Uw voortgang van de tour zal verloren gaan.';
+
+  @override
   String get scanQr => 'Scan QR';
 
   @override

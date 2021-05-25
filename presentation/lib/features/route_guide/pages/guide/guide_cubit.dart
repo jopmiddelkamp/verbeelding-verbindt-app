@@ -73,7 +73,7 @@ class GuideCubit extends CubitBase<GuideState> {
       final lastPos = await _locationService.getLastKnownLocation();
       if (lastPos != null) {
         _routeRepository
-            .getRoute(_authRepository.currentUser.id)
+            .getRouteStream(_authRepository.currentUser.id)
             .takeUntil(dispose$)
             .listen((route) {
           if (route == null) {
@@ -159,6 +159,12 @@ class GuideCubit extends CubitBase<GuideState> {
     await _routeRepository.completeRouteStop(
       routeId: state.route!.id!,
       stopIndex: state.currentStopIndex!,
+    );
+  }
+
+  Future<void> delete() async {
+    await _routeRepository.delete(
+      state.route!.id!,
     );
   }
 

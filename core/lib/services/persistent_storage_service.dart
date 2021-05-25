@@ -32,4 +32,12 @@ abstract class PersistentStorageService {
     String key,
     String value,
   );
+
+  Future<bool> remove(
+    String key,
+  );
+
+  bool containsKey(
+    String key,
+  );
 }

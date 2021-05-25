@@ -18,24 +18,26 @@ class PersistentStorageRouteRepository implements RouteRepository {
 
   final _routeStreamController = StreamController<RouteEntity?>.broadcast();
 
-  static const _routeKey = 'route';
+  String _getRouteKey(String id) => 'route_$id';
 
   @override
   Future<void> createRoute(
     RouteEntity data,
   ) async {
     await _persistentStorageService.setString(
-      _routeKey,
+      _getRouteKey(data.id!),
       jsonEncode(data.toDataModel().toJson()),
     );
     _routeStreamController.add(data);
   }
 
   @override
-  Stream<RouteEntity?> getRoute(
+  Stream<RouteEntity?> getRouteStream(
     String id,
   ) async* {
-    final stringValue = _persistentStorageService.getString(_routeKey);
+    final stringValue = _persistentStorageService.getString(
+      _getRouteKey(id),
+    );
     if (stringValue == null) {
       _routeStreamController.add(null);
       yield null;
@@ -52,7 +54,7 @@ class PersistentStorageRouteRepository implements RouteRepository {
     required String routeId,
     required int stopIndex,
   }) async {
-    var route = await getRoute(routeId).first;
+    var route = await getRouteStream(routeId).first;
     if (route == null) {
       // TODO: throw  a failure
       return;
@@ -88,5 +90,23 @@ class PersistentStorageRouteRepository implements RouteRepository {
 
   void dispose() {
     _routeStreamController.close();
+  }
+
+  @override
+  Future<bool> routeExists(
+    String id,
+  ) async {
+    return await _persistentStorageService.containsKey(
+      _getRouteKey(id),
+    );
+  }
+
+  @override
+  Future<void> delete(
+    String id,
+  ) async {
+    await _persistentStorageService.remove(
+      _getRouteKey(id),
+    );
   }
 }

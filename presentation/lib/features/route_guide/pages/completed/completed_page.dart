@@ -25,7 +25,7 @@ class CompletedPage extends StatelessWidget {
     );
   }
 
-  static const String routeName = '/route_guide/completed';
+  static const String routeName = 'route_guide_completed';
 
   @override
   Widget build(

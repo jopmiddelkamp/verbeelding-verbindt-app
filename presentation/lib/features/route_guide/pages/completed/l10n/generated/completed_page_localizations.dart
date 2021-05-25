@@ -95,7 +95,7 @@ abstract class CompletedPageLocalizations {
   /// No description provided for @popConfirmMessage.
   ///
   /// In nl, this message translates to:
-  /// **'Als u bevestigd terug te willen gaan zult u uw bewijs van afronden van de tour verliezen.'**
+  /// **'Uw bewijs van het afronden van de tour zal verloren gaan.'**
   String get popConfirmMessage;
 
   /// No description provided for @text.

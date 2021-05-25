@@ -6,7 +6,15 @@ abstract class RouteRepository extends RepositoryBase {
     RouteEntity data,
   );
 
-  Stream<RouteEntity?> getRoute(
+  Stream<RouteEntity?> getRouteStream(
+    String id,
+  );
+
+  Future<bool> routeExists(
+    String id,
+  );
+
+  Future<void> delete(
     String id,
   );
 

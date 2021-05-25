@@ -110,6 +110,12 @@ abstract class GuidePageLocalizations {
   /// **'Meer info'**
   String get moreInfo;
 
+  /// No description provided for @popConfirmMessage.
+  ///
+  /// In nl, this message translates to:
+  /// **'Uw voortgang van de tour zal verloren gaan.'**
+  String get popConfirmMessage;
+
   /// No description provided for @scanQr.
   ///
   /// In nl, this message translates to:

@@ -35,7 +35,7 @@ class IntroPage extends StatelessWidget {
     );
   }
 
-  static const String routeName = '/intro/intro';
+  static const String routeName = 'intro_intro';
 
   @override
   Widget build(

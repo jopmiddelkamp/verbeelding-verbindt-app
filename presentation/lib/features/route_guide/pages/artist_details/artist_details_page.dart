@@ -26,7 +26,7 @@ class ArtistDetailsPage extends StatelessWidget {
     );
   }
 
-  static const String routeName = 'route_guide/artist_details';
+  static const String routeName = 'route_guide_artist_details';
 
   @override
   Widget build(

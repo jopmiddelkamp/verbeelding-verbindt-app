@@ -8,6 +8,7 @@ class AppState extends StateBase {
     required this.navigatorKey,
     required this.isIntroAccepted,
     required this.isSignedIn,
+    required this.hasOpenRoute,
     Failure? failure,
   }) : super(
           failure: failure,
@@ -20,6 +21,7 @@ class AppState extends StateBase {
       navigatorKey: GlobalKey<NavigatorState>(),
       isIntroAccepted: null,
       isSignedIn: null,
+      hasOpenRoute: null,
     );
   }
 
@@ -27,17 +29,21 @@ class AppState extends StateBase {
 
   final bool? isIntroAccepted;
   final bool? isSignedIn;
+  final bool? hasOpenRoute;
 
-  bool get loaded => isIntroAccepted != null && isSignedIn != null;
+  bool get loaded =>
+      isIntroAccepted != null && isSignedIn != null && hasOpenRoute != null;
 
   AppState copyWith({
     bool? isIntroAccepted,
     bool? isSignedIn,
+    bool? hasOpenRoute,
   }) {
     return AppState._(
       navigatorKey: navigatorKey,
       isIntroAccepted: isIntroAccepted ?? this.isIntroAccepted,
       isSignedIn: isSignedIn ?? this.isSignedIn,
+      hasOpenRoute: hasOpenRoute ?? this.hasOpenRoute,
     );
   }
 }

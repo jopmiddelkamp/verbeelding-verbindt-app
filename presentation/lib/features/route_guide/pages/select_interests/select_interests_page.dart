@@ -15,7 +15,7 @@ final serviceLocator = GetIt.instance;
 class SelectInterestsPage extends StatelessWidget {
   SelectInterestsPage._();
 
-  static const String routeName = '/route_guide/select-interests';
+  static const String routeName = 'route_guide_select_interests';
 
   static Widget blocProvider() {
     return BlocProvider(
