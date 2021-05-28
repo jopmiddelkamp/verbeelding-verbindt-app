@@ -4,6 +4,9 @@ import 'package:supercharged/supercharged.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../extensions/build_context_extensions.dart';
+import 'controls/audio_control.dart';
+import 'controls/play_control.dart';
+import 'controls/progress_indicator_control.dart';
 import 'video_controls_cubit.dart';
 import 'video_controls_state.dart';
 
@@ -11,6 +14,11 @@ class VideoControls extends StatelessWidget {
   const VideoControls._(
     this.controller, {
     Key? key,
+    this.iconSize = 36,
+    this.padding = const EdgeInsets.symmetric(
+      horizontal: 16.0,
+      vertical: 4.0,
+    ),
   }) : super(key: key);
 
   static Widget blocProvider(
@@ -25,8 +33,12 @@ class VideoControls extends StatelessWidget {
   }
 
   final VideoPlayerController controller;
+  final double iconSize;
+  final EdgeInsets padding;
 
-  static const _iconSize = 36.0;
+  static const _heightProgressControl = 4.0;
+
+  double get _height => iconSize + _heightProgressControl + padding.vertical;
 
   @override
   Widget build(
@@ -39,27 +51,49 @@ class VideoControls extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          BlocBuilder<VideoControlsCubit, VideoControlsState>(
-            buildWhen: (previous, current) {
-              return previous.isVisible != current.isVisible;
-            },
-            builder: (_, state) {
-              // TODO: add better animation
-              return AnimatedSwitcher(
-                duration: 300.milliseconds,
-                reverseDuration: 300.milliseconds,
-                child: state.isVisible
-                    ? _buildControls(context, cubit: cubit)
-                    : Container(),
-              );
-            },
+          Container(
+            height: _height,
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                BlocBuilder<VideoControlsCubit, VideoControlsState>(
+                  buildWhen: (previous, current) {
+                    return previous.initialLoad != current.initialLoad ||
+                        previous.isVisible != current.isVisible;
+                  },
+                  builder: (context, state) {
+                    return TweenAnimationBuilder<Offset?>(
+                      duration: 150.milliseconds,
+                      tween: Tween<Offset>(
+                        begin: state.isVisible
+                            ? Offset(0.0, _height * -1)
+                            : Offset(0.0, 0.0),
+                        end: state.isVisible
+                            ? Offset(0.0, 0.0)
+                            : Offset(0.0, _height * -1),
+                      ),
+                      builder: (_, value, child) {
+                        return Positioned(
+                          height: _height,
+                          left: 0.0,
+                          right: 0.0,
+                          bottom: value?.dy ?? _height * -1,
+                          child: child!,
+                        );
+                      },
+                      child: _buildBar(context, cubit: cubit),
+                    );
+                  },
+                )
+              ],
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildControls(
+  Widget _buildBar(
     BuildContext context, {
     required VideoControlsCubit cubit,
   }) {
@@ -74,97 +108,21 @@ class VideoControls extends StatelessWidget {
               vertical: 4.0,
             ),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _buildPlayPauseControl(cubit: cubit),
-                Expanded(child: Container()),
-                _buildAudioControl(cubit: cubit),
+                PlayControl(
+                  iconSize: iconSize,
+                ),
+                AudioControl(
+                  iconSize: iconSize,
+                ),
               ],
             ),
           ),
-          _buildProgressControl(context)
-        ],
-      ),
-    );
-  }
-
-  Widget _buildPlayPauseControl({
-    required VideoControlsCubit cubit,
-  }) {
-    return BlocBuilder<VideoControlsCubit, VideoControlsState>(
-      buildWhen: (previous, current) {
-        return previous.isPlaying != current.isPlaying;
-      },
-      builder: (_, state) {
-        return GestureDetector(
-          key: ValueKey(state.isPlaying),
-          onTap: cubit.togglePlay,
-          child: Icon(
-            state.isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
-            color: Colors.white,
-            size: _iconSize,
+          ProgressIndicatorControl(
+            controller: controller,
           ),
-        );
-      },
-    );
-  }
-
-  Widget _buildAudioControl({
-    required VideoControlsCubit cubit,
-  }) {
-    IconData _determineVolumeIcon(
-      double volume,
-    ) {
-      if (volume == 0) {
-        return Icons.volume_off_rounded;
-      }
-      if (volume < 0.25) {
-        return Icons.volume_mute_rounded;
-      }
-      if (volume < 0.5) {
-        return Icons.volume_down_rounded;
-      }
-      return Icons.volume_up_rounded;
-    }
-
-    return BlocBuilder<VideoControlsCubit, VideoControlsState>(
-      buildWhen: (previous, current) {
-        return previous.volume != current.volume;
-      },
-      builder: (context, state) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Container(
-              height: _iconSize,
-              child: Slider(
-                value: state.volume,
-                onChanged: cubit.setVolume,
-              ),
-            ),
-            GestureDetector(
-              onTap: cubit.toggleMute,
-              child: Icon(
-                _determineVolumeIcon(state.volume),
-                color: Colors.white,
-                size: _iconSize,
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  Widget _buildProgressControl(
-    BuildContext context,
-  ) {
-    return VideoProgressIndicator(
-      controller,
-      allowScrubbing: true,
-      colors: VideoProgressColors(
-        backgroundColor: Colors.transparent,
-        bufferedColor: context.theme.colorScheme.primary.withOpacity(0.4),
-        playedColor: context.theme.colorScheme.primary.withOpacity(0.8),
+        ],
       ),
     );
   }

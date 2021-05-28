@@ -10,6 +10,7 @@ class VideoControlsState extends StateBase {
     required this.volume,
     required this.volumeBeforeMute,
     required this.isVisible,
+    required this.initialLoad,
     required Failure? failure,
   }) : super(
           failure: failure,
@@ -24,6 +25,7 @@ class VideoControlsState extends StateBase {
       volume: controller.value.volume,
       volumeBeforeMute: controller.value.volume,
       isVisible: false,
+      initialLoad: true,
       failure: null,
     );
   }
@@ -33,6 +35,7 @@ class VideoControlsState extends StateBase {
   final double volume;
   final double volumeBeforeMute;
   final bool isVisible;
+  final bool initialLoad;
 
   bool get isNotPlaying => !isPlaying;
   bool get isNotVisible => !isVisible;
@@ -53,12 +56,13 @@ class VideoControlsState extends StateBase {
       volume: volume ?? this.volume,
       volumeBeforeMute: volumeBeforeMute ?? this.volumeBeforeMute,
       isVisible: isVisible ?? this.isVisible,
+      initialLoad: false,
       failure: failure ?? this.failure,
     );
   }
 
   @override
   String toString() {
-    return "$runtimeType { isPlaying: $isPlaying, volume: $volume, volumeBeforeMute: $volumeBeforeMute, visible: $isVisible }";
+    return "$runtimeType { isPlaying: $isPlaying, volume: $volume, volumeBeforeMute: $volumeBeforeMute, visible: $isVisible, initalLoad: $initialLoad }";
   }
 }
