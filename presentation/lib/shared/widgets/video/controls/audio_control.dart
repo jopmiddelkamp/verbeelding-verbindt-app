@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../extensions/build_context_extensions.dart';
-import '../video_controls_cubit.dart';
-import '../video_controls_state.dart';
+import '../video_cubit.dart';
+import '../video_state.dart';
 
 class AudioControl extends StatelessWidget {
   const AudioControl({
@@ -18,8 +18,8 @@ class AudioControl extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    final cubit = context.blocProvider<VideoControlsCubit>();
-    return BlocBuilder<VideoControlsCubit, VideoControlsState>(
+    final cubit = context.blocProvider<VideoCubit>();
+    return BlocBuilder<VideoCubit, VideoState>(
       buildWhen: (previous, current) {
         return previous.volume != current.volume;
       },

@@ -7,11 +7,11 @@ import '../../extensions/build_context_extensions.dart';
 import 'controls/audio_control.dart';
 import 'controls/play_control.dart';
 import 'controls/progress_indicator_control.dart';
-import 'video_controls_cubit.dart';
-import 'video_controls_state.dart';
+import 'video_cubit.dart';
+import 'video_state.dart';
 
 class VideoControls extends StatelessWidget {
-  const VideoControls._(
+  const VideoControls(
     this.controller, {
     Key? key,
     this.iconSize = 36,
@@ -20,17 +20,6 @@ class VideoControls extends StatelessWidget {
       vertical: 4.0,
     ),
   }) : super(key: key);
-
-  static Widget blocProvider(
-    VideoPlayerController controller,
-  ) {
-    return BlocProvider(
-      create: (_) {
-        return VideoControlsCubit(controller);
-      },
-      child: VideoControls._(controller),
-    );
-  }
 
   final VideoPlayerController controller;
   final double iconSize;
@@ -44,9 +33,9 @@ class VideoControls extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    final cubit = context.blocProvider<VideoControlsCubit>();
+    final cubit = context.blocProvider<VideoCubit>();
     return GestureDetector(
-      onTap: cubit.toggleVisibility,
+      onTap: cubit.toggleControlsVisibility,
       behavior: HitTestBehavior.translucent,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -56,19 +45,18 @@ class VideoControls extends StatelessWidget {
             child: Stack(
               alignment: Alignment.bottomCenter,
               children: [
-                BlocBuilder<VideoControlsCubit, VideoControlsState>(
+                BlocBuilder<VideoCubit, VideoState>(
                   buildWhen: (previous, current) {
-                    return previous.initialLoad != current.initialLoad ||
-                        previous.isVisible != current.isVisible;
+                    return previous.controlsVisible != current.controlsVisible;
                   },
                   builder: (context, state) {
                     return TweenAnimationBuilder<Offset?>(
                       duration: 150.milliseconds,
                       tween: Tween<Offset>(
-                        begin: state.isVisible
+                        begin: state.controlsVisible
                             ? Offset(0.0, _height * -1)
                             : Offset(0.0, 0.0),
-                        end: state.isVisible
+                        end: state.controlsVisible
                             ? Offset(0.0, 0.0)
                             : Offset(0.0, _height * -1),
                       ),
@@ -95,7 +83,7 @@ class VideoControls extends StatelessWidget {
 
   Widget _buildBar(
     BuildContext context, {
-    required VideoControlsCubit cubit,
+    required VideoCubit cubit,
   }) {
     return Container(
       color: Colors.black38,

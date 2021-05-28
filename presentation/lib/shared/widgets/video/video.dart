@@ -64,22 +64,22 @@ class Video extends StatelessWidget {
     }
     return _buildVideo(
       context,
-      state: state,
+      controller: state.controller,
     );
   }
 
   Widget _buildVideo(
     BuildContext context, {
-    required VideoState state,
+    required VideoPlayerController controller,
   }) {
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
         VideoPlayer(
-          state.controller!,
+          controller,
         ),
-        VideoControls.blocProvider(
-          state.controller!,
+        VideoControls(
+          controller,
         ),
       ],
     );

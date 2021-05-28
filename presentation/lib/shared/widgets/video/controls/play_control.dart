@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../extensions/build_context_extensions.dart';
-import '../video_controls_cubit.dart';
-import '../video_controls_state.dart';
+import '../video_cubit.dart';
+import '../video_state.dart';
 
 class PlayControl extends StatelessWidget {
   const PlayControl({
@@ -18,16 +18,16 @@ class PlayControl extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    final cubit = context.blocProvider<VideoControlsCubit>();
-    return BlocBuilder<VideoControlsCubit, VideoControlsState>(
+    final cubit = context.blocProvider<VideoCubit>();
+    return BlocBuilder<VideoCubit, VideoState>(
       buildWhen: (previous, current) {
-        return previous.isPlaying != current.isPlaying;
+        return previous.playing != current.playing;
       },
       builder: (_, state) {
         return GestureDetector(
           onTap: cubit.togglePlay,
           child: Icon(
-            state.isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
+            state.playing ? Icons.pause_rounded : Icons.play_arrow_rounded,
             color: Colors.white,
             size: _iconSize,
           ),
