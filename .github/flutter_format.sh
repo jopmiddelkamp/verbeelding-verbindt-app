@@ -6,3 +6,4 @@ cd ../data
 flutter format --set-exit-if-changed lib --verbose
 cd ../presentation
 flutter format --set-exit-if-changed lib --verbose
+cd ..

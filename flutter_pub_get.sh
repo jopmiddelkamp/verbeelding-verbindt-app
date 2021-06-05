@@ -6,3 +6,4 @@ cd ../data
 flutter pub get
 cd ../presentation
 flutter pub get
+cd ..

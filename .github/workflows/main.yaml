@@ -13,8 +13,8 @@ jobs:
       - name: Install Dependencies
         run: .github/flutter_pub_get.sh
 
-      - name: Format
-        run: .github/flutter_format.sh
+      # - name: Format
+      #   run: .github/flutter_format.sh
 
       - name: Analyze
         run: .github/flutter_analyze.sh

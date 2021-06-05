@@ -6,3 +6,4 @@ cd ../data
 flutter analyze lib #test
 cd ../presentation
 flutter analyze lib #test
+cd ..
