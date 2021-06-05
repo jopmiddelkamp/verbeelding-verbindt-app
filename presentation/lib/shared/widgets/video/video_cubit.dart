@@ -5,9 +5,13 @@ import 'video_state.dart';
 
 class VideoCubit extends CubitBase<VideoState> {
   VideoCubit(
-    VideoEntity video,
-  ) : super(VideoState.initialize(
+    VideoEntity video, {
+    bool autoPlay = true,
+    bool controlsVisible = false,
+  }) : super(VideoState.initialize(
           video: video,
+          autoPlay: autoPlay,
+          controlsVisible: controlsVisible,
         )) {
     state.controller.initialize().then((_) {
       emit(state.copyWith(
@@ -15,6 +19,7 @@ class VideoCubit extends CubitBase<VideoState> {
       ));
       state.controller.play();
     }).onError((error, stackTrace) {
+      print(error);
       print(stackTrace);
     });
   }
@@ -30,7 +35,7 @@ class VideoCubit extends CubitBase<VideoState> {
     emit(state.copyWith(
       controlsVisible: !state.controlsVisible,
     ));
-    if (state.controlsVisible && state.controlsVisible) {
+    if (state.controlsNotVisible && state.notPlaying) {
       togglePlay();
     }
   }

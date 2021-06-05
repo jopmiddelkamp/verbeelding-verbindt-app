@@ -25,14 +25,17 @@ class VideoControls extends StatelessWidget {
   final double iconSize;
   final EdgeInsets padding;
 
-  static const _heightProgressControl = 4.0;
+  static const heightProgressControl = 4.0;
 
-  double get _height => iconSize + _heightProgressControl + padding.vertical;
+  double get height => iconSize + heightProgressControl + padding.vertical;
 
   @override
   Widget build(
     BuildContext context,
   ) {
+    double _getOffsetY(bool visible) => visible ? 0 : height * -1;
+    Offset _getOffset(bool visible) => Offset(0.0, _getOffsetY(visible));
+
     final cubit = context.blocProvider<VideoCubit>();
     return GestureDetector(
       onTap: cubit.toggleControlsVisibility,
@@ -41,7 +44,7 @@ class VideoControls extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Container(
-            height: _height,
+            height: height,
             child: Stack(
               alignment: Alignment.bottomCenter,
               children: [
@@ -50,26 +53,37 @@ class VideoControls extends StatelessWidget {
                     return previous.controlsVisible != current.controlsVisible;
                   },
                   builder: (context, state) {
-                    return TweenAnimationBuilder<Offset?>(
+                    final child = _buildBar(
+                      context,
+                      cubit: cubit,
+                    );
+                    // Skip animation until first visibility change
+                    if (state.visibilityNotChanged) {
+                      return Positioned(
+                        height: height,
+                        left: 0.0,
+                        right: 0.0,
+                        bottom: _getOffsetY(state.controlsVisible),
+                        child: child,
+                      );
+                    }
+                    // Show animation
+                    return TweenAnimationBuilder<Offset>(
                       duration: 150.milliseconds,
                       tween: Tween<Offset>(
-                        begin: state.controlsVisible
-                            ? Offset(0.0, _height * -1)
-                            : Offset(0.0, 0.0),
-                        end: state.controlsVisible
-                            ? Offset(0.0, 0.0)
-                            : Offset(0.0, _height * -1),
+                        begin: _getOffset(state.controlsNotVisible),
+                        end: _getOffset(state.controlsVisible),
                       ),
                       builder: (_, value, child) {
                         return Positioned(
-                          height: _height,
+                          height: height,
                           left: 0.0,
                           right: 0.0,
-                          bottom: value?.dy ?? _height * -1,
+                          bottom: value.dy,
                           child: child!,
                         );
                       },
-                      child: _buildBar(context, cubit: cubit),
+                      child: child,
                     );
                   },
                 )
