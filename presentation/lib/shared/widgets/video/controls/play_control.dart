@@ -8,11 +8,10 @@ import '../video_state.dart';
 class PlayControl extends StatelessWidget {
   const PlayControl({
     Key? key,
-    required double iconSize,
-  })  : _iconSize = iconSize,
-        super(key: key);
+    required this.iconSize,
+  }) : super(key: key);
 
-  final double _iconSize;
+  final double iconSize;
 
   @override
   Widget build(
@@ -29,7 +28,7 @@ class PlayControl extends StatelessWidget {
           child: Icon(
             state.playing ? Icons.pause_rounded : Icons.play_arrow_rounded,
             color: Colors.white,
-            size: _iconSize,
+            size: iconSize,
           ),
         );
       },

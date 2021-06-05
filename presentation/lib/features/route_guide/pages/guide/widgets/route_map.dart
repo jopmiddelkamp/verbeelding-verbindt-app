@@ -70,7 +70,7 @@ class RouteMap extends StatelessWidget {
       compassEnabled: false,
       // padding: const EdgeInsets.all(kDefaultPadding),
       mapType: MapType.satellite,
-      initialCameraPosition: kDefaultSettings.getGoogleMapsCameraPosition(
+      initialCameraPosition: Package.settings.getGoogleMapsCameraPosition(
         initialMapLocation.toLatLng(),
       ),
       onMapCreated: (controller) {
@@ -105,7 +105,7 @@ class RouteMap extends StatelessWidget {
   }) {
     if (!artist.profile.hasPersonalImage) {
       return ImageUtils.getUiImageFromAsset(
-        kDefaultSettings.artistFallbackImagePath,
+        Package.assets.unknownArtist,
       );
     }
     return ImageUtils.getUiImageFromUrl(

@@ -46,6 +46,7 @@ class VideoState extends StateBase {
   final double volume;
   final double volumeBeforeMute;
 
+  bool get notLoaded => !loaded;
   bool get notPlaying => !playing;
   bool get controlsNotVisible => !controlsVisible;
   bool get mute => volume <= 0;

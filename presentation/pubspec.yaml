@@ -54,3 +54,6 @@ flutter_intl:
 flutter:
   uses-material-design: true
   generate: true
+  assets:
+   - assets/images/intro-header.jpg
+   - assets/images/unknown-artist.jpg

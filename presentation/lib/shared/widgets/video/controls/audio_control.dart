@@ -8,11 +8,10 @@ import '../video_state.dart';
 class AudioControl extends StatelessWidget {
   const AudioControl({
     Key? key,
-    required double iconSize,
-  })  : _iconSize = iconSize,
-        super(key: key);
+    required this.iconSize,
+  }) : super(key: key);
 
-  final double _iconSize;
+  final double iconSize;
 
   @override
   Widget build(
@@ -28,7 +27,7 @@ class AudioControl extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
-              height: _iconSize,
+              height: iconSize,
               child: Slider(
                 value: state.volume,
                 onChanged: cubit.setVolume,
@@ -39,7 +38,7 @@ class AudioControl extends StatelessWidget {
               child: Icon(
                 _determineVolumeIcon(state.volume),
                 color: Colors.white,
-                size: _iconSize,
+                size: iconSize,
               ),
             ),
           ],

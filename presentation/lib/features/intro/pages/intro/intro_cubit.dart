@@ -1,4 +1,3 @@
-import 'package:rxdart/rxdart.dart';
 import 'package:verbeelding_verbindt_core/repositories/page_content_repository.dart';
 import 'package:verbeelding_verbindt_core/services/persistent_storage_service.dart';
 
@@ -10,28 +9,9 @@ class IntroCubit extends CubitBase<IntroState> {
     required PersistentStorageService persistentStorageService,
     required PageContentRepository pageContentRepository,
   })  : _persistentStorage = persistentStorageService,
-        _pageContentRepository = pageContentRepository,
-        super(IntroState.initialize()) {
-    _init();
-  }
+        super(IntroState.initialize());
 
   final PersistentStorageService _persistentStorage;
-  final PageContentRepository _pageContentRepository;
-
-  Future<void> _init() async {
-    await _pageContentRepository
-        .getIntroPageContent()
-        .takeUntil(dispose$)
-        .listen((pageContent) {
-      // TODO: Handle no data found
-      if (pageContent == null) {
-        return;
-      }
-      emit(IntroState.load(
-        content: pageContent,
-      ));
-    });
-  }
 
   Future<void> accept() async {
     await _persistentStorage.setIntroAccepted(true);

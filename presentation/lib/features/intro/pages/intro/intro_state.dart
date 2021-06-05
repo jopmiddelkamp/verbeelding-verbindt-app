@@ -5,7 +5,6 @@ import '../../../../shared/bloc/state_base.dart';
 
 class IntroState extends StateBase {
   IntroState._({
-    this.content,
     this.accepted,
     Failure? failure,
   }) : super(
@@ -16,18 +15,7 @@ class IntroState extends StateBase {
     return IntroState._();
   }
 
-  factory IntroState.load({
-    required IntroPageContentEntity content,
-  }) {
-    return IntroState._(
-      content: content,
-    );
-  }
-
-  final IntroPageContentEntity? content;
   final bool? accepted;
-
-  bool get loaded => content != null;
 
   IntroState copyWith({
     IntroPageContentEntity? content,
@@ -35,7 +23,6 @@ class IntroState extends StateBase {
     Failure? failure,
   }) {
     return IntroState._(
-      content: content ?? this.content,
       accepted: accepted ?? this.accepted,
       failure: failure ?? this.failure,
     );
