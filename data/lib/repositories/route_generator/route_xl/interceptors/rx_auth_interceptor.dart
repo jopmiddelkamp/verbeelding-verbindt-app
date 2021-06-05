@@ -5,7 +5,7 @@ class RxAuthInterceptor extends Interceptor {
   RxAuthInterceptor({
     required final String username,
     required final String password,
-  })   : _username = username,
+  })  : _username = username,
         _password = password;
 
   final String _username;

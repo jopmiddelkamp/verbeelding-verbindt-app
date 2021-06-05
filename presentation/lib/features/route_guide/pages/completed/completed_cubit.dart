@@ -7,7 +7,7 @@ import 'completed_state.dart';
 class CompletedCubit extends CubitBase<CompletedState> {
   CompletedCubit({
     required PageContentRepository pageContentRepository,
-  })   : _pageContentRepository = pageContentRepository,
+  })  : _pageContentRepository = pageContentRepository,
         super(CompletedState.initialize()) {
     _init();
   }

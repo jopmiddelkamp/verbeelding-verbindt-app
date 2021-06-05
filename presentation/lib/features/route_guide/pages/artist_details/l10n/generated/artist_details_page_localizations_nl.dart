@@ -1,6 +1,3 @@
-
-
-
 import 'artist_details_page_localizations.dart';
 
 /// The translations for Dutch Flemish (`nl`).

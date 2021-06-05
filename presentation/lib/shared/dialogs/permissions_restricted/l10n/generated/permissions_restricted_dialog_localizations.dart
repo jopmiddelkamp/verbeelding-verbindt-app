@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -60,15 +59,18 @@ import 'permissions_restricted_dialog_localizations_nl.dart';
 /// be consistent with the languages listed in the PermissionsRestrictedDialogLocalizations.supportedLocales
 /// property.
 abstract class PermissionsRestrictedDialogLocalizations {
-  PermissionsRestrictedDialogLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  PermissionsRestrictedDialogLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static PermissionsRestrictedDialogLocalizations of(BuildContext context) {
-    return Localizations.of<PermissionsRestrictedDialogLocalizations>(context, PermissionsRestrictedDialogLocalizations)!;
+    return Localizations.of<PermissionsRestrictedDialogLocalizations>(
+        context, PermissionsRestrictedDialogLocalizations)!;
   }
 
-  static const LocalizationsDelegate<PermissionsRestrictedDialogLocalizations> delegate = _PermissionsRestrictedDialogLocalizationsDelegate();
+  static const LocalizationsDelegate<PermissionsRestrictedDialogLocalizations>
+      delegate = _PermissionsRestrictedDialogLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -80,7 +82,8 @@ abstract class PermissionsRestrictedDialogLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -88,9 +91,7 @@ abstract class PermissionsRestrictedDialogLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[
-    Locale('nl')
-  ];
+  static const List<Locale> supportedLocales = <Locale>[Locale('nl')];
 
   /// No description provided for @content.
   ///
@@ -105,35 +106,36 @@ abstract class PermissionsRestrictedDialogLocalizations {
   String get title;
 }
 
-class _PermissionsRestrictedDialogLocalizationsDelegate extends LocalizationsDelegate<PermissionsRestrictedDialogLocalizations> {
+class _PermissionsRestrictedDialogLocalizationsDelegate
+    extends LocalizationsDelegate<PermissionsRestrictedDialogLocalizations> {
   const _PermissionsRestrictedDialogLocalizationsDelegate();
 
   @override
   Future<PermissionsRestrictedDialogLocalizations> load(Locale locale) {
-    return SynchronousFuture<PermissionsRestrictedDialogLocalizations>(_lookupPermissionsRestrictedDialogLocalizations(locale));
+    return SynchronousFuture<PermissionsRestrictedDialogLocalizations>(
+        _lookupPermissionsRestrictedDialogLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['nl'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['nl'].contains(locale.languageCode);
 
   @override
-  bool shouldReload(_PermissionsRestrictedDialogLocalizationsDelegate old) => false;
+  bool shouldReload(_PermissionsRestrictedDialogLocalizationsDelegate old) =>
+      false;
 }
 
-PermissionsRestrictedDialogLocalizations _lookupPermissionsRestrictedDialogLocalizations(Locale locale) {
-  
-
-
+PermissionsRestrictedDialogLocalizations
+    _lookupPermissionsRestrictedDialogLocalizations(Locale locale) {
 // Lookup logic when only language code is specified.
-switch (locale.languageCode) {
-  case 'nl': return PermissionsRestrictedDialogLocalizationsNl();
-}
-
+  switch (locale.languageCode) {
+    case 'nl':
+      return PermissionsRestrictedDialogLocalizationsNl();
+  }
 
   throw FlutterError(
-    'PermissionsRestrictedDialogLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'PermissionsRestrictedDialogLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

@@ -8,7 +8,7 @@ import 'select_interests_state.dart';
 class SelectInterestsCubit extends CubitBase<SelectInterestsState> {
   SelectInterestsCubit({
     required SpecialityRepository specialityRepository,
-  })   : _specialityRepository = specialityRepository,
+  })  : _specialityRepository = specialityRepository,
         super(SelectInterestsState.initialize()) {
     _init();
   }

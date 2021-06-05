@@ -1,6 +1,3 @@
-
-
-
 import 'device_info_dialog_localizations.dart';
 
 /// The translations for Dutch Flemish (`nl`).
