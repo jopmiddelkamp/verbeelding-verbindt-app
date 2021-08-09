@@ -1,8 +1,10 @@
+
+
+
 import 'not_implemented_dialog_localizations.dart';
 
 /// The translations for Dutch Flemish (`nl`).
-class NotImplementedDialogLocalizationsNl
-    extends NotImplementedDialogLocalizations {
+class NotImplementedDialogLocalizationsNl extends NotImplementedDialogLocalizations {
   NotImplementedDialogLocalizationsNl([String locale = 'nl']) : super(locale);
 
   @override

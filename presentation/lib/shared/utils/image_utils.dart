@@ -9,8 +9,8 @@ class ImageUtils {
     String url, {
     Size? size,
   }) async {
-    final width = size != null ? size.width.toInt() : null;
-    final height = size != null ? size.height.toInt() : null;
+    final width = size?.width.toInt();
+    final height = size?.height.toInt();
     var image = Image(
       image: CachedNetworkImageProvider(
         url,

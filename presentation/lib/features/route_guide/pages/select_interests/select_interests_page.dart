@@ -1,52 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
+import 'package:verbeelding_verbindt_core/aliases.dart';
 
 import '../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../shared/widgets/text/translatable_text.dart';
-import '../guide/guide_page.dart';
-import 'select_interests_cubit.dart';
-import 'select_interests_state.dart';
+import '../../blocs/speciality/bloc.dart';
 import 'widgets/continue_button.dart';
 import 'widgets/specialties_list.dart';
 
-final serviceLocator = GetIt.instance;
-
 class SelectInterestsPage extends StatelessWidget {
-  SelectInterestsPage._();
-
-  static const String routeName = 'route_guide_select_interests';
+  const SelectInterestsPage._();
 
   static Widget blocProvider() {
     return BlocProvider(
-      create: (context) => SelectInterestsCubit(
-        specialityRepository: serviceLocator(),
-      ),
-      child: BlocListener<SelectInterestsCubit, SelectInterestsState>(
-        listener: (context, state) async {
-          if (state.selectionConfirmed) {
-            await _navigateToRoutePage(context, state);
-            context
-                .blocProvider<SelectInterestsCubit>()
-                .toggleSelectionConfirmation();
-          }
-        },
-        child: SelectInterestsPage._(),
-      ),
+      create: (_) => SpecialityCubit(
+        streamSpecialitiesUseCase: serviceLocator(),
+      )..init(),
+      child: const SelectInterestsPage._(),
     );
   }
 
-  static Future _navigateToRoutePage(
-    BuildContext context,
-    SelectInterestsState state,
-  ) {
-    return context.navigator.pushNamed(
-      GuidePage.routeName,
-      arguments: CreateRoutePageArguments(
-        selectedSpecialityIds: state.selectedSpecialityIds,
-      ),
-    );
-  }
+  static const String routeName = 'route_guide_select_interests';
 
   @override
   Widget build(
@@ -67,12 +41,12 @@ class SelectInterestsPage extends StatelessWidget {
               (c, _) => c.l10n.selectInterestsPage.makeYourSelection,
             ),
             const SizedBox(height: 16),
-            Expanded(
+            const Expanded(
               child: SpecialitiesList(),
             ),
             const SizedBox(height: 16),
             const Divider(height: 2),
-            Container(
+            const SizedBox(
               width: double.infinity,
               child: ContinueButton(),
             ),

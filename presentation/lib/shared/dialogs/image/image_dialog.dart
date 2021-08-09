@@ -26,12 +26,12 @@ class ImageDialog extends StatelessWidget {
     return Dialog(
       elevation: 0,
       backgroundColor: Colors.transparent,
-      child: Container(
+      child: SizedBox(
         width: modalSize.width,
         height: modalSize.height,
         child: PhotoView(
           imageProvider: imageProvider,
-          backgroundDecoration: BoxDecoration(
+          backgroundDecoration: const BoxDecoration(
             color: Colors.transparent,
           ),
           initialScale: scale,

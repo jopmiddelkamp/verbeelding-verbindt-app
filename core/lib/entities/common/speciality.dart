@@ -12,7 +12,10 @@ class SpecialityEntity extends Equatable {
   final TranslatableStringEntity name;
 
   @override
-  List<Object?> get props => [id, name];
+  List<Object?> get props => [
+        id,
+        name,
+      ];
 
   SpecialityEntity copyWith({
     String? name,

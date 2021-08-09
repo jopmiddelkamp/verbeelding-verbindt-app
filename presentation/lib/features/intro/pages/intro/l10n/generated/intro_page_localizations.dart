@@ -1,3 +1,4 @@
+
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -59,18 +60,15 @@ import 'intro_page_localizations_nl.dart';
 /// be consistent with the languages listed in the IntroPageLocalizations.supportedLocales
 /// property.
 abstract class IntroPageLocalizations {
-  IntroPageLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  IntroPageLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static IntroPageLocalizations of(BuildContext context) {
-    return Localizations.of<IntroPageLocalizations>(
-        context, IntroPageLocalizations)!;
+    return Localizations.of<IntroPageLocalizations>(context, IntroPageLocalizations)!;
   }
 
-  static const LocalizationsDelegate<IntroPageLocalizations> delegate =
-      _IntroPageLocalizationsDelegate();
+  static const LocalizationsDelegate<IntroPageLocalizations> delegate = _IntroPageLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,8 +80,7 @@ abstract class IntroPageLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -91,7 +88,9 @@ abstract class IntroPageLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('nl')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('nl')
+  ];
 
   /// No description provided for @text.
   ///
@@ -106,34 +105,35 @@ abstract class IntroPageLocalizations {
   String get title;
 }
 
-class _IntroPageLocalizationsDelegate
-    extends LocalizationsDelegate<IntroPageLocalizations> {
+class _IntroPageLocalizationsDelegate extends LocalizationsDelegate<IntroPageLocalizations> {
   const _IntroPageLocalizationsDelegate();
 
   @override
   Future<IntroPageLocalizations> load(Locale locale) {
-    return SynchronousFuture<IntroPageLocalizations>(
-        _lookupIntroPageLocalizations(locale));
+    return SynchronousFuture<IntroPageLocalizations>(_lookupIntroPageLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['nl'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['nl'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_IntroPageLocalizationsDelegate old) => false;
 }
 
 IntroPageLocalizations _lookupIntroPageLocalizations(Locale locale) {
+  
+
+
 // Lookup logic when only language code is specified.
-  switch (locale.languageCode) {
-    case 'nl':
-      return IntroPageLocalizationsNl();
-  }
+switch (locale.languageCode) {
+  case 'nl': return IntroPageLocalizationsNl();
+}
+
 
   throw FlutterError(
-      'IntroPageLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'IntroPageLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.'
+  );
 }

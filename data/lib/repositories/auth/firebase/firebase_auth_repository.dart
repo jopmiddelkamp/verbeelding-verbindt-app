@@ -18,15 +18,15 @@ class FirebaseAuthRepository extends AuthRepository {
   }
 
   @override
-  UserEntity get currentUser {
-    return _firebaseAuth.currentUser!.toEntity();
+  Future<UserEntity?> get authenticatedUser async {
+    return _firebaseAuth.currentUser?.toEntity();
   }
 
   @override
-  Stream<bool> signedInStateChanged() {
+  Stream<UserEntity?> get authenticatedUserStream {
     return _firebaseAuth
         .authStateChanges()
-        .map((user) => user != null)
+        .map((user) => user?.toEntity())
         .asBroadcastStream();
   }
 }

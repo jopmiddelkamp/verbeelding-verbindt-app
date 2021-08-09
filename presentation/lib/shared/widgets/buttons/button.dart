@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../../typedefs.dart';
 import '../../dialogs/error/error_dialog.dart';
-import '../../extensions/build_context_extensions.dart';
-import 'button_cubit.dart';
 
-abstract class Button extends StatelessWidget {
+abstract class Button extends HookWidget {
   const Button({
     required this.onTap,
     required this.label,
@@ -34,14 +33,12 @@ abstract class Button extends StatelessWidget {
   @protected
   Future<void> onTapInternal(
     BuildContext context,
+    ValueNotifier<bool> isBusy,
   ) async {
     if (onTap == null) {
       return;
     }
-    final cubit = context.blocProvider<ButtonCubit>();
-    cubit.setBusy(
-      busy: true,
-    );
+    isBusy.value = true;
     try {
       await onTap!();
     } on Exception catch (e) {
@@ -55,8 +52,6 @@ abstract class Button extends StatelessWidget {
         );
       }
     }
-    cubit.setBusy(
-      busy: false,
-    );
+    isBusy.value = false;
   }
 }

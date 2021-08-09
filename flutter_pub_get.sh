@@ -1,9 +1,9 @@
 cd bootstrap
-flutter pub get
+fvm flutter pub get
 cd ../core
-flutter pub get
+fvm flutter pub get
 cd ../data
-flutter pub get
+fvm flutter pub get
 cd ../presentation
-flutter pub get
-cd ..
+fvm flutter pub get
+cd .. 

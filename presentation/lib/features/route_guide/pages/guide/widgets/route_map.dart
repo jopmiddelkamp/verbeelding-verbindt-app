@@ -1,6 +1,7 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:verbeelding_verbindt_core/entities/common/artist.dart';
 import 'package:verbeelding_verbindt_core/entities/common/location.dart';
@@ -12,9 +13,8 @@ import '../../../../../shared/extensions/location_extensions.dart';
 import '../../../../../shared/utils/image_utils.dart';
 import '../../../../../shared/utils/marker_utils.dart';
 import '../../../../../shared/widgets/loading_indicators/circle_loading_indicator.dart';
-import '../guide_cubit.dart';
 
-class RouteMap extends StatelessWidget {
+class RouteMap extends HookWidget {
   const RouteMap({
     Key? key,
     required this.width,
@@ -39,25 +39,26 @@ class RouteMap extends StatelessWidget {
       height: height,
       color: Colors.grey.shade100,
       child: FutureBuilder<Marker>(
-          future: _buildMarker(
-            context,
-            artist: currentStop.artist,
-          ),
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) {
-              return Center(
-                child: VVCircleLoadingIndicator(
-                  size: 35,
-                  text: (c, _) => c.l10n.guidePage.busyLoadingMap,
-                ),
-              );
-            }
-            final marker = snapshot.data!;
-            return _buildGoogleMap(
-              context,
-              {marker},
+        future: _buildMarker(
+          context,
+          artist: currentStop.artist,
+        ),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+              child: VVCircleLoadingIndicator(
+                size: 35,
+                text: (c, _) => c.l10n.guidePage.busyLoadingMap,
+              ),
             );
-          }),
+          }
+          final marker = snapshot.data!;
+          return _buildGoogleMap(
+            context,
+            {marker},
+          );
+        },
+      ),
     );
   }
 
@@ -73,9 +74,6 @@ class RouteMap extends StatelessWidget {
       initialCameraPosition: Package.settings.getGoogleMapsCameraPosition(
         initialMapLocation.toLatLng(),
       ),
-      onMapCreated: (controller) {
-        context.blocProvider<GuideCubit>().setMapController(controller);
-      },
       markers: markers,
     );
   }
@@ -84,7 +82,7 @@ class RouteMap extends StatelessWidget {
     BuildContext context, {
     required ArtistEntity artist,
   }) async {
-    final size = const Size(200, 200);
+    const size = Size(200, 200);
     final shadowColor = context.theme.colorScheme.primary;
     return Marker(
       markerId: MarkerId(artist.id ?? artist.profile.fullName),

@@ -15,12 +15,12 @@ class MarkerUtils {
     final radius = Radius.circular(size.width / 2);
 
     final shadowPaint = Paint()..color = shadowColor.withAlpha(100);
-    final shadowWidth = 15.0;
+    const shadowWidth = 15.0;
 
     final borderPaint = Paint()..color = Colors.white;
-    final borderWidth = 3.0;
+    const borderWidth = 3.0;
 
-    final imageOffset = shadowWidth + borderWidth;
+    const imageOffset = shadowWidth + borderWidth;
 
     canvas
       ..drawRRect(

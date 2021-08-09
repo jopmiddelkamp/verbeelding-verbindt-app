@@ -23,7 +23,7 @@ class ImageList extends StatelessWidget {
       padding: padding,
       scrollDirection: Axis.vertical,
       physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
         crossAxisSpacing: kDefaultPadding,
         mainAxisSpacing: kDefaultPadding,

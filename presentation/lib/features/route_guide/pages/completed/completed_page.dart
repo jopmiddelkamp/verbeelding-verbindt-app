@@ -1,29 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 
 import '../../../../shared/dialogs/confirm/confirm_dialog.dart';
 import '../../../../shared/extensions/build_context_extensions.dart';
-import '../../../../shared/widgets/loading_indicators/circle_loading_indicator.dart';
 import '../../../../shared/widgets/text/translatable_markdown.dart';
-import '../../../../shared/widgets/text/translatable_text.dart';
-import 'completed_cubit.dart';
-import 'completed_state.dart';
 import 'widgets/header.dart';
 
-final serviceLocator = GetIt.instance;
-
 class CompletedPage extends StatelessWidget {
-  CompletedPage._();
-
-  static Widget blocProvider() {
-    return BlocProvider(
-      create: (context) => CompletedCubit(
-        pageContentRepository: serviceLocator(),
-      ),
-      child: CompletedPage._(),
-    );
-  }
+  const CompletedPage({Key? key}) : super(key: key);
 
   static const String routeName = 'route_guide_completed';
 
@@ -44,30 +27,15 @@ class CompletedPage extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
-        body: BlocBuilder<CompletedCubit, CompletedState>(
-          builder: (context, state) {
-            return _buildBody(state);
-          },
-        ),
+        body: _buildBody(),
       ),
     );
   }
 
-  Widget _buildBody(
-    CompletedState state,
-  ) {
-    if (!state.loaded) {
-      return VVCircleLoadingIndicator();
-    }
-    final content = state.content!;
+  Widget _buildBody() {
     return Column(
       children: <Widget>[
-        Header(
-          image: content.headerImage,
-          title: TranslatedText(
-            (c, _) => c.l10n.completedPage.title,
-          ),
-        ),
+        const Header(),
         Expanded(
           child: TranslatedMarkdown(
             (c, _) => c.l10n.completedPage.text,

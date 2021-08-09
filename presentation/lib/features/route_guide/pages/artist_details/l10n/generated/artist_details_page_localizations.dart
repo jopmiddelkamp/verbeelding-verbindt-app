@@ -1,3 +1,4 @@
+
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -59,18 +60,15 @@ import 'artist_details_page_localizations_nl.dart';
 /// be consistent with the languages listed in the ArtistDetailsPageLocalizations.supportedLocales
 /// property.
 abstract class ArtistDetailsPageLocalizations {
-  ArtistDetailsPageLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  ArtistDetailsPageLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static ArtistDetailsPageLocalizations of(BuildContext context) {
-    return Localizations.of<ArtistDetailsPageLocalizations>(
-        context, ArtistDetailsPageLocalizations)!;
+    return Localizations.of<ArtistDetailsPageLocalizations>(context, ArtistDetailsPageLocalizations)!;
   }
 
-  static const LocalizationsDelegate<ArtistDetailsPageLocalizations> delegate =
-      _ArtistDetailsPageLocalizationsDelegate();
+  static const LocalizationsDelegate<ArtistDetailsPageLocalizations> delegate = _ArtistDetailsPageLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,8 +80,7 @@ abstract class ArtistDetailsPageLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -91,7 +88,9 @@ abstract class ArtistDetailsPageLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('nl')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('nl')
+  ];
 
   /// No description provided for @busyLoadingVideo.
   ///
@@ -106,35 +105,35 @@ abstract class ArtistDetailsPageLocalizations {
   String get visitWebsite;
 }
 
-class _ArtistDetailsPageLocalizationsDelegate
-    extends LocalizationsDelegate<ArtistDetailsPageLocalizations> {
+class _ArtistDetailsPageLocalizationsDelegate extends LocalizationsDelegate<ArtistDetailsPageLocalizations> {
   const _ArtistDetailsPageLocalizationsDelegate();
 
   @override
   Future<ArtistDetailsPageLocalizations> load(Locale locale) {
-    return SynchronousFuture<ArtistDetailsPageLocalizations>(
-        _lookupArtistDetailsPageLocalizations(locale));
+    return SynchronousFuture<ArtistDetailsPageLocalizations>(_lookupArtistDetailsPageLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['nl'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['nl'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_ArtistDetailsPageLocalizationsDelegate old) => false;
 }
 
-ArtistDetailsPageLocalizations _lookupArtistDetailsPageLocalizations(
-    Locale locale) {
+ArtistDetailsPageLocalizations _lookupArtistDetailsPageLocalizations(Locale locale) {
+  
+
+
 // Lookup logic when only language code is specified.
-  switch (locale.languageCode) {
-    case 'nl':
-      return ArtistDetailsPageLocalizationsNl();
-  }
+switch (locale.languageCode) {
+  case 'nl': return ArtistDetailsPageLocalizationsNl();
+}
+
 
   throw FlutterError(
-      'ArtistDetailsPageLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'ArtistDetailsPageLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.'
+  );
 }

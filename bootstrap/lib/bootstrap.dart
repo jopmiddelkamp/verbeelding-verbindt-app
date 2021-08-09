@@ -2,20 +2,18 @@ import 'dart:io';
 
 import 'package:device_info/device_info.dart';
 import 'package:flutter/foundation.dart';
-import 'package:get_it/get_it.dart';
 import 'package:package_info/package_info.dart';
+import 'package:verbeelding_verbindt_core/aliases.dart';
+import 'package:verbeelding_verbindt_core/entities/common/build_mode_enum.dart';
 import 'package:verbeelding_verbindt_core/entities/common/device_info.dart';
 import 'package:verbeelding_verbindt_core/entities/common/environment.dart';
+import 'package:verbeelding_verbindt_core/entities/common/environment_enum.dart';
 import 'package:verbeelding_verbindt_core/entities/common/package_info.dart';
-import 'package:verbeelding_verbindt_core/enums/build_mode_enum.dart';
-import 'package:verbeelding_verbindt_core/enums/environment_enum.dart';
 import 'package:verbeelding_verbindt_core/module.dart' as core;
 import 'package:verbeelding_verbindt_data/module.dart' as data;
 import 'package:verbeelding_verbindt_presentation/module.dart' as pres;
 
 import 'environment_variables.dart';
-
-final serviceLocator = GetIt.instance;
 
 class Bootstrap {
   static Future<void> boot(
@@ -35,6 +33,7 @@ class Bootstrap {
       routeXlPassword: EnvironmentVariables.routeXlPassword,
     );
     await core.Module.initialize();
+    await serviceLocator.allReady();
   }
 }
 

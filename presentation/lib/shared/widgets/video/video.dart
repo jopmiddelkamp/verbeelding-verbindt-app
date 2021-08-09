@@ -4,11 +4,11 @@ import 'package:supercharged/supercharged.dart';
 import 'package:verbeelding_verbindt_core/entities/common/video.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../blocs/video/bloc.dart';
 import '../../extensions/build_context_extensions.dart';
 import '../../widgets/loading_indicators/circle_loading_indicator.dart';
+import '../bloc/failure_state_display.dart';
 import 'video_controls.dart';
-import 'video_cubit.dart';
-import 'video_state.dart';
 
 class Video extends StatelessWidget {
   const Video._(
@@ -36,15 +36,13 @@ class Video extends StatelessWidget {
     return AspectRatio(
       aspectRatio: video.aspectRatio,
       child: BlocBuilder<VideoCubit, VideoState>(
-        buildWhen: (previous, current) {
-          return previous.loaded != current.loaded;
-        },
-        builder: (context, snapshot) {
+        buildWhen: _buildWhen,
+        builder: (context, state) {
           return AnimatedSwitcher(
             duration: 300.milliseconds,
             child: _buildInternal(
               context,
-              state: snapshot,
+              state: state,
             ),
           );
         },
@@ -52,19 +50,27 @@ class Video extends StatelessWidget {
     );
   }
 
+  bool _buildWhen(
+    VideoState previous,
+    VideoState current,
+  ) {
+    return previous.runtimeType != current.runtimeType;
+  }
+
   Widget _buildInternal(
     BuildContext context, {
     required VideoState state,
   }) {
-    if (state.loaded != true) {
-      return VVCircleLoadingIndicator(
-        // TODO: move to shared translation
-        text: (c, _) => c.l10n.artistDetailsPage.busyLoadingVideo,
-      );
-    }
-    return _buildVideo(
-      context,
-      controller: state.controller,
+    return state.map(
+      initializing: (state) => VVCircleLoadingIndicator(
+        text: (c, _) => c.l10n.artistDetailsPage
+            .busyLoadingVideo, // TODO: move to shared translation
+      ),
+      loaded: (state) => _buildVideo(
+        context,
+        controller: state.controller,
+      ),
+      failed: (_) => const FailureStateDisplay(),
     );
   }
 
@@ -78,9 +84,7 @@ class Video extends StatelessWidget {
         VideoPlayer(
           controller,
         ),
-        VideoControls(
-          controller,
-        ),
+        const VideoControls(),
       ],
     );
   }

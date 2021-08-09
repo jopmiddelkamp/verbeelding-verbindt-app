@@ -3,6 +3,6 @@ import 'repository_base.dart';
 
 abstract class AuthRepository extends RepositoryBase {
   Future<UserEntity> signInAnonymously();
-  UserEntity get currentUser;
-  Stream<bool> signedInStateChanged();
+  Future<UserEntity?> get authenticatedUser;
+  Stream<UserEntity?> get authenticatedUserStream;
 }

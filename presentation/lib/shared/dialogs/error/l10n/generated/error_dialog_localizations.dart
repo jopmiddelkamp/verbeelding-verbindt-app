@@ -1,3 +1,4 @@
+
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -59,18 +60,15 @@ import 'error_dialog_localizations_nl.dart';
 /// be consistent with the languages listed in the ErrorDialogLocalizations.supportedLocales
 /// property.
 abstract class ErrorDialogLocalizations {
-  ErrorDialogLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  ErrorDialogLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static ErrorDialogLocalizations of(BuildContext context) {
-    return Localizations.of<ErrorDialogLocalizations>(
-        context, ErrorDialogLocalizations)!;
+    return Localizations.of<ErrorDialogLocalizations>(context, ErrorDialogLocalizations)!;
   }
 
-  static const LocalizationsDelegate<ErrorDialogLocalizations> delegate =
-      _ErrorDialogLocalizationsDelegate();
+  static const LocalizationsDelegate<ErrorDialogLocalizations> delegate = _ErrorDialogLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,8 +80,7 @@ abstract class ErrorDialogLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -91,7 +88,9 @@ abstract class ErrorDialogLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('nl')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('nl')
+  ];
 
   /// No description provided for @unknownErrorTitle.
   ///
@@ -106,34 +105,35 @@ abstract class ErrorDialogLocalizations {
   String get unknownErrorMessage;
 }
 
-class _ErrorDialogLocalizationsDelegate
-    extends LocalizationsDelegate<ErrorDialogLocalizations> {
+class _ErrorDialogLocalizationsDelegate extends LocalizationsDelegate<ErrorDialogLocalizations> {
   const _ErrorDialogLocalizationsDelegate();
 
   @override
   Future<ErrorDialogLocalizations> load(Locale locale) {
-    return SynchronousFuture<ErrorDialogLocalizations>(
-        _lookupErrorDialogLocalizations(locale));
+    return SynchronousFuture<ErrorDialogLocalizations>(_lookupErrorDialogLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['nl'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['nl'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_ErrorDialogLocalizationsDelegate old) => false;
 }
 
 ErrorDialogLocalizations _lookupErrorDialogLocalizations(Locale locale) {
+  
+
+
 // Lookup logic when only language code is specified.
-  switch (locale.languageCode) {
-    case 'nl':
-      return ErrorDialogLocalizationsNl();
-  }
+switch (locale.languageCode) {
+  case 'nl': return ErrorDialogLocalizationsNl();
+}
+
 
   throw FlutterError(
-      'ErrorDialogLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'ErrorDialogLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.'
+  );
 }

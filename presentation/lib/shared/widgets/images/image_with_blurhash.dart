@@ -13,12 +13,12 @@ enum ImageType { network }
 class ImageWithBlurhash extends StatelessWidget {
   const ImageWithBlurhash(
     this.image, {
-    Key? key,
     required this.width,
     required this.height,
     this.borderRadius,
     this.openOnTap = true,
-  });
+    Key? key,
+  }) : super(key: key);
 
   final ImageEntity image;
   final double width;
@@ -87,7 +87,7 @@ class ImageWithBlurhash extends StatelessWidget {
           fit: BoxFit.cover,
         );
       },
-      errorWidget: (context, url, error) => Icon(Icons.error),
+      errorWidget: (_, __, ___) => const Icon(Icons.error),
     );
   }
 }

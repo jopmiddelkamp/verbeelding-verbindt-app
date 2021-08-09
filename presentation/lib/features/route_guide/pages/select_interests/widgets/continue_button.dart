@@ -1,34 +1,50 @@
+import 'dart:async';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../../shared/widgets/buttons/primary_button.dart';
 import '../../../../../shared/widgets/text/translatable_text.dart';
-import '../select_interests_cubit.dart';
-import '../select_interests_state.dart';
+import '../../../blocs/speciality/bloc.dart';
+import '../../guide/guide_page.dart';
 
 class ContinueButton extends StatelessWidget {
-  const ContinueButton({Key? key}) : super(key: key);
+  const ContinueButton({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(
     BuildContext context,
   ) {
-    final cubit = context.blocProvider<SelectInterestsCubit>();
-    return BlocBuilder<SelectInterestsCubit, SelectInterestsState>(
-      buildWhen: (previous, current) {
-        final previousHashCode = previous.selectedSpecialityIds.hashCode;
-        final currentHashCode = current.selectedSpecialityIds.hashCode;
-        return previousHashCode != currentHashCode;
-      },
+    return BlocBuilder<SpecialityCubit, SpecialityState>(
       builder: (context, state) {
         return PrimaryButton.blocProvider(
           label: TranslatedText(
             (c, _) => c.l10n.shared.continuee,
           ),
-          onTap: state.hasSelection ? cubit.toggleSelectionConfirmation : null,
+          onTap: state is SpecialityLoadedState && state.hasSelection
+              ? () => _onTap(
+                    context,
+                    state: state,
+                  )
+              : null,
         );
       },
+    );
+  }
+
+  static Future<void> _onTap(
+    BuildContext context, {
+    required SpecialityLoadedState state,
+  }) async {
+    await context.navigator.pushNamed(
+      GuidePage.routeName,
+      arguments: CreateRouteGuidePageArguments(
+        selectedSpecialityIds: state.selectedSpecialityIds,
+      ),
     );
   }
 }

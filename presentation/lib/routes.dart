@@ -70,7 +70,7 @@ Route<dynamic> onGenerateRoute(
     case CompletedPage.routeName:
       return buildMaterialPageRoute(
         settings: settings,
-        builder: (_) => CompletedPage.blocProvider(),
+        builder: (_) => const CompletedPage(),
         fullscreenDialog: false,
       );
     default:

@@ -6,7 +6,7 @@ class TranslatableStringEntity {
   final Map<String, String> data;
 
   String get value {
-    final defaultCountryCode = 'nl';
+    const defaultCountryCode = 'nl';
     return data[defaultCountryCode] as String;
   }
 }

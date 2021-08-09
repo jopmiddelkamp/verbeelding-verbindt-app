@@ -1,58 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
-import 'package:verbeelding_verbindt_presentation/shared/dialogs/confirm/confirm_dialog.dart';
+import 'package:verbeelding_verbindt_core/aliases.dart';
 
+import '../../../../shared/blocs/location/bloc.dart';
+import '../../../../shared/dialogs/confirm/confirm_dialog.dart';
 import '../../../../shared/extensions/build_context_extensions.dart';
+import '../../../../shared/widgets/bloc/builders/bloc_builder_2.dart';
 import '../../../../shared/widgets/loading_indicators/circle_loading_indicator.dart';
 import '../../../../shared/widgets/text/translatable_text.dart';
 import '../../../../theme.dart';
-import '../completed/completed_page.dart';
-import 'guide_cubit.dart';
-import 'guide_state.dart';
+import '../../blocs/route/bloc.dart';
 import 'widgets/route_list_item.dart';
 import 'widgets/route_map.dart';
-
-final serviceLocator = GetIt.instance;
 
 class GuidePage extends StatelessWidget {
   const GuidePage._();
 
   static Widget blocProvider(
-    GuidePageArguments arguments,
+    GuidePageArguments argument,
   ) {
     return BlocProvider(
-      create: (context) {
-        if (arguments is CreateRoutePageArguments) {
-          return GuideCubit.createRoute(
-            artistRepository: serviceLocator(),
-            permissionService: serviceLocator(),
-            locationService: serviceLocator(),
-            routeRepository: serviceLocator(),
-            routeGeneratorRepository: serviceLocator(),
-            authRepository: serviceLocator(),
-            selectedSpecialityIds: arguments.selectedSpecialityIds,
-          );
-        }
-        return GuideCubit.openRoute(
-          artistRepository: serviceLocator(),
-          permissionService: serviceLocator(),
-          locationService: serviceLocator(),
-          routeRepository: serviceLocator(),
-          routeGeneratorRepository: serviceLocator(),
-          authRepository: serviceLocator(),
+      create: (_) {
+        final cubit = RouteCubit(
+          createRouteUseCase: serviceLocator(),
+          deleteRouteUseCase: serviceLocator(),
+          getUsersRouteUseCase: serviceLocator(),
+          nextRouteStopUseCase: serviceLocator(),
         );
+        if (argument is CreateRouteGuidePageArguments) {
+          cubit.createRoute(
+            selectedSpecialityIds: argument.selectedSpecialityIds,
+          );
+        } else {
+          cubit.loadRoute();
+        }
+        return cubit;
       },
-      child: BlocListener<GuideCubit, GuideState>(
-        listener: (context, state) {
-          if (state.completed) {
-            context.navigator.pushReplacementNamed(
-              CompletedPage.routeName,
-            );
-          }
-        },
-        child: const GuidePage._(),
-      ),
+      child: const GuidePage._(),
     );
   }
 
@@ -62,7 +46,7 @@ class GuidePage extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    final cubit = context.blocProvider<GuideCubit>();
+    final cubit = context.cubit<RouteCubit>();
     return WillPopScope(
       onWillPop: () async {
         final result = await showConfirmDialog(
@@ -80,9 +64,11 @@ class GuidePage extends StatelessWidget {
             (c, _) => c.l10n.guidePage.title,
           ),
         ),
-        body: BlocBuilder<GuideCubit, GuideState>(
-          builder: (context, state) {
-            if (!state.routeLoaded) {
+        body:
+            BlocBuilder2<RouteCubit, RouteState, LocationCubit, LocationState>(
+          builder: (context, routeState, locationState) {
+            if (routeState is! LoadedRouteState ||
+                locationState is! LoadedLocationState) {
               return Center(
                 child: VVCircleLoadingIndicator(
                   text: (c, _) => c.l10n.guidePage.busySettingUpRoute,
@@ -96,22 +82,22 @@ class GuidePage extends StatelessWidget {
                     RouteMap(
                       width: constraints.maxWidth,
                       height: constraints.maxHeight / 3,
-                      stops: state.route!.stops,
-                      currentStop: state.currentStop!,
-                      initialMapLocation: state.initialMapLocation!,
+                      stops: routeState.route.stops,
+                      currentStop: routeState.route.currentStop,
+                      initialMapLocation: locationState.location,
                     ),
                     Expanded(
                       child: Container(
                         decoration: getTopShadowBoxDecoration(context),
                         child: ListView.builder(
-                          itemCount: state.route!.stops.length,
+                          itemCount: routeState.route.stops.length,
                           itemBuilder: (context, index) {
-                            final stop = state.route!.stops[index];
+                            final stop = routeState.route.stops[index];
                             return RouteListItem(
-                              count: state.route!.stops.length,
+                              count: routeState.route.stops.length,
                               index: index,
                               stop: stop,
-                              active: state.currentStop == stop,
+                              active: routeState.route.currentStop == stop,
                             );
                           },
                         ),
@@ -132,14 +118,14 @@ abstract class GuidePageArguments {
   const GuidePageArguments();
 }
 
-class CreateRoutePageArguments extends GuidePageArguments {
-  const CreateRoutePageArguments({
+class CreateRouteGuidePageArguments extends GuidePageArguments {
+  const CreateRouteGuidePageArguments({
     required this.selectedSpecialityIds,
   });
 
   final List<String> selectedSpecialityIds;
 }
 
-class OpenRoutePageArguments extends GuidePageArguments {
-  const OpenRoutePageArguments();
+class OpenRouteGuidePageArguments extends GuidePageArguments {
+  const OpenRouteGuidePageArguments();
 }

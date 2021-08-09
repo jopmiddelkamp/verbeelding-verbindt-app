@@ -232,7 +232,7 @@ BoxDecoration getTopShadowBoxDecoration(
         color: context.theme.shadowColor,
         blurRadius: 10.0, // soften the shadow
         spreadRadius: 5.0, //extend the shadow
-        offset: Offset(
+        offset: const Offset(
           15.0, // Move to right 10  horizontally
           15.0, // Move to bottom 10 Vertically
         ),

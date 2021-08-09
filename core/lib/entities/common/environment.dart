@@ -1,5 +1,5 @@
-import '../../enums/build_mode_enum.dart';
-import '../../enums/environment_enum.dart';
+import 'build_mode_enum.dart';
+import 'environment_enum.dart';
 
 class EnvironmentEntity {
   const EnvironmentEntity({

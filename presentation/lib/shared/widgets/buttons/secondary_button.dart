@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../typedefs.dart';
+import '../../blocs/button/button_cubit.dart';
 import '../../extensions/build_context_extensions.dart';
 import 'button.dart';
-import 'button_cubit.dart';
-import 'button_state.dart';
 
 class SecondaryButton extends Button {
   const SecondaryButton._({
@@ -27,9 +27,7 @@ class SecondaryButton extends Button {
     ExceptionCallback? onException,
   }) {
     return BlocProvider(
-      create: (_) {
-        return ButtonCubit();
-      },
+      create: (_) => ButtonCubit(),
       child: SecondaryButton._(
         onTap: onTap,
         label: label,
@@ -43,23 +41,17 @@ class SecondaryButton extends Button {
   Widget build(
     BuildContext context,
   ) {
-    return BlocBuilder<ButtonCubit, ButtonState>(
-      buildWhen: (previous, current) {
-        return previous.busy != current.busy;
-      },
-      builder: (context, state) {
-        if (icon == null) {
-          return OutlinedButton(
-            child: !state.busy ? label : buildSpinner(context.theme),
-            onPressed: onTap != null ? () => onTapInternal(context) : null,
-          );
-        }
-        return OutlinedButton.icon(
-          label: !state.busy ? label : buildSpinner(context.theme),
-          icon: icon!,
-          onPressed: onTap != null ? () => onTapInternal(context) : null,
-        );
-      },
+    final isBusy = useState(false);
+    if (icon == null) {
+      return OutlinedButton(
+        child: !isBusy.value ? label : buildSpinner(context.theme),
+        onPressed: onTap != null ? () => onTapInternal(context, isBusy) : null,
+      );
+    }
+    return OutlinedButton.icon(
+      label: !isBusy.value ? label : buildSpinner(context.theme),
+      icon: icon!,
+      onPressed: onTap != null ? () => onTapInternal(context, isBusy) : null,
     );
   }
 }

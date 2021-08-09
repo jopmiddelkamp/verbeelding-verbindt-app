@@ -4,7 +4,7 @@ import '../../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../../shared/widgets/text/translatable_text.dart';
 
 class _ConfirmDialog extends StatelessWidget {
-  _ConfirmDialog({
+  const _ConfirmDialog({
     this.title,
     required this.content,
   });

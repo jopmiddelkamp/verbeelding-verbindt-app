@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../blocs/video/bloc.dart';
 import '../../../extensions/build_context_extensions.dart';
-import '../video_cubit.dart';
-import '../video_state.dart';
 
 class AudioControl extends StatelessWidget {
   const AudioControl({
@@ -17,34 +16,53 @@ class AudioControl extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    final cubit = context.blocProvider<VideoCubit>();
     return BlocBuilder<VideoCubit, VideoState>(
-      buildWhen: (previous, current) {
-        return previous.volume != current.volume;
-      },
+      buildWhen: _buildWhen,
       builder: (context, state) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Container(
-              height: iconSize,
-              child: Slider(
-                value: state.volume,
-                onChanged: cubit.setVolume,
-              ),
-            ),
-            GestureDetector(
-              onTap: cubit.toggleMute,
-              child: Icon(
-                _determineVolumeIcon(state.volume),
-                color: Colors.white,
-                size: iconSize,
-              ),
-            ),
-          ],
+        return state.maybeMap(
+          loaded: (state) => _buildLoadedState(
+            context,
+            state: state,
+          ),
+          orElse: () => Container(),
         );
       },
     );
+  }
+
+  Widget _buildLoadedState(
+    BuildContext context, {
+    required VideoLoaded state,
+  }) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        SizedBox(
+          height: iconSize,
+          child: Slider(
+            value: state.volume,
+            onChanged: context.cubit<VideoCubit>().setVolume,
+          ),
+        ),
+        GestureDetector(
+          onTap: context.cubit<VideoCubit>().toggleMute,
+          child: Icon(
+            _determineVolumeIcon(state.volume),
+            color: Colors.white,
+            size: iconSize,
+          ),
+        ),
+      ],
+    );
+  }
+
+  bool _buildWhen(
+    VideoState previous,
+    VideoState current,
+  ) {
+    return previous is VideoLoaded &&
+        current is VideoLoaded &&
+        previous.volume != current.volume;
   }
 
   IconData _determineVolumeIcon(

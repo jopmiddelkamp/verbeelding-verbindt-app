@@ -1,3 +1,6 @@
+
+
+
 import 'scan_qr_page_localizations.dart';
 
 /// The translations for Dutch Flemish (`nl`).

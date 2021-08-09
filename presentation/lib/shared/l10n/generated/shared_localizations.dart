@@ -1,3 +1,4 @@
+
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -59,8 +60,7 @@ import 'shared_localizations_nl.dart';
 /// be consistent with the languages listed in the SharedLocalizations.supportedLocales
 /// property.
 abstract class SharedLocalizations {
-  SharedLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  SharedLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -68,8 +68,7 @@ abstract class SharedLocalizations {
     return Localizations.of<SharedLocalizations>(context, SharedLocalizations)!;
   }
 
-  static const LocalizationsDelegate<SharedLocalizations> delegate =
-      _SharedLocalizationsDelegate();
+  static const LocalizationsDelegate<SharedLocalizations> delegate = _SharedLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -81,8 +80,7 @@ abstract class SharedLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -90,7 +88,9 @@ abstract class SharedLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('nl')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('nl')
+  ];
 
   /// No description provided for @busyLoading.
   ///
@@ -141,34 +141,35 @@ abstract class SharedLocalizations {
   String get yes;
 }
 
-class _SharedLocalizationsDelegate
-    extends LocalizationsDelegate<SharedLocalizations> {
+class _SharedLocalizationsDelegate extends LocalizationsDelegate<SharedLocalizations> {
   const _SharedLocalizationsDelegate();
 
   @override
   Future<SharedLocalizations> load(Locale locale) {
-    return SynchronousFuture<SharedLocalizations>(
-        _lookupSharedLocalizations(locale));
+    return SynchronousFuture<SharedLocalizations>(_lookupSharedLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['nl'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['nl'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_SharedLocalizationsDelegate old) => false;
 }
 
 SharedLocalizations _lookupSharedLocalizations(Locale locale) {
+  
+
+
 // Lookup logic when only language code is specified.
-  switch (locale.languageCode) {
-    case 'nl':
-      return SharedLocalizationsNl();
-  }
+switch (locale.languageCode) {
+  case 'nl': return SharedLocalizationsNl();
+}
+
 
   throw FlutterError(
-      'SharedLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'SharedLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.'
+  );
 }

@@ -1,3 +1,4 @@
+
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -59,18 +60,15 @@ import 'completed_page_localizations_nl.dart';
 /// be consistent with the languages listed in the CompletedPageLocalizations.supportedLocales
 /// property.
 abstract class CompletedPageLocalizations {
-  CompletedPageLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  CompletedPageLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static CompletedPageLocalizations of(BuildContext context) {
-    return Localizations.of<CompletedPageLocalizations>(
-        context, CompletedPageLocalizations)!;
+    return Localizations.of<CompletedPageLocalizations>(context, CompletedPageLocalizations)!;
   }
 
-  static const LocalizationsDelegate<CompletedPageLocalizations> delegate =
-      _CompletedPageLocalizationsDelegate();
+  static const LocalizationsDelegate<CompletedPageLocalizations> delegate = _CompletedPageLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,8 +80,7 @@ abstract class CompletedPageLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -91,7 +88,9 @@ abstract class CompletedPageLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('nl')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('nl')
+  ];
 
   /// No description provided for @popConfirmMessage.
   ///
@@ -112,34 +111,35 @@ abstract class CompletedPageLocalizations {
   String get title;
 }
 
-class _CompletedPageLocalizationsDelegate
-    extends LocalizationsDelegate<CompletedPageLocalizations> {
+class _CompletedPageLocalizationsDelegate extends LocalizationsDelegate<CompletedPageLocalizations> {
   const _CompletedPageLocalizationsDelegate();
 
   @override
   Future<CompletedPageLocalizations> load(Locale locale) {
-    return SynchronousFuture<CompletedPageLocalizations>(
-        _lookupCompletedPageLocalizations(locale));
+    return SynchronousFuture<CompletedPageLocalizations>(_lookupCompletedPageLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['nl'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['nl'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_CompletedPageLocalizationsDelegate old) => false;
 }
 
 CompletedPageLocalizations _lookupCompletedPageLocalizations(Locale locale) {
+  
+
+
 // Lookup logic when only language code is specified.
-  switch (locale.languageCode) {
-    case 'nl':
-      return CompletedPageLocalizationsNl();
-  }
+switch (locale.languageCode) {
+  case 'nl': return CompletedPageLocalizationsNl();
+}
+
 
   throw FlutterError(
-      'CompletedPageLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'CompletedPageLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.'
+  );
 }

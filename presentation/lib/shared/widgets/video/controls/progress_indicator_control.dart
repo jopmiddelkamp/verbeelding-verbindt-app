@@ -5,8 +5,8 @@ import '../../../extensions/build_context_extensions.dart';
 
 class ProgressIndicatorControl extends StatelessWidget {
   const ProgressIndicatorControl({
-    Key? key,
     required this.controller,
+    Key? key,
   }) : super(key: key);
 
   final VideoPlayerController controller;

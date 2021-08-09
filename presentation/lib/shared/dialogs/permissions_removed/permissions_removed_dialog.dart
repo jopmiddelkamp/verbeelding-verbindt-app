@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import '../../extensions/build_context_extensions.dart';
 import '../../widgets/text/translatable_text.dart';
 
+// TODO: make private + other dialogs
 class PermissionsRemovedDialog extends StatelessWidget {
+  const PermissionsRemovedDialog({Key? key}) : super(key: key);
+
   @override
   Widget build(
     BuildContext context,
@@ -32,6 +35,6 @@ void showPermissionsRemovedDialog(
 ) {
   showDialog(
     context: context,
-    builder: (context) => PermissionsRemovedDialog(),
+    builder: (_) => const PermissionsRemovedDialog(),
   );
 }

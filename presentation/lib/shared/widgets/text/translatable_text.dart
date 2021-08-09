@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:verbeelding_verbindt_core/entities/common/locale.dart';
-import 'package:verbeelding_verbindt_core/services/localization_service.dart';
 
-final serviceLocator = GetIt.instance;
+import '../../blocs/localization/bloc.dart';
 
 typedef TranslatedTextCallback = String Function(
   BuildContext context,
@@ -50,28 +49,30 @@ class TranslatedText extends StatelessWidget {
     this.overflow,
     this.maxLines,
     this.debug = false,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(
     BuildContext context,
   ) {
-    return StreamBuilder<LocaleEntity>(
-      stream: serviceLocator<LocalizationService>().locale,
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
-          return Container();
-        }
-        final translation = translationCallback(
-          context,
-          snapshot.data!,
-        );
-        return Text(
-          translation,
-          textAlign: textAlign,
-          style: style,
-          overflow: overflow,
-          maxLines: maxLines,
+    return BlocBuilder<LocalizationCubit, LocalizationState>(
+      builder: (context, state) {
+        return state.maybeMap(
+          loaded: (state) {
+            final translation = translationCallback(
+              context,
+              state.locale,
+            );
+            return Text(
+              translation,
+              textAlign: textAlign,
+              style: style,
+              overflow: overflow,
+              maxLines: maxLines,
+            );
+          },
+          orElse: () => Container(),
         );
       },
     );

@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../blocs/video/bloc.dart';
 import '../../extensions/build_context_extensions.dart';
 import 'controls/audio_control.dart';
 import 'controls/play_control.dart';
 import 'controls/progress_indicator_control.dart';
-import 'video_cubit.dart';
-import 'video_state.dart';
 
-class VideoControls extends StatelessWidget {
-  const VideoControls(
-    this.controller, {
-    Key? key,
+class VideoControls extends HookWidget {
+  const VideoControls({
     this.iconSize = 36,
     this.padding = const EdgeInsets.symmetric(
       horizontal: 16.0,
       vertical: 4.0,
     ),
+    Key? key,
   }) : super(key: key);
 
-  final VideoPlayerController controller;
   final double iconSize;
   final EdgeInsets padding;
 
@@ -33,60 +31,62 @@ class VideoControls extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    double _getOffsetY(bool visible) => visible ? 0 : height * -1;
-    Offset _getOffset(bool visible) => Offset(0.0, _getOffsetY(visible));
+    return BlocBuilder<VideoCubit, VideoState>(
+      buildWhen: _buildWhen,
+      builder: (context, state) {
+        return state.maybeMap(
+          loaded: (state) => _buildLoadedState(
+            context,
+            state: state,
+          ),
+          orElse: () => Container(),
+        );
+      },
+    );
+  }
 
-    final cubit = context.blocProvider<VideoCubit>();
+  bool _buildWhen(
+    VideoState previous,
+    VideoState current,
+  ) {
+    return previous is VideoLoaded &&
+        current is VideoLoaded &&
+        previous.controlsVisible != current.controlsVisible;
+  }
+
+  Widget _buildLoadedState(
+    BuildContext context, {
+    required VideoLoaded state,
+  }) {
+    final animationController = useAnimationController(
+      duration: 100.milliseconds,
+      initialValue: state.controlsVisible ? 1 : 0,
+    );
     return GestureDetector(
-      onTap: cubit.toggleControlsVisibility,
+      onTap: context.cubit<VideoCubit>().toggleControlsVisibility,
       behavior: HitTestBehavior.translucent,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Container(
+          SizedBox(
             height: height,
             child: Stack(
               alignment: Alignment.bottomCenter,
               children: [
-                BlocBuilder<VideoCubit, VideoState>(
-                  buildWhen: (previous, current) {
-                    return previous.controlsVisible != current.controlsVisible;
-                  },
-                  builder: (context, state) {
-                    final child = _buildBar(
-                      context,
-                      cubit: cubit,
-                    );
-                    // Skip animation until first visibility change
-                    if (state.visibilityNotChanged) {
-                      return Positioned(
-                        height: height,
-                        left: 0.0,
-                        right: 0.0,
-                        bottom: _getOffsetY(state.controlsVisible),
-                        child: child,
-                      );
-                    }
-                    // Show animation
-                    return TweenAnimationBuilder<Offset>(
-                      duration: 150.milliseconds,
-                      tween: Tween<Offset>(
-                        begin: _getOffset(state.controlsNotVisible),
-                        end: _getOffset(state.controlsVisible),
-                      ),
-                      builder: (_, value, child) {
-                        return Positioned(
-                          height: height,
-                          left: 0.0,
-                          right: 0.0,
-                          bottom: value.dy,
-                          child: child!,
-                        );
-                      },
-                      child: child,
-                    );
-                  },
-                )
+                PositionedTransition(
+                  rect: RelativeRectTween(
+                    begin: RelativeRect.fromLTRB(0, 0, 0, height * -1),
+                    end: RelativeRect.fromLTRB(0, height, 0, 0),
+                  ).animate(CurvedAnimation(
+                    parent: animationController,
+                    curve: Curves.easeIn,
+                    reverseCurve: Curves.easeOut,
+                  )),
+                  child: _buildBar(
+                    context,
+                    controller: state.controller,
+                  ),
+                ),
               ],
             ),
           ),
@@ -97,7 +97,7 @@ class VideoControls extends StatelessWidget {
 
   Widget _buildBar(
     BuildContext context, {
-    required VideoCubit cubit,
+    required VideoPlayerController controller,
   }) {
     return Container(
       color: Colors.black38,

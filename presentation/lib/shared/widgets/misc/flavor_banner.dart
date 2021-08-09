@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
+import 'package:verbeelding_verbindt_core/aliases.dart';
 import 'package:verbeelding_verbindt_core/entities/common/environment.dart';
-import 'package:verbeelding_verbindt_core/enums/environment_enum.dart';
+import 'package:verbeelding_verbindt_core/entities/common/environment_enum.dart';
 import 'package:verbeelding_verbindt_core/utils/enum_utils.dart';
 
 import '../../dialogs/device_info/device_info_dialog.dart';
-
-final serviceLocator = GetIt.instance;
 
 class FlavorBanner extends StatelessWidget {
   final Widget child;
@@ -15,7 +13,8 @@ class FlavorBanner extends StatelessWidget {
   const FlavorBanner({
     required this.child,
     required this.navigatorKey,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(
@@ -42,7 +41,7 @@ class FlavorBanner extends StatelessWidget {
   }) {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
-      child: Container(
+      child: SizedBox(
         width: 50,
         height: 50,
         child: CustomPaint(

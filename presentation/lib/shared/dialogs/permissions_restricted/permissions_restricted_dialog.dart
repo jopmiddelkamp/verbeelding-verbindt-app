@@ -4,6 +4,8 @@ import '../../extensions/build_context_extensions.dart';
 import '../../widgets/text/translatable_text.dart';
 
 class PermissionsRestrictedDialog extends StatelessWidget {
+  const PermissionsRestrictedDialog({Key? key}) : super(key: key);
+
   @override
   Widget build(
     BuildContext context,
@@ -32,6 +34,6 @@ void showPermissionsRestrictedDialog(
 ) {
   showDialog(
     context: context,
-    builder: (context) => PermissionsRestrictedDialog(),
+    builder: (_) => const PermissionsRestrictedDialog(),
   );
 }

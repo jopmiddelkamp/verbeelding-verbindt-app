@@ -1,22 +1,28 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:verbeelding_verbindt_core/aliases.dart';
 import 'package:verbeelding_verbindt_core/repositories/artist_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/auth_repository.dart';
+import 'package:verbeelding_verbindt_core/repositories/intro_repository.dart';
+import 'package:verbeelding_verbindt_core/repositories/locale_repository.dart';
+import 'package:verbeelding_verbindt_core/repositories/location_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/page_content_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/route_generator_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/route_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/speciality_repository.dart';
-import 'package:verbeelding_verbindt_core/services/persistent_storage_service.dart';
 
 import 'repositories/artist/firestore/firestore_artist_repository.dart';
 import 'repositories/auth/firebase/firebase_auth_repository.dart';
+import 'repositories/intro/persistent_storage/persistent_storage_intro_repository_impl.dart.dart';
+import 'repositories/locale/persistent_storage/persistent_storage_locale_repository_impl.dart.dart';
+import 'repositories/location/geo_locator/geo_locator_location_service_impl.dart';
 import 'repositories/page_content/firestore/firestore_page_content_repository.dart';
+import 'repositories/persistent_storage/persistent_storage_repository.dart';
+import 'repositories/persistent_storage/shared_preferences/shared_preferences_persistent_repository_impl.dart';
 import 'repositories/route/persistent_storage/persistent_storage_route_repository.dart';
 import 'repositories/route_generator/route_xl/route_xl_repository.dart';
 import 'repositories/speciality/firestore/firestore_speciality_repository.dart';
-
-final serviceLocator = GetIt.instance;
 
 class Module {
   static Future<void> initialize({
@@ -25,19 +31,27 @@ class Module {
     required String routeXlPassword,
   }) async {
     await Firebase.initializeApp();
-    _initRepositories(
+    await _initRepositories(
       routeXlBaseUrl: routeXlBaseUrl,
       routeXlUsername: routeXlUsername,
       routeXlPassword: routeXlPassword,
     );
   }
 
-  static void _initRepositories({
+  static Future<void> _initRepositories({
     required String routeXlBaseUrl,
     required String routeXlUsername,
     required String routeXlPassword,
-  }) {
+  }) async {
     serviceLocator
+      ..registerSingletonAsync<LocationRepository>(
+        () async => GlLocationRepositoryImpl(),
+      )
+      ..registerSingletonAsync<PersistentStorageRepository>(
+        () async => SpPersistentStorageRepositoryImpl(
+          sharedPreferences: await SharedPreferences.getInstance(),
+        ),
+      )
       ..registerSingletonAsync<Dio>(
         () async => Dio(),
         dispose: (dio) => dio.close(),
@@ -48,10 +62,10 @@ class Module {
       )
       ..registerSingletonWithDependencies<RouteRepository>(
         () => PersistentStorageRouteRepository(
-          persistentStorageService: serviceLocator(),
+          persistentStorageRepository: serviceLocator(),
         ),
         dependsOn: [
-          PersistentStorageService,
+          PersistentStorageRepository,
         ],
         dispose: (param) => param.dispose(),
       )
@@ -75,6 +89,24 @@ class Module {
       ..registerSingletonAsync<AuthRepository>(
         () async => FirebaseAuthRepository(),
         dispose: (param) => param.dispose(),
+      )
+      ..registerSingletonWithDependencies<LocaleRepository>(
+        () => PersistentStorageLocaleRepositoryImpl(
+          persistentStorageRepository: serviceLocator(),
+        ),
+        dispose: (param) => param.dispose(),
+        dependsOn: [
+          PersistentStorageRepository,
+        ],
+      )
+      ..registerSingletonWithDependencies<IntroRepository>(
+        () => PersistentStorageIntroRepositoryImpl(
+          persistentStorageRepository: serviceLocator(),
+        ),
+        dispose: (param) => param.dispose(),
+        dependsOn: [
+          PersistentStorageRepository,
+        ],
       );
   }
 }

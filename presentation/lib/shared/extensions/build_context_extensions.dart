@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
+import '../blocs/cubit_base.dart';
 import '../l10n/l10n.dart';
 
 extension BuildContextExtensions on BuildContext {
@@ -15,7 +16,7 @@ extension BuildContextExtensions on BuildContext {
         this,
         listen: listen,
       );
-  T blocProvider<T extends BlocBase<Object?>>({
+  T cubit<T extends CubitBase<Object?>>({
     bool listen = false,
   }) =>
       BlocProvider.of<T>(this, listen: listen);

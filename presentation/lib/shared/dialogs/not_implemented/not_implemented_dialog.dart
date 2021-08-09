@@ -4,6 +4,8 @@ import '../../extensions/build_context_extensions.dart';
 import '../../widgets/text/translatable_text.dart';
 
 class NotImplementedDialog extends StatelessWidget {
+  const NotImplementedDialog({Key? key}) : super(key: key);
+
   @override
   Widget build(
     BuildContext context,
@@ -32,6 +34,6 @@ void showNotImplementedDialog(
 ) {
   showDialog(
     context: context,
-    builder: (context) => NotImplementedDialog(),
+    builder: (_) => const NotImplementedDialog(),
   );
 }

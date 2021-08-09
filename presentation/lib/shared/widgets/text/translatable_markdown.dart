@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:get_it/get_it.dart';
-import 'package:verbeelding_verbindt_core/entities/common/locale.dart';
-import 'package:verbeelding_verbindt_core/services/localization_service.dart';
 
+import '../../blocs/localization/bloc.dart';
 import '../../extensions/build_context_extensions.dart';
 import 'translatable_text.dart';
-
-final serviceLocator = GetIt.instance;
 
 class TranslatedMarkdown extends StatelessWidget {
   final TranslatedTextCallback translationCallback;
@@ -17,28 +14,29 @@ class TranslatedMarkdown extends StatelessWidget {
   const TranslatedMarkdown(
     this.translationCallback, {
     this.padding,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(
     BuildContext context,
   ) {
-    return StreamBuilder<LocaleEntity>(
-      stream: serviceLocator<LocalizationService>().locale,
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
-          return Container();
-        }
-        final translation = translationCallback(
-          context,
-          snapshot.data!,
-        );
-
-        return Markdown(
-          data: translation,
-          // Because of bug in Markdown we have to define the default  our selfs
-          padding: padding ?? const EdgeInsets.all(16.0),
-          styleSheet: _buildMarkdownStyleSheet(context.theme),
+    return BlocBuilder<LocalizationCubit, LocalizationState>(
+      builder: (context, state) {
+        return state.maybeMap(
+          loaded: (state) {
+            final translation = translationCallback(
+              context,
+              state.locale,
+            );
+            return Markdown(
+              data: translation,
+              // Because of bug in Markdown we have to define the default  our selfs
+              padding: padding ?? const EdgeInsets.all(16.0),
+              styleSheet: _buildMarkdownStyleSheet(context.theme),
+            );
+          },
+          orElse: () => Container(),
         );
       },
     );

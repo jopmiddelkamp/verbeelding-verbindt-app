@@ -4,4 +4,12 @@ extension GenericdListExtensions<T> on List<T> {
       add(value);
     }
   }
+
+  void addOrRemove(T value) {
+    if (!contains(value)) {
+      add(value);
+    } else {
+      remove(value);
+    }
+  }
 }

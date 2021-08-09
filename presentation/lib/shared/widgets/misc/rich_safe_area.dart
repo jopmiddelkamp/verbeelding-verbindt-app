@@ -9,14 +9,15 @@ class RichSafeArea extends StatelessWidget {
   const RichSafeArea({
     required this.child,
     this.color,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(
     BuildContext context,
   ) {
     return Container(
-      color: color != null ? color : context.theme.colorScheme.background,
+      color: color ?? context.theme.colorScheme.background,
       child: SafeArea(
         child: child,
       ),

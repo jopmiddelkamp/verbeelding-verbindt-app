@@ -1,40 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:verbeelding_verbindt_core/entities/common/artist.dart';
 
 import '../../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../../shared/widgets/text/translatable_text.dart';
+import '../../../blocs/route/bloc.dart';
 import '../../artist_details/artist_details_page.dart';
-import '../guide_cubit.dart';
-import '../guide_state.dart';
 
 class MoreInfoButton extends StatelessWidget {
-  const MoreInfoButton({Key? key}) : super(key: key);
+  const MoreInfoButton({
+    required this.artist,
+    Key? key,
+  }) : super(key: key);
+
+  final ArtistEntity artist;
 
   @override
   Widget build(
     BuildContext context,
   ) {
-    return BlocBuilder<GuideCubit, GuideState>(
-      buildWhen: (previous, current) {
-        return previous.currentStop != current.currentStop;
-      },
-      builder: (context, state) {
-        return TextButton(
-          child: TranslatedText(
-            (c, _) => c.l10n.guidePage.moreInfo,
-          ),
-          onPressed: state.routeLoaded
-              ? () => _onPressed(context, state.currentStop!.artist)
-              : null,
-        );
-      },
+    return TextButton(
+      child: TranslatedText(
+        (c, _) => c.l10n.guidePage.moreInfo,
+      ),
+      onPressed: () async => await _onPressed(
+        context,
+      ),
     );
   }
 
-  Future _onPressed(
+  Future<void> _onPressed(
     BuildContext context,
-    ArtistEntity artist,
   ) async {
     final result = await context.navigator.pushNamed<bool>(
       ArtistDetailsPage.routeName,
@@ -43,7 +38,7 @@ class MoreInfoButton extends StatelessWidget {
       ),
     );
     if (result == true) {
-      context.blocProvider<GuideCubit>().next();
+      context.cubit<RouteCubit>().next();
     }
   }
 }

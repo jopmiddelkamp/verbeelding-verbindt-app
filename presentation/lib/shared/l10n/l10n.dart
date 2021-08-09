@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:verbeelding_verbindt_core/enums/language_code_enum.dart';
+import 'package:verbeelding_verbindt_core/entities/common/language_code_enum.dart';
 import 'package:verbeelding_verbindt_core/utils/enum_utils.dart';
 
 import '../../features/intro/pages/intro/l10n/generated/intro_page_localizations.dart';

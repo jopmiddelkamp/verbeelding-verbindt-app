@@ -1,35 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
+import 'package:verbeelding_verbindt_core/aliases.dart';
 
 import '../../../../features/route_guide/pages/select_interests/select_interests_page.dart';
 import '../../../../shared/extensions/build_context_extensions.dart';
+import '../../../../shared/widgets/bloc/failure_state_display.dart';
+import '../../../../shared/widgets/loading_indicators/circle_loading_indicator.dart';
 import '../../../../shared/widgets/text/translatable_markdown.dart';
-import 'intro_cubit.dart';
-import 'intro_state.dart';
+import '../../blocs/intro/bloc.dart';
 import 'widgets/continue_button.dart';
 import 'widgets/header.dart';
 
-final serviceLocator = GetIt.instance;
-
 class IntroPage extends StatelessWidget {
-  IntroPage._();
+  const IntroPage._();
 
   static Widget blocProvider() {
     return BlocProvider(
-      create: (context) => IntroCubit(
-        persistentStorageService: serviceLocator(),
-        pageContentRepository: serviceLocator(),
-      ),
+      create: (_) => IntroCubit(
+        acceptIntroUseCase: serviceLocator(),
+        getIsIntroAcceptedUseCase: serviceLocator(),
+      )..init(),
       child: BlocListener<IntroCubit, IntroState>(
         listener: (context, state) async {
-          if (state.accepted == true) {
+          if (state is IntroLoaded && state.accepted) {
             await context.navigator.pushReplacementNamed(
               SelectInterestsPage.routeName,
             );
           }
         },
-        child: IntroPage._(),
+        child: const IntroPage._(),
       ),
     );
   }
@@ -43,27 +42,30 @@ class IntroPage extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<IntroCubit, IntroState>(
         builder: (context, state) {
-          return _buildBody(state);
+          return state.map(
+            initializing: (_) => const VVCircleLoadingIndicator(),
+            loaded: (_) => _buildBody(),
+            failed: (_) => const FailureStateDisplay(),
+          );
         },
       ),
     );
   }
 
-  Widget _buildBody(
-    IntroState state,
-  ) {
+  Widget _buildBody() {
     return Column(
       children: <Widget>[
-        Header(),
+        const Header(),
         Expanded(
           child: TranslatedMarkdown(
             (c, _) => c.l10n.introPage.text,
             padding: const EdgeInsets.all(16),
           ),
         ),
-        Container(
+        const SizedBox(
           width: double.infinity,
-          child: const ContinueButton(
+          child: ContinueButton(
+            // TODO: default margin define somewhere with styleing
             margin: EdgeInsets.all(16),
           ),
         ),

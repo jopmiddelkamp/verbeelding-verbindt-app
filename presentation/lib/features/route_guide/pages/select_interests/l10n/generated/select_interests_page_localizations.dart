@@ -1,3 +1,4 @@
+
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -59,18 +60,15 @@ import 'select_interests_page_localizations_nl.dart';
 /// be consistent with the languages listed in the SelectInterestsPageLocalizations.supportedLocales
 /// property.
 abstract class SelectInterestsPageLocalizations {
-  SelectInterestsPageLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  SelectInterestsPageLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static SelectInterestsPageLocalizations of(BuildContext context) {
-    return Localizations.of<SelectInterestsPageLocalizations>(
-        context, SelectInterestsPageLocalizations)!;
+    return Localizations.of<SelectInterestsPageLocalizations>(context, SelectInterestsPageLocalizations)!;
   }
 
-  static const LocalizationsDelegate<SelectInterestsPageLocalizations>
-      delegate = _SelectInterestsPageLocalizationsDelegate();
+  static const LocalizationsDelegate<SelectInterestsPageLocalizations> delegate = _SelectInterestsPageLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,8 +80,7 @@ abstract class SelectInterestsPageLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -91,7 +88,9 @@ abstract class SelectInterestsPageLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('nl')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('nl')
+  ];
 
   /// No description provided for @busyLoadingInterests.
   ///
@@ -118,35 +117,35 @@ abstract class SelectInterestsPageLocalizations {
   String get title;
 }
 
-class _SelectInterestsPageLocalizationsDelegate
-    extends LocalizationsDelegate<SelectInterestsPageLocalizations> {
+class _SelectInterestsPageLocalizationsDelegate extends LocalizationsDelegate<SelectInterestsPageLocalizations> {
   const _SelectInterestsPageLocalizationsDelegate();
 
   @override
   Future<SelectInterestsPageLocalizations> load(Locale locale) {
-    return SynchronousFuture<SelectInterestsPageLocalizations>(
-        _lookupSelectInterestsPageLocalizations(locale));
+    return SynchronousFuture<SelectInterestsPageLocalizations>(_lookupSelectInterestsPageLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['nl'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['nl'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_SelectInterestsPageLocalizationsDelegate old) => false;
 }
 
-SelectInterestsPageLocalizations _lookupSelectInterestsPageLocalizations(
-    Locale locale) {
+SelectInterestsPageLocalizations _lookupSelectInterestsPageLocalizations(Locale locale) {
+  
+
+
 // Lookup logic when only language code is specified.
-  switch (locale.languageCode) {
-    case 'nl':
-      return SelectInterestsPageLocalizationsNl();
-  }
+switch (locale.languageCode) {
+  case 'nl': return SelectInterestsPageLocalizationsNl();
+}
+
 
   throw FlutterError(
-      'SelectInterestsPageLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'SelectInterestsPageLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.'
+  );
 }

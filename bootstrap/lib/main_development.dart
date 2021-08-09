@@ -1,4 +1,4 @@
-import 'package:verbeelding_verbindt_core/enums/environment_enum.dart';
+import 'package:verbeelding_verbindt_core/entities/common/environment_enum.dart';
 
 import 'main.dart';
 

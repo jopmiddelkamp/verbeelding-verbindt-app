@@ -9,6 +9,8 @@ class RouteStopEntity {
   final ArtistEntity artist;
   final bool completed;
 
+  bool get notCompleted => !completed;
+
   RouteStopEntity copyWith({
     ArtistEntity? artist,
     bool? completed,

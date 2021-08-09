@@ -8,12 +8,6 @@ import 'route_list_indicator.dart';
 import 'scan_qr_button.dart';
 
 class RouteListItem extends StatelessWidget {
-  final int count;
-  final int index;
-  final bool active;
-  final RouteStopEntity stop;
-  final double _padding = 16;
-
   const RouteListItem({
     Key? key,
     required this.count,
@@ -22,13 +16,20 @@ class RouteListItem extends StatelessWidget {
     required this.stop,
   }) : super(key: key);
 
+  final int count;
+  final int index;
+  final bool active;
+  final RouteStopEntity stop;
+  final double _padding = 16;
+
+  bool get isFirst => index == 0;
+  bool get isLast => index == count - 1;
+  bool get isOdd => index % 2 == 1;
+
   @override
   Widget build(
     BuildContext context,
   ) {
-    final isFirst = index == 0;
-    final isLast = index == count - 1;
-    final isOdd = index % 2 == 1;
     return Container(
       padding: EdgeInsets.fromLTRB(
         _padding,
@@ -73,7 +74,11 @@ class RouteListItem extends StatelessWidget {
                     maxLines: 4,
                   ),
                 ],
-                if (active) _buildActionRow(context),
+                if (active)
+                  _buildActionRow(
+                    context,
+                    stop: stop,
+                  ),
               ],
             ),
           ),
@@ -83,13 +88,18 @@ class RouteListItem extends StatelessWidget {
   }
 
   Widget _buildActionRow(
-    BuildContext context,
-  ) {
+    BuildContext context, {
+    required RouteStopEntity stop,
+  }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        MoreInfoButton(),
-        ScanQrButton(),
+        MoreInfoButton(
+          artist: stop.artist,
+        ),
+        ScanQrButton(
+          stop: stop,
+        ),
       ],
     );
   }

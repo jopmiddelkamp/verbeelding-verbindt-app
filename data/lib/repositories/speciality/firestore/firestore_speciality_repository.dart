@@ -25,15 +25,10 @@ class FirestoreSpecialityRepository extends SpecialityRepository {
   final CollectionReference<SpecialityDataModel> _specialityCollection;
 
   @override
-  Stream<List<SpecialityEntity>> getSpecialities([
-    List<String>? ids,
-  ]) {
-    // ignore: unnecessary_cast
-    var query = _specialityCollection as Query<SpecialityDataModel>;
-    if (ids != null) {
-      query = query.where('id', whereIn: ids);
-    }
-    return query.snapshots().map<List<SpecialityEntity>>((docs) {
+  Stream<List<SpecialityEntity>> getSpecialities() {
+    return _specialityCollection
+        .snapshots()
+        .map<List<SpecialityEntity>>((docs) {
       return docs.docs
           .map<SpecialityEntity>((doc) => doc.data().toEntity())
           .toList(growable: false);

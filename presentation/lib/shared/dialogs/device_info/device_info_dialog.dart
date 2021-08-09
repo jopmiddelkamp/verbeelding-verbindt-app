@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
+import 'package:verbeelding_verbindt_core/aliases.dart';
 import 'package:verbeelding_verbindt_core/entities/common/device_info.dart';
 import 'package:verbeelding_verbindt_core/entities/common/environment.dart';
 import 'package:verbeelding_verbindt_core/entities/common/package_info.dart';
@@ -11,10 +11,8 @@ import '../../extensions/build_context_extensions.dart';
 import '../../font_weight.dart';
 import '../../widgets/text/translatable_text.dart';
 
-final serviceLocator = GetIt.instance;
-
 class DeviceInfoDialog extends StatelessWidget {
-  const DeviceInfoDialog();
+  const DeviceInfoDialog({Key? key}) : super(key: key);
 
   @override
   Widget build(
@@ -188,6 +186,6 @@ Future showDeviceInfoDialog(
 ) {
   return showDialog(
     context: context,
-    builder: (_) => DeviceInfoDialog(),
+    builder: (_) => const DeviceInfoDialog(),
   );
 }

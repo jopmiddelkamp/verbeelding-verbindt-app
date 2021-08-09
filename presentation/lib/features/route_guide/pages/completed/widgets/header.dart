@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:verbeelding_verbindt_core/entities/common/image.dart';
 
+import '../../../../../gen/assets.gen.dart';
 import '../../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../../shared/font_weight.dart';
-import '../../../../../shared/widgets/images/image_with_blurhash.dart';
+import '../../../../../shared/widgets/text/translatable_text.dart';
 
 class Header extends StatelessWidget {
-  const Header({
-    Key? key,
-    required this.image,
-    required this.title,
-  }) : super(key: key);
-
-  final ImageEntity image;
-  final Widget title;
+  const Header({Key? key}) : super(key: key);
 
   @override
   Widget build(
@@ -23,11 +16,13 @@ class Header extends StatelessWidget {
       aspectRatio: 1.75,
       child: Stack(
         children: [
-          ImageWithBlurhash(
-            image,
-            width: context.mediaQuery.size.width,
-            height: context.mediaQuery.size.height,
-            openOnTap: false,
+          Positioned.fill(
+            child: Image.asset(
+              Assets.images.introHeader.assetName,
+              bundle: Assets.images.introHeader.bundle,
+              package: Assets.images.introHeader.package,
+              fit: BoxFit.cover,
+            ),
           ),
           Positioned(
             bottom: 16,
@@ -37,7 +32,9 @@ class Header extends StatelessWidget {
                 color: Colors.white,
                 fontWeight: VVFontWeight.bold,
               ),
-              child: title,
+              child: TranslatedText(
+                (c, _) => c.l10n.completedPage.title,
+              ),
             ),
           ),
         ],

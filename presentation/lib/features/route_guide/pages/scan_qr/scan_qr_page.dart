@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:verbeelding_verbindt_presentation/shared/utils/artist_id_utils.dart';
 
 import '../../../../shared/extensions/build_context_extensions.dart';
+import '../../../../shared/widgets/bloc/failure_state_display.dart';
 import '../../../../shared/widgets/loading_indicators/circle_loading_indicator.dart';
-import 'scan_qr_cubit.dart';
-import 'scan_qr_state.dart';
-
-final serviceLocator = GetIt.instance;
+import '../../blocs/scan_qr/scan_qr_cubit.dart';
+import '../../blocs/scan_qr/scan_qr_state.dart';
 
 class ScanQrPage extends StatelessWidget {
   const ScanQrPage._();
@@ -17,12 +16,14 @@ class ScanQrPage extends StatelessWidget {
     ScanQrPageArguments arguments,
   ) {
     return BlocProvider(
-      create: (context) {
-        return ScanQrCubit(arguments);
-      },
+      create: (_) => ScanQrCubit(
+        validator: (barcode) {
+          return ArtistIdUtils.parse(barcode) != null;
+        },
+      ),
       child: BlocListener<ScanQrCubit, ScanQrState>(
         listener: (context, state) {
-          if (state.validScan) {
+          if (state is ValidScanScanQrState) {
             context.navigator.pop(true);
           }
         },
@@ -44,21 +45,32 @@ class ScanQrPage extends StatelessWidget {
         elevation: 0,
       ),
       body: BlocBuilder<ScanQrCubit, ScanQrState>(
+        buildWhen: _buildWhen,
         builder: (context, state) {
           return Stack(
             children: [
-              if (!state.loaded)
-                Positioned.fill(
-                  child: _buildLoadingOverlay(context),
-                ),
               Positioned.fill(
-                child: _buildQrView(context, state),
+                child: state.maybeMap(
+                  initializing: (_) => _buildLoadingOverlay(context),
+                  failed: (_) => const FailureStateDisplay(),
+                  orElse: () => Container(),
+                ),
+              ),
+              Positioned.fill(
+                child: _buildQrView(context),
               ),
             ],
           );
         },
       ),
     );
+  }
+
+  bool _buildWhen(
+    ScanQrState previous,
+    ScanQrState current,
+  ) {
+    return previous.runtimeType != current.runtimeType;
   }
 
   Widget _buildLoadingOverlay(
@@ -76,12 +88,11 @@ class ScanQrPage extends StatelessWidget {
 
   Widget _buildQrView(
     BuildContext context,
-    ScanQrState state,
   ) {
     return QRView(
-      key: state.qrKey,
+      key: ValueKey('$QRView'),
       onQRViewCreated: (controller) {
-        final cubit = context.blocProvider<ScanQrCubit>();
+        final cubit = context.cubit<ScanQrCubit>();
         cubit.setQrController(controller);
       },
     );

@@ -4,17 +4,17 @@ import 'dart:convert';
 import 'package:verbeelding_verbindt_core/entities/common/route.dart';
 import 'package:verbeelding_verbindt_core/entities/common/route_stop.dart';
 import 'package:verbeelding_verbindt_core/repositories/route_repository.dart';
-import 'package:verbeelding_verbindt_core/services/persistent_storage_service.dart';
 
 import '../../../extensions/route_mapper_extensions.dart';
 import '../../../models/route.dart';
+import '../../persistent_storage/persistent_storage_repository.dart';
 
 class PersistentStorageRouteRepository implements RouteRepository {
   PersistentStorageRouteRepository({
-    required PersistentStorageService persistentStorageService,
-  }) : _persistentStorageService = persistentStorageService;
+    required PersistentStorageRepository persistentStorageRepository,
+  }) : _persistentStorageRepository = persistentStorageRepository;
 
-  final PersistentStorageService _persistentStorageService;
+  final PersistentStorageRepository _persistentStorageRepository;
 
   final _routeStreamController = StreamController<RouteEntity?>.broadcast();
 
@@ -24,7 +24,7 @@ class PersistentStorageRouteRepository implements RouteRepository {
   Future<void> createRoute(
     RouteEntity data,
   ) async {
-    await _persistentStorageService.setString(
+    await _persistentStorageRepository.setString(
       _getRouteKey(data.id!),
       jsonEncode(data.toDataModel().toJson()),
     );
@@ -35,7 +35,7 @@ class PersistentStorageRouteRepository implements RouteRepository {
   Stream<RouteEntity?> getRouteStream(
     String id,
   ) async* {
-    final stringValue = _persistentStorageService.getString(
+    final stringValue = await _persistentStorageRepository.getString(
       _getRouteKey(id),
     );
     if (stringValue == null) {
@@ -88,6 +88,7 @@ class PersistentStorageRouteRepository implements RouteRepository {
     );
   }
 
+  @override
   void dispose() {
     _routeStreamController.close();
   }
@@ -96,7 +97,7 @@ class PersistentStorageRouteRepository implements RouteRepository {
   Future<bool> routeExists(
     String id,
   ) async {
-    return await _persistentStorageService.containsKey(
+    return await _persistentStorageRepository.containsKey(
       _getRouteKey(id),
     );
   }
@@ -105,7 +106,7 @@ class PersistentStorageRouteRepository implements RouteRepository {
   Future<void> delete(
     String id,
   ) async {
-    await _persistentStorageService.remove(
+    await _persistentStorageRepository.remove(
       _getRouteKey(id),
     );
   }
