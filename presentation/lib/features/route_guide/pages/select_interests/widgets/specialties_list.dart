@@ -53,7 +53,7 @@ class SpecialitiesList extends StatelessWidget {
 
   Widget _buildList(
     BuildContext context, {
-    required SpecialityLoadedState state,
+    required SpecialityLoaded state,
   }) {
     return ListView.builder(
       itemCount: state.specialities.length,
@@ -70,7 +70,7 @@ class SpecialitiesList extends StatelessWidget {
   Widget _buildListItem(
     BuildContext context, {
     required SpecialityEntity specialty,
-    required SpecialityLoadedState state,
+    required SpecialityLoaded state,
   }) {
     return VVListTile(
       title: Text(

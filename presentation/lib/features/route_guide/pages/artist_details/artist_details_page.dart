@@ -49,7 +49,7 @@ class ArtistDetailsPage extends StatelessWidget {
   }
 
   Column _buildLoadedState({
-    required ArtistDetailsLoadedState state,
+    required ArtistLoaded state,
   }) {
     return Column(
       children: [

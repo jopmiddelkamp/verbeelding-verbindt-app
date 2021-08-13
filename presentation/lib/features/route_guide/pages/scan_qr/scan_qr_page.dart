@@ -23,7 +23,7 @@ class ScanQrPage extends StatelessWidget {
       ),
       child: BlocListener<ScanQrCubit, ScanQrState>(
         listener: (context, state) {
-          if (state is ValidScanScanQrState) {
+          if (state is ScanQrValidScan) {
             context.navigator.pop(true);
           }
         },

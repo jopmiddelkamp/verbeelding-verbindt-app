@@ -25,7 +25,7 @@ class ContinueButton extends StatelessWidget {
           label: TranslatedText(
             (c, _) => c.l10n.shared.continuee,
           ),
-          onTap: state is SpecialityLoadedState && state.hasSelection
+          onTap: state is SpecialityLoaded && state.hasSelection
               ? () => _onTap(
                     context,
                     state: state,
@@ -38,7 +38,7 @@ class ContinueButton extends StatelessWidget {
 
   static Future<void> _onTap(
     BuildContext context, {
-    required SpecialityLoadedState state,
+    required SpecialityLoaded state,
   }) async {
     await context.navigator.pushNamed(
       GuidePage.routeName,

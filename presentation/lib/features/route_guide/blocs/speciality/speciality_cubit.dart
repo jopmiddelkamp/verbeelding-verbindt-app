@@ -30,10 +30,10 @@ class SpecialityCubit extends CubitBase<SpecialityState> {
   void toggle(
     SpecialityEntity speciality,
   ) {
-    if (state is! SpecialityLoadedState) {
+    if (state is! SpecialityLoaded) {
       return;
     }
-    final loadedState = state as SpecialityLoadedState;
+    final loadedState = state as SpecialityLoaded;
     final selectedSpecialities = loadedState.selectedSpecialities.toList();
     selectedSpecialities.addOrRemove(speciality);
     emit(SpecialityState.loaded(

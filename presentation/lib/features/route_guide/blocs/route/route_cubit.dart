@@ -28,9 +28,9 @@ class RouteCubit extends CubitBase<RouteState> {
 
   StreamSubscription? activeRouteStreamSub;
 
-  bool get isLoadedState => state is LoadedRouteState;
+  bool get isLoadedState => state is RouteLoaded;
   bool get isNotLoadedState => !isLoadedState;
-  LoadedRouteState get loadedState => state as LoadedRouteState;
+  RouteLoaded get loadedState => state as RouteLoaded;
 
   Future<void> loadRoute() async {
     if (activeRouteStreamSub != null) {
