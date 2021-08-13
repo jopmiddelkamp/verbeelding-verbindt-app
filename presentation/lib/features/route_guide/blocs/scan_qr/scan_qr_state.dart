@@ -8,18 +8,18 @@ part 'scan_qr_state.freezed.dart';
 
 @freezed
 class ScanQrState with _$ScanQrState {
-  const factory ScanQrState.initializing() = InitializingScanQrState;
+  const factory ScanQrState.initializing() = ScanQrInitializing;
 
   const factory ScanQrState.loaded({
     required QRViewController qrController,
-  }) = LoadedScanQrState;
+  }) = ScanQrLoaded;
 
   const factory ScanQrState.validScan({
     required String barcode,
     required QRViewController qrController,
-  }) = ValidScanScanQrState;
+  }) = ScanQrValidScan;
 
   const factory ScanQrState.failed({
     required ScanQrFailure failure,
-  }) = FailureScanQrState;
+  }) = ScanQrFailed;
 }

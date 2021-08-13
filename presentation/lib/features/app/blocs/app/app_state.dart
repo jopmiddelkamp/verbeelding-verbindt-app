@@ -13,7 +13,7 @@ class AppState with _$AppState {
   }) = AppLoaded;
   const factory AppState.failed([
     Failure? failure,
-  ]) = AppFailure;
+  ]) = AppFailed;
 }
 
 extension AppLoadedX on AppLoaded {

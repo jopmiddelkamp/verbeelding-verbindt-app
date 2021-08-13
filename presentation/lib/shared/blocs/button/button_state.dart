@@ -10,5 +10,5 @@ class ButtonState with _$ButtonState {
   const factory ButtonState.busy() = ButtonBusy;
   const factory ButtonState.failed([
     Failure? failure,
-  ]) = ButtonFailure;
+  ]) = ButtonFailed;
 }

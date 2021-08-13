@@ -12,5 +12,5 @@ class PermissionState with _$PermissionState {
   }) = PermissionLoaded;
   const factory PermissionState.failed([
     Failure? failure,
-  ]) = PermissionFailure;
+  ]) = PermissionFailed;
 }

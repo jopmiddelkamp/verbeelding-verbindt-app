@@ -5,17 +5,17 @@ part 'speciality_state.freezed.dart';
 
 @freezed
 class SpecialityState with _$SpecialityState {
-  const factory SpecialityState.initializing() = SpecialityInitializingState;
+  const factory SpecialityState.initializing() = SpecialityInitializing;
 
   const factory SpecialityState.loaded({
     required List<SpecialityEntity> specialities,
     @Default([]) List<SpecialityEntity> selectedSpecialities,
-  }) = SpecialityLoadedState;
+  }) = SpecialityLoaded;
 
-  const factory SpecialityState.failed() = SpecialityFailureState;
+  const factory SpecialityState.failed() = SpecialityFailureFailed;
 }
 
-extension SpecialityLoadedStateX on SpecialityLoadedState {
+extension SpecialityLoadedX on SpecialityLoaded {
   bool get hasSelection {
     return selectedSpecialities.isNotEmpty;
   }

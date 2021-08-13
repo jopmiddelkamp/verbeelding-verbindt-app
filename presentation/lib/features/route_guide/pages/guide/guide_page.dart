@@ -68,7 +68,7 @@ class GuidePage extends StatelessWidget {
             BlocBuilder2<RouteCubit, RouteState, LocationCubit, LocationState>(
           builder: (context, routeState, locationState) {
             if (routeState is! LoadedRouteState ||
-                locationState is! LoadedLocationState) {
+                locationState is! LocationLoaded) {
               return Center(
                 child: VVCircleLoadingIndicator(
                   text: (c, _) => c.l10n.guidePage.busySettingUpRoute,

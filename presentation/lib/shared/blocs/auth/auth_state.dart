@@ -12,7 +12,7 @@ class AuthState with _$AuthState {
   }) = AuthLoaded;
   const factory AuthState.failed([
     Failure? failure,
-  ]) = AuthFailure;
+  ]) = AuthFailed;
 }
 
 extension AuthLoadedX on AuthLoaded {

@@ -7,13 +7,13 @@ part 'route_state.freezed.dart';
 
 @freezed
 class RouteState with _$RouteState {
-  const factory RouteState.initializing() = InitializingRouteState;
+  const factory RouteState.initializing() = RouteInitializing;
 
   const factory RouteState.loaded({
     required RouteEntity route,
-  }) = LoadedRouteState;
+  }) = RouteLoaded;
 
   const factory RouteState.failed({
     required RouteFailure failure,
-  }) = FailureRouteState;
+  }) = RouteFailed;
 }

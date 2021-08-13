@@ -5,11 +5,11 @@ part 'artist_state.freezed.dart';
 
 @freezed
 class ArtistState with _$ArtistState {
-  const factory ArtistState.initializing() = ArtistDetailsInitializingState;
+  const factory ArtistState.initializing() = ArtistInitializing;
 
   const factory ArtistState.loaded({
     required ArtistEntity artist,
-  }) = ArtistDetailsLoadedState;
+  }) = ArtistLoaded;
 
-  const factory ArtistState.failed() = ArtistDetailsFailureState;
+  const factory ArtistState.failed() = ArtistFailed;
 }

@@ -11,5 +11,5 @@ class IntroState with _$IntroState {
   }) = IntroLoaded;
   const factory IntroState.failed([
     Failure? failure,
-  ]) = IntroFailure;
+  ]) = IntroFailed;
 }

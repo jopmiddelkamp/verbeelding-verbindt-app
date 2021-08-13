@@ -18,10 +18,10 @@ class VideoState with _$VideoState {
   }) = VideoLoaded;
   const factory VideoState.failed([
     Failure? failure,
-  ]) = VideoFailure;
+  ]) = VideoFailed;
 }
 
-extension LoadedVideoStateX on VideoLoaded {
+extension VideoLoadedX on VideoLoaded {
   bool get notPlaying => !playing;
   bool get controlsNotVisible => !controlsVisible;
   bool get mute => volume <= 0;
