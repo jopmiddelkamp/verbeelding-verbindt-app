@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:verbeelding_verbindt_core/aliases.dart';
 import 'package:verbeelding_verbindt_core/repositories/artist_repository.dart';
@@ -30,7 +29,6 @@ class Module {
     required String routeXlUsername,
     required String routeXlPassword,
   }) async {
-    await Firebase.initializeApp();
     await _initRepositories(
       routeXlBaseUrl: routeXlBaseUrl,
       routeXlUsername: routeXlUsername,

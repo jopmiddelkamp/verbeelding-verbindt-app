@@ -1,7 +1,6 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:verbeelding_verbindt_core/aliases.dart';
 import 'package:verbeelding_verbindt_core/entities/common/locale.dart';
@@ -20,7 +19,7 @@ import '../../intro/pages/intro/intro_page.dart';
 import '../../route_guide/pages/guide/guide_page.dart';
 import '../../route_guide/pages/select_interests/select_interests_page.dart';
 
-class App extends HookWidget {
+class App extends StatelessWidget {
   const App._({
     required this.navigatorKey,
     required this.initialLocale,
@@ -65,7 +64,6 @@ class App extends HookWidget {
   Widget build(
     BuildContext context,
   ) {
-    final botToastBuilder = BotToastInit();
     return MaterialApp(
       title: 'Verbeelding Verbindt',
       theme: buildAppTheme(context),
@@ -77,7 +75,7 @@ class App extends HookWidget {
       ),
       builder: (context, child) {
         return FlavorBanner(
-          child: botToastBuilder(context, child),
+          child: BotToastInit()(context, child),
           navigatorKey: navigatorKey,
         );
       },

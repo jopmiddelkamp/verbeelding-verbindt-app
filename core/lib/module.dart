@@ -1,7 +1,7 @@
 import 'aliases.dart';
 import 'usecases/artist/stream_artists_by_specialty_use_case.dart';
 import 'usecases/auth/get_authenticated_user_use_case.dart';
-import 'usecases/auth/sign_in_use_case.dart';
+import 'usecases/auth/sign_in_anonymously_use_case.dart';
 import 'usecases/auth/stream_authenticated_user_use_case.dart';
 import 'usecases/intro/accept_intro_use_case.dart';
 import 'usecases/intro/get_is_intro_accepted_use_case.dart';
@@ -47,8 +47,8 @@ class Module {
           authRepository: serviceLocator(),
         ),
       )
-      ..registerFactory<SignInUseCase>(
-        () => SignInUseCase(
+      ..registerFactory<SignInAnonymouslyUseCase>(
+        () => SignInAnonymouslyUseCase(
           authRepository: serviceLocator(),
         ),
       )
