@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:verbeelding_verbindt_core/entities/common/environment_enum.dart';
@@ -15,6 +16,8 @@ class Module {
     if (environment == Environment.prod) {
       debugPrint = (message, {wrapWidth}) {};
     }
-    Bloc.observer = GlobalBlocObserver();
+    if (kDebugMode) {
+      Bloc.observer = GlobalBlocObserver();
+    }
   }
 }

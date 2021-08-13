@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import '../../extensions/build_context_extensions.dart';
 import '../../widgets/text/translatable_text.dart';
 
-class PermissionsDeniedDialog extends StatelessWidget {
-  const PermissionsDeniedDialog({Key? key}) : super(key: key);
+class _PermissionsDeniedDialog extends StatelessWidget {
+  const _PermissionsDeniedDialog({Key? key}) : super(key: key);
   @override
   Widget build(
     BuildContext context,
@@ -34,6 +34,6 @@ void showPermissionsDeniedDialog(
 ) {
   showDialog(
     context: context,
-    builder: (_) => const PermissionsDeniedDialog(),
+    builder: (_) => const _PermissionsDeniedDialog(),
   );
 }

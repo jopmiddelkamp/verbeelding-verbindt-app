@@ -11,8 +11,8 @@ import '../../extensions/build_context_extensions.dart';
 import '../../font_weight.dart';
 import '../../widgets/text/translatable_text.dart';
 
-class DeviceInfoDialog extends StatelessWidget {
-  const DeviceInfoDialog({Key? key}) : super(key: key);
+class _DeviceInfoDialog extends StatelessWidget {
+  const _DeviceInfoDialog({Key? key}) : super(key: key);
 
   @override
   Widget build(
@@ -186,6 +186,6 @@ Future showDeviceInfoDialog(
 ) {
   return showDialog(
     context: context,
-    builder: (_) => const DeviceInfoDialog(),
+    builder: (_) => const _DeviceInfoDialog(),
   );
 }

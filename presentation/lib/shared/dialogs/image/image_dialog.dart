@@ -7,8 +7,8 @@ import 'package:verbeelding_verbindt_core/entities/common/size.dart';
 import '../../../theme.sizes.dart';
 import '../../extensions/build_context_extensions.dart';
 
-class ImageDialog extends StatelessWidget {
-  const ImageDialog(
+class _ImageDialog extends StatelessWidget {
+  const _ImageDialog(
     this.imageProvider, {
     Key? key,
     required this.imageSize,
@@ -72,7 +72,7 @@ void showImageDialog(
   showDialog(
     context: context,
     builder: (_) {
-      return ImageDialog(
+      return _ImageDialog(
         CachedNetworkImageProvider(
           image.url,
         ),

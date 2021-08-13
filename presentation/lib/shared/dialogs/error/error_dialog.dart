@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../extensions/build_context_extensions.dart';
 import '../../widgets/text/translatable_text.dart';
 
-class ErrorDialog extends StatelessWidget {
-  const ErrorDialog({
+class _ErrorDialog extends StatelessWidget {
+  const _ErrorDialog({
     Key? key,
     required this.title,
     required this.message,
@@ -45,7 +45,7 @@ void showErrorDialog(
 }) {
   showDialog(
     context: context,
-    builder: (context) => ErrorDialog(
+    builder: (context) => _ErrorDialog(
       title: title,
       message: message,
     ),
