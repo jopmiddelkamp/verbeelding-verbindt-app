@@ -6,6 +6,4 @@ cd ../data
 flutter pub get
 cd ../presentation
 flutter pub get
-cd ../tmp/get_it-null_safety
-flutter pub get
-cd ../..
+cd ..
