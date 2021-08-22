@@ -53,7 +53,7 @@ jobs:
         
   build_android:
     name: Build Android App
-    depends_on: analyze_test
+    depends-on: analyze_test
     
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -87,7 +87,7 @@ jobs:
         
   build_ios:
     name: Build iOS App
-    depends_on: analyze_test
+    depends-on: analyze_test
     
     # The type of runner that the job will run on
     runs-on: macos-latest
