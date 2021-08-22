@@ -53,33 +53,32 @@ jobs:
         
   build_android:
     name: Build Android App
-    needs: analyze_test
     
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      # - uses: actions/checkout@v2
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
       
-      # # Ensure correct JAVA version is installed.
-      # - uses: actions/setup-java@v1
-      #   with:
-      #     java-version: '12.x'
+      # Ensure correct JAVA version is installed.
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
       
-      # # Make sure the stable version of Flutter is available
-      # - uses: subosito/flutter-action@v1
-      #   with:
-      #     channel: 'stable'
+      # Make sure the stable version of Flutter is available
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
 
-      # # Download all Flutter packages the Flutter State Challenge App depends on
-      # - name: Download dependencies
-      #   run: .github/flutter_pub_get.sh
+      # Download all Flutter packages the Flutter State Challenge App depends on
+      - name: Download dependencies
+        run: .github/flutter_pub_get.sh
 
-      # # Generate files by running build runnder
-      # - name: Generate files
-      #   run: .github/flutter_pub_build_runner.sh
+      # Generate files by running build runnder
+      - name: Generate files
+        run: .github/flutter_pub_build_runner.sh
 
       # Build Android version of the Flutter State Management App
       - name: Run Android build
@@ -87,33 +86,32 @@ jobs:
         
   build_ios:
     name: Build iOS App
-    needs: analyze_test
     
     # The type of runner that the job will run on
     runs-on: macos-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      # - uses: actions/checkout@v2
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
       
-      # # Ensure correct JAVA version is installed.
-      # - uses: actions/setup-java@v1
-      #   with:
-      #     java-version: '12.x'
+      # Ensure correct JAVA version is installed.
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
       
-      # # Make sure the stable version of Flutter is available
-      # - uses: subosito/flutter-action@v1
-      #   with:
-      #     channel: 'stable'
+      # Make sure the stable version of Flutter is available
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
 
-      # # Download all Flutter packages the Flutter State Challenge App depends on
-      # - name: Download dependencies
-      #   run: .github/flutter_pub_get.sh
+      # Download all Flutter packages the Flutter State Challenge App depends on
+      - name: Download dependencies
+        run: .github/flutter_pub_get.sh
 
-      # # Generate files by running build runnder
-      # - name: Generate files
-      #   run: .github/flutter_pub_build_runner.sh
+      # Generate files by running build runnder
+      - name: Generate files
+        run: .github/flutter_pub_build_runner.sh
 
       # Build iOS version of the Flutter State Management App
       - name: Run iOS build

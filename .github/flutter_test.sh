@@ -1,9 +1,12 @@
 cd bootstrap
 flutter test --coverage
-cd ../core
+cd ..
+cd core
 flutter test --coverage
-cd ../data
+cd ..
+cd data
 flutter test --coverage
-cd ../presentation
+cd ..
+cd presentation
 flutter test --coverage
 cd .. 
