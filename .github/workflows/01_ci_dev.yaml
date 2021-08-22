@@ -82,7 +82,7 @@ jobs:
 
       # Build Android version of the Flutter State Management App
       - name: Run Android build
-        run: .github/flutter_build_android.sh
+        run: .github/flutter_build_android.sh -t lib/main_development.dart -f development
         
   build_ios:
     name: Build iOS App
@@ -115,4 +115,4 @@ jobs:
 
       # Build iOS version of the Flutter State Management App
       - name: Run iOS build
-        run: .github/flutter_build_ios.sh
+        run: .github/flutter_build_ios.sh -t lib/main_development.dart -f development

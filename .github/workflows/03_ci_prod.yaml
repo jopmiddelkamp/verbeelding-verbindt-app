@@ -77,7 +77,7 @@ jobs:
 
       # Build Android version of the Flutter State Management App
       - name: Run Android build
-        run: .github/flutter_build_android.sh
+        run: .github/flutter_build_android.sh -t lib/main_production.dart -f production
         
   build_ios:
     name: Build iOS App
@@ -110,37 +110,4 @@ jobs:
 
       # Build iOS version of the Flutter State Management App
       - name: Run iOS build
-        run: .github/flutter_build_ios.sh
-
-  build_web:
-    name: Build Web App
-    
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      
-      # Ensure correct JAVA version is installed.
-      - uses: actions/setup-java@v1
-        with:
-          java-version: '12.x'
-      
-      # Make sure the stable version of Flutter is available
-      - uses: subosito/flutter-action@v1
-        with:
-          channel: 'stable'
-
-      # Download all Flutter packages the Flutter State Challenge App depends on
-      - name: Download dependencies
-        run: .github/flutter_pub_get.sh
-
-      # Generate files by running build runnder
-      - name: Generate files
-        run: .github/flutter_pub_build_runner.sh
-
-      # Build Web version of the Flutter State Management App
-      - name: Run Web build
-        run: .github/flutter_build_web.sh
+        run: .github/flutter_build_ios.sh -t lib/main_production.dart -f production
