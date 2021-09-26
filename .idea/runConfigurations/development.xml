@@ -1,7 +1,10 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="development" type="FlutterRunConfigurationType" factoryName="Flutter">
+    <option name="additionalArgs" value="--dart-define ENVIRONMENT=dev --dart-define ROUTE_XL_BASE_URL=https://api.routexl.com --dart-define ROUTE_XL_USERNAME=jopmiddelkamp --dart-define ROUTE_XL_PASSWORD=3o5iFP7x014lHPn34DJK --dart-define GOOGLE_MAPS_API_KEY_ANDROID=AIzaSyC9-SE9tLA2YrSbsJP2t3hlw_vkQ0kZyLg --dart-define GOOGLE_MAPS_API_KEY_IOS=AIzaSyCsXilpLq7g_f_ypjEXjg2_zbp60YUYZLc" />
     <option name="buildFlavor" value="development" />
-    <option name="filePath" value="$PROJECT_DIR$/lib/main_development.dart" />
-    <method v="2" />
+    <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+    <method v="2">
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="Develop prebuild" run_configuration_type="ShConfigurationType" />
+    </method>
   </configuration>
 </component>

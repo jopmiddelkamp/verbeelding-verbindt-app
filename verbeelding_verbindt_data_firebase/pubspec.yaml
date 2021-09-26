@@ -1,0 +1,38 @@
+name: verbeelding_verbindt_data_firebase
+description: A new Flutter package project.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.12.0-0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dio: ^4.0.0
+  equatable: ^2.0.3
+  get_it: ^7.2.0
+  cloud_firestore: ^2.4.0
+  cloud_functions: ^3.0.0
+  firebase_auth: ^3.0.1
+  firebase_core: ^1.4.0
+  firebase_crashlytics: ^2.1.1
+  geolocator: ^7.4.0
+  json_annotation: ^4.0.1
+  permission_handler: ^8.1.4+2
+  pretty_dio_logger: ^1.2.0-beta-1
+  shared_preferences: ^2.0.6
+  verbeelding_verbindt_core:
+    path: ../verbeelding_verbindt_core
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  bloc_test: ^8.1.0
+  build_runner: ^2.1.1
+  flutter_lints: ^1.0.4
+  json_serializable: ^4.1.4
+  mocktail: ^0.1.4
+
+flutter:
+  uses-material-design: true

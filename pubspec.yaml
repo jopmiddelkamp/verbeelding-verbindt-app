@@ -1,0 +1,36 @@
+name: verbeelding_verbindt
+description: A new Flutter project.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.12.0-0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  bot_toast: ^4.0.1
+  device_info: ^2.0.2
+  equatable: ^2.0.3
+  firebase_core: ^1.4.0
+  firebase_crashlytics: ^2.1.1
+  get_it: ^7.2.0
+  package_info: ^2.0.2
+  verbeelding_verbindt_core:
+    path: verbeelding_verbindt_core
+  verbeelding_verbindt_data_firebase:
+    path: verbeelding_verbindt_data_firebase
+  verbeelding_verbindt_ui:
+    path: verbeelding_verbindt_ui
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  bloc_test: ^8.1.0
+  build_runner: ^2.1.1
+  flutter_lints: ^1.0.4
+  json_serializable: ^4.1.4
+  mocktail: ^0.1.4
+
+flutter:
+  uses-material-design: true
