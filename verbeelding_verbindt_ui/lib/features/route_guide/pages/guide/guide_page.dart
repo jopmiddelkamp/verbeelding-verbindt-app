@@ -7,7 +7,7 @@ import '../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../shared/widgets/loading_indicators/circle_loading_indicator.dart';
 import '../../../../shared/widgets/text/translatable_text.dart';
 import '../../../../theme.dart';
-import '../../blocs/route/bloc.dart';
+import 'bloc/bloc.dart';
 import 'widgets/route_list_item.dart';
 import 'widgets/route_map.dart';
 
@@ -19,7 +19,7 @@ class GuidePage extends StatelessWidget {
   ) {
     return BlocProvider(
       create: (_) {
-        final cubit = RouteCubit(
+        final cubit = GuideCubit(
           createRouteUseCase: serviceLocator(),
           deleteRouteUseCase: serviceLocator(),
           getUsersRouteUseCase: serviceLocator(),
@@ -45,7 +45,7 @@ class GuidePage extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    final cubit = context.cubit<RouteCubit>();
+    final cubit = context.cubit<GuideCubit>();
     return WillPopScope(
       onWillPop: () async {
         final result = await showConfirmDialog(
@@ -63,9 +63,9 @@ class GuidePage extends StatelessWidget {
             (c, _) => c.l10n.guidePage.title,
           ),
         ),
-        body: BlocBuilder<RouteCubit, RouteState>(
+        body: BlocBuilder<GuideCubit, GuideState>(
           builder: (context, routeState) {
-            if (routeState is! RouteLoaded) {
+            if (routeState is! GuideLoaded) {
               return Center(
                 child: VVCircleLoadingIndicator(
                   text: (c, _) => c.l10n.guidePage.busySettingUpRoute,

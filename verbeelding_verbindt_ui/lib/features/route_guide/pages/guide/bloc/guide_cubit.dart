@@ -6,12 +6,12 @@ import 'package:verbeelding_verbindt_core/use_cases/route/delete_route_use_case.
 import 'package:verbeelding_verbindt_core/use_cases/route/next_route_stop_use_case.dart';
 import 'package:verbeelding_verbindt_core/use_cases/route/stream_users_route_use_case.dart';
 
-import '../../../../shared/blocs/cubit_base.dart';
-import 'route_failure.dart';
-import 'route_state.dart';
+import '../../../../../shared/blocs/cubit_base.dart';
+import 'guide_failure.dart';
+import 'guide_state.dart';
 
-class RouteCubit extends CubitBase<RouteState> {
-  RouteCubit({
+class GuideCubit extends CubitBase<GuideState> {
+  GuideCubit({
     required CreateRouteUseCase createRouteUseCase,
     required DeleteRouteUseCase deleteRouteUseCase,
     required StreamUsersRouteUseCase getUsersRouteUseCase,
@@ -22,7 +22,7 @@ class RouteCubit extends CubitBase<RouteState> {
         _getUsersRouteUseCase = getUsersRouteUseCase,
         _nextRouteStopUseCase = nextRouteStopUseCase,
         _fetchUserLocationUseCase = fetchUserLocationUseCase,
-        super(const RouteState.initializing());
+        super(const GuideState.initializing());
 
   final CreateRouteUseCase _createRouteUseCase;
   final DeleteRouteUseCase _deleteRouteUseCase;
@@ -32,9 +32,9 @@ class RouteCubit extends CubitBase<RouteState> {
 
   StreamSubscription? activeRouteStreamSub;
 
-  bool get isLoadedState => state is RouteLoaded;
+  bool get isLoadedState => state is GuideLoaded;
   bool get isNotLoadedState => !isLoadedState;
-  RouteLoaded get loadedState => state as RouteLoaded;
+  GuideLoaded get loadedState => state as GuideLoaded;
 
   Future<void> loadRoute() async {
     if (activeRouteStreamSub != null) {
@@ -44,11 +44,11 @@ class RouteCubit extends CubitBase<RouteState> {
     final usersRouteStream = await _getUsersRouteUseCase(null);
     activeRouteStreamSub = usersRouteStream.listen((route) {
       if (route == null) {
-        emit(const RouteState.failed(
-          failure: RouteFailure.noRouteFound(),
+        emit(const GuideState.failed(
+          failure: GuideFailure.noRouteFound(),
         ));
       } else {
-        emit(RouteState.loaded(
+        emit(GuideState.loaded(
           route: route,
           initialUserLocation: userLocation,
         ));

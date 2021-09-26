@@ -3,8 +3,8 @@ import 'package:verbeelding_verbindt_core/entities/common/route_stop.dart';
 
 import '../../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../../shared/widgets/text/translatable_text.dart';
-import '../../../blocs/route/bloc.dart';
 import '../../scan_qr/scan_qr_page.dart';
+import '../bloc/bloc.dart';
 
 class ScanQrButton extends StatelessWidget {
   const ScanQrButton({
@@ -38,7 +38,7 @@ class ScanQrButton extends StatelessWidget {
       ),
     );
     if (result == true) {
-      context.cubit<RouteCubit>().next();
+      context.cubit<GuideCubit>().next();
     }
   }
 }

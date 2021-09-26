@@ -3,8 +3,8 @@ import 'package:verbeelding_verbindt_core/entities/common/artist.dart';
 
 import '../../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../../shared/widgets/text/translatable_text.dart';
-import '../../../blocs/route/bloc.dart';
 import '../../artist_details/artist_details_page.dart';
+import '../bloc/bloc.dart';
 
 class MoreInfoButton extends StatelessWidget {
   const MoreInfoButton({
@@ -38,7 +38,7 @@ class MoreInfoButton extends StatelessWidget {
       ),
     );
     if (result == true) {
-      context.cubit<RouteCubit>().next();
+      context.cubit<GuideCubit>().next();
     }
   }
 }
