@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -60,15 +59,18 @@ import 'guide_page_localizations_nl.dart';
 /// be consistent with the languages listed in the GuidePageLocalizations.supportedLocales
 /// property.
 abstract class GuidePageLocalizations {
-  GuidePageLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  GuidePageLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static GuidePageLocalizations of(BuildContext context) {
-    return Localizations.of<GuidePageLocalizations>(context, GuidePageLocalizations)!;
+    return Localizations.of<GuidePageLocalizations>(
+        context, GuidePageLocalizations)!;
   }
 
-  static const LocalizationsDelegate<GuidePageLocalizations> delegate = _GuidePageLocalizationsDelegate();
+  static const LocalizationsDelegate<GuidePageLocalizations> delegate =
+      _GuidePageLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -80,7 +82,8 @@ abstract class GuidePageLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -88,9 +91,7 @@ abstract class GuidePageLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[
-    Locale('nl')
-  ];
+  static const List<Locale> supportedLocales = <Locale>[Locale('nl')];
 
   /// No description provided for @busyLoadingMap.
   ///
@@ -129,33 +130,34 @@ abstract class GuidePageLocalizations {
   String get title;
 }
 
-class _GuidePageLocalizationsDelegate extends LocalizationsDelegate<GuidePageLocalizations> {
+class _GuidePageLocalizationsDelegate
+    extends LocalizationsDelegate<GuidePageLocalizations> {
   const _GuidePageLocalizationsDelegate();
 
   @override
   Future<GuidePageLocalizations> load(Locale locale) {
-    return SynchronousFuture<GuidePageLocalizations>(lookupGuidePageLocalizations(locale));
+    return SynchronousFuture<GuidePageLocalizations>(
+        lookupGuidePageLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['nl'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['nl'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_GuidePageLocalizationsDelegate old) => false;
 }
 
 GuidePageLocalizations lookupGuidePageLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'nl': return GuidePageLocalizationsNl();
+    case 'nl':
+      return GuidePageLocalizationsNl();
   }
 
   throw FlutterError(
-    'GuidePageLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'GuidePageLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

@@ -1,10 +1,8 @@
-
-
-
 import 'select_interests_page_localizations.dart';
 
 /// The translations for Dutch Flemish (`nl`).
-class SelectInterestsPageLocalizationsNl extends SelectInterestsPageLocalizations {
+class SelectInterestsPageLocalizationsNl
+    extends SelectInterestsPageLocalizations {
   SelectInterestsPageLocalizationsNl([String locale = 'nl']) : super(locale);
 
   @override

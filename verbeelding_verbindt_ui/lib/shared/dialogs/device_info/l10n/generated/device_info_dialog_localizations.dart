@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -60,15 +59,18 @@ import 'device_info_dialog_localizations_nl.dart';
 /// be consistent with the languages listed in the DeviceInfoDialogLocalizations.supportedLocales
 /// property.
 abstract class DeviceInfoDialogLocalizations {
-  DeviceInfoDialogLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  DeviceInfoDialogLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static DeviceInfoDialogLocalizations of(BuildContext context) {
-    return Localizations.of<DeviceInfoDialogLocalizations>(context, DeviceInfoDialogLocalizations)!;
+    return Localizations.of<DeviceInfoDialogLocalizations>(
+        context, DeviceInfoDialogLocalizations)!;
   }
 
-  static const LocalizationsDelegate<DeviceInfoDialogLocalizations> delegate = _DeviceInfoDialogLocalizationsDelegate();
+  static const LocalizationsDelegate<DeviceInfoDialogLocalizations> delegate =
+      _DeviceInfoDialogLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -80,7 +82,8 @@ abstract class DeviceInfoDialogLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -88,9 +91,7 @@ abstract class DeviceInfoDialogLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[
-    Locale('nl')
-  ];
+  static const List<Locale> supportedLocales = <Locale>[Locale('nl')];
 
   /// No description provided for @androidSdk.
   ///
@@ -177,33 +178,35 @@ abstract class DeviceInfoDialogLocalizations {
   String get version;
 }
 
-class _DeviceInfoDialogLocalizationsDelegate extends LocalizationsDelegate<DeviceInfoDialogLocalizations> {
+class _DeviceInfoDialogLocalizationsDelegate
+    extends LocalizationsDelegate<DeviceInfoDialogLocalizations> {
   const _DeviceInfoDialogLocalizationsDelegate();
 
   @override
   Future<DeviceInfoDialogLocalizations> load(Locale locale) {
-    return SynchronousFuture<DeviceInfoDialogLocalizations>(lookupDeviceInfoDialogLocalizations(locale));
+    return SynchronousFuture<DeviceInfoDialogLocalizations>(
+        lookupDeviceInfoDialogLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['nl'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['nl'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_DeviceInfoDialogLocalizationsDelegate old) => false;
 }
 
-DeviceInfoDialogLocalizations lookupDeviceInfoDialogLocalizations(Locale locale) {
-
-
+DeviceInfoDialogLocalizations lookupDeviceInfoDialogLocalizations(
+    Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'nl': return DeviceInfoDialogLocalizationsNl();
+    case 'nl':
+      return DeviceInfoDialogLocalizationsNl();
   }
 
   throw FlutterError(
-    'DeviceInfoDialogLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'DeviceInfoDialogLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

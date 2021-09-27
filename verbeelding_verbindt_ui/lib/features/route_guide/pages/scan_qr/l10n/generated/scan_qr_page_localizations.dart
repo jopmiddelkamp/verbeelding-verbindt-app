@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -60,15 +59,18 @@ import 'scan_qr_page_localizations_nl.dart';
 /// be consistent with the languages listed in the ScanQrPageLocalizations.supportedLocales
 /// property.
 abstract class ScanQrPageLocalizations {
-  ScanQrPageLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  ScanQrPageLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static ScanQrPageLocalizations of(BuildContext context) {
-    return Localizations.of<ScanQrPageLocalizations>(context, ScanQrPageLocalizations)!;
+    return Localizations.of<ScanQrPageLocalizations>(
+        context, ScanQrPageLocalizations)!;
   }
 
-  static const LocalizationsDelegate<ScanQrPageLocalizations> delegate = _ScanQrPageLocalizationsDelegate();
+  static const LocalizationsDelegate<ScanQrPageLocalizations> delegate =
+      _ScanQrPageLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -80,7 +82,8 @@ abstract class ScanQrPageLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -88,9 +91,7 @@ abstract class ScanQrPageLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[
-    Locale('nl')
-  ];
+  static const List<Locale> supportedLocales = <Locale>[Locale('nl')];
 
   /// No description provided for @busyLoadingCamera.
   ///
@@ -99,33 +100,34 @@ abstract class ScanQrPageLocalizations {
   String get busyLoadingCamera;
 }
 
-class _ScanQrPageLocalizationsDelegate extends LocalizationsDelegate<ScanQrPageLocalizations> {
+class _ScanQrPageLocalizationsDelegate
+    extends LocalizationsDelegate<ScanQrPageLocalizations> {
   const _ScanQrPageLocalizationsDelegate();
 
   @override
   Future<ScanQrPageLocalizations> load(Locale locale) {
-    return SynchronousFuture<ScanQrPageLocalizations>(lookupScanQrPageLocalizations(locale));
+    return SynchronousFuture<ScanQrPageLocalizations>(
+        lookupScanQrPageLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['nl'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['nl'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_ScanQrPageLocalizationsDelegate old) => false;
 }
 
 ScanQrPageLocalizations lookupScanQrPageLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'nl': return ScanQrPageLocalizationsNl();
+    case 'nl':
+      return ScanQrPageLocalizationsNl();
   }
 
   throw FlutterError(
-    'ScanQrPageLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'ScanQrPageLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }
