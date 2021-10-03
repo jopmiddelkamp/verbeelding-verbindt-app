@@ -4,7 +4,7 @@ cd verbeelding_verbindt_core
 fvm flutter pub get
 cd ..
 
-cd verbeelding_verbindt_data_firebase
+cd verbeelding_verbindt_data
 fvm flutter pub get
 cd ..
 

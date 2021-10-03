@@ -8,7 +8,7 @@ import 'package:verbeelding_verbindt_core/entities/common/build_mode_enum.dart';
 import 'package:verbeelding_verbindt_core/entities/common/device_info.dart';
 import 'package:verbeelding_verbindt_core/entities/common/package_info.dart';
 import 'package:verbeelding_verbindt_core/module.dart' as core;
-import 'package:verbeelding_verbindt_data_firebase/module.dart' as data;
+import 'package:verbeelding_verbindt_data/module.dart' as data;
 import 'package:verbeelding_verbindt_ui/module.dart' as pres;
 
 import 'environment_variables.dart';
