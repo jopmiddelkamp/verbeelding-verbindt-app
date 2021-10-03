@@ -14,6 +14,8 @@ class RouteEntity {
         orElse: () => stops.last,
       );
 
+  bool get completed => stops.every((stop) => stop.completed);
+
   int get currentStopIndex {
     final index = stops.indexWhere(
       (stop) => stop.notCompleted,

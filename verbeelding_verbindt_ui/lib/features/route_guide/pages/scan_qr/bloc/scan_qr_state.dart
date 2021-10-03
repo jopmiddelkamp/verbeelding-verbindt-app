@@ -19,6 +19,11 @@ class ScanQrState with _$ScanQrState {
     required QRViewController qrController,
   }) = ScanQrValidScan;
 
+  const factory ScanQrState.invalidScan({
+    required String barcode,
+    required QRViewController qrController,
+  }) = ScanQrInvalidScan;
+
   const factory ScanQrState.failed({
     required ScanQrFailure failure,
   }) = ScanQrFailed;

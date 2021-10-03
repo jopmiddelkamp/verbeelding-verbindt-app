@@ -11,7 +11,7 @@ import 'widgets/specialties_list.dart';
 class SelectInterestsPage extends StatelessWidget {
   const SelectInterestsPage._();
 
-  static Widget blocProvider() {
+  static Widget bloc() {
     return BlocProvider(
       create: (_) => SelectedInterestsCubit(
         streamSpecialitiesUseCase: serviceLocator(),

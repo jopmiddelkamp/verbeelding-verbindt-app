@@ -1,7 +1,7 @@
 import '../../repositories/route_repository.dart';
 import '../use_case_base.dart';
 
-class DeleteRouteUseCase extends UseCase<void, DeleteRouteUseCaseArguments> {
+class DeleteRouteUseCase extends UseCase<void, String> {
   DeleteRouteUseCase({
     required RouteRepository routeRepository,
   }) : _routeRepository = routeRepository;
@@ -10,17 +10,10 @@ class DeleteRouteUseCase extends UseCase<void, DeleteRouteUseCaseArguments> {
 
   @override
   Future<void> call(
-    DeleteRouteUseCaseArguments argument,
+    String argument,
   ) async {
     await _routeRepository.delete(
-      argument.routeId,
+      argument,
     );
   }
-}
-
-class DeleteRouteUseCaseArguments {
-  DeleteRouteUseCaseArguments({
-    required this.routeId,
-  });
-  final String routeId;
 }

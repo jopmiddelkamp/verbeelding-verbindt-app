@@ -13,7 +13,7 @@ import 'widgets/visit_website_button.dart';
 class ArtistDetailsPage extends StatelessWidget {
   const ArtistDetailsPage._();
 
-  static Widget blocProvider(
+  static Widget bloc(
     ArtistDetailsPageArguments arguments,
   ) {
     return BlocProvider(
@@ -57,7 +57,7 @@ class ArtistDetailsPage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Video.blocProvider(
+                Video.bloc(
                   state.artist.detailsContent.video,
                 ),
                 const SizedBox(height: kDefaultSpacing),

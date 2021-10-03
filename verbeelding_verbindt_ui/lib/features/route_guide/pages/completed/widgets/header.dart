@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:verbeelding_verbindt_ui/constants.dart';
 
-import '../../../../../gen/assets.gen.dart';
 import '../../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../../shared/font_weight.dart';
 import '../../../../../shared/widgets/text/translatable_text.dart';
@@ -18,9 +18,8 @@ class Header extends StatelessWidget {
         children: [
           Positioned.fill(
             child: Image.asset(
-              Assets.images.introHeader.assetName,
-              bundle: Assets.images.introHeader.bundle,
-              package: Assets.images.introHeader.package,
+              Package.assets.unknownArtist,
+              package: Package.name,
               fit: BoxFit.cover,
             ),
           ),

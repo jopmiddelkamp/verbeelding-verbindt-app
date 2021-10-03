@@ -14,6 +14,8 @@ class SelectedInterestsCubit extends CubitBase<SelectedInterestsState> {
 
   final StreamSpecialitiesUseCase _streamSpecialitiesUseCase;
 
+  SelectedInterestsLoaded get loadedState => state as SelectedInterestsLoaded;
+
   Future<void> init() async {
     final specialtiesStream = await _streamSpecialitiesUseCase(null);
     specialtiesStream.takeUntil(close$).listen(_loadSpecialities);
@@ -33,12 +35,20 @@ class SelectedInterestsCubit extends CubitBase<SelectedInterestsState> {
     if (state is! SelectedInterestsLoaded) {
       return;
     }
-    final loadedState = state as SelectedInterestsLoaded;
     final selectedSpecialities = loadedState.selectedSpecialities.toList();
     selectedSpecialities.addOrRemove(speciality);
     emit(SelectedInterestsState.loaded(
       specialities: loadedState.specialities,
       selectedSpecialities: selectedSpecialities,
+    ));
+  }
+
+  void reset() {
+    if (state is! SelectedInterestsLoaded) {
+      return;
+    }
+    emit(SelectedInterestsState.loaded(
+      specialities: loadedState.specialities,
     ));
   }
 }

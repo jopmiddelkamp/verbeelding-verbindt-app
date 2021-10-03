@@ -10,6 +10,10 @@ abstract class RouteRepository extends RepositoryBase {
     String id,
   );
 
+  Future<RouteEntity?> getRoute(
+    String id,
+  );
+
   Future<bool> routeExists(
     String id,
   );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:verbeelding_verbindt_ui/shared/utils/artist_id_utils.dart';
+import 'package:verbeelding_verbindt_ui/shared/validators/qr_barcode_validator.dart';
 
 import '../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../shared/widgets/bloc/failure_state_display.dart';
@@ -11,19 +11,27 @@ import 'bloc/bloc.dart';
 class ScanQrPage extends StatelessWidget {
   const ScanQrPage._();
 
-  static Widget blocProvider(
+  static Widget bloc(
     ScanQrPageArguments arguments,
   ) {
     return BlocProvider(
       create: (_) => ScanQrCubit(
-        validator: (barcode) {
-          return ArtistIdUtils.parse(barcode) != null;
-        },
+        qrCodeValidator: QrCodeValidator(
+          expected: arguments.currentArtistId,
+        ),
       ),
       child: BlocListener<ScanQrCubit, ScanQrState>(
         listener: (context, state) {
           if (state is ScanQrValidScan) {
             context.navigator.pop(true);
+          } else if (state is ScanQrInvalidScan) {
+            context.scaffoldMessenger.showSnackBar(
+              const SnackBar(
+                content: Text(
+                  'U heeft een ongeldige QR code gescand. Probeer het a.u.b. opnieuw.',
+                ),
+              ),
+            );
           }
         },
         child: const ScanQrPage._(),
@@ -89,7 +97,7 @@ class ScanQrPage extends StatelessWidget {
     BuildContext context,
   ) {
     return QRView(
-      key: ValueKey('$QRView'),
+      key: GlobalKey(debugLabel: '$ScanQrPage$QRView'),
       onQRViewCreated: (controller) {
         final cubit = context.cubit<ScanQrCubit>();
         cubit.setQrController(controller);

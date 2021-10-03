@@ -42,6 +42,14 @@ class FirestoreRouteRepository extends RouteRepository {
   }
 
   @override
+  Future<RouteEntity?> getRoute(
+    String id,
+  ) async {
+    final docSnap = await _routeCollection.doc(id).get();
+    return docSnap.data()?.toEntity();
+  }
+
+  @override
   Future<void> completeRouteStop({
     required String routeId,
     required int stopIndex,

@@ -48,10 +48,16 @@ class GuideCubit extends CubitBase<GuideState> {
           failure: GuideFailure.noRouteFound(),
         ));
       } else {
-        emit(GuideState.loaded(
-          route: route,
-          initialUserLocation: userLocation,
-        ));
+        if (route.completed) {
+          emit(GuideState.completed(
+            route: route,
+          ));
+        } else {
+          emit(GuideState.loaded(
+            route: route,
+            initialUserLocation: userLocation,
+          ));
+        }
       }
     });
   }
@@ -79,9 +85,7 @@ class GuideCubit extends CubitBase<GuideState> {
   Future<void> delete() async {
     if (isNotLoadedState) return;
     await _deleteRouteUseCase(
-      DeleteRouteUseCaseArguments(
-        routeId: loadedState.route.id!,
-      ),
+      loadedState.route.id!,
     );
   }
 

@@ -2,18 +2,17 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:verbeelding_verbindt_ui/shared/blocs/cubit_base.dart';
+import 'package:verbeelding_verbindt_ui/shared/validators/qr_barcode_validator.dart';
 
-import 'scan_qr_failure.dart';
 import 'scan_qr_state.dart';
-
-typedef BarcodeValidator = bool Function(String barcode);
 
 class ScanQrCubit extends CubitBase<ScanQrState> {
   ScanQrCubit({
-    this.validator,
-  }) : super(const ScanQrState.initializing());
+    required QrCodeValidator qrCodeValidator,
+  })  : _qrCodeValidator = qrCodeValidator,
+        super(const ScanQrState.initializing());
 
-  final BarcodeValidator? validator;
+  final QrCodeValidator _qrCodeValidator;
 
   void setQrController(
     QRViewController qrController,
@@ -25,16 +24,15 @@ class ScanQrCubit extends CubitBase<ScanQrState> {
         .throttleTime(250.milliseconds)
         .takeUntil(close$)
         .listen((barcode) {
-      if (validator != null && validator!(barcode.code)) {
+      if (_qrCodeValidator(barcode.code)) {
         emit(ScanQrState.validScan(
           barcode: barcode.code,
           qrController: qrController,
         ));
       } else {
-        emit(ScanQrState.failed(
-          failure: ScanQrFailure.invalidScan(
-            qrController: qrController,
-          ),
+        emit(ScanQrState.invalidScan(
+          barcode: barcode.code,
+          qrController: qrController,
         ));
       }
     });

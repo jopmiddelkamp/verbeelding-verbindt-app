@@ -5,6 +5,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:verbeelding_verbindt_core/aliases.dart';
 import 'package:verbeelding_verbindt_core/entities/common/locale.dart';
 import 'package:verbeelding_verbindt_core/utils/enum_utils.dart';
+import 'package:verbeelding_verbindt_ui/features/route_guide/pages/completed/completed_page.dart';
+import 'package:verbeelding_verbindt_ui/shared/page_routes/instant_material_page_route.dart';
 
 import '../../../routes.dart';
 import '../../../shared/barrels/localizations.dart';
@@ -24,14 +26,14 @@ class App extends StatelessWidget {
     required this.initialLocale,
   });
 
-  static Widget blocProvider({
+  static Widget bloc({
     required LocaleEntity initialLocale,
   }) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (_) => AppCubit(
-            getHasUsersRouteUseCase: serviceLocator(),
+            getUsersRouteUseCase: serviceLocator(),
             getIsIntroAcceptedUseCase: serviceLocator(),
             getAuthenticatedUserUseCase: serviceLocator(),
           )..init(),
@@ -66,6 +68,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Verbeelding Verbindt',
       theme: buildAppTheme(context),
+      // Wrapped around home so there is a navigator present
       home: BlocListener<AppCubit, AppState>(
         listener: _initialNavigationListener,
         child: const Center(
@@ -113,15 +116,15 @@ class App extends StatelessWidget {
     );
   }
 
-  void _initialNavigationListener(
+  Future<void> _initialNavigationListener(
     BuildContext context,
     AppState state,
-  ) {
+  ) async {
     if (state is! AppLoaded) {
       return;
     }
     if (state.hasNotAcceptedIntro) {
-      context.navigator.pushReplacementNamed(
+      await context.navigator.pushReplacementNamed(
         IntroPage.routeName,
       );
       return;
@@ -132,7 +135,21 @@ class App extends StatelessWidget {
       );
       return;
     }
-    context.navigator.pushNamed(
+    context.navigator.pushReplacement(
+      InstantMaterialPageRoute(
+        builder: (context) {
+          return SelectInterestsPage.bloc();
+        },
+      ),
+    );
+    if (state.hasCompletedRoute) {
+      await context.navigator.pushNamed(
+        CompletedPage.routeName,
+        arguments: state.route!.id!,
+      );
+      return;
+    }
+    await context.navigator.pushNamed(
       GuidePage.routeName,
       arguments: const OpenRouteGuidePageArguments(),
     );

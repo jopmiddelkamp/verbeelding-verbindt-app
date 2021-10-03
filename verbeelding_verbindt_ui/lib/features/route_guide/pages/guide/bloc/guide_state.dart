@@ -15,6 +15,10 @@ class GuideState with _$GuideState {
     required LocationEntity initialUserLocation,
   }) = GuideLoaded;
 
+  const factory GuideState.completed({
+    required RouteEntity route,
+  }) = GuideCompleted;
+
   const factory GuideState.failed({
     required GuideFailure failure,
   }) = GuideFailed;

@@ -19,58 +19,68 @@ Route<dynamic> onGenerateRoute(
     case IntroPage.routeName:
       return buildMaterialPageRoute(
         settings: settings,
-        builder: (_) => IntroPage.blocProvider(),
+        builder: (_) => IntroPage.bloc(),
         fullscreenDialog: false,
       );
     case SelectInterestsPage.routeName:
       return buildMaterialPageRoute(
         settings: settings,
-        builder: (_) => SelectInterestsPage.blocProvider(),
+        builder: (_) => SelectInterestsPage.bloc(),
         fullscreenDialog: false,
       );
     case GuidePage.routeName:
-      if (arguments is GuidePageArguments) {
-        return buildMaterialPageRoute(
-          settings: settings,
-          builder: (_) => GuidePage.blocProvider(arguments),
-          fullscreenDialog: true,
+      if (arguments is! GuidePageArguments) {
+        throw _throwInvalidArgumentException(
+          GuidePage.routeName,
+          settings,
+          GuidePageArguments,
         );
       }
-      throw _thowInvalidArgumentException(
-        GuidePage.routeName,
-        settings,
-        GuidePageArguments,
-      );
-    case ScanQrPage.routeName:
-      if (arguments is ScanQrPageArguments) {
-        return buildMaterialPageRoute<bool>(
-          settings: settings,
-          builder: (_) => ScanQrPage.blocProvider(arguments),
-          fullscreenDialog: false,
-        );
-      }
-      throw _thowInvalidArgumentException(
-        ScanQrPage.routeName,
-        settings,
-        ScanQrPageArguments,
-      );
-    case ArtistDetailsPage.routeName:
-      if (arguments is ArtistDetailsPageArguments) {
-        return buildMaterialPageRoute<bool>(
-          settings: settings,
-          builder: (_) => ArtistDetailsPage.blocProvider(arguments),
-          fullscreenDialog: false,
-        );
-      }
-      throw _thowInvalidArgumentException(
-        ArtistDetailsPage.routeName,
-        settings,
-        ArtistDetailsPageArguments,
-      );
-    case CompletedPage.routeName:
       return buildMaterialPageRoute(
         settings: settings,
-        builder: (_) => const CompletedPage(),
+        builder: (_) => GuidePage.bloc(arguments),
+        fullscreenDialog: true,
+      );
+    case ScanQrPage.routeName:
+      if (arguments is! ScanQrPageArguments) {
+        throw _throwInvalidArgumentException(
+          ScanQrPage.routeName,
+          settings,
+          ScanQrPageArguments,
+        );
+      }
+      return buildMaterialPageRoute<bool>(
+        settings: settings,
+        builder: (_) => ScanQrPage.bloc(arguments),
+        fullscreenDialog: false,
+      );
+    case ArtistDetailsPage.routeName:
+      if (arguments is! ArtistDetailsPageArguments) {
+        throw _throwInvalidArgumentException(
+          ArtistDetailsPage.routeName,
+          settings,
+          ArtistDetailsPageArguments,
+        );
+      }
+      return buildMaterialPageRoute<bool>(
+        settings: settings,
+        builder: (_) => ArtistDetailsPage.bloc(arguments),
+        fullscreenDialog: false,
+      );
+
+    case CompletedPage.routeName:
+      if (arguments is! String) {
+        throw _throwInvalidArgumentException(
+          CompletedPage.routeName,
+          settings,
+          String,
+        );
+      }
+      return buildMaterialPageRoute(
+        settings: settings,
+        builder: (_) => CompletedPage.bloc(
+          routeId: arguments,
+        ),
         fullscreenDialog: false,
       );
     default:
@@ -78,7 +88,7 @@ Route<dynamic> onGenerateRoute(
   }
 }
 
-Exception _thowInvalidArgumentException(
+Exception _throwInvalidArgumentException(
   String routeName,
   RouteSettings settings,
   Type expectedType,

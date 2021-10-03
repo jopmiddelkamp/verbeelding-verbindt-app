@@ -14,6 +14,7 @@ import 'use_cases/permission/request_permission_use_case.dart';
 import 'use_cases/route/create_route_use_case.dart';
 import 'use_cases/route/delete_route_use_case.dart';
 import 'use_cases/route/get_has_users_route_use_case.dart';
+import 'use_cases/route/get_users_route_use_case.dart';
 import 'use_cases/route/next_route_stop_use_case.dart';
 import 'use_cases/route/stream_users_route_use_case.dart';
 import 'use_cases/specialty/stream_specialties_use_case.dart';
@@ -143,6 +144,12 @@ class Module {
       )
       ..registerFactory<StreamUsersRouteUseCase>(
         () => StreamUsersRouteUseCase(
+          authRepository: serviceLocator(),
+          routeRepository: serviceLocator(),
+        ),
+      )
+      ..registerFactory<GetUsersRouteUseCase>(
+        () => GetUsersRouteUseCase(
           authRepository: serviceLocator(),
           routeRepository: serviceLocator(),
         ),

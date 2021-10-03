@@ -4,6 +4,8 @@ import 'dart:ui' as ui;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../constants.dart';
+
 class ImageUtils {
   static Future<ui.Image> getUiImageFromUrl(
     String url, {
@@ -26,6 +28,7 @@ class ImageUtils {
   ) async {
     var image = Image.asset(
       path,
+      package: Package.name,
     );
     return await _getUiImageFromImage(image);
   }

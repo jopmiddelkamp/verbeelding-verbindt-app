@@ -40,11 +40,13 @@ class ContinueButton extends StatelessWidget {
     BuildContext context, {
     required SelectedInterestsLoaded state,
   }) async {
+    context.cubit<SelectedInterestsCubit>().reset();
     await context.navigator.pushNamed(
       GuidePage.routeName,
       arguments: CreateRouteGuidePageArguments(
-          selectedSpecialityIds:
-              state.selectedSpecialities.map((s) => s.id!).toList()),
+        selectedSpecialityIds:
+            state.selectedSpecialities.map((s) => s.id!).toList(),
+      ),
     );
   }
 }

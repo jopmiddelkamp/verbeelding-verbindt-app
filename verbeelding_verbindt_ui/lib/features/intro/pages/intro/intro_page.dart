@@ -14,7 +14,7 @@ import 'widgets/header.dart';
 class IntroPage extends StatelessWidget {
   const IntroPage._();
 
-  static Widget blocProvider() {
+  static Widget bloc() {
     return BlocProvider(
       create: (_) => IntroCubit(
         acceptIntroUseCase: serviceLocator(),
@@ -65,7 +65,7 @@ class IntroPage extends StatelessWidget {
         const SizedBox(
           width: double.infinity,
           child: ContinueButton(
-            // TODO: default margin define somewhere with styleing
+            // TODO: default margin define somewhere with styling
             margin: EdgeInsets.all(16),
           ),
         ),

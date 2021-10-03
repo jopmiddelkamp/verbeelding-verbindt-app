@@ -16,7 +16,7 @@ class Video extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  static Widget blocProvider(
+  static Widget bloc(
     VideoEntity video,
   ) {
     return BlocProvider(

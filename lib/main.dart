@@ -23,7 +23,7 @@ Future<void> main() async {
       // Remove when ever implementing a login page
       await serviceLocator<SignInAnonymouslyUseCase>().call(null);
       runApp(
-        App.blocProvider(
+        App.bloc(
           initialLocale: initialLocale,
         ),
       );

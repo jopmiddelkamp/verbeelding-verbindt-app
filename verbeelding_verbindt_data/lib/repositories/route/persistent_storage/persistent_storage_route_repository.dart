@@ -50,6 +50,20 @@ class PersistentStorageRouteRepository implements RouteRepository {
   }
 
   @override
+  Future<RouteEntity?> getRoute(
+    String id,
+  ) async {
+    final stringValue = await _persistentStorageRepository.getString(
+      _getRouteKey(id),
+    );
+    if (stringValue == null) {
+      return null;
+    }
+    final value = RouteDataModel.fromJson(jsonDecode(stringValue)).toEntity();
+    return value;
+  }
+
+  @override
   Future<void> completeRouteStop({
     required String routeId,
     required int stopIndex,

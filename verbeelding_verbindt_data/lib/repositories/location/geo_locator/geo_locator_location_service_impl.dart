@@ -19,11 +19,11 @@ class GlLocationRepositoryImpl extends RepositoryBase
 
   @override
   Future<LocationEntity?> getLastKnownLocation() async {
-    final lastPostion = await gl.Geolocator.getLastKnownPosition();
-    if (lastPostion == null) {
+    final lastPosition = await gl.Geolocator.getLastKnownPosition();
+    if (lastPosition == null) {
       return await getCurrentLocation();
     }
-    return lastPostion.toLocationModel();
+    return lastPosition.toLocationModel();
   }
 
   Map<LocationAccuracy, gl.LocationAccuracy> accuracyMap = {
