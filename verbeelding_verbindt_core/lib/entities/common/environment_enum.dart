@@ -1,11 +1,11 @@
 enum Environment {
-  dev,
-  stag,
-  prod,
+  development,
+  staging,
+  production,
 }
 
 extension EnvironmentX on Environment {
-  bool get isDevelopment => this == Environment.dev;
-  bool get isStaging => this == Environment.stag;
-  bool get isProduction => this == Environment.prod;
+  bool get isDevelopment => this == Environment.development;
+  bool get isStaging => this == Environment.staging;
+  bool get isProduction => this == Environment.production;
 }

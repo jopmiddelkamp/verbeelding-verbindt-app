@@ -65,7 +65,7 @@ class FlavorBanner extends StatelessWidget {
     Environment env,
   ) {
     switch (env) {
-      case Environment.dev:
+      case Environment.development:
         return Colors.lightBlue;
       default:
         return Colors.orange;
