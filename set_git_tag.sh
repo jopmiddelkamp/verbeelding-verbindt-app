@@ -1,0 +1,5 @@
+echo "BITRISE_GIT_TAG: $BITRISE_GIT_TAG"
+SPLITTED=(${BITRISE_GIT_TAG//_/ })
+GIT_TAG=${SPLITTED[0]}
+echo "GIT_TAG: $GIT_TAG"
+envman add --key GIT_TAG --value $GIT_TAG
