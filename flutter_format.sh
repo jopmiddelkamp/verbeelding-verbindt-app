@@ -1,5 +1,5 @@
 
-flutter format .
-flutter format core
-flutter format data
-flutter format presentation
+fvm flutter format .
+fvm flutter format core
+fvm flutter format data
+fvm flutter format presentation

@@ -1,6 +1,6 @@
 # Not in the flutter gen folder as of a bug not being able to find the files when running app
 
-flutter gen-l10n \
+fvm flutter gen-l10n \
     --arb-dir lib/shared/l10n \
     --template-arb-file nl.arb \
     --output-dir=lib/shared/l10n/generated \
@@ -9,7 +9,7 @@ flutter gen-l10n \
     --no-synthetic-package \
     --verbose
 
-flutter gen-l10n \
+fvm flutter gen-l10n \
     --arb-dir lib/features/intro/pages/intro/l10n \
     --template-arb-file nl.arb \
     --output-dir=lib/features/intro/pages/intro/l10n/generated \
@@ -18,7 +18,7 @@ flutter gen-l10n \
     --no-synthetic-package \
     --verbose
 
-flutter gen-l10n \
+fvm flutter gen-l10n \
     --arb-dir lib/features/route_guide/pages/artist_details/l10n \
     --template-arb-file nl.arb \
     --output-dir=lib/features/route_guide/pages/artist_details/l10n/generated \
@@ -27,7 +27,7 @@ flutter gen-l10n \
     --no-synthetic-package \
     --verbose
 
-flutter gen-l10n \
+fvm flutter gen-l10n \
     --arb-dir lib/features/route_guide/pages/guide/l10n \
     --template-arb-file nl.arb \
     --output-dir=lib/features/route_guide/pages/guide/l10n/generated \
@@ -36,7 +36,7 @@ flutter gen-l10n \
     --no-synthetic-package \
     --verbose
 
-flutter gen-l10n \
+fvm flutter gen-l10n \
     --arb-dir lib/features/route_guide/pages/scan_qr/l10n \
     --template-arb-file nl.arb \
     --output-dir=lib/features/route_guide/pages/scan_qr/l10n/generated \
@@ -45,7 +45,7 @@ flutter gen-l10n \
     --no-synthetic-package \
     --verbose
 
-flutter gen-l10n \
+fvm flutter gen-l10n \
     --arb-dir lib/features/route_guide/pages/select_interests/l10n \
     --template-arb-file nl.arb \
     --output-dir=lib/features/route_guide/pages/select_interests/l10n/generated \
@@ -54,7 +54,7 @@ flutter gen-l10n \
     --no-synthetic-package \
     --verbose
 
-flutter gen-l10n \
+fvm flutter gen-l10n \
     --arb-dir lib/features/route_guide/pages/completed/l10n \
     --template-arb-file nl.arb \
     --output-dir=lib/features/route_guide/pages/completed/l10n/generated \
@@ -63,7 +63,7 @@ flutter gen-l10n \
     --no-synthetic-package \
     --verbose
 
-flutter gen-l10n \
+fvm flutter gen-l10n \
     --arb-dir lib/shared/dialogs/device_info/l10n \
     --template-arb-file nl.arb \
     --output-dir=lib/shared/dialogs/device_info/l10n/generated \
@@ -72,7 +72,7 @@ flutter gen-l10n \
     --no-synthetic-package \
     --verbose
 
-flutter gen-l10n \
+fvm flutter gen-l10n \
     --arb-dir lib/shared/dialogs/error/l10n \
     --template-arb-file nl.arb \
     --output-dir=lib/shared/dialogs/error/l10n/generated \
@@ -81,7 +81,7 @@ flutter gen-l10n \
     --no-synthetic-package \
     --verbose
 
-flutter gen-l10n \
+fvm flutter gen-l10n \
     --arb-dir lib/shared/dialogs/not_implemented/l10n \
     --template-arb-file nl.arb \
     --output-dir=lib/shared/dialogs/not_implemented/l10n/generated \
@@ -90,7 +90,7 @@ flutter gen-l10n \
     --no-synthetic-package \
     --verbose
 
-flutter gen-l10n \
+fvm flutter gen-l10n \
     --arb-dir lib/shared/dialogs/permissions_denied/l10n \
     --template-arb-file nl.arb \
     --output-dir=lib/shared/dialogs/permissions_denied/l10n/generated \
@@ -99,7 +99,7 @@ flutter gen-l10n \
     --no-synthetic-package \
     --verbose
 
-flutter gen-l10n \
+fvm flutter gen-l10n \
     --arb-dir lib/shared/dialogs/permissions_removed/l10n \
     --template-arb-file nl.arb \
     --output-dir=lib/shared/dialogs/permissions_removed/l10n/generated \
@@ -108,7 +108,7 @@ flutter gen-l10n \
     --no-synthetic-package \
     --verbose
 
-flutter gen-l10n \
+fvm flutter gen-l10n \
     --arb-dir lib/shared/dialogs/permissions_restricted/l10n \
     --template-arb-file nl.arb \
     --output-dir=lib/shared/dialogs/permissions_restricted/l10n/generated \
@@ -117,7 +117,7 @@ flutter gen-l10n \
     --no-synthetic-package \
     --verbose
 
-flutter gen-l10n \
+fvm flutter gen-l10n \
     --arb-dir lib/shared/dialogs/confirm/l10n \
     --template-arb-file nl.arb \
     --output-dir=lib/shared/dialogs/confirm/l10n/generated \
