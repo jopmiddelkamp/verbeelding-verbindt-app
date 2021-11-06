@@ -10,12 +10,12 @@ dependencies:
   flutter:
     sdk: flutter
   bot_toast: ^4.0.1
-  device_info: ^2.0.2
-  equatable: ^2.0.3
-  firebase_core: ^1.4.0
-  firebase_crashlytics: ^2.1.1
-  get_it: ^7.2.0
-  package_info: ^2.0.2
+  device_info: ^2.0.0
+  equatable: ^2.0.0
+  firebase_core: ^1.0.0
+  firebase_crashlytics: ^2.0.0
+  get_it: ^7.0.0
+  package_info: ^2.0.0
   verbeelding_verbindt_core:
     path: verbeelding_verbindt_core
   verbeelding_verbindt_data:
@@ -26,11 +26,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  bloc_test: ^8.1.0
-  build_runner: ^2.1.1
-  flutter_lints: ^1.0.4
-  json_serializable: ^4.1.4
-  mocktail: ^0.1.4
+  bloc_test: ^8.0.0
+  build_runner: ^2.0.0
+  flutter_lints: ^1.0.0
+  json_serializable: ^6.0.0
+  mocktail: ^0.2.0
 
 flutter:
   uses-material-design: true

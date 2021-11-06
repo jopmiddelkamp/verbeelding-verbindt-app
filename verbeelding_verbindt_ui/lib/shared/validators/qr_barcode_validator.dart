@@ -9,10 +9,10 @@ class QrCodeValidator extends Validator<String> {
 
   @override
   bool call(
-    String param,
+    String? param,
   ) {
     var qrIdRegex = RegExp(r'VV-(.{20})$');
-    var match = qrIdRegex.firstMatch(param);
+    var match = qrIdRegex.firstMatch(param ?? '');
     // Stop here if it does not match the platform qr id format
     if (match == null) {
       return false;

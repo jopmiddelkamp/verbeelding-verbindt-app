@@ -26,12 +26,12 @@ class ScanQrCubit extends CubitBase<ScanQrState> {
         .listen((barcode) {
       if (_qrCodeValidator(barcode.code)) {
         emit(ScanQrState.validScan(
-          barcode: barcode.code,
+          barcode: barcode.code!,
           qrController: qrController,
         ));
       } else {
         emit(ScanQrState.invalidScan(
-          barcode: barcode.code,
+          barcode: barcode.code ?? '',
           qrController: qrController,
         ));
       }
