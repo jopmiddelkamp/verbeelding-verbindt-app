@@ -47,7 +47,10 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
-        manifestPlaceholders = [googleMapsApiKey: "$System.env.GOOGLE_MAPS_API_KEY_ANDROID"]
+        manifestPlaceholders = [googleMapsApiKey: "IzaSyB6cOfon4FvTRhFQJaid-NZMkYBpflFDlM"]
+        // TODO: restore to evn solution as soon as it's working again. Also renew key as the key above has been in 
+        // source control.
+        // manifestPlaceholders = [googleMapsApiKey: "$System.env.GOOGLE_MAPS_API_KEY_ANDROID"]
     }
 
     signingConfigs {
