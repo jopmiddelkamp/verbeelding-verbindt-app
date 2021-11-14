@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 import '../models/image.dart';
 import '../models/translatable_string.dart';
-import 'video.dart';
+import 'youtube_video.dart';
 
 part 'artist_route_details.g.dart';
 
@@ -15,7 +15,7 @@ class ArtistRouteDetailsDataModel {
     required this.images,
   });
 
-  final VideoDataModel video;
+  final YoutubeVideoDataModel video;
   final TranslatableStringDataModel text;
   final List<ImageDataModel> images;
 

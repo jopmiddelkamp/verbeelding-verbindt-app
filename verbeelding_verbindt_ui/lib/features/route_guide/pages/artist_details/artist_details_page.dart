@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:verbeelding_verbindt_core/entities/common/artist.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../../shared/widgets/bloc/failure_state_display.dart';
 import '../../../../shared/widgets/loading_indicators/circle_loading_indicator.dart';
-import '../../../../shared/widgets/video/video.dart';
 import '../../../../theme.sizes.dart';
 import 'bloc/bloc.dart';
 import 'widgets/image_list.dart';
@@ -57,8 +57,8 @@ class ArtistDetailsPage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Video.bloc(
-                  state.artist.detailsContent.video,
+                YoutubePlayer(
+                  controller: state.youtubeController,
                 ),
                 const SizedBox(height: kDefaultSpacing),
                 Padding(

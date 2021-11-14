@@ -1,41 +1,41 @@
-import 'package:verbeelding_verbindt_core/entities/common/video.dart';
+import 'package:verbeelding_verbindt_core/entities/common/youtube_video.dart';
 
-import '../models/video.dart';
+import '../models/youtube_video.dart';
 
-extension VideoDataModelExtensions on VideoDataModel {
-  VideoEntity toEntity() {
-    return VideoEntity(
+extension YoutubeVideoDataModelExtensions on YoutubeVideoDataModel {
+  YoutubeVideoEntity toEntity() {
+    return YoutubeVideoEntity(
       aspectRatio: aspectRatio,
-      url: url,
+      videoId: videoId,
     );
   }
 }
 
-extension VideoModelListExtensions on Iterable<VideoDataModel> {
-  List<VideoEntity> toEntitylist() {
+extension VideoModelListExtensions on Iterable<YoutubeVideoDataModel> {
+  List<YoutubeVideoEntity> toEntitylist() {
     return map((e) => e.toEntity()).toList();
   }
 
-  Set<VideoEntity> toEntitySet() {
+  Set<YoutubeVideoEntity> toEntitySet() {
     return map((e) => e.toEntity()).toSet();
   }
 }
 
-extension VideoEntityExtensions on VideoEntity {
-  VideoDataModel toDataModel() {
-    return VideoDataModel(
+extension YoutubeVideoEntityExtensions on YoutubeVideoEntity {
+  YoutubeVideoDataModel toDataModel() {
+    return YoutubeVideoDataModel(
       aspectRatio: aspectRatio,
-      url: url,
+      videoId: videoId,
     );
   }
 }
 
-extension VideoEntityListExtensions on Iterable<VideoEntity> {
-  List<VideoDataModel> toDataModelList() {
+extension YoutubeVideoEntityListExtensions on Iterable<YoutubeVideoEntity> {
+  List<YoutubeVideoDataModel> toDataModelList() {
     return map((e) => e.toDataModel()).toList();
   }
 
-  Set<VideoDataModel> toDataModelSet() {
+  Set<YoutubeVideoDataModel> toDataModelSet() {
     return map((e) => e.toDataModel()).toSet();
   }
 }

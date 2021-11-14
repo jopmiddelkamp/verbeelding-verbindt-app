@@ -71,6 +71,7 @@ class RouteMap extends HookWidget {
       compassEnabled: false,
       // padding: const EdgeInsets.all(kDefaultPadding),
       mapType: MapType.satellite,
+      trafficEnabled: false,
       initialCameraPosition: Package.settings.getGoogleMapsCameraPosition(
         initialMapLocation.toLatLng(),
       ),

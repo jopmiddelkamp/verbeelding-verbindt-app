@@ -1,17 +1,17 @@
 import 'package:equatable/equatable.dart';
 
-class VideoEntity extends Equatable {
-  const VideoEntity({
+class YoutubeVideoEntity extends Equatable {
+  const YoutubeVideoEntity({
     required this.aspectRatio,
-    required this.url,
+    required this.videoId,
   });
 
   final double aspectRatio;
-  final String url;
+  final String videoId;
 
   @override
   List<Object?> get props => [
         aspectRatio,
-        url,
+        videoId,
       ];
 }

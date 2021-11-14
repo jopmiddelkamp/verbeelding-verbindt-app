@@ -38,6 +38,7 @@ dependencies:
   video_player: ^2.0.0
   verbeelding_verbindt_core:
     path: ../verbeelding_verbindt_core
+  youtube_player_flutter: ^8.0.0
 
 dev_dependencies:
   bloc_test: ^8.0.0
