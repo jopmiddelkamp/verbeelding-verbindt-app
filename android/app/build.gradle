@@ -34,24 +34,20 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "dev.middelkamp.verbeeldingverbindt"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
-        manifestPlaceholders = [googleMapsApiKey: "AIzaSyC9-SE9tLA2YrSbsJP2t3hlw_vkQ0kZyLg"]
-        // TODO: restore to evn solution as soon as it's working again. Also renew key as the key above has been in 
-        // source control.
-        // manifestPlaceholders = [googleMapsApiKey: "$System.env.GOOGLE_MAPS_API_KEY_ANDROID"]
+        manifestPlaceholders = [googleMapsApiKey: "$System.env.GOOGLE_MAPS_API_KEY_ANDROID"]
     }
 
     signingConfigs {
