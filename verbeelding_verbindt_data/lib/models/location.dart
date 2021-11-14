@@ -43,7 +43,7 @@ class LocationDataModel extends Equatable {
   String toUrlParam() => '$latitude,$longitude';
 
   @override
-  List<Object> get props => [latitude, longitude];
+  List<Object?> get props => [latitude, longitude];
 
   static LocationDataModel fromJson(Map<String, dynamic> json) =>
       _$LocationDataModelFromJson(json);

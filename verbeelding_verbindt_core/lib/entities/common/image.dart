@@ -14,7 +14,7 @@ class ImageEntity extends Equatable {
   final SizeEntity size;
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         blurhash,
         url,
         size,

@@ -18,7 +18,7 @@ class RxTourRequestModel extends Equatable {
   String toString() => '$runtimeType { locationsCount: ${locations.length} }';
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         locations,
       ];
 

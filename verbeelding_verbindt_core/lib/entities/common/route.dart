@@ -1,6 +1,8 @@
+import 'package:equatable/equatable.dart';
+
 import 'route_stop.dart';
 
-class RouteEntity {
+class RouteEntity extends Equatable {
   const RouteEntity({
     required this.id,
     required this.stops,
@@ -43,4 +45,10 @@ class RouteEntity {
       stops: stops ?? this.stops,
     );
   }
+
+  @override
+  List<Object?> get props => [
+        id,
+        stops,
+      ];
 }

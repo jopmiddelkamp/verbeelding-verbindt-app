@@ -21,7 +21,7 @@ class RxRouteStepModel extends Equatable {
       '$runtimeType { name: $name, arrival: $arrival, distance: $distance }';
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         name,
         arrival,
         distance,

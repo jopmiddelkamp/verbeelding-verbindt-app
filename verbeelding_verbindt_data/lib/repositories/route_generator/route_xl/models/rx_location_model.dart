@@ -20,7 +20,7 @@ class RxLocationModel extends Equatable {
   String toString() => '$runtimeType { name: $name, lat: $lat, lng: $lng }';
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         name,
         lat,
         lng,

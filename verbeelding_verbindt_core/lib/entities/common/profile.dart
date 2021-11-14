@@ -21,7 +21,12 @@ class ProfileEntity extends Equatable {
   bool get hasPersonalImage => personalImage?.isNotEmpty == true;
 
   @override
-  List<Object?> get props => [firstName, middleName, lastName, personalImage];
+  List<Object?> get props => [
+        firstName,
+        middleName,
+        lastName,
+        personalImage,
+      ];
 
   ProfileEntity copyWith({
     String? firstName,

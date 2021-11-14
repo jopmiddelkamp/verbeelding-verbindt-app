@@ -23,7 +23,7 @@ class ImageDataModel extends Equatable {
       '$runtimeType { blurhash: $blurhash, url: $url, size: $size }';
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         blurhash,
         url,
         size,

@@ -1,6 +1,8 @@
+import 'package:equatable/equatable.dart';
+
 import 'artist.dart';
 
-class RouteStopEntity {
+class RouteStopEntity extends Equatable {
   const RouteStopEntity({
     required this.artist,
     this.completed = false,
@@ -20,4 +22,10 @@ class RouteStopEntity {
       completed: completed ?? this.completed,
     );
   }
+
+  @override
+  List<Object> get props => [
+        artist,
+        completed,
+      ];
 }
