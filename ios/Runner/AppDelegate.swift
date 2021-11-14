@@ -10,8 +10,8 @@ import GoogleMaps
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    let googleMapsApiKey = ProcessInfo.processInfo.environment["GOOGLE_MAPS_API_KEY_IOS"]
-    GMSServices.provideAPIKey(googleMapsApiKey)
+    // TODO: Find a better solution with Google Secret Manager. For now the key have been restricted.
+    GMSServices.provideAPIKey("AIzaSyCBDIS-gBNUOIsrjI2d5CWbivZCWWCjqOE")
     FirebaseApp.configure()
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
