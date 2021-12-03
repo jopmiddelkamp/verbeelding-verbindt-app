@@ -1,7 +1,7 @@
 abstract class Validator<TParam> {
   const Validator();
 
-  bool call(
+  bool validate(
     TParam param,
   );
 }

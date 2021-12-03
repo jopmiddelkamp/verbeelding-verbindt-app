@@ -22,7 +22,8 @@ class ScanQrCubit extends CubitBase<ScanQrState> {
         .throttleTime(250.milliseconds)
         .takeUntil(close$)
         .listen((barcode) {
-      if (_qrCodeValidator(barcode.code)) {
+      final isValid = _qrCodeValidator.validate(barcode.code);
+      if (isValid) {
         emit(ScanQrState.validScan(
           barcode: barcode.code!,
           qrController: qrController,

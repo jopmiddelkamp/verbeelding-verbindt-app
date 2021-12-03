@@ -8,7 +8,7 @@ class QrCodeValidator extends Validator<String> {
   final String expected;
 
   @override
-  bool call(
+  bool validate(
     String? param,
   ) {
     var qrIdRegex = RegExp(r'VV-(.{20})$');
