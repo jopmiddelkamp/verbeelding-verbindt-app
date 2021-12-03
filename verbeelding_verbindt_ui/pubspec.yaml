@@ -44,18 +44,13 @@ dev_dependencies:
   bloc_test: ^8.0.0
   build_runner: ^2.0.0
   flutter_lints: ^1.0.0
-  # flutter_gen_runner: ^3.1.1
   flutter_test:
     sdk: flutter
   json_serializable: ^6.0.0
   mocktail: ^0.2.0
 
-flutter_intl:
-  # enabled: true
-
 flutter:
   uses-material-design: true
-  # generate: true
   assets:
    - assets/images/intro-header.jpg
    - assets/images/unknown-artist.jpg
