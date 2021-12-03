@@ -1,4 +1,4 @@
-import 'package:verbeelding_verbindt_core/entities/common/youtube_video.dart';
+import 'package:verbeelding_verbindt_core/entities/youtube_video.dart';
 
 import '../models/youtube_video.dart';
 

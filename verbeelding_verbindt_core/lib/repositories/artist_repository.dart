@@ -1,4 +1,4 @@
-import '../entities/common/artist.dart';
+import '../entities/artist.dart';
 import 'repository_base.dart';
 
 abstract class ArtistRepository extends RepositoryBase {

@@ -1,4 +1,4 @@
-import '../../entities/common/locale.dart';
+import '../../entities/locale.dart';
 import '../../repositories/locale_repository.dart';
 import '../use_case_base.dart';
 

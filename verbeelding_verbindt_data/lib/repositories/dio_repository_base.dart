@@ -25,20 +25,20 @@ abstract class DioRepositoryBase extends RepositoryBase {
   final String baseUrl;
   final Map<String, dynamic>? headers;
 
-  Future<Response> safeRequest(RequestFunction req) async {
-    try {
-      final resp = await req();
-      return resp;
-    } on DioError {
-      // if (e.type == DioErrorType.response &&
-      //     e.response?.data is Map<String, dynamic>) {
+  // Future<Response> safeRequest(RequestFunction req) async {
+  //   try {
+  //     final resp = await req();
+  //     return resp;
+  //   } on DioError {
+  //     // if (e.type == DioErrorType.response &&
+  //     //     e.response?.data is Map<String, dynamic>) {
 
-      //   rethrow;
-      // } else {
-      rethrow;
-      // }
-    }
-  }
+  //     //   rethrow;
+  //     // } else {
+  //     rethrow;
+  //     // }
+  //   }
+  // }
 
   String getApiUrl(
     String resource,

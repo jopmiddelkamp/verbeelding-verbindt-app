@@ -1,4 +1,4 @@
-import 'package:verbeelding_verbindt_core/entities/common/locale.dart';
+import 'package:verbeelding_verbindt_core/entities/locale.dart';
 import 'package:verbeelding_verbindt_core/use_cases/locale/get_active_locale_use_case.dart';
 import 'package:verbeelding_verbindt_core/use_cases/locale/set_active_locale_use_case.dart';
 

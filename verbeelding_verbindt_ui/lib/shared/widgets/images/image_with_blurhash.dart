@@ -3,7 +3,7 @@ import 'package:blurhash_dart/blurhash_dart.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:supercharged/supercharged.dart';
-import 'package:verbeelding_verbindt_core/entities/common/image.dart';
+import 'package:verbeelding_verbindt_core/entities/image.dart';
 
 import '../../../theme.colors.dart';
 import '../../dialogs/image/image_dialog.dart';

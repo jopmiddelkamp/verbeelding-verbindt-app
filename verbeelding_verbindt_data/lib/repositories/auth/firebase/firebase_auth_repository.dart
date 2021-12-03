@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:verbeelding_verbindt_core/entities/common/user.dart';
+import 'package:verbeelding_verbindt_core/entities/user.dart';
 import 'package:verbeelding_verbindt_core/repositories/auth_repository.dart';
 
 import 'extensions/firebase_user_extensions.dart';

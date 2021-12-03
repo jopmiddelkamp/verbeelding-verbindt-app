@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:verbeelding_verbindt_core/aliases.dart';
-import 'package:verbeelding_verbindt_core/entities/common/locale.dart';
+import 'package:verbeelding_verbindt_core/entities/locale.dart';
 import 'package:verbeelding_verbindt_core/utils/enum_utils.dart';
 import 'package:verbeelding_verbindt_ui/features/route_guide/pages/completed/completed_page.dart';
 import 'package:verbeelding_verbindt_ui/shared/page_routes/instant_material_page_route.dart';

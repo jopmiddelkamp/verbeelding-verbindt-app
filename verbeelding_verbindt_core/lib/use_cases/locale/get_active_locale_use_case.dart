@@ -1,7 +1,7 @@
-import '../../entities/common/country_code_enum.dart';
-import '../../entities/common/iso_language.dart';
-import '../../entities/common/language_code_enum.dart';
-import '../../entities/common/locale.dart';
+import '../../entities/country_code_enum.dart';
+import '../../entities/iso_language.dart';
+import '../../entities/language_code_enum.dart';
+import '../../entities/locale.dart';
 import '../../repositories/locale_repository.dart';
 import '../use_case_base.dart';
 import 'lookup_maps/locale_lookup_map.dart';

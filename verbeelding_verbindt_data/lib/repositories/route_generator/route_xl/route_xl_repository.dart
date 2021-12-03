@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:verbeelding_verbindt_core/entities/common/artist.dart';
-import 'package:verbeelding_verbindt_core/entities/common/route_stop.dart';
+import 'package:verbeelding_verbindt_core/entities/artist.dart';
+import 'package:verbeelding_verbindt_core/entities/route_stop.dart';
 import 'package:verbeelding_verbindt_core/repositories/route_generator_repository.dart';
 
 import '../../../extensions/artist_mapper_extensions.dart';
@@ -44,16 +44,14 @@ class RouteXlRouteGeneratorRepository extends DioRepositoryBase
       artistsToVisit: artistsToVisit,
       artistToStartAt: artistToStartAt,
     );
-    final resp = await safeRequest(
-      () => http.post(
-        requestUrl,
-        options: Options(
-          contentType: Headers.formUrlEncodedContentType,
-        ),
-        data: FormData.fromMap({
-          'locations': const JsonEncoder().convert(requestBody.locations),
-        }),
+    final resp = await http.post(
+      requestUrl,
+      options: Options(
+        contentType: Headers.formUrlEncodedContentType,
       ),
+      data: FormData.fromMap({
+        'locations': const JsonEncoder().convert(requestBody.locations),
+      }),
     );
     final response = RxTourResponseModel.fromJson(resp.data);
     return response

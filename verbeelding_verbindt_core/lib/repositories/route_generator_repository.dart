@@ -1,5 +1,5 @@
-import '../entities/common/artist.dart';
-import '../entities/common/route_stop.dart';
+import '../entities/artist.dart';
+import '../entities/route_stop.dart';
 import 'repository_base.dart';
 
 abstract class RouteGeneratorRepository extends RepositoryBase {

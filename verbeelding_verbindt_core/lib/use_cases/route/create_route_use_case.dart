@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import '../../entities/common/artist.dart';
-import '../../entities/common/location.dart';
-import '../../entities/common/route.dart';
+import '../../entities/artist.dart';
+import '../../entities/location.dart';
+import '../../entities/route.dart';
 import '../../repositories/artist_repository.dart';
 import '../../repositories/auth_repository.dart';
 import '../../repositories/location_repository.dart';

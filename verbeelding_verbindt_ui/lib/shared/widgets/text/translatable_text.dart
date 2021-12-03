@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:verbeelding_verbindt_core/entities/common/locale.dart';
+import 'package:verbeelding_verbindt_core/entities/locale.dart';
 
 import '../../blocs/localization/bloc.dart';
 

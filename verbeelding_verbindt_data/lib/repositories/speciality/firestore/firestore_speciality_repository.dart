@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:verbeelding_verbindt_core/entities/common/speciality.dart';
+import 'package:verbeelding_verbindt_core/entities/speciality.dart';
 import 'package:verbeelding_verbindt_core/repositories/speciality_repository.dart';
 
 import '../../../extensions/speciality_mapper_extensions.dart';

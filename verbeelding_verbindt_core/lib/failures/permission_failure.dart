@@ -1,4 +1,4 @@
-import '../entities/common/permission_enum.dart';
+import '../entities/permission_enum.dart';
 import 'failure.dart';
 
 abstract class PermissionFailure implements Failure {

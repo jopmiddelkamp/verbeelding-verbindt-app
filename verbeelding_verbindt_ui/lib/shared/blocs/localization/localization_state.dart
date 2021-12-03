@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:verbeelding_verbindt_core/entities/common/locale.dart';
+import 'package:verbeelding_verbindt_core/entities/locale.dart';
 import 'package:verbeelding_verbindt_core/failures/failure.dart';
 
 part 'localization_state.freezed.dart';

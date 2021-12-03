@@ -1,5 +1,5 @@
 import 'package:geolocator/geolocator.dart' as gl;
-import 'package:verbeelding_verbindt_core/entities/common/location.dart';
+import 'package:verbeelding_verbindt_core/entities/location.dart';
 import 'package:verbeelding_verbindt_core/repositories/location_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/repository_base.dart';
 

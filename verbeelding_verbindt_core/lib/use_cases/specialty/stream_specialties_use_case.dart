@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import '../../entities/common/speciality.dart';
+import '../../entities/speciality.dart';
 import '../../repositories/speciality_repository.dart';
 import '../use_case_base.dart';
 

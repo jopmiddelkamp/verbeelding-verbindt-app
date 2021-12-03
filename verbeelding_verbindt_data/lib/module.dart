@@ -6,7 +6,6 @@ import 'package:verbeelding_verbindt_core/repositories/auth_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/intro_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/locale_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/location_repository.dart';
-import 'package:verbeelding_verbindt_core/repositories/page_content_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/route_generator_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/route_repository.dart';
 import 'package:verbeelding_verbindt_core/repositories/speciality_repository.dart';
@@ -16,7 +15,6 @@ import 'repositories/auth/firebase/firebase_auth_repository.dart';
 import 'repositories/intro/persistent_storage/persistent_storage_intro_repository_impl.dart.dart';
 import 'repositories/locale/persistent_storage/persistent_storage_locale_repository_impl.dart.dart';
 import 'repositories/location/geo_locator/geo_locator_location_service_impl.dart';
-import 'repositories/page_content/firestore/firestore_page_content_repository.dart';
 import 'repositories/persistent_storage/persistent_storage_repository.dart';
 import 'repositories/persistent_storage/shared_preferences/shared_preferences_persistent_repository_impl.dart';
 import 'repositories/route/persistent_storage/persistent_storage_route_repository.dart';
@@ -78,10 +76,6 @@ class Module {
           username: routeXlUsername,
           password: routeXlPassword,
         ),
-        dispose: (param) => param.dispose(),
-      )
-      ..registerSingletonAsync<PageContentRepository>(
-        () async => FirestorePageContentRepository(),
         dispose: (param) => param.dispose(),
       )
       ..registerSingletonAsync<AuthRepository>(

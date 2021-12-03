@@ -33,7 +33,8 @@ class LocationDataModel extends Equatable {
       return LocationDataModel.fromGeoPoint(object);
     }
     throw Exception(
-        'Unsupported source object type provided ${object.runtimeType}');
+      'Unsupported source object type provided ${object.runtimeType}',
+    );
   }
 
   @override

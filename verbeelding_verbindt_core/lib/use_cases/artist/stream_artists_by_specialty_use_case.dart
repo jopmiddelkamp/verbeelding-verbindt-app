@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import '../../entities/common/artist.dart';
+import '../../entities/artist.dart';
 import '../../repositories/artist_repository.dart';
 import '../use_case_base.dart';
 

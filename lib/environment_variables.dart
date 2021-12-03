@@ -1,4 +1,4 @@
-import 'package:verbeelding_verbindt_core/entities/common/environment_enum.dart';
+import 'package:verbeelding_verbindt_core/entities/environment_enum.dart';
 import 'package:verbeelding_verbindt_core/extensions/string_extensions.dart';
 
 abstract class EnvironmentVariables {

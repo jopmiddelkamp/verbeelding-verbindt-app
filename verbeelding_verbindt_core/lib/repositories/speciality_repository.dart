@@ -1,4 +1,4 @@
-import '../entities/common/speciality.dart';
+import '../entities/speciality.dart';
 import 'repository_base.dart';
 
 abstract class SpecialityRepository extends RepositoryBase {

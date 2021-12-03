@@ -1,5 +1,5 @@
-import '../../entities/common/permission_enum.dart';
-import '../../entities/common/permission_status_enum.dart';
+import '../../entities/permission_enum.dart';
+import '../../entities/permission_status_enum.dart';
 import '../../repositories/permission_repository.dart';
 import '../use_case_base.dart';
 

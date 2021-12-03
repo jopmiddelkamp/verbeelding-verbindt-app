@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:verbeelding_verbindt_core/aliases.dart';
-import 'package:verbeelding_verbindt_core/entities/common/build_mode_enum.dart';
-import 'package:verbeelding_verbindt_core/entities/common/device_info.dart';
-import 'package:verbeelding_verbindt_core/entities/common/environment_enum.dart';
-import 'package:verbeelding_verbindt_core/entities/common/package_info.dart';
+import 'package:verbeelding_verbindt_core/entities/build_mode_enum.dart';
+import 'package:verbeelding_verbindt_core/entities/device_info.dart';
+import 'package:verbeelding_verbindt_core/entities/environment_enum.dart';
+import 'package:verbeelding_verbindt_core/entities/package_info.dart';
 import 'package:verbeelding_verbindt_core/utils/enum_utils.dart';
 
 import '../../extensions/build_context_extensions.dart';

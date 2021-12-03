@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:verbeelding_verbindt_core/entities/common/artist.dart';
+import 'package:verbeelding_verbindt_core/entities/artist.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 part 'artist_details_state.freezed.dart';

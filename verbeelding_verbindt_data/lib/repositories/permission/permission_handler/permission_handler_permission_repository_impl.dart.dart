@@ -1,7 +1,7 @@
 import 'package:permission_handler/permission_handler.dart'
     as permission_handler;
-import 'package:verbeelding_verbindt_core/entities/common/permission_enum.dart';
-import 'package:verbeelding_verbindt_core/entities/common/permission_status_enum.dart';
+import 'package:verbeelding_verbindt_core/entities/permission_enum.dart';
+import 'package:verbeelding_verbindt_core/entities/permission_status_enum.dart';
 import 'package:verbeelding_verbindt_core/repositories/permission_repository.dart';
 import 'package:verbeelding_verbindt_core/utils/enum_utils.dart';
 

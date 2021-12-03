@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:verbeelding_verbindt_core/entities/common/speciality.dart';
+import 'package:verbeelding_verbindt_core/entities/speciality.dart';
 
 import '../../../../../shared/extensions/build_context_extensions.dart';
 import '../../../../../shared/widgets/bloc/failure_state_display.dart';

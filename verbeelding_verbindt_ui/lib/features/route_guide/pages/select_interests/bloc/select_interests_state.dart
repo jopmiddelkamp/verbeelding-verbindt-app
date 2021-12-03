@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:verbeelding_verbindt_core/entities/common/speciality.dart';
+import 'package:verbeelding_verbindt_core/entities/speciality.dart';
 
 part 'select_interests_state.freezed.dart';
 

@@ -1,4 +1,4 @@
-import '../entities/common/iso_language.dart';
+import '../entities/iso_language.dart';
 import 'repository_base.dart';
 
 abstract class LocaleRepository extends RepositoryBase {

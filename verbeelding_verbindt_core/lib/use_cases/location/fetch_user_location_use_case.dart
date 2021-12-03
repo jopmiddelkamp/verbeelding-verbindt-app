@@ -1,4 +1,4 @@
-import '../../entities/common/location.dart';
+import '../../entities/location.dart';
 import '../../repositories/location_repository.dart';
 import '../use_case_base.dart';
 

@@ -1,4 +1,4 @@
-import 'package:verbeelding_verbindt_core/entities/common/iso_language.dart';
+import 'package:verbeelding_verbindt_core/entities/iso_language.dart';
 import 'package:verbeelding_verbindt_core/repositories/locale_repository.dart';
 
 import '../../persistent_storage/persistent_storage_repository.dart';

@@ -1,5 +1,5 @@
 import 'package:rxdart/rxdart.dart';
-import 'package:verbeelding_verbindt_core/entities/common/speciality.dart';
+import 'package:verbeelding_verbindt_core/entities/speciality.dart';
 import 'package:verbeelding_verbindt_core/extensions/list_extensions.dart';
 import 'package:verbeelding_verbindt_core/use_cases/specialty/stream_specialties_use_case.dart';
 import 'package:verbeelding_verbindt_ui/shared/blocs/cubit_base.dart';

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import '../../entities/common/route.dart';
+import '../../entities/route.dart';
 import '../../repositories/auth_repository.dart';
 import '../../repositories/route_repository.dart';
 import '../use_case_base.dart';

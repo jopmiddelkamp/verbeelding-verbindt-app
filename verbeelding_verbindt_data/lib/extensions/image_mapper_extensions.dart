@@ -1,4 +1,4 @@
-import 'package:verbeelding_verbindt_core/entities/common/image.dart';
+import 'package:verbeelding_verbindt_core/entities/image.dart';
 
 import '../models/image.dart';
 import 'size_mapper_extensions.dart';

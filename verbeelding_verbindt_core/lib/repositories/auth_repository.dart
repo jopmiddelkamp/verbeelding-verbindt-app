@@ -1,4 +1,4 @@
-import '../entities/common/user.dart';
+import '../entities/user.dart';
 import 'repository_base.dart';
 
 abstract class AuthRepository extends RepositoryBase {

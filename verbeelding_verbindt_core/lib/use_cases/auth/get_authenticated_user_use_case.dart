@@ -1,4 +1,4 @@
-import 'package:verbeelding_verbindt_core/entities/common/user.dart';
+import 'package:verbeelding_verbindt_core/entities/user.dart';
 
 import '../../repositories/auth_repository.dart';
 import '../use_case_base.dart';

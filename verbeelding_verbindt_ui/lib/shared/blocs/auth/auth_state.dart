@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:verbeelding_verbindt_core/entities/common/user.dart';
+import 'package:verbeelding_verbindt_core/entities/user.dart';
 import 'package:verbeelding_verbindt_core/failures/failure.dart';
 
 part 'auth_state.freezed.dart';

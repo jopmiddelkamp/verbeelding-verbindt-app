@@ -1,4 +1,4 @@
-import '../entities/common/route.dart';
+import '../entities/route.dart';
 import 'repository_base.dart';
 
 abstract class RouteRepository extends RepositoryBase {

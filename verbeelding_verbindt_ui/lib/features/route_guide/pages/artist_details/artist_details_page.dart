@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:verbeelding_verbindt_core/entities/common/artist.dart';
+import 'package:verbeelding_verbindt_core/entities/artist.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../../shared/widgets/bloc/failure_state_display.dart';

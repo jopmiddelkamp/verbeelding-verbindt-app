@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:verbeelding_verbindt_core/entities/common/image.dart';
+import 'package:verbeelding_verbindt_core/entities/image.dart';
 
 import '../../../../../shared/widgets/images/image_with_blurhash.dart';
 import '../../../../../theme.sizes.dart';

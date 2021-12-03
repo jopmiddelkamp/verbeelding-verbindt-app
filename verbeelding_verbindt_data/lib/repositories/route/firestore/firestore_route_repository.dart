@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:verbeelding_verbindt_core/entities/common/route.dart';
+import 'package:verbeelding_verbindt_core/entities/route.dart';
 import 'package:verbeelding_verbindt_core/repositories/route_repository.dart';
 
 import '../../../extensions/route_mapper_extensions.dart';

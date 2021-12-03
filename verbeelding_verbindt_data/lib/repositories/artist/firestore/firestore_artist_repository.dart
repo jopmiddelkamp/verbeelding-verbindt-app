@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:verbeelding_verbindt_core/entities/common/artist.dart';
+import 'package:verbeelding_verbindt_core/entities/artist.dart';
 import 'package:verbeelding_verbindt_core/repositories/artist_repository.dart';
 
 import '../../../extensions/artist_mapper_extensions.dart';

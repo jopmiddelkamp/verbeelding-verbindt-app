@@ -1,4 +1,4 @@
-import 'package:verbeelding_verbindt_core/entities/common/permission_enum.dart';
+import 'package:verbeelding_verbindt_core/entities/permission_enum.dart';
 import 'package:verbeelding_verbindt_core/use_cases/permission/get_permission_status_use_case.dart';
 import 'package:verbeelding_verbindt_core/use_cases/permission/request_permission_use_case.dart';
 

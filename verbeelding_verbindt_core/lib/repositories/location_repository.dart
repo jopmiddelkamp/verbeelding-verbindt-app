@@ -1,4 +1,4 @@
-import '../entities/common/location.dart';
+import '../entities/location.dart';
 
 enum LocationAccuracy { lowest, low, medium, high, best, bestForNavigation }
 

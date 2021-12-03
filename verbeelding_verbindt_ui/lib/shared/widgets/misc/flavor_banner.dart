@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:verbeelding_verbindt_core/aliases.dart';
-import 'package:verbeelding_verbindt_core/entities/common/environment_enum.dart';
+import 'package:verbeelding_verbindt_core/entities/environment_enum.dart';
 import 'package:verbeelding_verbindt_core/utils/enum_utils.dart';
 
 import '../../dialogs/device_info/device_info_dialog.dart';

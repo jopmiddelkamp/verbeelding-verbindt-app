@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:verbeelding_verbindt_core/entities/route.dart';
 import 'package:verbeelding_verbindt_core/failures/failure.dart';
-import 'package:verbeelding_verbindt_core/entities/common/route.dart';
 
 part 'app_state.freezed.dart';
 

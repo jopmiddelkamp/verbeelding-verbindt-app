@@ -1,4 +1,4 @@
-import 'package:verbeelding_verbindt_core/entities/common/artist.dart';
+import 'package:verbeelding_verbindt_core/entities/artist.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../../../shared/blocs/cubit_base.dart';
