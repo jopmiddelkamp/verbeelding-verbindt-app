@@ -32,7 +32,7 @@ class CompletedPage extends StatelessWidget {
       onWillPop: () async {
         final result = await showConfirmDialog(
           context,
-          content: (c, _) => c.l10n.completedPage.popConfirmMessage,
+          content: (c, _) => c.l10n.pageCompletedPopConfirmMessage,
         );
         if (result) {
           await cubit.deleteRoute();
@@ -56,7 +56,7 @@ class CompletedPage extends StatelessWidget {
         const CompletedPageHeader(),
         Expanded(
           child: TranslatedMarkdown(
-            (c, _) => c.l10n.completedPage.text,
+            (c, _) => c.l10n.pageCompletedText,
             padding: const EdgeInsets.all(16),
           ),
         ),

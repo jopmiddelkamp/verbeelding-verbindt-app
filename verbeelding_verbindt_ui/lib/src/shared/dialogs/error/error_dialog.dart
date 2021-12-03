@@ -29,7 +29,7 @@ class _ErrorDialog extends StatelessWidget {
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
           child: TranslatedText(
-            (c, _) => c.l10n.shared.ok,
+            (c, _) => c.l10n.sharedOk,
           ),
         )
       ],
@@ -57,7 +57,7 @@ void showUnknownErrorDialog(
 }) {
   showErrorDialog(
     context,
-    title: (c, _) => c.l10n.errorDialog.unknownErrorTitle,
-    message: (c, _) => c.l10n.errorDialog.unknownErrorMessage,
+    title: (c, _) => c.l10n.dialogErrorUnknownErrorTitle,
+    message: (c, _) => c.l10n.dialogErrorUnknownErrorMessage,
   );
 }

@@ -1,4 +1,3 @@
-export 'barrels/barrels.dart';
 export 'blocs/blocs.dart';
 export 'dialogs/dialogs.dart';
 export 'extensions/extensions.dart';

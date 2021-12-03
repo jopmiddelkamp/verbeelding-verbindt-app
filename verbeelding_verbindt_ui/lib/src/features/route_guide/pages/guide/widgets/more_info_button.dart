@@ -17,7 +17,7 @@ class GuidePageMoreInfoButton extends StatelessWidget {
   ) {
     return TextButton(
       child: TranslatedText(
-        (c, _) => c.l10n.guidePage.moreInfo,
+        (c, _) => c.l10n.pageGuideMoreInfo,
       ),
       onPressed: () async => await _onPressed(
         context,

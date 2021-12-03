@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../../../verbeelding_verbindt_ui.dart';
@@ -21,9 +23,13 @@ class LocalizationCubit extends CubitBase<LocalizationState> {
   Future<void> setLocale(
     LocaleEntity locale,
   ) async {
-    L10n.load(
+    final languageCodeString = EnumUtils.getStringValue(
       locale.isoLanguage.languageCode,
     );
+    AppLocalizations.delegate.load(
+      Locale(languageCodeString),
+    );
+
     await _setActiveLocaleUseCase(SetActiveLocaleUseCaseArguments(
       locale: locale,
     ));

@@ -41,7 +41,7 @@ class GuidePageRouteMap extends HookWidget {
             return Center(
               child: VVCircleLoadingIndicator(
                 size: 35,
-                text: (c, _) => c.l10n.guidePage.busyLoadingMap,
+                text: (c, _) => c.l10n.pageGuideBusyLoadingMap,
               ),
             );
           }

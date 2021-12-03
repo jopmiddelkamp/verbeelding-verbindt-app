@@ -11,7 +11,7 @@ extension BuildContextExtensions on BuildContext {
   TextTheme get textTheme => Theme.of(this).textTheme;
   AppBarTheme get appBarTheme => Theme.of(this).appBarTheme;
   NavigatorState get navigator => Navigator.of(this);
-  L10n get l10n => L10n.of(this);
+  AppLocalizations get l10n => AppLocalizations.of(this);
   ScaffoldMessengerState get scaffoldMessenger => ScaffoldMessenger.of(this);
   ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar(
     SnackBar snackBar,

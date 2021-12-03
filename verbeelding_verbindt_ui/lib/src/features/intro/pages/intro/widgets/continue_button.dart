@@ -29,7 +29,7 @@ class IntroPageContinueButton extends StatelessWidget {
     final introBloc = context.cubit<IntroCubit>();
     return PrimaryButton(
       label: TranslatedText(
-        (c, _) => c.l10n.shared.continuee,
+        (c, _) => c.l10n.sharedContinuee,
       ),
       onTap: introBloc.accept,
     );

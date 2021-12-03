@@ -16,18 +16,18 @@ class _ConfirmDialog extends StatelessWidget {
     BuildContext context,
   ) {
     return AlertDialog(
-      title: TranslatedText(title ?? (c, _) => c.l10n.confirmDialog.title),
+      title: TranslatedText(title ?? (c, _) => c.l10n.dialogConfirmTitle),
       content: TranslatedText(content),
       actions: <Widget>[
         TextButton(
           child: TranslatedText(
-            (c, _) => c.l10n.shared.goBack,
+            (c, _) => c.l10n.sharedGoBack,
           ),
           onPressed: () => context.navigator.pop(true),
         ),
         TextButton(
           child: TranslatedText(
-            (c, _) => c.l10n.shared.cancel,
+            (c, _) => c.l10n.sharedCancel,
           ),
           onPressed: context.navigator.pop,
         ),

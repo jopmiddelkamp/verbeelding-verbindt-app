@@ -17,7 +17,7 @@ class ArtistDetailsPageVisitWebsiteButton extends StatelessWidget {
   ) {
     return PrimaryButton(
       label: TranslatedText(
-        (c, _) => c.l10n.artistDetailsPage.visitWebsite,
+        (c, _) => c.l10n.pageArtistDetailsVisitWebsite,
       ),
       onTap: () {
         launch(website);

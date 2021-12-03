@@ -51,7 +51,7 @@ class IntroPage extends StatelessWidget {
         const IntroPageHeader(),
         Expanded(
           child: TranslatedMarkdown(
-            (c, _) => c.l10n.introPage.text,
+            (c, _) => c.l10n.pageIntroText,
             padding: const EdgeInsets.all(16),
           ),
         ),

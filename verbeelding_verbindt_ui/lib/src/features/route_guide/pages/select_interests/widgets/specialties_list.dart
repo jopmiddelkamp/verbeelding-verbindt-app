@@ -34,14 +34,14 @@ class SelectInterestsPageSpecialitiesList extends StatelessWidget {
 
   Widget _buildLoadingIndicator() {
     return VVCircleLoadingIndicator(
-      text: (c, _) => c.l10n.selectInterestsPage.busyLoadingInterests,
+      text: (c, _) => c.l10n.pageSelectInterestsBusyLoadingInterests,
     );
   }
 
   Widget _buildNoResults() {
     return Center(
       child: TranslatedText(
-        (c, _) => c.l10n.selectInterestsPage.noInterestsToDisplay,
+        (c, _) => c.l10n.pageSelectInterestsNoInterestsToDisplay,
       ),
     );
   }

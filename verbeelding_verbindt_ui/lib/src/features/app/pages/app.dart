@@ -76,25 +76,9 @@ class App extends StatelessWidget {
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
-        // Shared
-        SharedLocalizations.delegate,
-        // Pages
-        IntroPageLocalizations.delegate,
-        ArtistDetailsPageLocalizations.delegate,
-        GuidePageLocalizations.delegate,
-        ScanQrPageLocalizations.delegate,
-        SelectInterestsPageLocalizations.delegate,
-        CompletedPageLocalizations.delegate,
-        // Dialogs
-        DeviceInfoDialogLocalizations.delegate,
-        ErrorDialogLocalizations.delegate,
-        NotImplementedDialogLocalizations.delegate,
-        PermissionsDeniedDialogLocalizations.delegate,
-        PermissionsRemovedDialogLocalizations.delegate,
-        PermissionsRestrictedDialogLocalizations.delegate,
-        ConfirmDialogLocalizations.delegate,
+        AppLocalizations.delegate,
       ],
-      supportedLocales: SharedLocalizations.supportedLocales,
+      supportedLocales: AppLocalizations.supportedLocales,
       localeResolutionCallback: (_, __) {
         return Locale(
           EnumUtils.getStringValue(initialLocale.isoLanguage.languageCode),

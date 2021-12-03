@@ -15,7 +15,7 @@ class _DeviceInfoDialog extends StatelessWidget {
   ) {
     return AlertDialog(
       title: TranslatedText(
-        (c, _) => c.l10n.deviceInfoDialog.title,
+        (c, _) => c.l10n.dialogDeviceInfoTitle,
       ),
       content: _getContent(context),
     );
@@ -44,17 +44,17 @@ class _DeviceInfoDialog extends StatelessWidget {
     return [
       ..._buildTile(
         context,
-        (c, _) => c.l10n.deviceInfoDialog.packageName,
+        (c, _) => c.l10n.dialogDeviceInfoPackageName,
         (_, __) => package.packageName,
       ),
       ..._buildTile(
         context,
-        (c, _) => c.l10n.deviceInfoDialog.buildName,
+        (c, _) => c.l10n.dialogDeviceInfoBuildName,
         (_, __) => package.buildNumber,
       ),
       ..._buildTile(
         context,
-        (c, _) => c.l10n.deviceInfoDialog.version,
+        (c, _) => c.l10n.dialogDeviceInfoVersion,
         (_, __) => package.version,
       ),
     ];
@@ -67,29 +67,29 @@ class _DeviceInfoDialog extends StatelessWidget {
     return [
       ..._buildTile(
         context,
-        (c, _) => c.l10n.deviceInfoDialog.physicalDevice,
+        (c, _) => c.l10n.dialogDeviceInfoPhysicalDevice,
         (_, __) {
           return device.isPhysicalDevice.toString();
         },
       ),
       ..._buildTile(
         context,
-        (c, _) => c.l10n.deviceInfoDialog.device,
+        (c, _) => c.l10n.dialogDeviceInfoDevice,
         (_, __) => device.name,
       ),
       ..._buildTile(
         context,
-        (c, _) => c.l10n.deviceInfoDialog.model,
+        (c, _) => c.l10n.dialogDeviceInfoModel,
         (_, __) => device.model,
       ),
       ..._buildTile(
         context,
-        (c, _) => c.l10n.deviceInfoDialog.systemName,
+        (c, _) => c.l10n.dialogDeviceInfoSystemName,
         (_, __) => device.systemName,
       ),
       ..._buildTile(
         context,
-        (c, _) => c.l10n.deviceInfoDialog.systemVersion,
+        (c, _) => c.l10n.dialogDeviceInfoSystemVersion,
         (_, __) => device.systemVersion,
       )
     ];
@@ -102,27 +102,27 @@ class _DeviceInfoDialog extends StatelessWidget {
     return [
       ..._buildTile(
         context,
-        (c, _) => c.l10n.deviceInfoDialog.physicalDevice,
+        (c, _) => c.l10n.dialogDeviceInfoPhysicalDevice,
         _getTranslation(device.isPhysicalDevice),
       ),
       ..._buildTile(
         context,
-        (c, _) => c.l10n.deviceInfoDialog.manufacturer,
+        (c, _) => c.l10n.dialogDeviceInfoManufacturer,
         (_, __) => device.manufacturer,
       ),
       ..._buildTile(
         context,
-        (c, _) => c.l10n.deviceInfoDialog.model,
+        (c, _) => c.l10n.dialogDeviceInfoModel,
         (_, __) => device.model,
       ),
       ..._buildTile(
         context,
-        (c, _) => c.l10n.deviceInfoDialog.androidVersion,
+        (c, _) => c.l10n.dialogDeviceInfoAndroidVersion,
         (_, __) => device.androidVersion,
       ),
       ..._buildTile(
         context,
-        (c, _) => c.l10n.deviceInfoDialog.androidSdk,
+        (c, _) => c.l10n.dialogDeviceInfoAndroidSdk,
         (_, __) => device.androidSDK.toString(),
       )
     ];
@@ -136,12 +136,12 @@ class _DeviceInfoDialog extends StatelessWidget {
     return [
       ..._buildTile(
         context,
-        (c, _) => c.l10n.deviceInfoDialog.environment,
+        (c, _) => c.l10n.dialogDeviceInfoEnvironment,
         (_, __) => EnumUtils.getStringValue(environment),
       ),
       ..._buildTile(
         context,
-        (c, _) => c.l10n.deviceInfoDialog.buildName,
+        (c, _) => c.l10n.dialogDeviceInfoBuildName,
         (_, __) => EnumUtils.getStringValue(buildMode),
       ),
     ];
@@ -170,9 +170,9 @@ class _DeviceInfoDialog extends StatelessWidget {
   ) {
     return (c, _) {
       if (value) {
-        return c.l10n.shared.yes;
+        return c.l10n.sharedYes;
       }
-      return c.l10n.shared.no;
+      return c.l10n.sharedNo;
     };
   }
 }

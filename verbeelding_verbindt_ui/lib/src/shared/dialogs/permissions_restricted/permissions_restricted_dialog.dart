@@ -11,15 +11,15 @@ class _PermissionsRestrictedDialog extends StatelessWidget {
   ) {
     return AlertDialog(
       title: TranslatedText(
-        (c, _) => c.l10n.permissionsRestrictedDialog.title,
+        (c, _) => c.l10n.dialogPermissionsRestrictedTitle,
       ),
       content: TranslatedText(
-        (c, _) => c.l10n.permissionsRestrictedDialog.content,
+        (c, _) => c.l10n.dialogPermissionsRestrictedContent,
       ),
       actions: <Widget>[
         TextButton(
           child: TranslatedText(
-            (c, _) => c.l10n.shared.close,
+            (c, _) => c.l10n.sharedClose,
           ),
           onPressed: context.navigator.pop,
         ),

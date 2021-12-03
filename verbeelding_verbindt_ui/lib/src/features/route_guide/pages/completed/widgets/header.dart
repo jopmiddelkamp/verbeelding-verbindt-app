@@ -29,7 +29,7 @@ class CompletedPageHeader extends StatelessWidget {
                 fontWeight: VVFontWeight.bold,
               ),
               child: TranslatedText(
-                (c, _) => c.l10n.completedPage.title,
+                (c, _) => c.l10n.pageCompletedTitle,
               ),
             ),
           ),

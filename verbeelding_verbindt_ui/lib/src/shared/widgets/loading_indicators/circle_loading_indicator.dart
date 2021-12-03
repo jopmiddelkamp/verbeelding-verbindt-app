@@ -27,7 +27,7 @@ class VVCircleLoadingIndicator extends StatelessWidget {
         ),
         SizedBox(height: size / 3),
         TranslatedText(
-          text ?? (c, _) => c.l10n.shared.busyLoading,
+          text ?? (c, _) => c.l10n.sharedBusyLoading,
           style: TextStyle(
             fontSize: size / 3,
           ),
