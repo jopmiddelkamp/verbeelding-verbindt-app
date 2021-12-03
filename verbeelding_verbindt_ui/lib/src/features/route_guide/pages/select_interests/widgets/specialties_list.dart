@@ -72,7 +72,7 @@ class SelectInterestsPageSpecialitiesList extends StatelessWidget {
         specialty.name.value,
       ),
       onTap: () {
-        final cubit = context.cubit<SelectedInterestsCubit>();
+        final cubit = context.read<SelectedInterestsCubit>();
         cubit.toggle(
           specialty,
         );

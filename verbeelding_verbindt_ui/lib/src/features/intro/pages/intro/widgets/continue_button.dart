@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../verbeelding_verbindt_ui.dart';
 
@@ -26,7 +27,7 @@ class IntroPageContinueButton extends StatelessWidget {
   Widget _buildButton(
     BuildContext context,
   ) {
-    final introBloc = context.cubit<IntroCubit>();
+    final introBloc = context.read<IntroCubit>();
     return PrimaryButton(
       label: TranslatedText(
         (c, _) => c.l10n.sharedContinuee,

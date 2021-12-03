@@ -27,7 +27,7 @@ class CompletedPage extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    final cubit = context.cubit<CompletedCubit>();
+    final cubit = context.read<CompletedCubit>();
     return WillPopScope(
       onWillPop: () async {
         final result = await showConfirmDialog(

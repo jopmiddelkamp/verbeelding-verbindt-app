@@ -95,7 +95,7 @@ class ScanQrPage extends StatelessWidget {
     return QRView(
       key: GlobalKey(debugLabel: '$ScanQrPage$QRView'),
       onQRViewCreated: (controller) {
-        final cubit = context.cubit<ScanQrCubit>();
+        final cubit = context.read<ScanQrCubit>();
         cubit.setQrController(controller);
       },
     );

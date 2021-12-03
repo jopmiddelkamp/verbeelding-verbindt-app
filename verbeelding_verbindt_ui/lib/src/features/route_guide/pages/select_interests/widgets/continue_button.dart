@@ -36,7 +36,7 @@ class SelectInterestsPageContinueButton extends StatelessWidget {
     BuildContext context, {
     required SelectedInterestsLoaded state,
   }) async {
-    context.cubit<SelectedInterestsCubit>().reset();
+    context.read<SelectedInterestsCubit>().reset();
     await context.navigator.pushNamed(
       GuidePage.routeName,
       arguments: CreateRouteGuidePageArguments(

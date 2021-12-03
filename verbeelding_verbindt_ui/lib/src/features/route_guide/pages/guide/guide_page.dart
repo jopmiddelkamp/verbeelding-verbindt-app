@@ -38,7 +38,7 @@ class GuidePage extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    final cubit = context.cubit<GuideCubit>();
+    final cubit = context.read<GuideCubit>();
     return BlocListener<GuideCubit, GuideState>(
       listener: (context, state) {
         if (state is GuideCompleted) {

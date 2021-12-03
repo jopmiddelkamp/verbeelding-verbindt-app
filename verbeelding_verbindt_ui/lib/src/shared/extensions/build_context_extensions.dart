@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 import '../../../verbeelding_verbindt_ui.dart';
 
@@ -18,24 +16,6 @@ extension BuildContextExtensions on BuildContext {
   ) {
     return scaffoldMessenger.showSnackBar(
       snackBar,
-    );
-  }
-
-  T provider<T>({
-    bool listen = false,
-  }) {
-    return Provider.of<T>(
-      this,
-      listen: listen,
-    );
-  }
-
-  T cubit<T extends CubitBase<Object?>>({
-    bool listen = false,
-  }) {
-    return BlocProvider.of<T>(
-      this,
-      listen: listen,
     );
   }
 }

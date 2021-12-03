@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../../../../../verbeelding_verbindt_ui.dart';
@@ -35,7 +36,7 @@ class GuidePageScanQrButton extends StatelessWidget {
       ),
     );
     if (result == true) {
-      context.cubit<GuideCubit>().next();
+      context.read<GuideCubit>().next();
     }
   }
 }
