@@ -2,13 +2,11 @@ include: package:flutter_lints/flutter.yaml
 
 linter:
   rules:
-    public_member_api_docs: false
-    lines_longer_than_80_chars: false
-    one_member_abstracts: false
+    - directives_ordering
+    - prefer_relative_imports
 
-exclude:
-  - "**/*.g.dart"
-  - "**/*.freezed.dart"
-
-errors:
-  invalid_annotation_target: ignore
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/generated/"
