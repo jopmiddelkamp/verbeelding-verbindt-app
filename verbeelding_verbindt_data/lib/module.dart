@@ -1,25 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:verbeelding_verbindt_core/aliases.dart';
-import 'package:verbeelding_verbindt_core/repositories/artist_repository.dart';
-import 'package:verbeelding_verbindt_core/repositories/auth_repository.dart';
-import 'package:verbeelding_verbindt_core/repositories/intro_repository.dart';
-import 'package:verbeelding_verbindt_core/repositories/locale_repository.dart';
-import 'package:verbeelding_verbindt_core/repositories/location_repository.dart';
-import 'package:verbeelding_verbindt_core/repositories/route_generator_repository.dart';
-import 'package:verbeelding_verbindt_core/repositories/route_repository.dart';
-import 'package:verbeelding_verbindt_core/repositories/speciality_repository.dart';
+import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
-import 'repositories/artist/firestore/firestore_artist_repository.dart';
-import 'repositories/auth/firebase/firebase_auth_repository.dart';
-import 'repositories/intro/persistent_storage/persistent_storage_intro_repository_impl.dart.dart';
-import 'repositories/locale/persistent_storage/persistent_storage_locale_repository_impl.dart.dart';
-import 'repositories/location/geo_locator/geo_locator_location_service_impl.dart';
-import 'repositories/persistent_storage/persistent_storage_repository.dart';
-import 'repositories/persistent_storage/shared_preferences/shared_preferences_persistent_repository_impl.dart';
-import 'repositories/route/persistent_storage/persistent_storage_route_repository.dart';
-import 'repositories/route_generator/route_xl/route_xl_repository.dart';
-import 'repositories/speciality/firestore/firestore_speciality_repository.dart';
+import 'verbeelding_verbindt_data.dart';
 
 class Module {
   static Future<void> initialize({
@@ -39,7 +23,7 @@ class Module {
     required String routeXlUsername,
     required String routeXlPassword,
   }) async {
-    serviceLocator
+    GetIt.instance
       ..registerSingletonAsync<LocationRepository>(
         () async => GlLocationRepositoryImpl(),
       )
@@ -58,7 +42,7 @@ class Module {
       )
       ..registerSingletonWithDependencies<RouteRepository>(
         () => PersistentStorageRouteRepository(
-          persistentStorageRepository: serviceLocator(),
+          persistentStorageRepository: GetIt.instance(),
         ),
         dependsOn: [
           PersistentStorageRepository,
@@ -84,7 +68,7 @@ class Module {
       )
       ..registerSingletonWithDependencies<LocaleRepository>(
         () => PersistentStorageLocaleRepositoryImpl(
-          persistentStorageRepository: serviceLocator(),
+          persistentStorageRepository: GetIt.instance(),
         ),
         dispose: (param) => param.dispose(),
         dependsOn: [
@@ -93,7 +77,7 @@ class Module {
       )
       ..registerSingletonWithDependencies<IntroRepository>(
         () => PersistentStorageIntroRepositoryImpl(
-          persistentStorageRepository: serviceLocator(),
+          persistentStorageRepository: GetIt.instance(),
         ),
         dispose: (param) => param.dispose(),
         dependsOn: [

@@ -1,5 +1,4 @@
-import 'package:verbeelding_verbindt_core/entities/environment_enum.dart';
-import 'package:verbeelding_verbindt_core/extensions/string_extensions.dart';
+import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 abstract class EnvironmentVariables {
   factory EnvironmentVariables() => const _EnvironmentVariablesImpl();

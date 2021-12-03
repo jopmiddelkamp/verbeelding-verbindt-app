@@ -1,23 +1,6 @@
-import 'aliases.dart';
-import 'use_cases/artist/stream_artists_by_specialty_use_case.dart';
-import 'use_cases/auth/get_authenticated_user_use_case.dart';
-import 'use_cases/auth/sign_in_anonymously_use_case.dart';
-import 'use_cases/auth/stream_authenticated_user_use_case.dart';
-import 'use_cases/intro/accept_intro_use_case.dart';
-import 'use_cases/intro/get_is_intro_accepted_use_case.dart';
-import 'use_cases/locale/get_active_locale_use_case.dart';
-import 'use_cases/locale/get_inactive_locales_use_case.dart';
-import 'use_cases/locale/set_active_locale_use_case.dart';
-import 'use_cases/location/fetch_user_location_use_case.dart';
-import 'use_cases/permission/get_permission_status_use_case.dart';
-import 'use_cases/permission/request_permission_use_case.dart';
-import 'use_cases/route/create_route_use_case.dart';
-import 'use_cases/route/delete_route_use_case.dart';
-import 'use_cases/route/get_has_users_route_use_case.dart';
-import 'use_cases/route/get_users_route_use_case.dart';
-import 'use_cases/route/next_route_stop_use_case.dart';
-import 'use_cases/route/stream_users_route_use_case.dart';
-import 'use_cases/specialty/stream_specialties_use_case.dart';
+import 'package:get_it/get_it.dart';
+
+import 'verbeelding_verbindt_core.dart';
 
 class Module {
   static Future<void> initialize() async {
@@ -34,132 +17,132 @@ class Module {
   }
 
   static Future<void> initializeArtistUseCases() async {
-    serviceLocator.registerFactory<StreamArtistBySpecialtyUseCase>(
+    GetIt.instance.registerFactory<StreamArtistBySpecialtyUseCase>(
       () => StreamArtistBySpecialtyUseCase(
-        artistRepository: serviceLocator(),
+        artistRepository: GetIt.instance(),
       ),
     );
   }
 
   static Future<void> initializeAuthUseCases() async {
-    serviceLocator
+    GetIt.instance
       ..registerFactory<GetAuthenticatedUserUseCase>(
         () => GetAuthenticatedUserUseCase(
-          authRepository: serviceLocator(),
+          authRepository: GetIt.instance(),
         ),
       )
       ..registerFactory<SignInAnonymouslyUseCase>(
         () => SignInAnonymouslyUseCase(
-          authRepository: serviceLocator(),
+          authRepository: GetIt.instance(),
         ),
       )
       ..registerFactory<StreamAuthenticatedUserUseCase>(
         () => StreamAuthenticatedUserUseCase(
-          authRepository: serviceLocator(),
+          authRepository: GetIt.instance(),
         ),
       );
   }
 
   static Future<void> initializeIntroUseCases() async {
-    serviceLocator
+    GetIt.instance
       ..registerFactory<AcceptIntroUseCase>(
         () => AcceptIntroUseCase(
-          introRepository: serviceLocator(),
+          introRepository: GetIt.instance(),
         ),
       )
       ..registerFactory<GetIsIntroAcceptedUseCase>(
         () => GetIsIntroAcceptedUseCase(
-          introRepository: serviceLocator(),
+          introRepository: GetIt.instance(),
         ),
       );
   }
 
   static Future<void> initializeLocaleUseCases() async {
-    serviceLocator
+    GetIt.instance
       ..registerFactory<GetActiveLocaleUseCase>(
         () => GetActiveLocaleUseCase(
-          localeRepository: serviceLocator(),
+          localeRepository: GetIt.instance(),
         ),
       )
       ..registerFactory<GetInactiveLocalesUseCase>(
         () => GetInactiveLocalesUseCase(
-          localeRepository: serviceLocator(),
+          localeRepository: GetIt.instance(),
         ),
       )
       ..registerFactory<SetActiveLocaleUseCase>(
         () => SetActiveLocaleUseCase(
-          localeRepository: serviceLocator(),
+          localeRepository: GetIt.instance(),
         ),
       );
   }
 
   static Future<void> initializeLocationUseCases() async {
-    serviceLocator.registerFactory<FetchUserLocationUseCase>(
+    GetIt.instance.registerFactory<FetchUserLocationUseCase>(
       () => FetchUserLocationUseCase(
-        locationRepository: serviceLocator(),
+        locationRepository: GetIt.instance(),
       ),
     );
   }
 
   static Future<void> initializePermissionUseCases() async {
-    serviceLocator
+    GetIt.instance
       ..registerFactory<GetPermissionStatusUseCase>(
         () => GetPermissionStatusUseCase(
-          permissionRepository: serviceLocator(),
+          permissionRepository: GetIt.instance(),
         ),
       )
       ..registerFactory<RequestPermissionUseCase>(
         () => RequestPermissionUseCase(
-          permissionRepository: serviceLocator(),
+          permissionRepository: GetIt.instance(),
         ),
       );
   }
 
   static Future<void> initializeRouteUseCases() async {
-    serviceLocator
+    GetIt.instance
       ..registerFactory<CreateRouteUseCase>(
         () => CreateRouteUseCase(
-          artistRepository: serviceLocator(),
-          authRepository: serviceLocator(),
-          locationRepository: serviceLocator(),
-          routeGeneratorRepository: serviceLocator(),
-          routeRepository: serviceLocator(),
+          artistRepository: GetIt.instance(),
+          authRepository: GetIt.instance(),
+          locationRepository: GetIt.instance(),
+          routeGeneratorRepository: GetIt.instance(),
+          routeRepository: GetIt.instance(),
         ),
       )
       ..registerFactory<DeleteRouteUseCase>(
         () => DeleteRouteUseCase(
-          routeRepository: serviceLocator(),
+          routeRepository: GetIt.instance(),
         ),
       )
       ..registerFactory<GetHasUsersRouteUseCase>(
         () => GetHasUsersRouteUseCase(
-          authRepository: serviceLocator(),
-          routeRepository: serviceLocator(),
+          authRepository: GetIt.instance(),
+          routeRepository: GetIt.instance(),
         ),
       )
       ..registerFactory<NextRouteStopUseCase>(
         () => NextRouteStopUseCase(
-          routeRepository: serviceLocator(),
+          routeRepository: GetIt.instance(),
         ),
       )
       ..registerFactory<StreamUsersRouteUseCase>(
         () => StreamUsersRouteUseCase(
-          authRepository: serviceLocator(),
-          routeRepository: serviceLocator(),
+          authRepository: GetIt.instance(),
+          routeRepository: GetIt.instance(),
         ),
       )
       ..registerFactory<GetUsersRouteUseCase>(
         () => GetUsersRouteUseCase(
-          authRepository: serviceLocator(),
-          routeRepository: serviceLocator(),
+          authRepository: GetIt.instance(),
+          routeRepository: GetIt.instance(),
         ),
       );
   }
 
   static Future<void> initializeSpecialtyUseCases() async {
-    serviceLocator.registerFactory<StreamSpecialitiesUseCase>(
+    GetIt.instance.registerFactory<StreamSpecialitiesUseCase>(
       () => StreamSpecialitiesUseCase(
-        specialtyRepository: serviceLocator(),
+        specialtyRepository: GetIt.instance(),
       ),
     );
   }
