@@ -6,5 +6,4 @@ export 'routes.dart';
 export 'routes_utils.dart';
 export 'shared/shared.dart';
 export 'theme.dart';
-export 'theme_color_scheme.dart';
 export 'typedefs.dart';

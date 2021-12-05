@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class CustomThemeColorScheme extends ColorScheme with Diagnosticable {
   const CustomThemeColorScheme({
+    required Brightness brightness,
     required Color primary,
     required this.primaryDarker,
     required Color primaryVariant,
@@ -21,7 +22,6 @@ class CustomThemeColorScheme extends ColorScheme with Diagnosticable {
     required this.onSurfaceLighter,
     required Color onBackground,
     required Color onError,
-    required Brightness brightness,
     required this.border,
     required this.divider,
     required this.shadow,
@@ -33,8 +33,6 @@ class CustomThemeColorScheme extends ColorScheme with Diagnosticable {
     required this.onSuccess,
     required this.info,
     required this.onInfo,
-    required this.badge,
-    required this.onBadge,
   }) : super(
           primary: primary,
           primaryVariant: primaryVariant,
@@ -68,11 +66,9 @@ class CustomThemeColorScheme extends ColorScheme with Diagnosticable {
   final Color info;
   final Color onInfo;
 
-  final Color badge;
-  final Color onBadge;
-
   @override
   CustomThemeColorScheme copyWith({
+    Brightness? brightness,
     Color? primary,
     Color? primaryDarker,
     Color? primaryVariant,
@@ -100,11 +96,9 @@ class CustomThemeColorScheme extends ColorScheme with Diagnosticable {
     Color? onSuccess,
     Color? info,
     Color? onInfo,
-    Color? badge,
-    Color? onBadge,
-    Brightness? brightness,
   }) {
     return CustomThemeColorScheme(
+      brightness: brightness ?? this.brightness,
       primary: primary ?? this.primary,
       primaryDarker: primaryDarker ?? this.primaryDarker,
       primaryVariant: primaryVariant ?? this.primaryVariant,
@@ -132,9 +126,6 @@ class CustomThemeColorScheme extends ColorScheme with Diagnosticable {
       onSuccess: onSuccess ?? this.onSuccess,
       info: info ?? this.info,
       onInfo: onInfo ?? this.onInfo,
-      badge: badge ?? this.badge,
-      onBadge: onBadge ?? this.onBadge,
-      brightness: brightness ?? this.brightness,
     );
   }
 
@@ -218,15 +209,38 @@ class CustomThemeColorScheme extends ColorScheme with Diagnosticable {
       onInfo,
       defaultValue: null,
     ));
-    properties.add(ColorProperty(
-      'badge',
-      badge,
-      defaultValue: null,
-    ));
-    properties.add(ColorProperty(
-      'onBadge',
-      onBadge,
-      defaultValue: null,
-    ));
   }
 }
+
+// Can be moved to a seperate file so it can be replaced by a tenant specific
+// file in the CD pipeline.
+const kDefaultThemeColorSchemeLight = CustomThemeColorScheme(
+  brightness: Brightness.light,
+  primary: Color.fromRGBO(255, 152, 0, 1),
+  primaryDarker: Color.fromRGBO(245, 124, 0, 1),
+  primaryVariant: Color.fromRGBO(255, 152, 0, 1),
+  onPrimary: Color.fromRGBO(255, 255, 255, 1),
+  secondary: Color.fromRGBO(2, 119, 189, 1),
+  secondaryLighter: Color.fromRGBO(227, 243, 255, 1),
+  secondaryVariant: Color.fromRGBO(2, 119, 189, 1),
+  onSecondary: Color.fromRGBO(255, 255, 255, 1),
+  background: Color.fromRGBO(255, 255, 255, 1),
+  backgroundDarker: Color.fromRGBO(246, 246, 246, 1),
+  onBackground: Color.fromRGBO(55, 55, 55, 1),
+  surface: Color.fromRGBO(255, 255, 255, 1),
+  onSurface: Color.fromRGBO(55, 55, 55, 1),
+  onSurfaceLighter: Color.fromRGBO(182, 182, 182, 1),
+  error: Color.fromRGBO(237, 109, 73, 1),
+  onError: Color.fromRGBO(255, 255, 255, 1),
+  border: Color.fromRGBO(235, 235, 235, 1),
+  divider: Color.fromRGBO(235, 235, 235, 1),
+  shadow: Color.fromRGBO(0, 0, 0, 1),
+  severe: Color.fromRGBO(237, 109, 73, 1),
+  onSevere: Color.fromRGBO(255, 255, 255, 1),
+  warning: Color.fromRGBO(255, 194, 56, 1),
+  onWarning: Color.fromRGBO(255, 255, 255, 1),
+  success: Color.fromRGBO(93, 215, 132, 1),
+  onSuccess: Color.fromRGBO(255, 255, 255, 1),
+  info: Color.fromRGBO(182, 182, 182, 1),
+  onInfo: Color.fromRGBO(255, 255, 255, 1),
+);
