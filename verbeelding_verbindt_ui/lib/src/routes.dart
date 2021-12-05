@@ -10,10 +10,10 @@ Route<dynamic> onGenerateRoute(
   // var fullscreenDialog = false;
   final arguments = settings.arguments;
   switch (settings.name) {
-    case IntroPage.routeName:
+    case IntroductionPage.routeName:
       return buildMaterialPageRoute(
         settings: settings,
-        builder: (_) => IntroPage.bloc(),
+        builder: (_) => IntroductionPage.bloc(),
         fullscreenDialog: false,
       );
     case SelectInterestsPage.routeName:
@@ -72,9 +72,7 @@ Route<dynamic> onGenerateRoute(
       }
       return buildMaterialPageRoute(
         settings: settings,
-        builder: (_) => CompletedPage.bloc(
-          routeId: arguments,
-        ),
+        builder: (_) => CompletedPage.bloc(),
         fullscreenDialog: false,
       );
     default:

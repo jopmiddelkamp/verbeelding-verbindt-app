@@ -115,32 +115,25 @@ class _AppState extends State<App> {
     needNavigation = false;
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       if (state.hasNotAcceptedIntro) {
-        context.navigator.pushReplacementNamed(
-          IntroPage.routeName,
-        );
+        IntroductionPage.pushReplacement(context);
         return;
       }
       if (state.hasNoActiveRoute) {
-        context.navigator.pushReplacementNamed(
-          SelectInterestsPage.routeName,
-        );
+        SelectInterestsPage.pushReplacement(context);
         return;
       }
-      context.navigator.pushReplacement(
-        InstantMaterialPageRoute(
-          builder: (context) {
-            return SelectInterestsPage.bloc();
-          },
-        ),
+      SelectInterestsPage.pushReplacement(
+        context,
+        animation: false,
       );
       if (state.hasCompletedRoute) {
-        context.navigator.pushNamed(
-          CompletedPage.routeName,
-          arguments: state.route!.id!,
+        CompletedPage.push(
+          context,
+          routeId: state.route!.id!,
         );
       }
-      context.navigator.pushNamed(
-        GuidePage.routeName,
+      GuidePage.push(
+        context,
         arguments: const OpenRouteGuidePageArguments(),
       );
     });

@@ -1,0 +1,121 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
+
+import '../../../../../verbeelding_verbindt_ui.dart';
+
+class ScanQrPage extends StatelessWidget {
+  const ScanQrPage._();
+
+  static Widget bloc(
+    ScanQrPageArguments arguments,
+  ) {
+    return BlocProvider(
+      create: (_) => ScanQrCubit(
+        qrCodeValidator: QrCodeValidator(
+          expected: arguments.currentArtistId,
+        ),
+      ),
+      child: BlocListener<ScanQrCubit, ScanQrState>(
+        listener: (context, state) {
+          if (state is ScanQrValidScan) {
+            context.navigator.pop(true);
+          } else if (state is ScanQrInvalidScan) {
+            context.scaffoldMessenger.showSnackBar(
+              const SnackBar(
+                content: Text(
+                  'U heeft een ongeldige QR code gescand. Probeer het a.u.b. opnieuw.',
+                ),
+              ),
+            );
+          }
+        },
+        child: const ScanQrPage._(),
+      ),
+    );
+  }
+
+  static Future<bool?> push(
+    BuildContext context, {
+    required ScanQrPageArguments arguments,
+  }) {
+    return context.navigator.pushNamed<bool>(
+      routeName,
+      arguments: arguments,
+    );
+  }
+
+  static const String routeName = 'route_guide_scan_qr';
+
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: BlocBuilder<ScanQrCubit, ScanQrState>(
+        buildWhen: _buildWhen,
+        builder: (context, state) {
+          return Stack(
+            children: [
+              Positioned.fill(
+                child: state.maybeMap(
+                  initializing: (_) => _buildLoadingOverlay(context),
+                  failed: (_) => const FailureStateDisplay(),
+                  orElse: () => Container(),
+                ),
+              ),
+              Positioned.fill(
+                child: _buildQrView(context),
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  bool _buildWhen(
+    ScanQrState previous,
+    ScanQrState current,
+  ) {
+    return previous.runtimeType != current.runtimeType;
+  }
+
+  Widget _buildLoadingOverlay(
+    BuildContext context,
+  ) {
+    return Container(
+      color: context.theme.colorScheme.background,
+      child: Center(
+        child: VVCircleLoadingIndicator(
+          text: context.l10n.pageScanQrBusyLoadingCamera,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildQrView(
+    BuildContext context,
+  ) {
+    return QRView(
+      key: GlobalKey(debugLabel: '$ScanQrPage$QRView'),
+      onQRViewCreated: (controller) {
+        final cubit = context.read<ScanQrCubit>();
+        cubit.setQrController(controller);
+      },
+    );
+  }
+}
+
+class ScanQrPageArguments {
+  const ScanQrPageArguments({
+    required this.currentArtistId,
+  });
+
+  final String currentArtistId;
+}
