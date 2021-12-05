@@ -25,21 +25,6 @@ abstract class DioRepositoryBase extends RepositoryBase {
   final String baseUrl;
   final Map<String, dynamic>? headers;
 
-  // Future<Response> safeRequest(RequestFunction req) async {
-  //   try {
-  //     final resp = await req();
-  //     return resp;
-  //   } on DioError {
-  //     // if (e.type == DioErrorType.response &&
-  //     //     e.response?.data is Map<String, dynamic>) {
-
-  //     //   rethrow;
-  //     // } else {
-  //     rethrow;
-  //     // }
-  //   }
-  // }
-
   String getApiUrl(
     String resource,
   ) {
@@ -54,40 +39,4 @@ abstract class DioRepositoryBase extends RepositoryBase {
       ...headers ?? {},
     };
   }
-
-  // void _handleApiError(int statusCode, ApiErrorDTO error) {
-  //   if (statusCode == 401 || statusCode == 403) {
-  //     return;
-  //   }
-  //   if (error?.errorCode != null) {
-  //     WidgetsBinding.instance.addPostFrameCallback((_) {
-  //       switch (error.errorCode) {
-  //         case 'FinishActiveTasksFirst':
-  //           DialogUtils.showErrorDialog(
-  //             title: (context) => MTPLocalizations.of(context)
-  //                 .errorTitleForFinishActiveTasksFirst,
-  //             message: (context) => MTPLocalizations.of(context)
-  //                 .errorMessageForFinishActiveTasksFirst,
-  //           );
-  //           break;
-  //         case 'TooManyTasksInProgress':
-  //           DialogUtils.showErrorDialog(
-  //             title: (context) => MTPLocalizations.of(context)
-  //                 .errorTitleForTooManyTasksInProgress,
-  //             message: (context) => MTPLocalizations.of(context)
-  //                 .errorMessageForTooManyTasksInProgress,
-  //           );
-  //           break;
-  //         default:
-  //           DialogUtils.showErrorDialog(
-  //             title: (context) =>
-  //                 MTPLocalizations.of(context).errorTitleForUnknownErrorCode,
-  //             message: (context) => MTPLocalizations.of(context)
-  //                 .errorMessageForUnknownErrorCode(error.errorDescription),
-  //           );
-  //           break;
-  //       }
-  //     });
-  //   }
-  // }
 }

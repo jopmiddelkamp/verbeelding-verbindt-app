@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../../../verbeelding_verbindt_ui.dart';
 
-class MTPPullToRefresh extends StatelessWidget {
+class PullToRefresh extends StatelessWidget {
   final RefreshCallback onRefresh;
   final Widget child;
 
-  const MTPPullToRefresh({
+  const PullToRefresh({
     Key? key,
     required this.onRefresh,
     required this.child,
