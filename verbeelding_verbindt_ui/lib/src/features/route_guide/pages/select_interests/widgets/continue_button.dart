@@ -18,8 +18,8 @@ class SelectInterestsPageContinueButton extends StatelessWidget {
     return BlocBuilder<SelectedInterestsCubit, SelectedInterestsState>(
       builder: (context, state) {
         return PrimaryButton(
-          label: TranslatedText(
-            (c, _) => c.l10n.sharedContinuee,
+          label: Text(
+            context.l10n.sharedContinuee,
           ),
           onTap: state is SelectedInterestsLoaded && state.hasSelection
               ? () => _onTap(

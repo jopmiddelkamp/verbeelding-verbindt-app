@@ -28,8 +28,8 @@ class CompletedPageHeader extends StatelessWidget {
                 color: Colors.white,
                 fontWeight: VVFontWeight.bold,
               ),
-              child: TranslatedText(
-                (c, _) => c.l10n.pageCompletedTitle,
+              child: Text(
+                context.l10n.pageCompletedTitle,
               ),
             ),
           ),

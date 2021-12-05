@@ -83,7 +83,7 @@ class ScanQrPage extends StatelessWidget {
       color: context.theme.colorScheme.background,
       child: Center(
         child: VVCircleLoadingIndicator(
-          text: (c, _) => c.l10n.pageScanQrBusyLoadingCamera,
+          text: context.l10n.pageScanQrBusyLoadingCamera,
         ),
       ),
     );

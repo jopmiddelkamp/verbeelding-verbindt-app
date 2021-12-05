@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get_it/get_it.dart';
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
@@ -32,7 +33,7 @@ class CompletedPage extends StatelessWidget {
       onWillPop: () async {
         final result = await showConfirmDialog(
           context,
-          content: (c, _) => c.l10n.pageCompletedPopConfirmMessage,
+          content: context.l10n.pageCompletedPopConfirmMessage,
         );
         if (result) {
           await cubit.deleteRoute();
@@ -45,18 +46,20 @@ class CompletedPage extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
-        body: _buildBody(),
+        body: _buildBody(context),
       ),
     );
   }
 
-  Widget _buildBody() {
+  Widget _buildBody(
+    BuildContext context,
+  ) {
     return Column(
       children: <Widget>[
         const CompletedPageHeader(),
         Expanded(
-          child: TranslatedMarkdown(
-            (c, _) => c.l10n.pageCompletedText,
+          child: Markdown(
+            data: context.l10n.pageCompletedText,
             padding: const EdgeInsets.all(16),
           ),
         ),

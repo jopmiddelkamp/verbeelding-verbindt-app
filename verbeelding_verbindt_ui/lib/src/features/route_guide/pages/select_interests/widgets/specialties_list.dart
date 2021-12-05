@@ -16,10 +16,10 @@ class SelectInterestsPageSpecialitiesList extends StatelessWidget {
     return BlocBuilder<SelectedInterestsCubit, SelectedInterestsState>(
       builder: (context, state) {
         return state.map(
-          initializing: (_) => _buildLoadingIndicator(),
+          initializing: (_) => _buildLoadingIndicator(context),
           loaded: (state) {
             if (state.specialities.isEmpty) {
-              return _buildNoResults();
+              return _buildNoResults(context);
             }
             return _buildList(
               context,
@@ -32,16 +32,20 @@ class SelectInterestsPageSpecialitiesList extends StatelessWidget {
     );
   }
 
-  Widget _buildLoadingIndicator() {
+  Widget _buildLoadingIndicator(
+    BuildContext context,
+  ) {
     return VVCircleLoadingIndicator(
-      text: (c, _) => c.l10n.pageSelectInterestsBusyLoadingInterests,
+      text: context.l10n.pageSelectInterestsBusyLoadingInterests,
     );
   }
 
-  Widget _buildNoResults() {
+  Widget _buildNoResults(
+    BuildContext context,
+  ) {
     return Center(
-      child: TranslatedText(
-        (c, _) => c.l10n.pageSelectInterestsNoInterestsToDisplay,
+      child: Text(
+        context.l10n.pageSelectInterestsNoInterestsToDisplay,
       ),
     );
   }

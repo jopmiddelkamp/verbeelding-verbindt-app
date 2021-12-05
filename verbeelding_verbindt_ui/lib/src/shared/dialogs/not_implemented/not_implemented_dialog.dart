@@ -10,16 +10,16 @@ class _NotImplementedDialog extends StatelessWidget {
     BuildContext context,
   ) {
     return AlertDialog(
-      title: TranslatedText(
-        (c, _) => c.l10n.dialogNotImplementedTitle,
+      title: Text(
+        context.l10n.dialogNotImplementedTitle,
       ),
-      content: TranslatedText(
-        (c, _) => c.l10n.dialogNotImplementedContent,
+      content: Text(
+        context.l10n.dialogNotImplementedContent,
       ),
       actions: <Widget>[
         TextButton(
-          child: TranslatedText(
-            (c, _) => c.l10n.sharedClose,
+          child: Text(
+            context.l10n.sharedClose,
           ),
           onPressed: context.navigator.pop,
         ),

@@ -9,8 +9,8 @@ class _ErrorDialog extends StatelessWidget {
     required this.message,
   }) : super(key: key);
 
-  final TranslatedTextCallback title;
-  final TranslatedTextCallback message;
+  final String title;
+  final String message;
 
   @override
   Widget build(
@@ -21,15 +21,15 @@ class _ErrorDialog extends StatelessWidget {
         children: [
           const Icon(Icons.error),
           const SizedBox(width: 4),
-          TranslatedText(title),
+          Text(title),
         ],
       ),
-      content: TranslatedText(message),
+      content: Text(message),
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: TranslatedText(
-            (c, _) => c.l10n.sharedOk,
+          child: Text(
+            context.l10n.sharedOk,
           ),
         )
       ],
@@ -37,12 +37,12 @@ class _ErrorDialog extends StatelessWidget {
   }
 }
 
-void showErrorDialog(
+Future<void> showErrorDialog(
   BuildContext context, {
-  required TranslatedTextCallback title,
-  required TranslatedTextCallback message,
+  required String title,
+  required String message,
 }) {
-  showDialog(
+  return showDialog<void>(
     context: context,
     builder: (context) => _ErrorDialog(
       title: title,
@@ -51,13 +51,13 @@ void showErrorDialog(
   );
 }
 
-void showUnknownErrorDialog(
+Future<void> showUnknownErrorDialog(
   BuildContext context, {
   required Exception exception,
 }) {
-  showErrorDialog(
+  return showErrorDialog(
     context,
-    title: (c, _) => c.l10n.dialogErrorUnknownErrorTitle,
-    message: (c, _) => c.l10n.dialogErrorUnknownErrorMessage,
+    title: context.l10n.dialogErrorUnknownErrorTitle,
+    message: context.l10n.dialogErrorUnknownErrorMessage,
   );
 }

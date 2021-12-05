@@ -1,5 +1,6 @@
 export 'blocs/blocs.dart';
 export 'dialogs/dialogs.dart';
+export 'entities/entities.dart';
 export 'extensions/extensions.dart';
 export 'failures/failures.dart';
 export 'font_weight.dart';

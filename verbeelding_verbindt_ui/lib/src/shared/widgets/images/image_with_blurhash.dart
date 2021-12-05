@@ -34,7 +34,9 @@ class ImageWithBlurhash extends StatelessWidget {
     if (borderRadius != null) {
       boxDecoration = BoxDecoration(
         borderRadius: BorderRadius.circular(borderRadius!),
-        border: Border.all(color: kBorderColor),
+        border: Border.all(
+          color: context.customTheme.colorScheme.border,
+        ),
       );
       clipBehavior = Clip.antiAlias;
     }

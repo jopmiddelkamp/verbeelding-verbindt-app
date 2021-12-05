@@ -2,7 +2,7 @@ import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../../../verbeelding_verbindt_ui.dart';
 
-class PermissionCubit extends CubitBase<PermissionState> {
+class PermissionCubit extends CubitBase<PermissionState> with OnReadyMixin {
   PermissionCubit({
     required GetPermissionStatusUseCase getPermissionStatusUseCase,
     required RequestPermissionUseCase requestPermissionUseCase,
@@ -21,6 +21,7 @@ class PermissionCubit extends CubitBase<PermissionState> {
         ),
       ),
     ));
+    readyCompleter.completeIfNotCompleted();
   }
 
   Future<void> requestLocationWhenInUse() async {

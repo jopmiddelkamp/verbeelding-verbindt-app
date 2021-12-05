@@ -14,13 +14,22 @@ Future<void> main() async {
   runZonedGuarded(
     () async {
       await Bootstrap.boot();
-      final initialLocale =
-          await GetIt.instance<GetActiveLocaleUseCase>().call(null);
+
       // Remove when ever implementing a login page
       await GetIt.instance<SignInAnonymouslyUseCase>().call(null);
+
+      final appCubit = _initAppCubit();
+      final localizationCubit = _initLocalizationCubit();
+
+      await Future.wait([
+        appCubit.onReady,
+        localizationCubit.onReady,
+      ]);
+
       runApp(
         App.bloc(
-          initialLocale: initialLocale,
+          appCubit: appCubit,
+          localizationCubit: localizationCubit,
         ),
       );
     },
@@ -38,4 +47,19 @@ Future<void> _initFirebase() async {
   await Firebase.initializeApp();
   // Pass all uncaught errors from the framework to Crashlytics.
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+}
+
+AppCubit _initAppCubit() {
+  return AppCubit(
+    getUsersRouteUseCase: GetIt.instance(),
+    getIsIntroAcceptedUseCase: GetIt.instance(),
+    getAuthenticatedUserUseCase: GetIt.instance(),
+  )..init();
+}
+
+LocalizationCubit _initLocalizationCubit() {
+  return LocalizationCubit(
+    getActiveLocaleUseCase: GetIt.instance(),
+    setActiveLocaleUseCase: GetIt.instance(),
+  )..init();
 }

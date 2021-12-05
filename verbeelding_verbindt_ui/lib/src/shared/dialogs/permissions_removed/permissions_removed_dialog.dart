@@ -10,16 +10,16 @@ class _PermissionsRemovedDialog extends StatelessWidget {
     BuildContext context,
   ) {
     return AlertDialog(
-      title: TranslatedText(
-        (c, _) => c.l10n.dialogPermissionsRemovedTitle,
+      title: Text(
+        context.l10n.dialogPermissionsRemovedTitle,
       ),
-      content: TranslatedText(
-        (c, _) => c.l10n.dialogPermissionsRemovedContent,
+      content: Text(
+        context.l10n.dialogPermissionsRemovedContent,
       ),
       actions: <Widget>[
         TextButton(
-          child: TranslatedText(
-            (c, _) => c.l10n.sharedClose,
+          child: Text(
+            context.l10n.sharedClose,
           ),
           onPressed: context.navigator.pop,
         ),

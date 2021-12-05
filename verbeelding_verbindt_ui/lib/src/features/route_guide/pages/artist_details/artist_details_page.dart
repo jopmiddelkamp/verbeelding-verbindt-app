@@ -55,19 +55,19 @@ class ArtistDetailsPage extends StatelessWidget {
                 YoutubePlayer(
                   controller: state.youtubeController,
                 ),
-                const SizedBox(height: kDefaultSpacing),
+                SizedBox(height: SpacingSize.medium.value),
                 Padding(
-                  padding: const EdgeInsets.all(kDefaultPadding),
+                  padding: EdgeInsets.all(PaddingSize.medium.value),
                   child: Text(state.artist.detailsContent.text.value),
                 ),
-                const SizedBox(height: kDefaultSpacing),
+                SizedBox(height: SpacingSize.medium.value),
                 ArtistDetailsPageImageList(
                   state.artist.detailsContent.images,
-                  padding: const EdgeInsets.fromLTRB(
-                    kDefaultPadding,
+                  padding: EdgeInsets.fromLTRB(
+                    PaddingSize.medium.value,
                     0,
-                    kDefaultPadding,
-                    kDefaultPadding,
+                    PaddingSize.medium.value,
+                    PaddingSize.medium.value,
                   ),
                 ),
               ],
@@ -76,11 +76,11 @@ class ArtistDetailsPage extends StatelessWidget {
         ),
         Container(
           width: double.infinity,
-          padding: const EdgeInsets.fromLTRB(
-            kDefaultPadding,
+          padding: EdgeInsets.fromLTRB(
+            PaddingSize.medium.value,
             0,
-            kDefaultPadding,
-            kDefaultPadding,
+            PaddingSize.medium.value,
+            PaddingSize.medium.value,
           ),
           child: ArtistDetailsPageVisitWebsiteButton(state.artist.website),
         ),

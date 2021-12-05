@@ -7,4 +7,5 @@ fvm flutter gen-l10n \
     --output-dir=lib/src/shared/l10n/generated \
     --output-localization-file app_localizations.dart \
     --output-class AppLocalizations \
+    --preferred-supported-locales=nl \
     --no-synthetic-package

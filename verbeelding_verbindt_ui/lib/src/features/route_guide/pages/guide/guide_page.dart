@@ -52,7 +52,7 @@ class GuidePage extends StatelessWidget {
         onWillPop: () async {
           final result = await showConfirmDialog(
             context,
-            content: (c, _) => c.l10n.pageGuidePopConfirmMessage,
+            content: context.l10n.pageGuidePopConfirmMessage,
           );
           if (result) {
             await cubit.delete();
@@ -61,8 +61,8 @@ class GuidePage extends StatelessWidget {
         },
         child: Scaffold(
           appBar: AppBar(
-            title: TranslatedText(
-              (c, _) => c.l10n.pageGuideTitle,
+            title: Text(
+              context.l10n.pageGuideTitle,
             ),
           ),
           body: BlocBuilder<GuideCubit, GuideState>(
@@ -70,7 +70,7 @@ class GuidePage extends StatelessWidget {
               if (routeState is! GuideLoaded) {
                 return Center(
                   child: VVCircleLoadingIndicator(
-                    text: (c, _) => c.l10n.pageGuideBusySettingUpRoute,
+                    text: context.l10n.pageGuideBusySettingUpRoute,
                   ),
                 );
               }

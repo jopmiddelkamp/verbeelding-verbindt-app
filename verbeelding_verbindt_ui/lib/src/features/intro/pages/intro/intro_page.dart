@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../../../verbeelding_verbindt_ui.dart';
@@ -37,7 +38,7 @@ class IntroPage extends StatelessWidget {
         builder: (context, state) {
           return state.map(
             initializing: (_) => const VVCircleLoadingIndicator(),
-            loaded: (_) => _buildBody(),
+            loaded: (_) => _buildBody(context),
             failed: (_) => const FailureStateDisplay(),
           );
         },
@@ -45,13 +46,15 @@ class IntroPage extends StatelessWidget {
     );
   }
 
-  Widget _buildBody() {
+  Widget _buildBody(
+    BuildContext context,
+  ) {
     return Column(
       children: <Widget>[
         const IntroPageHeader(),
         Expanded(
-          child: TranslatedMarkdown(
-            (c, _) => c.l10n.pageIntroText,
+          child: Markdown(
+            data: context.l10n.pageIntroText,
             padding: const EdgeInsets.all(16),
           ),
         ),

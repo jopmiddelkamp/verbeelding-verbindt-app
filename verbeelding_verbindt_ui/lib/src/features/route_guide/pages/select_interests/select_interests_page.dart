@@ -24,8 +24,8 @@ class SelectInterestsPage extends StatelessWidget {
   ) {
     return Scaffold(
       appBar: AppBar(
-        title: TranslatedText(
-          (c, _) => c.l10n.pageSelectInterestsTitle,
+        title: Text(
+          context.l10n.pageSelectInterestsTitle,
         ),
       ),
       body: Padding(
@@ -33,8 +33,8 @@ class SelectInterestsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            TranslatedText(
-              (c, _) => c.l10n.pageSelectInterestsMakeYourSelection,
+            Text(
+              context.l10n.pageSelectInterestsMakeYourSelection,
             ),
             const SizedBox(height: 16),
             const Expanded(

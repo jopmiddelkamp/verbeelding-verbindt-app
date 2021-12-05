@@ -53,9 +53,10 @@ class _ImageDialog extends StatelessWidget {
   double _getImageScale(
     BuildContext context,
   ) {
+    final symmetricalPadding = PaddingSize.medium.value * 2;
     final maxSize = Size(
-      context.mediaQuery.size.width - (2 * kDefaultPadding),
-      context.mediaQuery.size.height - (2 * kDefaultPadding),
+      context.mediaQuery.size.width - symmetricalPadding,
+      context.mediaQuery.size.height - symmetricalPadding,
     );
     final widthFactor = maxSize.height / imageSize.height;
     final heightFactor = maxSize.width / imageSize.width;

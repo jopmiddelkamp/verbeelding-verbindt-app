@@ -17,8 +17,8 @@ class GuidePageScanQrButton extends StatelessWidget {
     BuildContext context,
   ) {
     return TextButton(
-      child: TranslatedText(
-        (c, _) => c.l10n.pageGuideScanQr,
+      child: Text(
+        context.l10n.pageGuideScanQr,
       ),
       onPressed: () async => await _onPressed(
         context,

@@ -8,26 +8,26 @@ class _ConfirmDialog extends StatelessWidget {
     required this.content,
   });
 
-  final TranslatedTextCallback? title;
-  final TranslatedTextCallback content;
+  final String? title;
+  final String content;
 
   @override
   Widget build(
     BuildContext context,
   ) {
     return AlertDialog(
-      title: TranslatedText(title ?? (c, _) => c.l10n.dialogConfirmTitle),
-      content: TranslatedText(content),
+      title: Text(title ?? context.l10n.dialogConfirmTitle),
+      content: Text(content),
       actions: <Widget>[
         TextButton(
-          child: TranslatedText(
-            (c, _) => c.l10n.sharedGoBack,
+          child: Text(
+            context.l10n.sharedGoBack,
           ),
           onPressed: () => context.navigator.pop(true),
         ),
         TextButton(
-          child: TranslatedText(
-            (c, _) => c.l10n.sharedCancel,
+          child: Text(
+            context.l10n.sharedCancel,
           ),
           onPressed: context.navigator.pop,
         ),
@@ -38,8 +38,8 @@ class _ConfirmDialog extends StatelessWidget {
 
 Future<bool> showConfirmDialog(
   BuildContext context, {
-  TranslatedTextCallback? title,
-  required TranslatedTextCallback content,
+  String? title,
+  required String content,
 }) async {
   final result = await showDialog<bool>(
     context: context,

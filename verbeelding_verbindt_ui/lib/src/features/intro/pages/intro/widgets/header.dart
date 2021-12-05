@@ -26,8 +26,8 @@ class IntroPageHeader extends StatelessWidget {
           Positioned(
             bottom: 16,
             left: 16,
-            child: TranslatedText(
-              (c, _) => c.l10n.pageIntroTitle,
+            child: Text(
+              context.l10n.pageIntroTitle,
               style: context.textTheme.headline4!.copyWith(
                 color: Colors.white,
                 fontWeight: VVFontWeight.bold,

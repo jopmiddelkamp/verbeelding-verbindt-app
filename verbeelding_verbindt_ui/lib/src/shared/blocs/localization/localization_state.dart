@@ -9,7 +9,8 @@ class LocalizationState with _$LocalizationState {
   const factory LocalizationState.loaded({
     required LocaleEntity locale,
   }) = LocalizationLoaded;
-  const factory LocalizationState.failed([
+  const factory LocalizationState.failed({
     Failure? failure,
-  ]) = LocalizationFailure;
+    LocaleEntity? locale,
+  }) = LocalizationFailure;
 }

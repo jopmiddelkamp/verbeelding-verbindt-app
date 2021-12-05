@@ -11,9 +11,12 @@ class AppState with _$AppState {
     required bool hasSignedIn,
     required RouteEntity? route,
   }) = AppLoaded;
-  const factory AppState.failed([
+  const factory AppState.failed({
     Failure? failure,
-  ]) = AppFailed;
+    bool? hasAcceptedIntro,
+    bool? hasSignedIn,
+    RouteEntity? route,
+  }) = AppFailed;
 }
 
 extension AppLoadedX on AppLoaded {

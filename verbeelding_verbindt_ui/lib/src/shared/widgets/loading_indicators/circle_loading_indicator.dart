@@ -11,7 +11,7 @@ class VVCircleLoadingIndicator extends StatelessWidget {
   }) : super(key: key);
 
   final double size;
-  final TranslatedTextCallback? text;
+  final String? text;
 
   @override
   Widget build(
@@ -26,8 +26,8 @@ class VVCircleLoadingIndicator extends StatelessWidget {
           size: size,
         ),
         SizedBox(height: size / 3),
-        TranslatedText(
-          text ?? (c, _) => c.l10n.sharedBusyLoading,
+        Text(
+          text ?? context.l10n.sharedBusyLoading,
           style: TextStyle(
             fontSize: size / 3,
           ),
