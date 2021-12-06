@@ -14,9 +14,7 @@ class CompletedPageHeader extends StatelessWidget {
       child: Stack(
         children: [
           Positioned.fill(
-            child: Image.asset(
-              Package.assets.unknownArtist,
-              package: Package.name,
+            child: Asset.introHeader.toImage(
               fit: BoxFit.cover,
             ),
           ),

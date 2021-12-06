@@ -1,3 +1,4 @@
+export 'asset_extensions.dart';
 export 'barcode_extensions.dart';
 export 'build_context_extensions.dart';
 export 'locale_entity_extensions.dart';

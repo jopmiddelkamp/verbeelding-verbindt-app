@@ -97,7 +97,7 @@ class GuidePageRouteMap extends HookWidget {
   }) {
     if (!artist.profile.hasPersonalImage) {
       return ImageUtils.getUiImageFromAsset(
-        Package.assets.unknownArtist,
+        Asset.unknownArtist.path,
       );
     }
     return ImageUtils.getUiImageFromUrl(

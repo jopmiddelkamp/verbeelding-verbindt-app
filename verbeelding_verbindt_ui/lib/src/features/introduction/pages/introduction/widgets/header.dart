@@ -17,9 +17,7 @@ class IntroductionPageHeader extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         children: [
           Positioned.fill(
-            child: Image.asset(
-              Package.assets.introHeader,
-              package: Package.name,
+            child: Asset.introHeader.toImage(
               fit: BoxFit.cover,
             ),
           ),

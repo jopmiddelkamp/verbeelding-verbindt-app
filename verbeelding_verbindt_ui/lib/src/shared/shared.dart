@@ -1,4 +1,4 @@
-export 'blocs/blocs.dart';
+export 'bloc/bloc.dart';
 export 'dialogs/dialogs.dart';
 export 'entities/entities.dart';
 export 'extensions/extensions.dart';
