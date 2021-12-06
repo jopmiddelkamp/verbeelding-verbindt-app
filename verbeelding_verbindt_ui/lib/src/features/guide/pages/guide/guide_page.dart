@@ -97,7 +97,12 @@ class GuidePage extends StatelessWidget {
                       ),
                       Expanded(
                         child: Container(
-                          decoration: getTopShadowBoxDecoration(context),
+                          decoration: BoxDecoration(
+                            color: context.theme.colorScheme.background,
+                            boxShadow: createBoxShadowTop(
+                              context.customTheme,
+                            ),
+                          ),
                           child: ListView.builder(
                             itemCount: routeState.route.stops.length,
                             itemBuilder: (context, index) {

@@ -15,13 +15,14 @@ class IntroductionPageContinueButton extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    if (margin != null) {
-      return Padding(
+    var widget = _buildButton(context);
+    if (margin == null) {
+      widget = Padding(
         padding: margin!,
         child: _buildButton(context),
       );
     }
-    return _buildButton(context);
+    return widget;
   }
 
   Widget _buildButton(

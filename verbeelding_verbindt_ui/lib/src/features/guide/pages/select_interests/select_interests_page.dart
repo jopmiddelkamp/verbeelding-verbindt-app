@@ -58,7 +58,6 @@ class SelectInterestsPage extends StatelessWidget {
               child: SelectInterestsPageSpecialitiesList(),
             ),
             const SizedBox(height: 16),
-            const Divider(height: 2),
             const SizedBox(
               width: double.infinity,
               child: SelectInterestsPageContinueButton(),

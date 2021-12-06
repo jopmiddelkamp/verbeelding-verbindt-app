@@ -12,18 +12,13 @@ class CustomThemeData extends Equatable with Diagnosticable {
   }) {
     colorScheme ??= kDefaultThemeColorSchemeLight;
     materialTheme ??= ThemeData(
-      // TODO: Could be removed soon as the PR for the fix for the app bar is
-      // already completed
       primaryColor: colorScheme.primary,
       primaryColorBrightness: Brightness.dark,
-
       colorScheme: colorScheme,
-
       scaffoldBackgroundColor: colorScheme.background,
       cardColor: colorScheme.surface,
       dividerColor: colorScheme.divider,
       shadowColor: colorScheme.shadow,
-
       iconTheme: const IconThemeData.fallback().copyWith(
         color: colorScheme.onSurface,
       ),

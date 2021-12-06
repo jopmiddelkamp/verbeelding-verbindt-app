@@ -1,10 +1,10 @@
 export 'bloc/bloc.dart';
 export 'dialogs/dialogs.dart';
-export 'entities/entities.dart';
 export 'extensions/extensions.dart';
 export 'failures/failures.dart';
 export 'font_weight.dart';
 export 'page_routes/page_routes.dart';
+export 'ui/ui.dart';
 export 'utils/utils.dart';
 export 'validators/validators.dart';
 export 'widgets/widgets.dart';
