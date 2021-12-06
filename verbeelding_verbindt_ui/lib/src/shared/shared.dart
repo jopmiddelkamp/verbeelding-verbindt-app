@@ -3,6 +3,7 @@ export 'dialogs/dialogs.dart';
 export 'extensions/extensions.dart';
 export 'failures/failures.dart';
 export 'font_weight.dart';
+export 'konami_codes/konami_codes.dart';
 export 'page_routes/page_routes.dart';
 export 'ui/ui.dart';
 export 'utils/utils.dart';

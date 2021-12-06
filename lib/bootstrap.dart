@@ -20,8 +20,11 @@ class Bootstrap {
     /// Has to be run first in respect to [WidgetsFlutterBinding]
     await pres.Module.initialize(environmentVariables.environment);
 
-    await _initDeviceInfo();
-    await _initPackageInfo();
+    await _initDeviceInfo(
+      environment: environmentVariables.environment,
+      buildMode: _buildMode,
+    );
+
     await GetIt.instance.allReady();
 
     await data.Module.initialize(
@@ -44,41 +47,39 @@ BuildMode get _buildMode {
   }
 }
 
-Future<String> _initDeviceInfo() async {
+Future<void> _initDeviceInfo({
+  required Environment environment,
+  required BuildMode buildMode,
+}) async {
+  final packageInfoPlugin = await PackageInfo.fromPlatform();
+  final deviceInfo = DeviceInfoEntity({
+    'Environment': describeEnum(environment),
+    'Build mode': describeEnum(buildMode),
+    'Package name': packageInfoPlugin.packageName,
+    'Build number': packageInfoPlugin.buildNumber,
+    'Version': packageInfoPlugin.version,
+  });
+
   if (Platform.isIOS) {
     final deviceInfoPlugin = await DeviceInfoPlugin().iosInfo;
-    final deviceInfo = IosDeviceInfoEntity(
-      id: deviceInfoPlugin.identifierForVendor,
-      name: deviceInfoPlugin.name,
-      systemName: deviceInfoPlugin.systemName,
-      systemVersion: deviceInfoPlugin.systemVersion,
-      model: deviceInfoPlugin.model,
-      isPhysicalDevice: deviceInfoPlugin.isPhysicalDevice,
-    );
-    GetIt.instance.registerSingleton<DeviceInfoEntity>(deviceInfo);
-    GetIt.instance.registerSingleton(deviceInfo);
-    return deviceInfo.id;
+    deviceInfo.addEntries({
+      'Identifier': deviceInfoPlugin.identifierForVendor,
+      'Name': deviceInfoPlugin.name,
+      'System name': deviceInfoPlugin.systemName,
+      'System version': deviceInfoPlugin.systemVersion,
+      'Model': deviceInfoPlugin.model,
+      'Is physical device': deviceInfoPlugin.isPhysicalDevice.toString(),
+    }.entries);
+  } else if (Platform.isAndroid) {
+    final deviceInfoPlugin = await DeviceInfoPlugin().androidInfo;
+    deviceInfo.addEntries({
+      'Identifier': deviceInfoPlugin.id,
+      'Manufacturer': deviceInfoPlugin.manufacturer,
+      'Model': deviceInfoPlugin.model,
+      'Android version': deviceInfoPlugin.version.release,
+      'Android SDK': deviceInfoPlugin.version.sdkInt.toString(),
+      'Is physical device': deviceInfoPlugin.isPhysicalDevice.toString(),
+    }.entries);
   }
-  final deviceInfoPlugin = await DeviceInfoPlugin().androidInfo;
-  final deviceInfo = AndroidDeviceInfoEntity(
-    id: deviceInfoPlugin.id,
-    manufacturer: deviceInfoPlugin.manufacturer,
-    model: deviceInfoPlugin.model,
-    androidVersion: deviceInfoPlugin.version.release,
-    androidSDK: deviceInfoPlugin.version.sdkInt,
-    isPhysicalDevice: deviceInfoPlugin.isPhysicalDevice,
-  );
-  GetIt.instance.registerSingleton<DeviceInfoEntity>(deviceInfo);
   GetIt.instance.registerSingleton(deviceInfo);
-  return deviceInfo.id;
-}
-
-Future<void> _initPackageInfo() async {
-  final packageInfoPlugin = await PackageInfo.fromPlatform();
-  final packageInfo = PackageInfoEntity(
-    packageName: packageInfoPlugin.packageName,
-    buildNumber: packageInfoPlugin.buildNumber,
-    version: packageInfoPlugin.version,
-  );
-  GetIt.instance.registerSingleton(packageInfo);
 }

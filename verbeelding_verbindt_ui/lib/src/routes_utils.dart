@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:konami_detector/konami_detector.dart';
+
+import '../verbeelding_verbindt_ui.dart';
 
 MaterialPageRoute buildMaterialPageRoute<TResult>({
   required RouteSettings settings,
@@ -6,7 +9,12 @@ MaterialPageRoute buildMaterialPageRoute<TResult>({
   bool fullscreenDialog = false,
 }) {
   return MaterialPageRoute<TResult>(
-    builder: builder,
+    builder: (context) => KonamiDetector(
+      codes: [
+        ShowDeviceInfoKonamiCode(),
+      ],
+      child: builder(context),
+    ),
     settings: settings,
     fullscreenDialog: fullscreenDialog,
   );
