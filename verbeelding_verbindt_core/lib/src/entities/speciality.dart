@@ -2,14 +2,14 @@ import 'package:equatable/equatable.dart';
 
 import '../../verbeelding_verbindt_core.dart';
 
-class SpecialityEntity extends Equatable {
-  const SpecialityEntity({
+class SpecialityGeoLocation extends Equatable {
+  const SpecialityGeoLocation({
     required this.id,
     required this.name,
   });
 
   final String? id;
-  final TranslatableStringEntity name;
+  final TranslatableStringGeoLocation name;
 
   @override
   List<Object?> get props => [
@@ -17,12 +17,12 @@ class SpecialityEntity extends Equatable {
         name,
       ];
 
-  SpecialityEntity copyWith({
+  SpecialityGeoLocation copyWith({
     String? name,
   }) {
-    return SpecialityEntity(
+    return SpecialityGeoLocation(
       id: id,
-      name: name as TranslatableStringEntity? ?? this.name,
+      name: name as TranslatableStringGeoLocation? ?? this.name,
     );
   }
 }

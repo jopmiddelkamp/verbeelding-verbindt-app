@@ -10,7 +10,7 @@ class GuidePageMoreInfoButton extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final ArtistEntity artist;
+  final ArtistGeoLocation artist;
 
   @override
   Widget build(

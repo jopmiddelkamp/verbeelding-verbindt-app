@@ -1,6 +1,6 @@
 import '../../../verbeelding_verbindt_core.dart';
 
-class GetAuthenticatedUserUseCase extends UseCase<UserEntity?, void> {
+class GetAuthenticatedUserUseCase extends UseCase<UserGeoLocation?, void> {
   GetAuthenticatedUserUseCase({
     required AuthRepository authRepository,
   }) : _authRepository = authRepository;
@@ -8,7 +8,7 @@ class GetAuthenticatedUserUseCase extends UseCase<UserEntity?, void> {
   final AuthRepository _authRepository;
 
   @override
-  Future<UserEntity?> call(
+  Future<UserGeoLocation?> call(
     void argument,
   ) {
     return _authRepository.authenticatedUser;

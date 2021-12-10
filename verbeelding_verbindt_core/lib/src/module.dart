@@ -10,7 +10,6 @@ Future<CoreDependencies> getDependencies(
     ..._initializeAuthUseCases(),
     ..._initializeIntroUseCases(),
     ..._initializeLocaleUseCases(),
-    ..._initializeLocationUseCases(),
     ..._initializePermissionUseCases(),
     ..._initializeRouteUseCases(),
     ..._initializeSpecialtyUseCases(),
@@ -82,16 +81,6 @@ List<Factory> _initializeLocaleUseCases() {
   ];
 }
 
-List<Factory> _initializeLocationUseCases() {
-  return [
-    Factory<FetchUserLocationUseCase>(
-      () => FetchUserLocationUseCase(
-        locationRepository: GetIt.instance(),
-      ),
-    ),
-  ];
-}
-
 List<Factory> _initializePermissionUseCases() {
   return [
     Factory<GetPermissionStatusUseCase>(
@@ -113,7 +102,6 @@ List<Factory> _initializeRouteUseCases() {
       () => CreateRouteUseCase(
         artistRepository: GetIt.instance(),
         authRepository: GetIt.instance(),
-        locationRepository: GetIt.instance(),
         routeGeneratorRepository: GetIt.instance(),
         routeRepository: GetIt.instance(),
       ),

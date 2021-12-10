@@ -23,5 +23,5 @@ class SetActiveLocaleUseCaseArguments {
     required this.locale,
   });
 
-  final LocaleEntity locale;
+  final LocaleGeoLocation locale;
 }

@@ -10,19 +10,19 @@ class GuideCubit extends CubitBase<GuideState> {
     required DeleteRouteUseCase deleteRouteUseCase,
     required StreamUsersRouteUseCase getUsersRouteUseCase,
     required NextRouteStopUseCase nextRouteStopUseCase,
-    required FetchUserLocationUseCase fetchUserLocationUseCase,
+    required LocationService locationService,
   })  : _createRouteUseCase = createRouteUseCase,
         _deleteRouteUseCase = deleteRouteUseCase,
         _getUsersRouteUseCase = getUsersRouteUseCase,
         _nextRouteStopUseCase = nextRouteStopUseCase,
-        _fetchUserLocationUseCase = fetchUserLocationUseCase,
+        _locationService = locationService,
         super(const GuideState.initializing());
 
   final CreateRouteUseCase _createRouteUseCase;
   final DeleteRouteUseCase _deleteRouteUseCase;
   final StreamUsersRouteUseCase _getUsersRouteUseCase;
   final NextRouteStopUseCase _nextRouteStopUseCase;
-  final FetchUserLocationUseCase _fetchUserLocationUseCase;
+  final LocationService _locationService;
 
   StreamSubscription? activeRouteStreamSub;
 
@@ -34,9 +34,9 @@ class GuideCubit extends CubitBase<GuideState> {
     if (activeRouteStreamSub != null) {
       return;
     }
-    final userLocation = await _fetchUserLocationUseCase(null);
+    final userLocation = await _locationService.getCurrentLocation();
     final usersRouteStream = await _getUsersRouteUseCase(null);
-    activeRouteStreamSub = usersRouteStream.listen((route) {
+    activeRouteStreamSub = usersRouteStream.listen((route) async {
       if (route == null) {
         emit(const GuideState.failed(
           failure: GuideFailure.noRouteFound(),
@@ -62,6 +62,7 @@ class GuideCubit extends CubitBase<GuideState> {
     await _createRouteUseCase(
       CreateRouteUseCaseArguments(
         selectedSpecialityIds: selectedSpecialityIds,
+        userLocation: await _locationService.getCurrentLocation(),
       ),
     );
     await loadRoute();

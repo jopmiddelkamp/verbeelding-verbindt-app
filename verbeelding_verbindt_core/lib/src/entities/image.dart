@@ -2,8 +2,8 @@ import 'package:equatable/equatable.dart';
 
 import '../../verbeelding_verbindt_core.dart';
 
-class ImageEntity extends Equatable {
-  const ImageEntity({
+class ImageGeoLocation extends Equatable {
+  const ImageGeoLocation({
     required this.blurhash,
     required this.url,
     required this.size,
@@ -11,7 +11,7 @@ class ImageEntity extends Equatable {
 
   final String blurhash;
   final String url;
-  final SizeEntity size;
+  final SizeGeoLocation size;
 
   @override
   List<Object?> get props => [

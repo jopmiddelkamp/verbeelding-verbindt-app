@@ -18,7 +18,7 @@ class ImageWithBlurhash extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final ImageEntity image;
+  final ImageGeoLocation image;
   final double width;
   final double height;
   final double? borderRadius;

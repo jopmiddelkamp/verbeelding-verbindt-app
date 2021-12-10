@@ -9,8 +9,8 @@ class SelectedInterestsState with _$SelectedInterestsState {
       SelectedInterestsInitializing;
 
   const factory SelectedInterestsState.loaded({
-    required List<SpecialityEntity> specialities,
-    @Default([]) List<SpecialityEntity> selectedSpecialities,
+    required List<SpecialityGeoLocation> specialities,
+    @Default([]) List<SpecialityGeoLocation> selectedSpecialities,
   }) = SelectedInterestsLoaded;
 
   const factory SelectedInterestsState.failed() =
@@ -28,7 +28,7 @@ extension SelectedInterestsLoadedX on SelectedInterestsLoaded {
       selectedSpecialities.map((specialty) => specialty.id!).toList();
 
   bool isSelected(
-    SpecialityEntity speciality,
+    SpecialityGeoLocation speciality,
   ) {
     return selectedSpecialities.contains(speciality);
   }

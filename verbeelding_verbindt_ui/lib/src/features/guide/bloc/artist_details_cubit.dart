@@ -7,7 +7,7 @@ class ArtistDetailsCubit extends CubitBase<ArtistDetailsState> {
   ArtistDetailsCubit() : super(const ArtistDetailsState.initializing());
 
   Future<void> init({
-    required ArtistEntity artist,
+    required ArtistGeoLocation artist,
   }) async {
     emit(ArtistDetailsState.loaded(
       artist: artist,

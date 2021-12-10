@@ -7,10 +7,10 @@ part 'localization_state.freezed.dart';
 class LocalizationState with _$LocalizationState {
   const factory LocalizationState.initializing() = LocalizationInitializing;
   const factory LocalizationState.loaded({
-    required LocaleEntity locale,
+    required LocaleGeoLocation locale,
   }) = LocalizationLoaded;
   const factory LocalizationState.failed({
     Failure? failure,
-    LocaleEntity? locale,
+    LocaleGeoLocation? locale,
   }) = LocalizationFailure;
 }

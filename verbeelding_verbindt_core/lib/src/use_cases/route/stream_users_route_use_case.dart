@@ -2,7 +2,7 @@ import 'dart:async';
 
 import '../../../verbeelding_verbindt_core.dart';
 
-class StreamUsersRouteUseCase extends UseCase<Stream<RouteEntity?>, void> {
+class StreamUsersRouteUseCase extends UseCase<Stream<RouteGeoLocation?>, void> {
   StreamUsersRouteUseCase({
     required RouteRepository routeRepository,
     required AuthRepository authRepository,
@@ -12,9 +12,9 @@ class StreamUsersRouteUseCase extends UseCase<Stream<RouteEntity?>, void> {
   final RouteRepository _routeRepository;
   final AuthRepository _authRepository;
 
-  // TODO: rewrite with Either with non nullable RouteEntity and GetUsersRouteUseCaseFailure union
+  // TODO: rewrite with Either with non nullable RouteGeoLocation and GetUsersRouteUseCaseFailure union
   @override
-  Future<Stream<RouteEntity?>> call(
+  Future<Stream<RouteGeoLocation?>> call(
     void argument,
   ) async {
     final authenticatedUser = await _authRepository.authenticatedUser;

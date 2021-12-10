@@ -10,7 +10,7 @@ class GuidePageScanQrButton extends StatelessWidget {
     required this.stop,
   }) : super(key: key);
 
-  final RouteStopEntity stop;
+  final RouteStopGeoLocation stop;
 
   @override
   Widget build(

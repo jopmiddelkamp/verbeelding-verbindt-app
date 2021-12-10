@@ -2,16 +2,16 @@ import 'package:equatable/equatable.dart';
 
 import '../../verbeelding_verbindt_core.dart';
 
-class ArtistRouteDetailsEntity extends Equatable {
-  const ArtistRouteDetailsEntity({
+class ArtistRouteDetailsGeoLocation extends Equatable {
+  const ArtistRouteDetailsGeoLocation({
     required this.video,
     required this.text,
     required this.images,
   });
 
-  final YoutubeVideoEntity video;
-  final TranslatableStringEntity text;
-  final List<ImageEntity> images;
+  final YoutubeVideoGeoLocation video;
+  final TranslatableStringGeoLocation text;
+  final List<ImageGeoLocation> images;
 
   @override
   List<Object?> get props => [

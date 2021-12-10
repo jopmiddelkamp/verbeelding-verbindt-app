@@ -1,6 +1,6 @@
 import '../../../verbeelding_verbindt_core.dart';
 
-class GetInactiveLocalesUseCase extends UseCase<List<LocaleEntity>, void> {
+class GetInactiveLocalesUseCase extends UseCase<List<LocaleGeoLocation>, void> {
   GetInactiveLocalesUseCase({
     required LocaleRepository localeRepository,
   }) : _localeRepository = localeRepository;
@@ -8,7 +8,7 @@ class GetInactiveLocalesUseCase extends UseCase<List<LocaleEntity>, void> {
   final LocaleRepository _localeRepository;
 
   @override
-  Future<List<LocaleEntity>> call(
+  Future<List<LocaleGeoLocation>> call(
     void argument,
   ) async {
     final activeIsoLanguage = await _localeRepository.getActiveIsoLanguage();

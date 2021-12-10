@@ -29,5 +29,5 @@ class NextRouteStopUseCaseArguments {
   NextRouteStopUseCaseArguments({
     required this.route,
   });
-  final RouteEntity route;
+  final RouteGeoLocation route;
 }

@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-class SizeEntity extends Equatable {
-  const SizeEntity(
+class SizeGeoLocation extends Equatable {
+  const SizeGeoLocation(
     this.width,
     this.height,
   );

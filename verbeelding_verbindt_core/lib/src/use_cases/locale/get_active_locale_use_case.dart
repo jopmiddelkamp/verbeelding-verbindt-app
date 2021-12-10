@@ -1,19 +1,19 @@
 import '../../../verbeelding_verbindt_core.dart';
 
-class GetActiveLocaleUseCase extends UseCase<LocaleEntity, void> {
+class GetActiveLocaleUseCase extends UseCase<LocaleGeoLocation, void> {
   GetActiveLocaleUseCase({
     required LocaleRepository localeRepository,
   }) : _localeRepository = localeRepository;
 
   final LocaleRepository _localeRepository;
 
-  static const _defaultIsoLanguage = IsoLanguageEntity(
+  static const _defaultIsoLanguage = IsoLanguageGeoLocation(
     languageCode: LanguageCode.nl,
     countryCode: CountryCode.nl,
   );
 
   @override
-  Future<LocaleEntity> call(
+  Future<LocaleGeoLocation> call(
     void argument,
   ) async {
     final activeIsoLanguage = await _localeRepository.getActiveIsoLanguage();
@@ -29,7 +29,7 @@ class GetActiveLocaleUseCase extends UseCase<LocaleEntity, void> {
     return localesLookup[activeIsoLanguage]!;
   }
 
-  Future<LocaleEntity> _getDefaultLocale() async {
+  Future<LocaleGeoLocation> _getDefaultLocale() async {
     final locale = localesLookup[_defaultIsoLanguage];
     if (locale == null) {
       // TODO: improve with Fialure

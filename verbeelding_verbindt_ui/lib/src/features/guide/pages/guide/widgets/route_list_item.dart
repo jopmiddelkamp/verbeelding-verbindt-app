@@ -15,7 +15,7 @@ class GuidePageRouteListItem extends StatelessWidget {
   final int count;
   final int index;
   final bool active;
-  final RouteStopEntity stop;
+  final RouteStopGeoLocation stop;
   final double _padding = 16;
 
   bool get isFirst => index == 0;
@@ -85,7 +85,7 @@ class GuidePageRouteListItem extends StatelessWidget {
 
   Widget _buildActionRow(
     BuildContext context, {
-    required RouteStopEntity stop,
+    required RouteStopGeoLocation stop,
   }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,

@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-class YoutubeVideoEntity extends Equatable {
-  const YoutubeVideoEntity({
+class YoutubeVideoGeoLocation extends Equatable {
+  const YoutubeVideoGeoLocation({
     required this.aspectRatio,
     required this.videoId,
   });

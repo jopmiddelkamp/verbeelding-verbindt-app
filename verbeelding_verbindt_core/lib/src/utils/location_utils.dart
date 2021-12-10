@@ -6,8 +6,8 @@ class LocationUtils {
   // TODO: replace by the Latlng package as soon as it has up to date
   // dependencies
   static double distance(
-    LocationEntity locationA,
-    LocationEntity locationB,
+    GeoLocation locationA,
+    GeoLocation locationB,
   ) {
     var p = 0.017453292519943295;
     var c = cos;

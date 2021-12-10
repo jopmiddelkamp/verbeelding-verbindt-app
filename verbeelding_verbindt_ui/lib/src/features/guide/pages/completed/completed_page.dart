@@ -16,7 +16,7 @@ class CompletedPage extends StatelessWidget {
           deleteRouteUseCase: GetIt.instance(),
           getUsersRouteUseCase: GetIt.instance(),
           nextRouteStopUseCase: GetIt.instance(),
-          fetchUserLocationUseCase: GetIt.instance(),
+          locationService: GetIt.instance(),
         )..loadRoute();
       },
       child: const CompletedPage._(),

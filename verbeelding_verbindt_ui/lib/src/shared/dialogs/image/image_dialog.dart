@@ -13,7 +13,7 @@ class _ImageDialog extends StatelessWidget {
   }) : super(key: key);
 
   final ImageProvider imageProvider;
-  final SizeEntity imageSize;
+  final SizeGeoLocation imageSize;
 
   @override
   Widget build(
@@ -66,7 +66,7 @@ class _ImageDialog extends StatelessWidget {
 
 void showImageDialog(
   BuildContext context, {
-  required ImageEntity image,
+  required ImageGeoLocation image,
 }) {
   showDialog(
     context: context,

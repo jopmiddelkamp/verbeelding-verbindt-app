@@ -2,8 +2,8 @@ import 'package:equatable/equatable.dart';
 
 import '../../verbeelding_verbindt_core.dart';
 
-class ArtistEntity extends Equatable {
-  const ArtistEntity({
+class ArtistGeoLocation extends Equatable {
+  const ArtistGeoLocation({
     required this.id,
     required this.profile,
     required this.specialities,
@@ -14,11 +14,11 @@ class ArtistEntity extends Equatable {
   });
 
   final String? id;
-  final ProfileEntity profile;
-  final Map<String, SpecialityEntity> specialities;
-  final LocationEntity location;
-  final ArtistRoutePreviewEntity previewContent;
-  final ArtistRouteDetailsEntity detailsContent;
+  final ProfileGeoLocation profile;
+  final Map<String, SpecialityGeoLocation> specialities;
+  final GeoLocation location;
+  final ArtistRoutePreviewGeoLocation previewContent;
+  final ArtistRouteDetailsGeoLocation detailsContent;
   final String website;
 
   @override
@@ -32,19 +32,19 @@ class ArtistEntity extends Equatable {
         website,
       ];
 
-  ArtistEntity copyWith({
-    ProfileEntity? profile,
+  ArtistGeoLocation copyWith({
+    ProfileGeoLocation? profile,
     List<String>? specialities,
-    LocationEntity? location,
-    ArtistRoutePreviewEntity? previewContent,
-    ArtistRouteDetailsEntity? detailsContent,
+    GeoLocation? location,
+    ArtistRoutePreviewGeoLocation? previewContent,
+    ArtistRouteDetailsGeoLocation? detailsContent,
     String? website,
   }) {
-    return ArtistEntity(
+    return ArtistGeoLocation(
       id: id,
       profile: profile ?? this.profile,
-      specialities:
-          specialities as Map<String, SpecialityEntity>? ?? this.specialities,
+      specialities: specialities as Map<String, SpecialityGeoLocation>? ??
+          this.specialities,
       location: location ?? this.location,
       previewContent: previewContent ?? this.previewContent,
       detailsContent: detailsContent ?? this.detailsContent,

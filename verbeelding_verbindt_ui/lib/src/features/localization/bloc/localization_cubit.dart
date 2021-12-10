@@ -31,7 +31,7 @@ class LocalizationCubit extends CubitBase<LocalizationState> with OnReadyMixin {
   }
 
   Future<void> setLocale(
-    LocaleEntity locale,
+    LocaleGeoLocation locale,
   ) async {
     final languageCodeString = EnumUtils.getStringValue(
       locale.isoLanguage.languageCode,

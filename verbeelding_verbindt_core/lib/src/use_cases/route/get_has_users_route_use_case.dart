@@ -12,7 +12,7 @@ class GetHasUsersRouteUseCase extends UseCase<bool, void> {
   final RouteRepository _routeRepository;
   final AuthRepository _authRepository;
 
-  // TODO: rewrite with Either with non nullable RouteEntity and GetUsersRouteUseCaseFailure union
+  // TODO: rewrite with Either with non nullable RouteGeoLocation and GetUsersRouteUseCaseFailure union
   @override
   Future<bool> call(
     void argument,

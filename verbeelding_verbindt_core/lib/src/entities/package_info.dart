@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-class PackageInfoEntity extends Equatable {
-  const PackageInfoEntity({
+class PackageInfoGeoLocation extends Equatable {
+  const PackageInfoGeoLocation({
     required this.packageName,
     required this.buildNumber,
     required this.version,

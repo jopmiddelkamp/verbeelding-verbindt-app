@@ -15,7 +15,7 @@ import '../verbeelding_verbindt_ui.dart';
 Future<void> boot(
   EnvironmentVariables environmentVariables,
 ) async {
-  await _initializeLocalDependencies(environmentVariables);
+  await _initLocalDependencies(environmentVariables);
   await GetIt.instance.allReady();
 
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
@@ -52,17 +52,24 @@ Future<void> boot(
   );
 }
 
-Future<void> _initializeLocalDependencies(
+Future<void> _initLocalDependencies(
   EnvironmentVariables environmentVariables,
 ) async {
-  await _initializeDeviceInfo(environmentVariables);
+  _initLocationService();
+  await _initDeviceInfo(environmentVariables);
 }
 
-Future<void> _initializeDeviceInfo(
+void _initLocationService() {
+  GetIt.instance.registerSingleton<LocationService>(
+    LocationServiceImpl(),
+  );
+}
+
+Future<void> _initDeviceInfo(
   EnvironmentVariables environmentVariables,
 ) async {
   final packageInfoPlugin = await PackageInfo.fromPlatform();
-  final deviceInfo = DeviceInfoEntity({
+  final deviceInfo = DeviceInfoGeoLocation({
     'Environment': environmentVariables.environment.name,
     'Build mode': _buildMode.name,
     'Package name': packageInfoPlugin.packageName,

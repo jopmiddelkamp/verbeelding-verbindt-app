@@ -2,13 +2,13 @@ import 'package:equatable/equatable.dart';
 
 import '../../verbeelding_verbindt_core.dart';
 
-class LocaleEntity extends Equatable {
-  final IsoLanguageEntity isoLanguage;
+class LocaleGeoLocation extends Equatable {
+  final IsoLanguageGeoLocation isoLanguage;
   final String languageName;
   final String nativeLanguageName;
   final String flagName;
 
-  const LocaleEntity({
+  const LocaleGeoLocation({
     required this.isoLanguage,
     required this.languageName,
     required this.nativeLanguageName,

@@ -7,7 +7,7 @@ part 'auth_state.freezed.dart';
 class AuthState with _$AuthState {
   const factory AuthState.initializing() = AuthInitializing;
   const factory AuthState.loaded({
-    required UserEntity? authenticatedUser,
+    required UserGeoLocation? authenticatedUser,
   }) = AuthLoaded;
   const factory AuthState.failed([
     Failure? failure,

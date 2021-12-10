@@ -10,12 +10,12 @@ class GuideState with _$GuideState {
   const factory GuideState.initializing() = GuideInitializing;
 
   const factory GuideState.loaded({
-    required RouteEntity route,
-    required LocationEntity initialUserLocation,
+    required RouteGeoLocation route,
+    required GeoLocation initialUserLocation,
   }) = GuideLoaded;
 
   const factory GuideState.completed({
-    required RouteEntity route,
+    required RouteGeoLocation route,
   }) = GuideCompleted;
 
   const factory GuideState.failed({

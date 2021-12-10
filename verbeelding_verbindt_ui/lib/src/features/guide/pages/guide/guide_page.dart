@@ -17,7 +17,7 @@ class GuidePage extends StatelessWidget {
           deleteRouteUseCase: GetIt.instance(),
           getUsersRouteUseCase: GetIt.instance(),
           nextRouteStopUseCase: GetIt.instance(),
-          fetchUserLocationUseCase: GetIt.instance(),
+          locationService: GetIt.instance(),
         );
         if (argument is CreateRouteGuidePageArguments) {
           cubit.createRoute(

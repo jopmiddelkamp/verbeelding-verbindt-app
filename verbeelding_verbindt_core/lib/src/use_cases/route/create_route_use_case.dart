@@ -2,24 +2,31 @@ import 'dart:async';
 
 import '../../../verbeelding_verbindt_core.dart';
 
+class CreateRouteUseCaseArguments {
+  CreateRouteUseCaseArguments({
+    required this.selectedSpecialityIds,
+    required this.userLocation,
+  });
+
+  final List<String> selectedSpecialityIds;
+  final GeoLocation userLocation;
+}
+
 class CreateRouteUseCase extends UseCase<void, CreateRouteUseCaseArguments> {
   CreateRouteUseCase({
     required ArtistRepository artistRepository,
     required RouteRepository routeRepository,
     required RouteGeneratorRepository routeGeneratorRepository,
     required AuthRepository authRepository,
-    required LocationRepository locationRepository,
   })  : _artistRepository = artistRepository,
         _routeRepository = routeRepository,
         _routeGeneratorRepository = routeGeneratorRepository,
-        _authRepository = authRepository,
-        _locationRepository = locationRepository;
+        _authRepository = authRepository;
 
   final ArtistRepository _artistRepository;
   final RouteRepository _routeRepository;
   final RouteGeneratorRepository _routeGeneratorRepository;
   final AuthRepository _authRepository;
-  final LocationRepository _locationRepository;
 
   @override
   Future<void> call(
@@ -28,10 +35,9 @@ class CreateRouteUseCase extends UseCase<void, CreateRouteUseCaseArguments> {
     final artistsList = await _artistRepository.getArtistsBySpeciality(
       argument.selectedSpecialityIds,
     );
-    final userLocation = await _locationRepository.getCurrentLocation();
     _sortArtitstByDistance(
       artistsList,
-      sourceLocation: userLocation,
+      sourceLocation: argument.userLocation,
     );
     final artists = artistsList.toSet();
 
@@ -40,7 +46,7 @@ class CreateRouteUseCase extends UseCase<void, CreateRouteUseCaseArguments> {
       artistsToVisit: artists,
     );
     final authenticatedUser = await _authRepository.authenticatedUser;
-    final data = RouteEntity(
+    final data = RouteGeoLocation(
       id: authenticatedUser!.id,
       stops: stops,
     );
@@ -48,8 +54,8 @@ class CreateRouteUseCase extends UseCase<void, CreateRouteUseCaseArguments> {
   }
 
   void _sortArtitstByDistance(
-    List<ArtistEntity> artists, {
-    required LocationEntity sourceLocation,
+    List<ArtistGeoLocation> artists, {
+    required GeoLocation sourceLocation,
   }) {
     artists.sort((a, b) {
       final distanceToA = LocationUtils.distance(
@@ -63,12 +69,4 @@ class CreateRouteUseCase extends UseCase<void, CreateRouteUseCaseArguments> {
       return distanceToA.compareTo(distanceToB); // Sort by closest
     });
   }
-}
-
-class CreateRouteUseCaseArguments {
-  CreateRouteUseCaseArguments({
-    required this.selectedSpecialityIds,
-  });
-
-  final List<String> selectedSpecialityIds;
 }

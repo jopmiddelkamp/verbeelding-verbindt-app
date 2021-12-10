@@ -1,10 +1,10 @@
 import '../../verbeelding_verbindt_core.dart';
 
 abstract class ArtistRepository extends RepositoryBase {
-  Stream<List<ArtistEntity>> streamArtistsBySpeciality(
+  Stream<List<ArtistGeoLocation>> streamArtistsBySpeciality(
     List<String> specialityIds,
   );
-  Future<List<ArtistEntity>> getArtistsBySpeciality(
+  Future<List<ArtistGeoLocation>> getArtistsBySpeciality(
     List<String> specialityIds,
   );
 }

@@ -9,13 +9,13 @@ class AppState with _$AppState {
   const factory AppState.loaded({
     required bool hasAcceptedIntro,
     required bool hasSignedIn,
-    required RouteEntity? route,
+    required RouteGeoLocation? route,
   }) = AppLoaded;
   const factory AppState.failed({
     Failure? failure,
     bool? hasAcceptedIntro,
     bool? hasSignedIn,
-    RouteEntity? route,
+    RouteGeoLocation? route,
   }) = AppFailed;
 }
 

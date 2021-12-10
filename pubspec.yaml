@@ -15,19 +15,19 @@ dependencies:
   get_it: ^7.0.0
   verbeelding_verbindt_core:
     path: verbeelding_verbindt_core
-  verbeelding_verbindt_data:
-    path: verbeelding_verbindt_data
+  verbeelding_verbindt_data_dio:
+    path: verbeelding_verbindt_data_dio
+  verbeelding_verbindt_data_firebase:
+    path: verbeelding_verbindt_data_firebase
+  verbeelding_verbindt_data_shared_preferences:
+    path: verbeelding_verbindt_data_shared_preferences
   verbeelding_verbindt_ui:
     path: verbeelding_verbindt_ui
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  bloc_test: ^9.0.0
-  build_runner: ^2.0.0
   flutter_lints: ^1.0.0
-  json_serializable: ^6.0.0
-  mocktail: ^0.2.0
 
 flutter:
   uses-material-design: true

@@ -68,7 +68,7 @@ class SelectInterestsPageSpecialitiesList extends StatelessWidget {
 
   Widget _buildListItem(
     BuildContext context, {
-    required SpecialityEntity specialty,
+    required SpecialityGeoLocation specialty,
     required SelectedInterestsLoaded state,
   }) {
     return VVListTile(

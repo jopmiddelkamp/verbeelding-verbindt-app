@@ -2,13 +2,13 @@ import 'package:equatable/equatable.dart';
 
 import '../../verbeelding_verbindt_core.dart';
 
-class IsoLanguageEntity extends Equatable {
-  const IsoLanguageEntity({
+class IsoLanguageGeoLocation extends Equatable {
+  const IsoLanguageGeoLocation({
     required this.languageCode,
     required this.countryCode,
   });
 
-  factory IsoLanguageEntity.fromIsoLanguageCode(
+  factory IsoLanguageGeoLocation.fromIsoLanguageCode(
     String isoLanguageCode,
   ) {
     final result = _parseIsoLanguageCode(isoLanguageCode);
@@ -24,7 +24,7 @@ class IsoLanguageEntity extends Equatable {
   final LanguageCode languageCode;
   final CountryCode countryCode;
 
-  static IsoLanguageEntity? _parseIsoLanguageCode(
+  static IsoLanguageGeoLocation? _parseIsoLanguageCode(
     String isoLanguageCode,
   ) {
     final result = isoLanguageCode.split('-');
@@ -45,7 +45,7 @@ class IsoLanguageEntity extends Equatable {
     if (countryCode == null) {
       return null;
     }
-    return IsoLanguageEntity(
+    return IsoLanguageGeoLocation(
       languageCode: languageCode,
       countryCode: countryCode,
     );

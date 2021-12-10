@@ -19,9 +19,9 @@ class GuidePageRouteMap extends HookWidget {
 
   final double width;
   final double height;
-  final List<RouteStopEntity> stops;
-  final RouteStopEntity currentStop;
-  final LocationEntity initialMapLocation;
+  final List<RouteStopGeoLocation> stops;
+  final RouteStopGeoLocation currentStop;
+  final GeoLocation initialMapLocation;
 
   @override
   Widget build(
@@ -74,7 +74,7 @@ class GuidePageRouteMap extends HookWidget {
 
   Future<Marker> _buildMarker(
     BuildContext context, {
-    required ArtistEntity artist,
+    required ArtistGeoLocation artist,
   }) async {
     const size = Size(200, 200);
     final shadowColor = context.theme.colorScheme.primary;
@@ -93,7 +93,7 @@ class GuidePageRouteMap extends HookWidget {
   }
 
   Future<ui.Image> _resolveMarkerIconUiImage({
-    required ArtistEntity artist,
+    required ArtistGeoLocation artist,
   }) {
     if (!artist.profile.hasPersonalImage) {
       return ImageUtils.getUiImageFromAsset(

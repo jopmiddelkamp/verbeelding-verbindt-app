@@ -10,7 +10,7 @@ class ArtistDetailsPageImageList extends StatelessWidget {
     required this.padding,
   }) : super(key: key);
 
-  final List<ImageEntity> images;
+  final List<ImageGeoLocation> images;
   final EdgeInsets padding;
 
   @override

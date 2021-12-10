@@ -8,6 +8,18 @@ cd verbeelding_verbindt_data
 fvm flutter clean && fvm flutter pub get
 cd ..
 
+cd verbeelding_verbindt_data_dio
+fvm flutter clean && fvm flutter pub get
+cd ..
+
+cd verbeelding_verbindt_data_firebase
+fvm flutter clean && fvm flutter pub get
+cd ..
+
+cd verbeelding_verbindt_data_shared_preferences
+fvm flutter clean && fvm flutter pub get
+cd ..
+
 cd verbeelding_verbindt_ui
 fvm flutter clean && fvm flutter pub get
 cd ..

@@ -9,7 +9,7 @@ class ArtistDetailsState with _$ArtistDetailsState {
   const factory ArtistDetailsState.initializing() = ArtistDetailsInitializing;
 
   const factory ArtistDetailsState.loaded({
-    required ArtistEntity artist,
+    required ArtistGeoLocation artist,
     required YoutubePlayerController youtubeController,
   }) = ArtistDetailsLoaded;
 

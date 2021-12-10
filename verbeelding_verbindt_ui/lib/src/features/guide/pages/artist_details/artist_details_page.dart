@@ -106,5 +106,5 @@ class ArtistDetailsPageArguments {
     required this.artist,
   });
 
-  final ArtistEntity artist;
+  final ArtistGeoLocation artist;
 }

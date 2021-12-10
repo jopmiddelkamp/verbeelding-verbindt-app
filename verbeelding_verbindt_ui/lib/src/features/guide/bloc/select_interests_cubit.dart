@@ -19,7 +19,7 @@ class SelectedInterestsCubit extends CubitBase<SelectedInterestsState> {
   }
 
   void _loadSpecialities(
-    List<SpecialityEntity> specialities,
+    List<SpecialityGeoLocation> specialities,
   ) {
     emit(SelectedInterestsState.loaded(
       specialities: specialities,
@@ -27,7 +27,7 @@ class SelectedInterestsCubit extends CubitBase<SelectedInterestsState> {
   }
 
   void toggle(
-    SpecialityEntity speciality,
+    SpecialityGeoLocation speciality,
   ) {
     if (state is! SelectedInterestsLoaded) {
       return;
