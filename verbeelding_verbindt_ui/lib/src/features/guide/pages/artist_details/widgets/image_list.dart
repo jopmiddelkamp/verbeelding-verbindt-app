@@ -22,10 +22,10 @@ class ArtistDetailsPageImageList extends StatelessWidget {
       padding: padding,
       scrollDirection: Axis.vertical,
       physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
-        crossAxisSpacing: PaddingSize.medium.value,
-        mainAxisSpacing: PaddingSize.medium.value,
+        crossAxisSpacing: PaddingSize.medium,
+        mainAxisSpacing: PaddingSize.medium,
         childAspectRatio: 1.5,
       ),
       itemCount: images.length,
@@ -34,7 +34,7 @@ class ArtistDetailsPageImageList extends StatelessWidget {
           images[index],
           width: 30,
           height: 20,
-          borderRadius: BorderRadiusSize.small.value,
+          borderRadius: BorderRadiusSize.small,
         );
       },
     );

@@ -5,6 +5,7 @@ import '../../../verbeelding_verbindt_ui.dart';
 extension BuildContextExtensions on BuildContext {
   ScaffoldState get scaffold => Scaffold.of(this);
   MediaQueryData get mediaQuery => MediaQuery.of(this);
+  double get textScaleFactor => mediaQuery.textScaleFactor;
   ThemeData get theme => Theme.of(this);
   CustomThemeData get customTheme => CustomTheme.of(this);
   TextTheme get textTheme => Theme.of(this).textTheme;

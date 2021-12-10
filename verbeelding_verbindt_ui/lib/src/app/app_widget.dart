@@ -6,10 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import '../../../verbeelding_verbindt_ui.dart';
 
 class App extends StatefulWidget {
-  const App._({
-    required this.navigatorKey,
-    required this.theme,
-  });
+  const App._();
 
   static Widget bloc({
     required AppCubit appCubit,
@@ -20,27 +17,21 @@ class App extends StatefulWidget {
         BlocProvider.value(value: appCubit),
         BlocProvider.value(value: localizationCubit),
       ],
-      child: App._(
-        navigatorKey: GlobalKey<NavigatorState>(),
-        theme: CustomThemeData(
-          colorScheme: kDefaultThemeColorSchemeLight,
-        ),
-      ),
+      child: const App._(),
     );
   }
-
-  final GlobalKey<NavigatorState> navigatorKey;
-  final CustomThemeData theme;
 
   @override
   State<App> createState() => _AppState();
 }
 
 class _AppState extends State<App> {
+  late GlobalKey<NavigatorState> navigatorKey;
   late bool needNavigation;
 
   @override
   void initState() {
+    navigatorKey = GlobalKey<NavigatorState>();
     needNavigation = true;
     super.initState();
   }
@@ -49,6 +40,9 @@ class _AppState extends State<App> {
   Widget build(
     BuildContext context,
   ) {
+    final theme = CustomThemeData(
+      colorScheme: kDefaultThemeColorSchemeLight,
+    );
     return BlocListener<AppCubit, AppState>(
       listener: (context, appState) async {
         if (appState is AppFailed) {
@@ -65,10 +59,10 @@ class _AppState extends State<App> {
       child: BlocBuilder<LocalizationCubit, LocalizationState>(
         builder: (context, localizationState) {
           return CustomTheme(
-            data: widget.theme,
+            data: theme,
             child: MaterialApp(
               title: 'Verbeelding Verbindt',
-              theme: widget.theme.materialTheme,
+              theme: theme.materialTheme,
               // Wrapped around home so there is a navigator present
               home: Builder(
                 builder: (context) {
@@ -82,11 +76,11 @@ class _AppState extends State<App> {
               builder: (context, child) {
                 return FlavorBanner(
                   child: child!,
-                  navigatorKey: widget.navigatorKey,
+                  navigatorKey: navigatorKey,
                 );
               },
               onGenerateRoute: onGenerateRoute,
-              navigatorKey: widget.navigatorKey,
+              navigatorKey: navigatorKey,
               localizationsDelegates: const [
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,

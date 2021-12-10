@@ -1,14 +1,7 @@
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
-abstract class EnvironmentVariables {
-  factory EnvironmentVariables() => const _EnvironmentVariablesImpl();
-
-  Environment get environment;
-  RouteXlEnvironmentVariables get routeXl;
-}
-
-class _EnvironmentVariablesImpl implements EnvironmentVariables {
-  const _EnvironmentVariablesImpl();
+class EnvironmentVariablesImpl implements EnvironmentVariables {
+  const EnvironmentVariablesImpl();
 
   // fromEnvironment have to be const values
   static const _environment = String.fromEnvironment(
@@ -19,20 +12,12 @@ class _EnvironmentVariablesImpl implements EnvironmentVariables {
   Environment get environment => _environment.toEnum(Environment.values);
 
   @override
-  RouteXlEnvironmentVariables get routeXl => RouteXlEnvironmentVariables();
+  RouteXlEnvironmentVariables get routeXl =>
+      const RouteXlEnvironmentVariablesImpl();
 }
 
-abstract class RouteXlEnvironmentVariables {
-  factory RouteXlEnvironmentVariables() =>
-      const _RouteXlEnvironmentVariablesImpl();
-
-  String get baseUrl;
-  String get username;
-  String get password;
-}
-
-class _RouteXlEnvironmentVariablesImpl implements RouteXlEnvironmentVariables {
-  const _RouteXlEnvironmentVariablesImpl();
+class RouteXlEnvironmentVariablesImpl implements RouteXlEnvironmentVariables {
+  const RouteXlEnvironmentVariablesImpl();
 
   static const _baseUrl = String.fromEnvironment(
     'ROUTE_XL_BASE_URL',

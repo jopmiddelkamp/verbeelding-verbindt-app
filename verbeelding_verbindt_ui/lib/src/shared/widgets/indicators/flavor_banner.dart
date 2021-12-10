@@ -18,8 +18,8 @@ class FlavorBanner extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    final environment = GetIt.instance<Environment>();
-    if (environment.isProduction) {
+    final envVars = GetIt.instance<EnvironmentVariables>();
+    if (envVars.environment.isProduction) {
       return child;
     }
     return Stack(
@@ -27,7 +27,7 @@ class FlavorBanner extends StatelessWidget {
         child,
         _buildBanner(
           context,
-          env: environment,
+          env: envVars.environment,
         ),
       ],
     );

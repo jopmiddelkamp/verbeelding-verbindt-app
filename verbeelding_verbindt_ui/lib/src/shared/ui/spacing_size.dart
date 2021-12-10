@@ -1,22 +1,16 @@
-import 'package:smart_enums/smart_enums.dart';
-
-class SpacingSize extends SmartEnumWithValue<SpacingSize, double> {
+class SpacingSize {
   /// This padding has size 4.0.
-  static const smaller = SpacingSize._(4);
+  static const smaller = 4.0;
 
   /// This padding has size 6.0.
-  static const small = SpacingSize._(6);
+  static const small = 6.0;
 
   /// This padding has size 8.0.
-  static const medium = SpacingSize._(8);
+  static const medium = 8.0;
 
   /// This padding has size 12.0.
-  static const big = SpacingSize._(12);
+  static const big = 12.0;
 
   /// This padding has size 16.0.
-  static const bigger = SpacingSize._(16);
-
-  const SpacingSize._(
-    double value,
-  ) : super(value);
+  static const bigger = 16.0;
 }

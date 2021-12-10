@@ -5,10 +5,9 @@ import '../../../../verbeelding_verbindt_data.dart';
 
 class FirestoreArtistRepository extends ArtistRepository {
   FirestoreArtistRepository({
-    FirebaseFirestore? firestore,
-  }) : _artistCollection = (firestore ?? FirebaseFirestore.instance)
-            .collection('artists')
-            .withConverter<ArtistDataModel>(
+    required FirebaseFirestore firestore,
+  }) : _artistCollection =
+            firestore.collection('artists').withConverter<ArtistDataModel>(
           fromFirestore: (snapshot, _) {
             return ArtistDataModel.fromFirebaseMap(
               id: snapshot.id,

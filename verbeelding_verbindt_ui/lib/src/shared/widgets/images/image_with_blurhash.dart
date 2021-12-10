@@ -2,7 +2,6 @@ import 'package:bitmap/bitmap.dart';
 import 'package:blurhash_dart/blurhash_dart.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:supercharged/supercharged.dart';
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../../../verbeelding_verbindt_ui.dart';
@@ -66,7 +65,7 @@ class ImageWithBlurhash extends StatelessWidget {
 
   Widget _buildImage() {
     return CachedNetworkImage(
-      fadeInDuration: 300.milliseconds,
+      fadeInDuration: const Duration(milliseconds: 300),
       fit: BoxFit.cover,
       imageUrl: image.url,
       placeholder: (context, url) {

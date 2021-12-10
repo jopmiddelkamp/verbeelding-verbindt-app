@@ -44,6 +44,7 @@ class ArtistDetailsPage extends StatelessWidget {
           return state.map(
             initializing: (_) => const VVCircleLoadingIndicator(),
             loaded: (state) => _buildLoadedState(
+              context,
               state: state,
             ),
             failed: (_) => const FailureStateDisplay(),
@@ -53,7 +54,8 @@ class ArtistDetailsPage extends StatelessWidget {
     );
   }
 
-  Column _buildLoadedState({
+  Column _buildLoadedState(
+    BuildContext context, {
     required ArtistDetailsLoaded state,
   }) {
     return Column(
@@ -65,19 +67,19 @@ class ArtistDetailsPage extends StatelessWidget {
                 YoutubePlayer(
                   controller: state.youtubeController,
                 ),
-                SizedBox(height: SpacingSize.medium.value),
+                const SizedBox(height: SpacingSize.medium),
                 Padding(
-                  padding: EdgeInsets.all(PaddingSize.medium.value),
+                  padding: const EdgeInsets.all(PaddingSize.medium),
                   child: Text(state.artist.detailsContent.text.value),
                 ),
-                SizedBox(height: SpacingSize.medium.value),
+                const SizedBox(height: SpacingSize.medium),
                 ArtistDetailsPageImageList(
                   state.artist.detailsContent.images,
-                  padding: EdgeInsets.fromLTRB(
-                    PaddingSize.medium.value,
+                  padding: const EdgeInsets.fromLTRB(
+                    PaddingSize.medium,
                     0,
-                    PaddingSize.medium.value,
-                    PaddingSize.medium.value,
+                    PaddingSize.medium,
+                    PaddingSize.medium,
                   ),
                 ),
               ],
@@ -86,11 +88,11 @@ class ArtistDetailsPage extends StatelessWidget {
         ),
         Container(
           width: double.infinity,
-          padding: EdgeInsets.fromLTRB(
-            PaddingSize.medium.value,
+          padding: const EdgeInsets.fromLTRB(
+            PaddingSize.medium,
             0,
-            PaddingSize.medium.value,
-            PaddingSize.medium.value,
+            PaddingSize.medium,
+            PaddingSize.medium,
           ),
           child: ArtistDetailsPageVisitWebsiteButton(state.artist.website),
         ),

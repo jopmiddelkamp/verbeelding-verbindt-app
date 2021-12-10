@@ -1,19 +1,18 @@
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
-
-import '../../../../verbeelding_verbindt_data.dart';
 
 class PersistentStorageLocaleRepositoryImpl extends LocaleRepository {
   PersistentStorageLocaleRepositoryImpl({
-    required this.persistentStorageRepository,
-  });
+    required SharedPreferences sharedPreferences,
+  }) : _prefs = sharedPreferences;
 
   static const activeLocaleKey = 'activeLocale';
 
-  final PersistentStorageRepository persistentStorageRepository;
+  final SharedPreferences _prefs;
 
   @override
   Future<IsoLanguageEntity?> getActiveIsoLanguage() async {
-    final isoLanguageCode = await persistentStorageRepository.getString(
+    final isoLanguageCode = _prefs.getString(
       activeLocaleKey,
     );
     if (isoLanguageCode == null) {
@@ -22,7 +21,7 @@ class PersistentStorageLocaleRepositoryImpl extends LocaleRepository {
     try {
       return IsoLanguageEntity.fromIsoLanguageCode(isoLanguageCode);
     } on Exception {
-      await persistentStorageRepository.remove(
+      await _prefs.remove(
         activeLocaleKey,
       );
       return null;
@@ -33,7 +32,7 @@ class PersistentStorageLocaleRepositoryImpl extends LocaleRepository {
   Future<void> setActiveIsoLanguage(
     IsoLanguageEntity isoLanguage,
   ) {
-    return persistentStorageRepository.setString(
+    return _prefs.setString(
       activeLocaleKey,
       isoLanguage.isoLanguageCode,
     );

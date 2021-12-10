@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../verbeelding_verbindt_ui.dart';
-import 'theme_color_scheme.dart';
 
 class CustomThemeData extends Equatable with Diagnosticable {
   factory CustomThemeData({
@@ -25,29 +24,29 @@ class CustomThemeData extends Equatable with Diagnosticable {
       buttonTheme: ButtonThemeData(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
-            BorderRadiusSize.small.value,
+            BorderRadiusSize.small,
           ),
         ),
       ),
       cardTheme: CardTheme(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
-            BorderRadiusSize.medium.value,
+            BorderRadiusSize.medium,
           ),
         ),
       ),
       dialogTheme: DialogTheme(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
-            BorderRadiusSize.medium.value,
+            BorderRadiusSize.medium,
           ),
         ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           primary: colorScheme.secondary,
-          padding: EdgeInsets.all(
-            PaddingSize.big.value,
+          padding: const EdgeInsets.all(
+            PaddingSize.big,
           ),
         ),
       ),
@@ -55,8 +54,8 @@ class CustomThemeData extends Equatable with Diagnosticable {
         style: OutlinedButton.styleFrom(
           backgroundColor: Colors.transparent,
           primary: colorScheme.onSurface,
-          padding: EdgeInsets.all(
-            PaddingSize.big.value,
+          padding: const EdgeInsets.all(
+            PaddingSize.big,
           ),
           side: BorderSide(
             color: colorScheme.border,

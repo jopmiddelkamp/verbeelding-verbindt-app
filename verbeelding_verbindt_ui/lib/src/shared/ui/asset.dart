@@ -1,6 +1,6 @@
-import 'package:smart_enums/smart_enums.dart';
+import 'package:equatable/equatable.dart';
 
-class Asset extends SmartEnumWithValue<Asset, String> {
+class Asset extends Equatable {
   static const Asset introHeader = Asset._(
     'assets/images/intro-header.jpg',
   );
@@ -9,8 +9,11 @@ class Asset extends SmartEnumWithValue<Asset, String> {
   );
 
   const Asset._(
-    String value,
-  ) : super(value);
+    this.path,
+  );
 
-  String get path => value;
+  final String path;
+
+  @override
+  List<Object?> get props => [path];
 }

@@ -5,8 +5,8 @@ import '../../../../verbeelding_verbindt_data.dart';
 
 class FirebaseAuthRepository extends AuthRepository {
   FirebaseAuthRepository({
-    FirebaseAuth? firebaseAuth,
-  }) : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
+    required FirebaseAuth firebaseAuth,
+  }) : _firebaseAuth = firebaseAuth;
 
   final FirebaseAuth _firebaseAuth;
 

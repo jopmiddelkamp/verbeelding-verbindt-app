@@ -1,7 +1,10 @@
+export 'dependencies.dart';
 export 'entities/entities.dart';
+export 'environment_variables.dart';
 export 'extensions/extensions.dart';
 export 'failures/failures.dart';
 export 'mixins/mixins.dart';
+export 'module.dart';
 export 'repositories/repositories.dart';
 export 'use_cases/use_cases.dart';
 export 'utils/utils.dart';

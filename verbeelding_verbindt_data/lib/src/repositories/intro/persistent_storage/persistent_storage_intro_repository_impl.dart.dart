@@ -1,31 +1,30 @@
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
-
-import '../../../../verbeelding_verbindt_data.dart';
 
 class PersistentStorageIntroRepositoryImpl extends IntroRepository {
   PersistentStorageIntroRepositoryImpl({
-    required this.persistentStorageRepository,
-  });
+    required SharedPreferences sharedPreferences,
+  }) : _prefs = sharedPreferences;
 
   static const acceptedKey = 'introAccepted';
 
-  final PersistentStorageRepository persistentStorageRepository;
+  final SharedPreferences _prefs;
 
   @override
   Future<void> setIntroAccepted({
     required bool value,
   }) {
-    return persistentStorageRepository.setBool(
+    return _prefs.setBool(
       acceptedKey,
       value,
     );
   }
 
   @override
-  Future<bool> getIntroAccepted() {
-    return persistentStorageRepository.getBoolOrElse(
-      acceptedKey,
-      orElse: false,
-    );
+  Future<bool> getIntroAccepted() async {
+    return _prefs.getBool(
+          acceptedKey,
+        ) ??
+        false;
   }
 }

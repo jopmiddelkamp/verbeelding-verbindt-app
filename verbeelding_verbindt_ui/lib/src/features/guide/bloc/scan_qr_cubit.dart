@@ -1,6 +1,5 @@
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:supercharged/supercharged.dart';
 
 import '../../../../../../verbeelding_verbindt_ui.dart';
 
@@ -19,7 +18,7 @@ class ScanQrCubit extends CubitBase<ScanQrState> {
       qrController: qrController,
     ));
     qrController.scannedDataStream
-        .throttleTime(250.milliseconds)
+        .throttleTime(const Duration(milliseconds: 250))
         .takeUntil(close$)
         .listen((barcode) {
       final isValid = _qrCodeValidator.validate(barcode.code);

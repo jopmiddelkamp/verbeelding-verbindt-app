@@ -17,7 +17,7 @@ dependencies:
   firebase_auth: ^3.0.0
   firebase_core: ^1.0.0
   firebase_crashlytics: ^2.0.0
-  geolocator: ^7.0.0
+  geolocator: ^8.0.0
   json_annotation: ^4.3.0
   permission_handler: ^8.0.0
   pretty_dio_logger: ^1.2.0-beta-1
@@ -28,7 +28,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  bloc_test: ^8.0.0
+  bloc_test: ^9.0.0
   build_runner: ^2.0.0
   flutter_lints: ^1.0.0
   json_serializable: ^6.0.0
