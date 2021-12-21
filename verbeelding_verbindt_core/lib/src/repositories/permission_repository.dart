@@ -2,7 +2,7 @@ import 'dart:async';
 
 import '../../verbeelding_verbindt_core.dart';
 
-abstract class PermissionRepository extends RepositoryBase {
+abstract class PermissionRepository {
   /// Gets the status of the permission argument. Returns [PermissonStatus] or
   /// throws [UnsupportedPermissionFailure] or
   /// [TypeMismatchPersistentStorageFailure] on failure.

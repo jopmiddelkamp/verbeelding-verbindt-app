@@ -15,8 +15,8 @@ dependencies:
   get_it: ^7.0.0
   verbeelding_verbindt_core:
     path: verbeelding_verbindt_core
-  verbeelding_verbindt_data_dio:
-    path: verbeelding_verbindt_data_dio
+  verbeelding_verbindt_data_route_xl:
+    path: verbeelding_verbindt_data_route_xl
   verbeelding_verbindt_data_firebase:
     path: verbeelding_verbindt_data_firebase
   verbeelding_verbindt_data_shared_preferences:

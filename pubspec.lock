@@ -957,10 +957,10 @@ packages:
       relative: true
     source: path
     version: "0.0.0"
-  verbeelding_verbindt_data_dio:
-    dependency: "direct main"
+  verbeelding_verbindt_data:
+    dependency: transitive
     description:
-      path: verbeelding_verbindt_data_dio
+      path: verbeelding_verbindt_data
       relative: true
     source: path
     version: "0.0.0"
@@ -968,6 +968,20 @@ packages:
     dependency: "direct main"
     description:
       path: verbeelding_verbindt_data_firebase
+      relative: true
+    source: path
+    version: "0.0.0"
+  verbeelding_verbindt_data_http:
+    dependency: transitive
+    description:
+      path: verbeelding_verbindt_data_http
+      relative: true
+    source: path
+    version: "0.0.0"
+  verbeelding_verbindt_data_route_xl:
+    dependency: "direct main"
+    description:
+      path: verbeelding_verbindt_data_route_xl
       relative: true
     source: path
     version: "0.0.0"

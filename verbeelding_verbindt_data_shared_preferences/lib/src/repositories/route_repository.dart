@@ -3,8 +3,7 @@ import 'dart:convert';
 
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
-
-import '../../../verbeelding_verbindt_data_shared_preferences.dart';
+import 'package:verbeelding_verbindt_data/verbeelding_verbindt_data.dart';
 
 class RouteRepositoryImpl extends RepositoryBase implements RouteRepository {
   RouteRepositoryImpl({

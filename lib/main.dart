@@ -5,12 +5,12 @@ import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart'
     as core;
-import 'package:verbeelding_verbindt_data_dio/verbeelding_verbindt_data_dio.dart'
-    as data_dio;
 import 'package:verbeelding_verbindt_data_firebase/verbeelding_verbindt_data_firebase.dart'
     as data_firebase;
+import 'package:verbeelding_verbindt_data_route_xl/verbeelding_verbindt_data_route_xl.dart'
+    as data_route_xl;
 import 'package:verbeelding_verbindt_data_shared_preferences/verbeelding_verbindt_data_shared_preferences.dart'
-    as data_sp;
+    as data_shared_preferences;
 import 'package:verbeelding_verbindt_ui/verbeelding_verbindt_ui.dart' as ui;
 
 import 'src/src.dart';
@@ -23,11 +23,17 @@ Future<void> main() async {
 
   await _initFirebase();
 
-  final dio = await data_dio.getDependencies(environmentVariables);
-  final firebase = await data_firebase.getDependencies(environmentVariables);
-  final sharedPreferences = await data_sp.getDependencies(environmentVariables);
+  final routeXl = await data_route_xl.getDependencies(
+    environmentVariables,
+  );
+  final firebase = await data_firebase.getDependencies(
+    environmentVariables,
+  );
+  final sharedPreferences = await data_shared_preferences.getDependencies(
+    environmentVariables,
+  );
 
-  dio.routeGeneratorRepository.register();
+  routeXl.routeGeneratorRepository.register();
   firebase.artistRepository.register();
   firebase.authRepository.register();
   firebase.specialityRepository.register();

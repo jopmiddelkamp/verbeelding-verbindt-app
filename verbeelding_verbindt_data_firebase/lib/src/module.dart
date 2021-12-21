@@ -11,11 +11,13 @@ Future<DataDependencies> getDependencies(
 ) async {
   final fireStore = FirebaseFirestore.instance;
   final firebaseAuth = FirebaseAuth.instance;
+  const dataModelFactory = DataModelFactoryImpl();
 
   return DataDependencies(
     artistRepository: SingletonAsync<ArtistRepository>(
       () async => ArtistRepositoryImpl(
         firestore: fireStore,
+        dataModelFactory: dataModelFactory,
       ),
       dispose: (param) => (param as ArtistRepositoryImpl).dispose(),
     ),
@@ -34,6 +36,7 @@ Future<DataDependencies> getDependencies(
     routeRepository: SingletonAsync<RouteRepository>(
       () async => RouteRepositoryImpl(
         firestore: fireStore,
+        dataModelFactory: dataModelFactory,
       ),
       dispose: (param) => (param as RouteRepositoryImpl).dispose(),
     ),

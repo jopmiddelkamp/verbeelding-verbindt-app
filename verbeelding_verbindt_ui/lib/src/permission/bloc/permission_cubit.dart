@@ -6,16 +6,16 @@ class PermissionCubit extends CubitBase<PermissionState> with ReadyMixin {
   PermissionCubit({
     required GetPermissionStatusUseCase getPermissionStatusUseCase,
     required RequestPermissionUseCase requestPermissionUseCase,
-  })  : _getPermissionStatusUseCase = getPermissionStatusUseCase,
-        _requestPermissionUseCase = requestPermissionUseCase,
+  })  : _getPermissionStatus = getPermissionStatusUseCase,
+        _requestPermission = requestPermissionUseCase,
         super(const PermissionState.initializing());
 
-  final GetPermissionStatusUseCase _getPermissionStatusUseCase;
-  final RequestPermissionUseCase _requestPermissionUseCase;
+  final GetPermissionStatusUseCase _getPermissionStatus;
+  final RequestPermissionUseCase _requestPermission;
 
   Future<void> init() async {
     emit(PermissionState.loaded(
-      locationWhenInUseStatus: await _getPermissionStatusUseCase(
+      locationWhenInUseStatus: await _getPermissionStatus(
         GetPermissionStatusUseCaseParams(
           permission: Permission.locationWhenInUse,
         ),
@@ -25,7 +25,7 @@ class PermissionCubit extends CubitBase<PermissionState> with ReadyMixin {
   }
 
   Future<void> requestLocationWhenInUse() async {
-    final status = await _requestPermissionUseCase(
+    final status = await _requestPermission(
       RequestPermissionUseCaseParams(
         permission: Permission.locationWhenInUse,
       ),

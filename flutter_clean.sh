@@ -4,7 +4,15 @@ cd verbeelding_verbindt_core
 fvm flutter clean
 cd ..
 
-cd verbeelding_verbindt_data_dio
+cd verbeelding_verbindt_data
+fvm flutter clean
+cd ..
+
+cd verbeelding_verbindt_data_http
+fvm flutter clean
+cd ..
+
+cd verbeelding_verbindt_data_route_xl
 fvm flutter clean
 cd ..
 
