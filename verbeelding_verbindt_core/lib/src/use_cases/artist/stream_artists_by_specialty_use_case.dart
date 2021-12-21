@@ -2,27 +2,26 @@ import 'dart:async';
 
 import '../../../verbeelding_verbindt_core.dart';
 
-class StreamArtistBySpecialtyUseCase extends UseCase<
-    Stream<List<ArtistGeoLocation>>, StreamArtistBySpecialtyUseCaseArguments> {
+class StreamArtistBySpecialtyUseCase extends UseCase<Stream<List<Artist>>,
+    StreamArtistBySpecialtyUseCaseParams> {
   StreamArtistBySpecialtyUseCase({
     required ArtistRepository artistRepository,
   }) : _artistRepository = artistRepository;
 
   final ArtistRepository _artistRepository;
 
-  // TODO: rewrite with Either with non nullable RouteGeoLocation and OpenRouteUseCaseFailure union
   @override
-  Future<Stream<List<ArtistGeoLocation>>> call(
-    StreamArtistBySpecialtyUseCaseArguments argument,
-  ) async {
-    return _artistRepository.streamArtistsBySpeciality(
-      argument.specialityIds,
+  Stream<List<Artist>> call(
+    StreamArtistBySpecialtyUseCaseParams params,
+  ) async* {
+    yield* _artistRepository.streamArtistsBySpeciality(
+      params.specialityIds,
     );
   }
 }
 
-class StreamArtistBySpecialtyUseCaseArguments {
-  const StreamArtistBySpecialtyUseCaseArguments({
+class StreamArtistBySpecialtyUseCaseParams {
+  const StreamArtistBySpecialtyUseCaseParams({
     required this.artistId,
     required this.specialityIds,
   });

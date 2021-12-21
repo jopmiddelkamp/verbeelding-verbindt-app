@@ -2,9 +2,9 @@ import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../verbeelding_verbindt_data_dio.dart';
 
-extension ProfileModelExtensions on ProfileDataModel {
-  ProfileGeoLocation toGeoLocation() {
-    return ProfileGeoLocation(
+extension ProfileModelX on ProfileDataModel {
+  Profile toEntity() {
+    return Profile(
       firstName: firstName,
       middleName: middleName,
       lastName: lastName,
@@ -13,17 +13,17 @@ extension ProfileModelExtensions on ProfileDataModel {
   }
 }
 
-extension ProfileModelListExtensions on Iterable<ProfileDataModel> {
-  List<ProfileGeoLocation> toGeoLocationList() {
-    return map((e) => e.toGeoLocation()).toList();
+extension ProfileModelListX on Iterable<ProfileDataModel> {
+  List<Profile> toEntityList() {
+    return map((e) => e.toEntity()).toList();
   }
 
-  Set<ProfileGeoLocation> toGeoLocationSet() {
-    return map((e) => e.toGeoLocation()).toSet();
+  Set<Profile> toSet() {
+    return map((e) => e.toEntity()).toSet();
   }
 }
 
-extension ProfileGeoLocationExtensions on ProfileGeoLocation {
+extension ProfileX on Profile {
   ProfileDataModel toDataModel() {
     return ProfileDataModel(
       firstName: firstName,
@@ -34,7 +34,7 @@ extension ProfileGeoLocationExtensions on ProfileGeoLocation {
   }
 }
 
-extension ProfileGeoLocationListExtensions on Iterable<ProfileGeoLocation> {
+extension ProfileListX on Iterable<Profile> {
   List<ProfileDataModel> toDataModelList() {
     return map((e) => e.toDataModel()).toList();
   }

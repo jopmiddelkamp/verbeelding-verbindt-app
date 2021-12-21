@@ -1,14 +1,14 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
-class IntroRepositoryImpl extends IntroRepository {
+class IntroRepositoryImpl extends RepositoryBase implements IntroRepository {
   IntroRepositoryImpl({
-    required SharedPreferences sharedPreferences,
+    required RxSharedPreferences sharedPreferences,
   }) : _prefs = sharedPreferences;
 
   static const acceptedKey = 'introAccepted';
 
-  final SharedPreferences _prefs;
+  final RxSharedPreferences _prefs;
 
   @override
   Future<void> setIntroAccepted({
@@ -22,9 +22,16 @@ class IntroRepositoryImpl extends IntroRepository {
 
   @override
   Future<bool> getIntroAccepted() async {
-    return _prefs.getBool(
-          acceptedKey,
-        ) ??
-        false;
+    final result = await _prefs.getBool(
+      acceptedKey,
+    );
+    return _mapIntroAcceptedResult(result);
   }
+
+  @override
+  Stream<bool> streamIntroAccepted() {
+    return _prefs.getBoolStream(acceptedKey).map(_mapIntroAcceptedResult);
+  }
+
+  bool _mapIntroAcceptedResult(bool? result) => result ?? false;
 }

@@ -2,16 +2,16 @@ import 'package:equatable/equatable.dart';
 
 import '../../verbeelding_verbindt_core.dart';
 
-class RouteGeoLocation extends Equatable {
-  const RouteGeoLocation({
+class Route extends Equatable {
+  const Route({
     required this.id,
     required this.stops,
   });
 
   final String? id;
-  final List<RouteStopGeoLocation> stops;
+  final List<RouteStop> stops;
 
-  RouteStopGeoLocation get currentStop => stops.firstWhere(
+  RouteStop get currentStop => stops.firstWhere(
         (stop) => stop.notCompleted,
         orElse: () => stops.last,
       );
@@ -37,10 +37,10 @@ class RouteGeoLocation extends Equatable {
       .toSet()
       .toList(growable: false);
 
-  RouteGeoLocation copyWith({
-    List<RouteStopGeoLocation>? stops,
+  Route copyWith({
+    List<RouteStop>? stops,
   }) {
-    return RouteGeoLocation(
+    return Route(
       id: id,
       stops: stops ?? this.stops,
     );

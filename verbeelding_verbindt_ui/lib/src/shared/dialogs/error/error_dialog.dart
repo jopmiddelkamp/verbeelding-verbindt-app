@@ -27,7 +27,10 @@ class _ErrorDialog extends StatelessWidget {
       content: Text(message),
       actions: [
         TextButton(
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () {
+            debugPrint('### _ErrorDialog: navigator.pop()');
+            context.navigator.pop();
+          },
           child: Text(
             context.l10n.sharedOk,
           ),

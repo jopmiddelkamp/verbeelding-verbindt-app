@@ -1,0 +1,6 @@
+package dev.middelkamp.app
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}

@@ -7,7 +7,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:package_info/package_info.dart';
+import 'package:package_info/package_info.dart' as package_info;
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../verbeelding_verbindt_ui.dart';
@@ -24,24 +24,28 @@ Future<void> boot(
     () async => await BlocOverrides.runZoned(
       () async {
         final appCubit = AppCubit(
-          getAuthenticatedUserUseCase: GetIt.instance(),
-          getIsIntroAcceptedUseCase: GetIt.instance(),
-          getUsersRouteUseCase: GetIt.instance(),
+          signInAnonymouslyUseCase: GetIt.instance(),
+          streamAuthenticatedUserUseCase: GetIt.instance(),
+          streamIsIntroAcceptedUseCase: GetIt.instance(),
+          streamUsersRouteUseCase: GetIt.instance(),
         )..init();
 
         final localizationCubit = LocalizationCubit(
-          getActiveLocaleUseCase: GetIt.instance(),
+          streamActiveLocaleUseCase: GetIt.instance(),
           setActiveLocaleUseCase: GetIt.instance(),
         )..init();
 
-        await localizationCubit.onReady;
+        await Future.wait([
+          appCubit.onReady,
+          localizationCubit.onReady,
+        ]);
 
-        runApp(App.bloc(
+        runApp(App(
           appCubit: appCubit,
           localizationCubit: localizationCubit,
         ));
       },
-      blocObserver: GlobalBlocObserver(),
+      // blocObserver: GlobalBlocObserver(),
     ),
     (error, stackTrace) {
       FirebaseCrashlytics.instance.recordError(
@@ -68,8 +72,8 @@ void _initLocationService() {
 Future<void> _initDeviceInfo(
   EnvironmentVariables environmentVariables,
 ) async {
-  final packageInfoPlugin = await PackageInfo.fromPlatform();
-  final deviceInfo = DeviceInfoGeoLocation({
+  final packageInfoPlugin = await package_info.PackageInfo.fromPlatform();
+  final deviceInfo = DeviceInfo({
     'Environment': environmentVariables.environment.name,
     'Build mode': _buildMode.name,
     'Package name': packageInfoPlugin.packageName,

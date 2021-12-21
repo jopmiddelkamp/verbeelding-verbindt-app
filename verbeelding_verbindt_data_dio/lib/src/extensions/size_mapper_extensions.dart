@@ -2,26 +2,26 @@ import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../verbeelding_verbindt_data_dio.dart';
 
-extension SizeDataModelExtensions on SizeDataModel {
-  SizeGeoLocation toGeoLocation() {
-    return SizeGeoLocation(
+extension SizeDataModelX on SizeDataModel {
+  Size toEntity() {
+    return Size(
       width,
       height,
     );
   }
 }
 
-extension SizeDataModelListExtensions on Iterable<SizeDataModel> {
-  List<SizeGeoLocation> toGeoLocationList() {
-    return map((e) => e.toGeoLocation()).toList();
+extension SizeDataModelListX on Iterable<SizeDataModel> {
+  List<Size> toEntityList() {
+    return map((e) => e.toEntity()).toList();
   }
 
-  Set<SizeGeoLocation> toGeoLocationSet() {
-    return map((e) => e.toGeoLocation()).toSet();
+  Set<Size> toSet() {
+    return map((e) => e.toEntity()).toSet();
   }
 }
 
-extension SizeGeoLocationExtensions on SizeGeoLocation {
+extension SizeX on Size {
   SizeDataModel toDataModel() {
     return SizeDataModel(
       width,
@@ -30,7 +30,7 @@ extension SizeGeoLocationExtensions on SizeGeoLocation {
   }
 }
 
-extension SizeGeoLocationListExtensions on Iterable<SizeGeoLocation> {
+extension SizeListX on Iterable<Size> {
   List<SizeDataModel> toDataModelList() {
     return map((e) => e.toDataModel()).toList();
   }

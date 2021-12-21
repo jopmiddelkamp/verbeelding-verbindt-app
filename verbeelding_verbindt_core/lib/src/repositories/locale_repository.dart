@@ -1,8 +1,9 @@
 import '../../verbeelding_verbindt_core.dart';
 
-abstract class LocaleRepository extends RepositoryBase {
-  Future<IsoLanguageGeoLocation?> getActiveIsoLanguage();
+abstract class LocaleRepository {
+  Stream<IsoLanguage?> streamActiveIsoLanguage();
+  Future<IsoLanguage?> getActiveIsoLanguage();
   Future<void> setActiveIsoLanguage(
-    IsoLanguageGeoLocation isoLanguage,
+    IsoLanguage isoLanguage,
   );
 }

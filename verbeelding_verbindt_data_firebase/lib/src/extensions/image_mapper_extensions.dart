@@ -2,27 +2,27 @@ import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../verbeelding_verbindt_data_firebase.dart';
 
-extension ImageModelExtensions on ImageDataModel {
-  ImageGeoLocation toGeoLocation() {
-    return ImageGeoLocation(
+extension ImageModelX on ImageDataModel {
+  Image toEntity() {
+    return Image(
       blurhash: blurhash,
       url: url,
-      size: size.toGeoLocation(),
+      size: size.toEntity(),
     );
   }
 }
 
-extension ImageModelListExtensions on Iterable<ImageDataModel> {
-  List<ImageGeoLocation> toGeoLocationList() {
-    return map((e) => e.toGeoLocation()).toList();
+extension ImageModelListX on Iterable<ImageDataModel> {
+  List<Image> toEntityList() {
+    return map((e) => e.toEntity()).toList();
   }
 
-  Set<ImageGeoLocation> toGeoLocationSet() {
-    return map((e) => e.toGeoLocation()).toSet();
+  Set<Image> toSet() {
+    return map((e) => e.toEntity()).toSet();
   }
 }
 
-extension ImageGeoLocationExtensions on ImageGeoLocation {
+extension ImageX on Image {
   ImageDataModel toDataModel() {
     return ImageDataModel(
       blurhash: blurhash,
@@ -32,7 +32,7 @@ extension ImageGeoLocationExtensions on ImageGeoLocation {
   }
 }
 
-extension ImageGeoLocationListExtensions on Iterable<ImageGeoLocation> {
+extension ImageListX on Iterable<Image> {
   List<ImageDataModel> toDataModelList() {
     return map((e) => e.toDataModel()).toList();
   }

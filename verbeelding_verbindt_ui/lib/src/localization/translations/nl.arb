@@ -1,0 +1,69 @@
+{
+    "@@locale": "nl",
+
+    "dialogConfirmTitle": "Weet u het zeker?",
+
+    "dialogDeviceInfoAndroidSdk": "Android SDK",
+    "dialogDeviceInfoAndroidVersion": "Android versie",
+    "dialogDeviceInfoBuildMode": "Build nummer",
+    "dialogDeviceInfoBuildName": "Build nummer",
+    "dialogDeviceInfoDevice": "Apparaat",
+    "dialogDeviceInfoEnvironment": "Omgeving",
+    "dialogDeviceInfoManufacturer": "Fabrikant",
+    "dialogDeviceInfoModel": "Model",
+    "dialogDeviceInfoPackageName": "Pakket naam",
+    "dialogDeviceInfoPhysicalDevice": "Fysiek apparaat",
+    "dialogDeviceInfoSystemName": "Systeem naam",
+    "dialogDeviceInfoSystemVersion": "Systeem versie",
+    "dialogDeviceInfoTitle": "Apparaat informatie",
+    "dialogDeviceInfoVersion": "Versie",
+
+    "dialogErrorUnknownErrorTitle": "Onbekende foutmelding",
+    "dialogErrorUnknownErrorMessage": "Er is een onverwachte foutmelding opgetreden.",
+
+    "dialogNotImplementedContent": "Deze functionaliteit is not niet geimplementeerd.",
+    "dialogNotImplementedTitle": "Nog niet geimplementeerd!",
+
+    "dialogPermissionsDeniedContent": "We hebben geconstateerd dat u ons verzoek voor de rechten tot het uitlezen van uw locatie gegeven heeft geweigerd. Om deze app te kunnen gebruiken zult u deze actie ongedaan moeten maken.",
+    "dialogPermissionsDeniedTitle": "Rechten geweigerd",
+
+    "dialogPermissionsRemovedContent": "We hebben geconstateerd dat u ons de rechten tot het uitlezen van uw locatie gegeven heeft ontnomen. Om deze app te kunnen gebruiken zult u deze actie ongedaan moeten maken.",
+    "dialogPermissionsRemovedTitle": "Rechten ontnomen",
+
+    "dialogPermissionsRestrictedContent": "We hebben geconstateerd dat u ons de rechten tot het uitlezen van uw locatie gegeven heeft ontnomen. Om deze app te kunnen gebruiken zult u deze actie ongedaan moeten maken.",
+    "dialogPermissionsRestrictedTitle": "Rechten ontnomen",
+
+    "pageCompletedPopConfirmMessage": "Uw bewijs van het afronden van de tour zal verloren gaan.",
+    "pageCompletedText": "Dit is de introductie text joe joe Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.\n\n##### Meer info header\nDit is de introductie text Lorem Ipsum is simply dummy text of the printing and typesetting industry. When an unknown printer took a galley of type and scrambled it to make a type specimen book.  Dit is de introductie text Lorem Ipsum is simply dummy. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n\n###### Rechten\nOm de app te kunnen gebruik hebben wij uw locatie gegevens nodig. Wij gebruiken uw locatie gegevens alleen om u van plaats naar plaats te begeleiden.",
+    "pageCompletedTitle": "Goed gedaan!",
+
+    "pageIntroText": "Dit is de introductie text joe joe Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.\n\n##### Meer info header\nDit is de introductie text Lorem Ipsum is simply dummy text of the printing and typesetting industry. When an unknown printer took a galley of type and scrambled it to make a type specimen book.  Dit is de introductie text Lorem Ipsum is simply dummy. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n\n###### Rechten\nOm de app te kunnen gebruik hebben wij uw locatie gegevens nodig. Wij gebruiken uw locatie gegevens alleen om u van plaats naar plaats te begeleiden.",
+    "pageIntroTitle": "Welkom",
+
+    "pageScanQrBusyLoadingCamera": "Bezig met laden van de camera..",
+
+    "pageSelectInterestsBusyLoadingInterests": "Bezig met laden van interesses..",
+    "pageSelectInterestsGenerateGuide": "Route genereren",
+    "pageSelectInterestsMakeYourSelection": "Maak hier uw selectie:",
+    "pageSelectInterestsNoInterestsToDisplay": "Geen interesses om weer te geven..",
+    "pageSelectInterestsTitle": "Interesses",
+
+    "pageStepDetailsBusyLoadingVideo": "Bezig met het laden van de video..",
+    "pageStepDetailsVisitWebsite": "Bezoek website",
+
+    "pageStepsOverviewBusyLoadingMap": "Bezig met het laden van de map..",
+    "pageStepsOverviewBusySettingUpRoute": "Bezig met opzetten van route..",
+    "pageStepsOverviewMoreInfo": "Meer info",
+    "pageStepsOverviewPopConfirmMessage": "Uw voortgang van de tour zal verloren gaan.",
+    "pageStepsOverviewScanQr": "Scan QR",
+    "pageStepsOverviewTitle": "Zoek de kunstenaar",
+
+    "sharedBusyLoading": "Bezig met laden..",
+    "sharedCancel": "Annuleer",
+    "sharedClose": "Sluiten",
+    "sharedContinue": "Ga verder",
+    "sharedGoBack": "Ga terug",
+    "sharedNo": "Nee",
+    "sharedOk": "Oke",
+    "sharedYes": "Ja"
+}

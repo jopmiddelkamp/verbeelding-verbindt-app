@@ -38,7 +38,8 @@ Future<void> main() async {
 
   await GetIt.instance.allReady();
 
-  (await core.getDependencies(environmentVariables)).registerAll();
+  final coreDependencies = await core.getDependencies(environmentVariables);
+  coreDependencies.registerAll();
 
   await GetIt.instance.allReady();
 

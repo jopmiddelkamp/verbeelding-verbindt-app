@@ -2,26 +2,26 @@ import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../verbeelding_verbindt_data_dio.dart';
 
-extension RouteStopModelExtensions on RouteStopDataModel {
-  RouteStopGeoLocation toGeoLocation() {
-    return RouteStopGeoLocation(
-      artist: artist.toGeoLocation(),
+extension RouteStopModelX on RouteStopDataModel {
+  RouteStop toEntity() {
+    return RouteStop(
+      artist: artist.toEntity(),
       completed: completed,
     );
   }
 }
 
-extension RouteStopModelListExtensions on Iterable<RouteStopDataModel> {
-  List<RouteStopGeoLocation> toGeoLocationList() {
-    return map((e) => e.toGeoLocation()).toList();
+extension RouteStopModelListX on Iterable<RouteStopDataModel> {
+  List<RouteStop> toEntityList() {
+    return map((e) => e.toEntity()).toList();
   }
 
-  Set<RouteStopGeoLocation> toGeoLocationSet() {
-    return map((e) => e.toGeoLocation()).toSet();
+  Set<RouteStop> toSet() {
+    return map((e) => e.toEntity()).toSet();
   }
 }
 
-extension RouteStopGeoLocationExtensions on RouteStopGeoLocation {
+extension RouteStopX on RouteStop {
   RouteStopDataModel toDataModel() {
     return RouteStopDataModel(
       artist: artist.toDataModel(),
@@ -30,7 +30,7 @@ extension RouteStopGeoLocationExtensions on RouteStopGeoLocation {
   }
 }
 
-extension RouteStopGeoLocationListExtensions on Iterable<RouteStopGeoLocation> {
+extension RouteStopListX on Iterable<RouteStop> {
   List<RouteStopDataModel> toDataModelList() {
     return map((e) => e.toDataModel()).toList();
   }

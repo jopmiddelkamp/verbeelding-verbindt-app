@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../verbeelding_verbindt_data_shared_preferences.dart';
@@ -12,25 +12,29 @@ Future<DataDependencies> getDependencies(
   // Needed for the shared_preferences package
   WidgetsFlutterBinding.ensureInitialized();
   final sharedPreferences = await SharedPreferences.getInstance();
+  final rxSharedPreferences = RxSharedPreferences(
+    sharedPreferences,
+    null, // Disable logging
+  );
 
   return DataDependencies(
     routeRepository: SingletonAsync<RouteRepository>(
       () async => RouteRepositoryImpl(
-        sharedPreferences: sharedPreferences,
+        sharedPreferences: rxSharedPreferences,
       ),
-      dispose: (param) => param.dispose(),
+      dispose: (param) => (param as RouteRepositoryImpl).dispose(),
     ),
     localeRepository: SingletonAsync<LocaleRepository>(
       () async => LocaleRepositoryImpl(
-        sharedPreferences: sharedPreferences,
+        sharedPreferences: rxSharedPreferences,
       ),
-      dispose: (param) => param.dispose(),
+      dispose: (param) => (param as LocaleRepositoryImpl).dispose(),
     ),
     introRepository: SingletonAsync<IntroRepository>(
       () async => IntroRepositoryImpl(
-        sharedPreferences: sharedPreferences,
+        sharedPreferences: rxSharedPreferences,
       ),
-      dispose: (param) => param.dispose(),
+      dispose: (param) => (param as IntroRepositoryImpl).dispose(),
     ),
   );
 }

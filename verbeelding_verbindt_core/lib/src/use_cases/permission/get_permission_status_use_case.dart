@@ -1,7 +1,7 @@
 import '../../../verbeelding_verbindt_core.dart';
 
-class GetPermissionStatusUseCase
-    extends UseCase<PermissionStatus, GetPermissionStatusUseCaseArguments> {
+class GetPermissionStatusUseCase extends UseCase<Future<PermissionStatus>,
+    GetPermissionStatusUseCaseParams> {
   GetPermissionStatusUseCase({
     required this.permissionRepository,
   });
@@ -10,16 +10,16 @@ class GetPermissionStatusUseCase
 
   @override
   Future<PermissionStatus> call(
-    GetPermissionStatusUseCaseArguments argument,
+    GetPermissionStatusUseCaseParams params,
   ) {
     return permissionRepository.getStatus(
-      argument.permission,
+      params.permission,
     );
   }
 }
 
-class GetPermissionStatusUseCaseArguments {
-  GetPermissionStatusUseCaseArguments({
+class GetPermissionStatusUseCaseParams {
+  GetPermissionStatusUseCaseParams({
     required this.permission,
   });
   final Permission permission;

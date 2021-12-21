@@ -1,5 +1,5 @@
 import '../../verbeelding_verbindt_core.dart';
 
-abstract class SpecialityRepository extends RepositoryBase {
-  Stream<List<SpecialityGeoLocation>> getSpecialities();
+abstract class SpecialityRepository {
+  Stream<List<Speciality>> getSpecialities();
 }

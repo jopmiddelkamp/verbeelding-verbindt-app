@@ -1,8 +1,7 @@
-import '../../verbeelding_verbindt_core.dart';
-
-abstract class IntroRepository extends RepositoryBase {
+abstract class IntroRepository {
   Future<void> setIntroAccepted({
     required bool value,
   });
+  Stream<bool> streamIntroAccepted();
   Future<bool> getIntroAccepted();
 }

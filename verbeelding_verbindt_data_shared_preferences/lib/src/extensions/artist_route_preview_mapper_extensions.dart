@@ -2,27 +2,26 @@ import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../verbeelding_verbindt_data_shared_preferences.dart';
 
-extension ArtistRoutePreviewModelExtensions on ArtistRoutePreviewDataModel {
-  ArtistRoutePreviewGeoLocation toGeoLocation() {
-    return ArtistRoutePreviewGeoLocation(
-      text: text.toGeoLocation(),
+extension ArtistRoutePreviewModelX on ArtistRoutePreviewDataModel {
+  ArtistRoutePreview toEntity() {
+    return ArtistRoutePreview(
+      text: text.toEntity(),
     );
   }
 }
 
 extension ArtistRoutePreviewModelListExtensions
     on Iterable<ArtistRoutePreviewDataModel> {
-  List<ArtistRoutePreviewGeoLocation> toGeoLocationlist() {
-    return map((e) => e.toGeoLocation()).toList();
+  List<ArtistRoutePreview> tolist() {
+    return map((e) => e.toEntity()).toList();
   }
 
-  Set<ArtistRoutePreviewGeoLocation> toGeoLocationSet() {
-    return map((e) => e.toGeoLocation()).toSet();
+  Set<ArtistRoutePreview> toSet() {
+    return map((e) => e.toEntity()).toSet();
   }
 }
 
-extension ArtistRoutePreviewGeoLocationExtensions
-    on ArtistRoutePreviewGeoLocation {
+extension ArtistRoutePreviewX on ArtistRoutePreview {
   ArtistRoutePreviewDataModel toDataModel() {
     return ArtistRoutePreviewDataModel(
       text: text.toDataModel(),
@@ -30,8 +29,7 @@ extension ArtistRoutePreviewGeoLocationExtensions
   }
 }
 
-extension ArtistRoutePreviewGeoLocationListExtensions
-    on Iterable<ArtistRoutePreviewGeoLocation> {
+extension ArtistRoutePreviewListX on Iterable<ArtistRoutePreview> {
   List<ArtistRoutePreviewDataModel> toDataModelList() {
     return map((e) => e.toDataModel()).toList();
   }

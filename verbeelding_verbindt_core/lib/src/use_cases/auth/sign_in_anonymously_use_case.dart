@@ -2,7 +2,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 import '../../../verbeelding_verbindt_core.dart';
 
-class SignInAnonymouslyUseCase extends UseCase<void, void> {
+class SignInAnonymouslyUseCase extends UseCase<Future<void>, void> {
   SignInAnonymouslyUseCase({
     required AuthRepository authRepository,
   }) : _authRepository = authRepository;
@@ -11,7 +11,7 @@ class SignInAnonymouslyUseCase extends UseCase<void, void> {
 
   @override
   Future<void> call(
-    void argument,
+    void params,
   ) async {
     final user = await _authRepository.signInAnonymously();
     // TODO: add into loggin repo

@@ -1,9 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
-extension UserExtensions on User {
-  UserGeoLocation toGeoLocation() {
-    return UserGeoLocation(
+extension UserX on firebase.User {
+  User toEntity() {
+    return User(
       id: uid,
       isAnonymous: isAnonymous,
     );

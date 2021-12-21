@@ -17,25 +17,25 @@ Future<DataDependencies> getDependencies(
       () async => ArtistRepositoryImpl(
         firestore: fireStore,
       ),
-      dispose: (param) => param.dispose(),
+      dispose: (param) => (param as ArtistRepositoryImpl).dispose(),
     ),
     specialityRepository: SingletonAsync<SpecialityRepository>(
       () async => SpecialityRepositoryImpl(
         firestore: fireStore,
       ),
-      dispose: (param) => param.dispose(),
+      dispose: (param) => (param as SpecialityRepositoryImpl).dispose(),
     ),
     authRepository: SingletonAsync<AuthRepository>(
       () async => AuthRepositoryImpl(
         firebaseAuth: firebaseAuth,
       ),
-      dispose: (param) => param.dispose(),
+      dispose: (param) => (param as AuthRepositoryImpl).dispose(),
     ),
     routeRepository: SingletonAsync<RouteRepository>(
       () async => RouteRepositoryImpl(
         firestore: fireStore,
       ),
-      dispose: (param) => param.dispose(),
+      dispose: (param) => (param as RouteRepositoryImpl).dispose(),
     ),
   );
 }

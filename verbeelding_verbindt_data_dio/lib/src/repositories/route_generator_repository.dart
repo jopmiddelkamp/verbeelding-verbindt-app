@@ -26,9 +26,9 @@ class RouteXlRouteGeneratorRepository extends DioRepositoryBase
   }
 
   @override
-  Future<List<RouteStopGeoLocation>> generateRouteStops({
-    required final ArtistGeoLocation artistToStartAt,
-    required final Set<ArtistGeoLocation> artistsToVisit,
+  Future<List<RouteStop>> generateRouteStops({
+    required final Artist artistToStartAt,
+    required final Set<Artist> artistsToVisit,
   }) async {
     final requestUrl = getApiUrl('/tour');
     final requestBody = _getTourRequestModel(
@@ -49,12 +49,12 @@ class RouteXlRouteGeneratorRepository extends DioRepositoryBase
         .toRouteStopModels(
           artistsToVisit: artistsToVisit.toDataModelSet(),
         )
-        .toGeoLocationList();
+        .toEntityList();
   }
 
   RxTourRequestModel _getTourRequestModel({
-    required Set<ArtistGeoLocation> artistsToVisit,
-    required ArtistGeoLocation artistToStartAt,
+    required Set<Artist> artistsToVisit,
+    required Artist artistToStartAt,
   }) {
     final artists = _getArtistsListForRouteGeneration(
       artistsToVisit: artistsToVisit,
@@ -81,9 +81,9 @@ class RouteXlRouteGeneratorRepository extends DioRepositoryBase
     return data;
   }
 
-  List<ArtistGeoLocation> _getArtistsListForRouteGeneration({
-    required final Set<ArtistGeoLocation> artistsToVisit,
-    required final ArtistGeoLocation artistToStartAt,
+  List<Artist> _getArtistsListForRouteGeneration({
+    required final Set<Artist> artistsToVisit,
+    required final Artist artistToStartAt,
   }) {
     return artistsToVisit.toList()
       ..remove(artistToStartAt)

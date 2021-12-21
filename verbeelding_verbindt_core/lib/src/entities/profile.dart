@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-class ProfileGeoLocation extends Equatable {
-  const ProfileGeoLocation({
+class Profile extends Equatable {
+  const Profile({
     required this.firstName,
     required this.middleName,
     required this.lastName,
@@ -28,13 +28,13 @@ class ProfileGeoLocation extends Equatable {
         personalImage,
       ];
 
-  ProfileGeoLocation copyWith({
+  Profile copyWith({
     String? firstName,
     String? middleName,
     String? lastName,
     String? personalImage,
   }) {
-    return ProfileGeoLocation(
+    return Profile(
       firstName: firstName ?? this.firstName,
       middleName: middleName ?? this.middleName,
       lastName: lastName ?? this.lastName,

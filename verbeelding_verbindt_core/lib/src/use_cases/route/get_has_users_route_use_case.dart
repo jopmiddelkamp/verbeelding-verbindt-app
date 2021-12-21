@@ -2,7 +2,7 @@ import 'dart:async';
 
 import '../../../verbeelding_verbindt_core.dart';
 
-class GetHasUsersRouteUseCase extends UseCase<bool, void> {
+class GetHasUsersRouteUseCase extends UseCase<Future<bool>, void> {
   GetHasUsersRouteUseCase({
     required RouteRepository routeRepository,
     required AuthRepository authRepository,
@@ -12,11 +12,9 @@ class GetHasUsersRouteUseCase extends UseCase<bool, void> {
   final RouteRepository _routeRepository;
   final AuthRepository _authRepository;
 
-  // TODO: rewrite with Either with non nullable RouteGeoLocation and GetUsersRouteUseCaseFailure union
+  // TODO: rewrite with Either with non nullable Route and GetUsersRouteUseCaseFailure union
   @override
-  Future<bool> call(
-    void argument,
-  ) async {
+  Future<bool> call(void params) async {
     final authenticatedUser = await _authRepository.authenticatedUser;
     if (authenticatedUser == null) {
       return false;

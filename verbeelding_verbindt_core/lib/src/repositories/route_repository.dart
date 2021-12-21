@@ -1,15 +1,15 @@
 import '../../verbeelding_verbindt_core.dart';
 
-abstract class RouteRepository extends RepositoryBase {
+abstract class RouteRepository {
   Future<void> createRoute(
-    RouteGeoLocation data,
+    Route data,
   );
 
-  Stream<RouteGeoLocation?> getRouteStream(
+  Stream<Route?> getRouteStream(
     String id,
   );
 
-  Future<RouteGeoLocation?> getRoute(
+  Future<Route?> getRoute(
     String id,
   );
 

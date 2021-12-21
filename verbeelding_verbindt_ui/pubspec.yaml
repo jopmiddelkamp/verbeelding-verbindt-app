@@ -29,6 +29,7 @@ dependencies:
   get_it: ^7.0.0
   google_fonts: ^2.0.0
   google_maps_flutter: ^2.0.0
+  go_router: ^2.5.5
   intl: ^0.17.0
   json_annotation: ^4.3.0
   konami_detector: ^1.0.0
@@ -36,6 +37,7 @@ dependencies:
   photo_view: ^0.13.0
   qr_code_scanner: ^0.6.1
   rxdart: ^0.27.0
+  tuple: ^2.0.0
   url_launcher: ^6.0.0
   video_player: ^2.0.0
   verbeelding_verbindt_core:

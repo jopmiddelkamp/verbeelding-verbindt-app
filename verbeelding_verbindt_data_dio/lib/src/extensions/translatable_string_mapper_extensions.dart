@@ -2,32 +2,30 @@ import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../verbeelding_verbindt_data_dio.dart';
 
-extension TranslatableStringModelExtensions on TranslatableStringDataModel {
-  TranslatableStringGeoLocation toGeoLocation() {
-    return TranslatableStringGeoLocation(data);
+extension TranslatableStringModelX on TranslatableStringDataModel {
+  TranslatableString toEntity() {
+    return TranslatableString(data);
   }
 }
 
 extension TranslatableStringModelListExtensions
     on Iterable<TranslatableStringDataModel> {
-  List<TranslatableStringGeoLocation> toGeoLocationList() {
-    return map((e) => e.toGeoLocation()).toList();
+  List<TranslatableString> toEntityList() {
+    return map((e) => e.toEntity()).toList();
   }
 
-  Set<TranslatableStringGeoLocation> toGeoLocationSet() {
-    return map((e) => e.toGeoLocation()).toSet();
+  Set<TranslatableString> toSet() {
+    return map((e) => e.toEntity()).toSet();
   }
 }
 
-extension TranslatableStringGeoLocationExtensions
-    on TranslatableStringGeoLocation {
+extension TranslatableStringX on TranslatableString {
   TranslatableStringDataModel toDataModel() {
     return TranslatableStringDataModel(data);
   }
 }
 
-extension TranslatableStringGeoLocationListExtensions
-    on Iterable<TranslatableStringGeoLocation> {
+extension TranslatableStringListX on Iterable<TranslatableString> {
   List<TranslatableStringDataModel> toDataModelList() {
     return map((e) => e.toDataModel()).toList();
   }

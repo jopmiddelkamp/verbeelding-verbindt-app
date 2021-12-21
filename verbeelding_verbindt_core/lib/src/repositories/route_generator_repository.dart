@@ -1,8 +1,8 @@
 import '../../verbeelding_verbindt_core.dart';
 
-abstract class RouteGeneratorRepository extends RepositoryBase {
-  Future<List<RouteStopGeoLocation>> generateRouteStops({
-    required final ArtistGeoLocation artistToStartAt,
-    required final Set<ArtistGeoLocation> artistsToVisit,
+abstract class RouteGeneratorRepository {
+  Future<List<RouteStop>> generateRouteStops({
+    required final Artist artistToStartAt,
+    required final Set<Artist> artistsToVisit,
   });
 }

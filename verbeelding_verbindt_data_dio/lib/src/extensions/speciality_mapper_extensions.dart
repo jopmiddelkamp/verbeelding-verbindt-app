@@ -2,26 +2,26 @@ import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../verbeelding_verbindt_data_dio.dart';
 
-extension SpecialityModelExtensions on SpecialityDataModel {
-  SpecialityGeoLocation toGeoLocation() {
-    return SpecialityGeoLocation(
+extension SpecialityModelX on SpecialityDataModel {
+  Speciality toEntity() {
+    return Speciality(
       id: id,
-      name: name.toGeoLocation(),
+      name: name.toEntity(),
     );
   }
 }
 
-extension SpecialityModelListExtensions on Iterable<SpecialityDataModel> {
-  List<SpecialityGeoLocation> toGeoLocationList() {
-    return map((e) => e.toGeoLocation()).toList();
+extension SpecialityModelListX on Iterable<SpecialityDataModel> {
+  List<Speciality> toEntityList() {
+    return map((e) => e.toEntity()).toList();
   }
 
-  Set<SpecialityGeoLocation> toGeoLocationSet() {
-    return map((e) => e.toGeoLocation()).toSet();
+  Set<Speciality> toSet() {
+    return map((e) => e.toEntity()).toSet();
   }
 }
 
-extension SpecialityGeoLocationExtensions on SpecialityGeoLocation {
+extension SpecialityX on Speciality {
   SpecialityDataModel toDataModel() {
     return SpecialityDataModel(
       id: id,
@@ -30,8 +30,7 @@ extension SpecialityGeoLocationExtensions on SpecialityGeoLocation {
   }
 }
 
-extension SpecialityGeoLocationListExtensions
-    on Iterable<SpecialityGeoLocation> {
+extension SpecialityListX on Iterable<Speciality> {
   List<SpecialityDataModel> toDataModelList() {
     return map((e) => e.toDataModel()).toList();
   }

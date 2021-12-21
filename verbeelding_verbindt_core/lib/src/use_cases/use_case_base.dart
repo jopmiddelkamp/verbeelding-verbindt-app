@@ -1,3 +1,3 @@
-abstract class UseCase<TResult, TArgument> {
-  Future<TResult> call(TArgument argument);
+abstract class UseCase<TResult, TParam> {
+  TResult call(TParam params);
 }

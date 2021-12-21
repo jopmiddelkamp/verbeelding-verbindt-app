@@ -1,7 +1,7 @@
 import '../../../verbeelding_verbindt_core.dart';
 
 class SetActiveLocaleUseCase
-    extends UseCase<void, SetActiveLocaleUseCaseArguments> {
+    extends UseCase<Future<void>, SetActiveLocaleUseCaseParams> {
   SetActiveLocaleUseCase({
     required this.localeRepository,
   });
@@ -10,18 +10,18 @@ class SetActiveLocaleUseCase
 
   @override
   Future<void> call(
-    SetActiveLocaleUseCaseArguments argument,
+    SetActiveLocaleUseCaseParams params,
   ) {
     return localeRepository.setActiveIsoLanguage(
-      argument.locale.isoLanguage,
+      params.locale.isoLanguage,
     );
   }
 }
 
-class SetActiveLocaleUseCaseArguments {
-  SetActiveLocaleUseCaseArguments({
+class SetActiveLocaleUseCaseParams {
+  SetActiveLocaleUseCaseParams({
     required this.locale,
   });
 
-  final LocaleGeoLocation locale;
+  final Locale locale;
 }

@@ -2,8 +2,8 @@ import 'package:equatable/equatable.dart';
 
 import '../../verbeelding_verbindt_core.dart';
 
-class ArtistGeoLocation extends Equatable {
-  const ArtistGeoLocation({
+class Artist extends Equatable {
+  const Artist({
     required this.id,
     required this.profile,
     required this.specialities,
@@ -14,11 +14,11 @@ class ArtistGeoLocation extends Equatable {
   });
 
   final String? id;
-  final ProfileGeoLocation profile;
-  final Map<String, SpecialityGeoLocation> specialities;
-  final GeoLocation location;
-  final ArtistRoutePreviewGeoLocation previewContent;
-  final ArtistRouteDetailsGeoLocation detailsContent;
+  final Profile profile;
+  final Map<String, Speciality> specialities;
+  final Geolocation location;
+  final ArtistRoutePreview previewContent;
+  final ArtistRouteDetails detailsContent;
   final String website;
 
   @override
@@ -32,19 +32,19 @@ class ArtistGeoLocation extends Equatable {
         website,
       ];
 
-  ArtistGeoLocation copyWith({
-    ProfileGeoLocation? profile,
+  Artist copyWith({
+    Profile? profile,
     List<String>? specialities,
-    GeoLocation? location,
-    ArtistRoutePreviewGeoLocation? previewContent,
-    ArtistRouteDetailsGeoLocation? detailsContent,
+    Geolocation? location,
+    ArtistRoutePreview? previewContent,
+    ArtistRouteDetails? detailsContent,
     String? website,
   }) {
-    return ArtistGeoLocation(
+    return Artist(
       id: id,
       profile: profile ?? this.profile,
-      specialities: specialities as Map<String, SpecialityGeoLocation>? ??
-          this.specialities,
+      specialities:
+          specialities as Map<String, Speciality>? ?? this.specialities,
       location: location ?? this.location,
       previewContent: previewContent ?? this.previewContent,
       detailsContent: detailsContent ?? this.detailsContent,

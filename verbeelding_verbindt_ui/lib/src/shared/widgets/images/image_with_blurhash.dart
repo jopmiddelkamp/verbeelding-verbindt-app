@@ -1,7 +1,8 @@
 import 'package:bitmap/bitmap.dart';
 import 'package:blurhash_dart/blurhash_dart.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Image;
+import 'package:flutter/widgets.dart' as widgets;
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../../../verbeelding_verbindt_ui.dart';
@@ -18,7 +19,7 @@ class ImageWithBlurhash extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final ImageGeoLocation image;
+  final Image image;
   final double width;
   final double height;
   final double? borderRadius;
@@ -82,7 +83,7 @@ class ImageWithBlurhash extends StatelessWidget {
           height.toInt(),
           bytes,
         );
-        return Image.memory(
+        return widgets.Image.memory(
           bitmap.buildHeaded(),
           fit: BoxFit.cover,
         );
