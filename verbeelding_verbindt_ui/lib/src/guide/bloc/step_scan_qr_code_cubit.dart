@@ -37,16 +37,10 @@ class StepScanQrCodeCubit extends ScanQrCodeCubit {
   Future<bool> validate(String value) async => _validator.validate(value);
 
   @override
-  Future<void> process(
-    ScanQrCodeValidScan state,
-  ) async {
+  Future<void> process() async {
     await _completeRouteStop(CompleteRouteStopUseCaseParams(
       routeId: _routeId,
       stopIndex: params.stepIndex,
-    ));
-    emit(ScanQrCodeState.processed(
-      barcode: state.barcode,
-      qrController: state.qrController,
     ));
   }
 }

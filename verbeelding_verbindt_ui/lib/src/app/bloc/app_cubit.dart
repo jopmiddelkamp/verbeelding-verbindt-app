@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
@@ -15,7 +16,11 @@ class AppCubit extends CubitBase<AppState> with ReadyMixin, DisposableMixin {
         _streamIsIntroAccepted = streamIsIntroAcceptedUseCase,
         _streamAuthenticatedUser = streamAuthenticatedUserUseCase,
         _streamUsersRoute = streamUsersRouteUseCase,
-        super(const AppState.initializing());
+        super(const AppState.initializing()) {
+    routeRefreshStream.listen((event) {
+      debugPrint('### routeRefreshStream: $event');
+    });
+  }
 
   final SignInAnonymouslyUseCase _signInAnonymously;
   final StreamIsIntroAcceptedUseCase _streamIsIntroAccepted;
@@ -25,6 +30,11 @@ class AppCubit extends CubitBase<AppState> with ReadyMixin, DisposableMixin {
   late StreamSubscription _streamSub;
 
   AppLoaded get loadedState => state as AppLoaded;
+
+  Stream<bool> get routeRefreshStream => stream
+      .where((state) => state is AppLoaded)
+      .map((state) => (state as AppLoaded).hasSignedIn)
+      .distinct();
 
   Future<void> init() async {
     await _signInAnonymously(null);

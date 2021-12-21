@@ -15,7 +15,10 @@ class IntroductionPageContinueButton extends StatelessWidget {
       label: Text(
         context.l10n.sharedContinue,
       ),
-      onTap: introBloc.accept,
+      onTap: () async {
+        await introBloc.accept();
+        SelectInterestsPage.go(context);
+      },
     );
   }
 }

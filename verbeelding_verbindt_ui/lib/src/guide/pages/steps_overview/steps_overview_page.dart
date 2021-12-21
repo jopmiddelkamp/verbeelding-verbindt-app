@@ -11,7 +11,6 @@ class StepsOverviewPage extends StatelessWidget {
   }) : super(key: key);
 
   static const String name = 'steps';
-  static const String path = '/guide/steps';
 
   static void go(BuildContext context) => context.goNamed(name);
 
@@ -24,9 +23,18 @@ class StepsOverviewPage extends StatelessWidget {
         getUsersRouteUseCase: GetIt.instance(),
         completeRouteStopUseCase: GetIt.instance(),
         locationService: GetIt.instance(),
-      )..loadRoute(),
+      )..init(),
       child: Builder(builder: builder),
     );
+  }
+
+  void _listener(
+    BuildContext context,
+    StepsOverviewState state,
+  ) {
+    if (state is StepsOverviewCompleted) {
+      CompletedPage.go(context);
+    }
   }
 
   @override
@@ -35,71 +43,76 @@ class StepsOverviewPage extends StatelessWidget {
   ) {
     return _blocProvider((context) {
       final cubit = context.read<StepsOverviewCubit>();
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            context.l10n.pageStepsOverviewTitle,
+      return BlocListener<StepsOverviewCubit, StepsOverviewState>(
+        listener: _listener,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(
+              context.l10n.pageStepsOverviewTitle,
+            ),
+            leading: IconButton(
+              icon: const Icon(Icons.close),
+              onPressed: () async {
+                final result = await showConfirmDialog(
+                  context,
+                  content: context.l10n.pageStepsOverviewPopConfirmMessage,
+                );
+                if (result) {
+                  await cubit.delete();
+                  SelectInterestsPage.go(context);
+                }
+              },
+            ),
           ),
-          leading: IconButton(
-            icon: const Icon(Icons.close),
-            onPressed: () async {
-              final result = await showConfirmDialog(
-                context,
-                content: context.l10n.pageStepsOverviewPopConfirmMessage,
-              );
-              if (result) {
-                await cubit.delete();
+          body: BlocBuilder<StepsOverviewCubit, StepsOverviewState>(
+            buildWhen: (_, current) => current is! StepsOverviewCompleted,
+            builder: (context, routeState) {
+              if (routeState is! StepsOverviewLoaded) {
+                return Center(
+                  child: VVCircleLoadingIndicator(
+                    text: context.l10n.pageStepsOverviewBusySettingUpRoute,
+                  ),
+                );
               }
-            },
-          ),
-        ),
-        body: BlocBuilder<StepsOverviewCubit, StepsOverviewState>(
-          builder: (context, routeState) {
-            if (routeState is! StepsOverviewLoaded) {
-              return Center(
-                child: VVCircleLoadingIndicator(
-                  text: context.l10n.pageStepsOverviewBusySettingUpRoute,
-                ),
-              );
-            }
-            return LayoutBuilder(
-              builder: (context, constraints) {
-                return Column(
-                  children: [
-                    StepsOverviewPageRouteMap(
-                      width: constraints.maxWidth,
-                      height: constraints.maxHeight / 3,
-                      stops: routeState.route.stops,
-                      currentStop: routeState.route.currentStop,
-                      initialMapLocation: routeState.initialUserLocation,
-                    ),
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: context.theme.colorScheme.background,
-                          boxShadow: createBoxShadowTop(
-                            context.customTheme,
+              return LayoutBuilder(
+                builder: (context, constraints) {
+                  return Column(
+                    children: [
+                      StepsOverviewPageRouteMap(
+                        width: constraints.maxWidth,
+                        height: constraints.maxHeight / 3,
+                        stops: routeState.route.stops,
+                        currentStop: routeState.route.currentStop,
+                        initialMapLocation: routeState.initialUserLocation,
+                      ),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: context.theme.colorScheme.background,
+                            boxShadow: createBoxShadowTop(
+                              context.customTheme,
+                            ),
+                          ),
+                          child: ListView.builder(
+                            itemCount: routeState.route.stops.length,
+                            itemBuilder: (context, index) {
+                              final stop = routeState.route.stops[index];
+                              return StepsOverviewPageRouteListItem(
+                                count: routeState.route.stops.length,
+                                index: index,
+                                stop: stop,
+                                active: routeState.route.currentStop == stop,
+                              );
+                            },
                           ),
                         ),
-                        child: ListView.builder(
-                          itemCount: routeState.route.stops.length,
-                          itemBuilder: (context, index) {
-                            final stop = routeState.route.stops[index];
-                            return StepsOverviewPageRouteListItem(
-                              count: routeState.route.stops.length,
-                              index: index,
-                              stop: stop,
-                              active: routeState.route.currentStop == stop,
-                            );
-                          },
-                        ),
                       ),
-                    ),
-                  ],
-                );
-              },
-            );
-          },
+                    ],
+                  );
+                },
+              );
+            },
+          ),
         ),
       );
     });

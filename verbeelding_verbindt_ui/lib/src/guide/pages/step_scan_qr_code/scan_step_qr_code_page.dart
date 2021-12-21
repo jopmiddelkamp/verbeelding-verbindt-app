@@ -35,7 +35,6 @@ class StepScanQrCodePage extends ScanQrCodePage {
         );
 
   static const String name = 'step_scan_qr_code';
-  static const String path = ':${StepScanQrCodeParams.stepIndexKey}/scan';
 
   static void go(
     BuildContext context, {

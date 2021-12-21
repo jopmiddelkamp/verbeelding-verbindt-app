@@ -29,13 +29,15 @@ class _AppState extends State<App> {
   void initState() {
     super.initState();
     router = GoRouter(
-      initialLocation: StepsOverviewPage.path,
       routes: kRoutes,
       urlPathStrategy: UrlPathStrategy.path,
       debugLogDiagnostics: kDebugMode,
-      redirect: (state) => topLevelGuard(widget.appCubit.state, state),
+      redirect: (state) => topLevelGuard(
+        widget.appCubit.state,
+        state,
+      ),
       refreshListenable: GoRouterRefreshStream(
-        widget.appCubit.stream,
+        widget.appCubit.routeRefreshStream,
       ),
     );
   }
@@ -74,6 +76,9 @@ class _AppState extends State<App> {
           }
         },
         child: BlocBuilder<LocalizationCubit, LocalizationState>(
+          buildWhen: (_, current) {
+            return current.runtimeType is! LocalizationFailure;
+          },
           builder: (context, localizationState) {
             return CustomTheme(
               data: theme,

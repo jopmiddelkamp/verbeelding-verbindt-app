@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../../../../verbeelding_verbindt_ui.dart';
 
 class _PermissionsDeniedDialog extends StatelessWidget {
   const _PermissionsDeniedDialog({Key? key}) : super(key: key);
+
   @override
   Widget build(
     BuildContext context,
@@ -21,7 +21,10 @@ class _PermissionsDeniedDialog extends StatelessWidget {
           child: Text(
             context.l10n.sharedClose,
           ),
-          onPressed: () async => await SystemNavigator.pop(),
+          onPressed: () {
+            debugPrint('### _PermissionsDeniedDialog: navigator.pop()');
+            context.navigator.pop();
+          },
         ),
       ],
     );

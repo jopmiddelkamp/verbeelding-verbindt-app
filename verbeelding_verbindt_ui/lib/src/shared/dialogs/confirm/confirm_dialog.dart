@@ -23,7 +23,10 @@ class _ConfirmDialog extends StatelessWidget {
           child: Text(
             context.l10n.sharedGoBack,
           ),
-          onPressed: () => context.navigator.pop(true),
+          onPressed: () {
+            debugPrint('### _ConfirmDialog: navigator.pop()');
+            context.navigator.pop(true);
+          },
         ),
         TextButton(
           child: Text(

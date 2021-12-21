@@ -10,34 +10,25 @@ String? topLevelGuard(
     return null;
   }
 
-  final hasAcceptedIntro = appState.hasAcceptedIntro;
-  final hasActiveRoute = appState.hasActiveRoute;
-  final hasCompletedRoute = appState.hasCompletedRoute;
+  /// If the app is starting
+  if (state.location == '/') {
+    final hasAcceptedIntro = appState.hasAcceptedIntro;
+    final hasActiveRoute = appState.hasActiveRoute;
+    final hasCompletedRoute = appState.hasCompletedRoute;
 
-  final visitIntro = state.location == '/intro';
-  final visitSelectInterests = state.location == '/guide/select-interests';
-  final visitStepsOverview = state.location == '/guide/steps';
-  final visitCompleted = state.location == '/guide/completed';
+    if (!hasAcceptedIntro) {
+      return null;
+    }
 
-  if (!visitIntro && !hasAcceptedIntro) {
-    return '/intro';
-  }
-  if (visitIntro && hasAcceptedIntro) {
-    return '/guide/select-interests';
-  }
+    if (!hasActiveRoute) {
+      return '/guide/select-interests';
+    }
 
-  if (!visitIntro && !visitSelectInterests && !hasActiveRoute) {
-    return '/guide/select-interests';
-  }
-  if (visitSelectInterests && hasActiveRoute) {
-    return '/guide/steps';
-  }
+    if (!hasCompletedRoute) {
+      return '/guide/stops';
+    }
 
-  if (visitStepsOverview && hasCompletedRoute) {
     return '/guide/completed';
-  }
-  if (visitCompleted && !hasCompletedRoute) {
-    return '/guide/steps';
   }
 
   return null;

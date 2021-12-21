@@ -19,7 +19,10 @@ class SelectInterestsPageGenerateGuideButton extends StatelessWidget {
             context.l10n.pageSelectInterestsGenerateGuide,
           ),
           onTap: state is SelectedInterestsLoaded && state.hasSelection
-              ? context.read<SelectedInterestsCubit>().generateGuide
+              ? () async {
+                  context.read<SelectedInterestsCubit>().generateGuide();
+                  StepsOverviewPage.go(context);
+                }
               : null,
         );
       },

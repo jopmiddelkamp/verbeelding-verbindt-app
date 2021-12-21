@@ -17,7 +17,6 @@ abstract class ScanQrCodePage extends StatefulWidget {
   final GlobalKey qrCodeKey;
 
   static const String name = 'scan_qr_code';
-  static const String path = 'scan';
 
   static void go(BuildContext context) => context.goNamed(name);
 
@@ -56,9 +55,11 @@ class _ScanQrCodePageState extends State<ScanQrCodePage> {
             ),
           ),
         );
+        debugPrint('### ScanQrCodePage.invalidParams: pop()');
         context.pop();
       },
       processed: (_) {
+        debugPrint('### ScanQrCodePage.processed: pop()');
         context.pop();
       },
       invalidScan: (value) {

@@ -1,3 +1,5 @@
+export 'guide_completed_cubit.dart';
+export 'guide_completed_state.dart';
 export 'select_interests_cubit.dart';
 export 'select_interests_state.dart';
 export 'step_details_cubit.dart';

@@ -14,6 +14,8 @@ class StepsOverviewState with _$StepsOverviewState {
     required Geolocation initialUserLocation,
   }) = StepsOverviewLoaded;
 
+  const factory StepsOverviewState.completed() = StepsOverviewCompleted;
+
   const factory StepsOverviewState.failed({
     required StepsOverviewFailure failure,
   }) = StepsOverviewFailed;

@@ -28,21 +28,27 @@ class StepsOverviewCubit extends CubitBase<StepsOverviewState> {
 
   StepsOverviewLoaded get loadedState => state as StepsOverviewLoaded;
 
-  Future<void> loadRoute() async {
+  Future<void> init() async {
     if (activeRouteStreamSub != null) {
       return;
     }
-    final userLocation = await _locationService.getCurrentLocation();
     activeRouteStreamSub = _streamUsersRoute(null).listen((route) async {
       if (route == null) {
-        emit(const StepsOverviewState.failed(
-          failure: StepsOverviewFailure.noRouteFound(),
-        ));
+        return;
+      } else if (route.completed) {
+        emit(const StepsOverviewState.completed());
       } else {
-        emit(StepsOverviewState.loaded(
-          route: route,
-          initialUserLocation: userLocation,
-        ));
+        if (state is! StepsOverviewLoaded) {
+          final userLocation = await _locationService.getCurrentLocation();
+          emit(StepsOverviewState.loaded(
+            route: route,
+            initialUserLocation: userLocation,
+          ));
+        } else {
+          emit(loadedState.copyWith(
+            route: route,
+          ));
+        }
       }
     });
   }

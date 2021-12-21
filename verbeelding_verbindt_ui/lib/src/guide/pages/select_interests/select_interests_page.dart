@@ -9,7 +9,6 @@ class SelectInterestsPage extends StatelessWidget {
   const SelectInterestsPage({Key? key}) : super(key: key);
 
   static const String name = 'select_interests';
-  static const String path = '/guide/select-interests';
 
   static void go(BuildContext context) => context.goNamed(name);
 

@@ -10,21 +10,18 @@ class CompletedPage extends StatelessWidget {
   const CompletedPage({Key? key}) : super(key: key);
 
   static const String name = 'route_guide_completed';
-  static const String path = '/guide/completed';
 
   static void go(BuildContext context) => context.goNamed(name);
 
-  BlocProvider<StepsOverviewCubit> _blocProvider(
+  BlocProvider<GuideCompletedCubit> _blocProvider(
     WidgetBuilder builder,
   ) {
     return BlocProvider(
       create: (_) {
-        return StepsOverviewCubit(
+        return GuideCompletedCubit(
           deleteRouteUseCase: GetIt.instance(),
           getUsersRouteUseCase: GetIt.instance(),
-          completeRouteStopUseCase: GetIt.instance(),
-          locationService: GetIt.instance(),
-        )..loadRoute();
+        )..init();
       },
       child: Builder(builder: builder),
     );
@@ -35,36 +32,29 @@ class CompletedPage extends StatelessWidget {
     BuildContext context,
   ) {
     return _blocProvider((context) {
-      final cubit = context.read<StepsOverviewCubit>();
       return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          leading: IconButton(
-            icon: const Icon(Icons.close),
-            onPressed: () async {
-              final result = await showConfirmDialog(
-                context,
-                content: context.l10n.pageCompletedPopConfirmMessage,
-              );
-              if (result) {
-                await cubit.delete();
-              }
-            },
-          ),
+          leading: const _CloseButton(),
         ),
-        body: _buildBody(context),
+        body: const _Body(),
       );
     });
   }
+}
 
-  Widget _buildBody(
+class _Body extends StatelessWidget {
+  const _Body({Key? key}) : super(key: key);
+
+  @override
+  Widget build(
     BuildContext context,
   ) {
     return Column(
       children: <Widget>[
-        const CompletedPageHeader(),
+        const _Header(),
         Expanded(
           child: Markdown(
             data: context.l10n.pageCompletedText,
@@ -72,6 +62,81 @@ class CompletedPage extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _Header extends StatelessWidget {
+  const _Header({Key? key}) : super(key: key);
+
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
+    return AspectRatio(
+      aspectRatio: 1.75,
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: Asset.introHeader.toImage(
+              fit: BoxFit.cover,
+            ),
+          ),
+          Positioned(
+            bottom: 16,
+            left: 16,
+            child: DefaultTextStyle(
+              style: context.textTheme.headline6!.copyWith(
+                color: Colors.white,
+                fontWeight: VVFontWeight.bold,
+              ),
+              child: Text(
+                context.l10n.pageCompletedTitle,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _CloseButton extends StatelessWidget {
+  const _CloseButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
+    return BlocBuilder<GuideCompletedCubit, GuideCompletedState>(
+      builder: (context, state) {
+        return AnimatedSwitcher(
+          duration: const Duration(milliseconds: 100),
+          transitionBuilder: (child, animation) => ScaleTransition(
+            scale: animation,
+            child: child,
+          ),
+          child: state.map(
+            initializing: (_) => const SizedBox.shrink(),
+            loaded: (_) => IconButton(
+              icon: const Icon(Icons.close),
+              onPressed: () async {
+                final result = await showConfirmDialog(
+                  context,
+                  content: context.l10n.pageCompletedPopConfirmMessage,
+                );
+                if (result) {
+                  await context.read<GuideCompletedCubit>().delete();
+                  SelectInterestsPage.go(context);
+                }
+              },
+            ),
+            failed: (_) => const FailureStateDisplay(),
+          ),
+        );
+      },
     );
   }
 }

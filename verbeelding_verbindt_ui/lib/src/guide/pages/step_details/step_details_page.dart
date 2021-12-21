@@ -32,7 +32,6 @@ class StepDetailsPage extends StatelessWidget {
   final StepDetailsParams params;
 
   static const String name = 'step_details';
-  static const String path = ':${StepDetailsParams.indexKey}';
 
   static void go(
     BuildContext context, {
@@ -60,7 +59,10 @@ class StepDetailsPage extends StatelessWidget {
     StepDetailsState state,
   ) {
     state.mapOrNull(
-      invalidParams: (_) => context.pop(),
+      invalidParams: (_) {
+        debugPrint('### StepDetailsPage.invalidParams: pop()');
+        context.pop();
+      },
     );
   }
 

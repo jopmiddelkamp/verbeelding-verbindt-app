@@ -9,13 +9,7 @@ import '../../../../../../verbeelding_verbindt_ui.dart';
 
 abstract class ScanQrCodeCubit extends CubitBase<ScanQrCodeState>
     with ReadyMixin {
-  ScanQrCodeCubit() : super(const ScanQrCodeState.initializing()) {
-    _streamSub = stream.listen((state) {
-      if (state is ScanQrCodeValidScan) {
-        process(state);
-      }
-    });
-  }
+  ScanQrCodeCubit() : super(const ScanQrCodeState.initializing());
 
   late StreamSubscription _streamSub;
 
@@ -28,9 +22,7 @@ abstract class ScanQrCodeCubit extends CubitBase<ScanQrCodeState>
     String value,
   );
 
-  Future<void> process(
-    ScanQrCodeValidScan state,
-  );
+  Future<void> process();
 
   Future<void> setQrController(
     QRViewController qrController,
@@ -42,9 +34,8 @@ abstract class ScanQrCodeCubit extends CubitBase<ScanQrCodeState>
     emit(ScanQrCodeState.loaded(
       qrController: qrController,
     ));
-    qrController.scannedDataStream
+    _streamSub = qrController.scannedDataStream
         .throttleTime(const Duration(milliseconds: 250))
-        .takeUntil(close$)
         .listen((barcode) async {
       final value = barcode.code;
       if (value == null) {
@@ -58,10 +49,12 @@ abstract class ScanQrCodeCubit extends CubitBase<ScanQrCodeState>
         ));
         return;
       }
-      emit(ScanQrCodeState.validScan(
+      await process();
+      emit(ScanQrCodeState.processed(
         barcode: value,
         qrController: qrController,
       ));
+      _streamSub.cancel();
     });
   }
 

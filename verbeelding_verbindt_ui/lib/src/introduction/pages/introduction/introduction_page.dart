@@ -10,7 +10,6 @@ class IntroductionPage extends StatelessWidget {
   const IntroductionPage({Key? key}) : super(key: key);
 
   static const String name = 'intro';
-  static const String path = '/intro';
 
   static void go(BuildContext context) => context.goNamed(name);
 

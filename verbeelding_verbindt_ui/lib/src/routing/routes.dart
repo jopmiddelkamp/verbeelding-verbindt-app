@@ -5,29 +5,29 @@ import '../../verbeelding_verbindt_ui.dart';
 final kRoutes = [
   GoRoute(
     name: IntroductionPage.name,
-    path: IntroductionPage.path,
+    path: '/',
     builder: (_, __) => const IntroductionPage(),
   ),
   GoRoute(
     name: SelectInterestsPage.name,
-    path: SelectInterestsPage.path,
+    path: '/guide/select-interests',
     builder: (_, __) => const SelectInterestsPage(),
   ),
   GoRoute(
     name: StepsOverviewPage.name,
-    path: StepsOverviewPage.path,
+    path: '/guide/stops',
     builder: (_, __) => const StepsOverviewPage(),
     routes: [
       GoRoute(
         name: StepDetailsPage.name,
-        path: StepDetailsPage.path,
+        path: ':${StepDetailsParams.indexKey}',
         builder: (_, state) => StepDetailsPage(
           StepDetailsParams.fromParams(state.params),
         ),
       ),
       GoRoute(
         name: StepScanQrCodePage.name,
-        path: StepScanQrCodePage.path,
+        path: ':${StepScanQrCodeParams.stepIndexKey}/scan',
         builder: (_, state) => StepScanQrCodePage(
           StepScanQrCodeParams.fromParams(state.params),
         ),
@@ -36,7 +36,7 @@ final kRoutes = [
   ),
   GoRoute(
     name: CompletedPage.name,
-    path: CompletedPage.path,
+    path: '/guide/completed',
     builder: (_, __) => const CompletedPage(),
   ),
 ];
