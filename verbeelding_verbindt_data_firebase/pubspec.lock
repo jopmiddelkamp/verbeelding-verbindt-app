@@ -665,6 +665,13 @@ packages:
       relative: true
     source: path
     version: "0.0.0"
+  verbeelding_verbindt_data:
+    dependency: "direct main"
+    description:
+      path: "../verbeelding_verbindt_data"
+      relative: true
+    source: path
+    version: "0.0.0"
   vm_service:
     dependency: transitive
     description:
@@ -701,5 +708,5 @@ packages:
     source: hosted
     version: "3.1.0"
 sdks:
-  dart: ">=2.14.0 <3.0.0"
+  dart: ">=2.15.0 <3.0.0"
   flutter: ">=1.12.13+hotfix.5"

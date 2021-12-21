@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
+import 'package:verbeelding_verbindt_data/verbeelding_verbindt_data.dart';
 
 import '../../../verbeelding_verbindt_data_firebase.dart';
 

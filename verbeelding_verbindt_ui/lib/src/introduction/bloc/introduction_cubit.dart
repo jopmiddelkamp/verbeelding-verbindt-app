@@ -6,22 +6,22 @@ class IntroductionCubit extends CubitBase<IntroductionState> {
   IntroductionCubit({
     required GetIsIntroAcceptedUseCase getIsIntroAcceptedUseCase,
     required AcceptIntroUseCase acceptIntroUseCase,
-  })  : _getIsIntroAcceptedUseCase = getIsIntroAcceptedUseCase,
-        _acceptIntroUseCase = acceptIntroUseCase,
+  })  : _getIsIntroAccepted = getIsIntroAcceptedUseCase,
+        _acceptIntro = acceptIntroUseCase,
         super(const IntroductionState.initializing());
 
-  final GetIsIntroAcceptedUseCase _getIsIntroAcceptedUseCase;
-  final AcceptIntroUseCase _acceptIntroUseCase;
+  final GetIsIntroAcceptedUseCase _getIsIntroAccepted;
+  final AcceptIntroUseCase _acceptIntro;
 
   Future<void> init() async {
     emit(IntroductionState.loaded(
-      accepted: await _getIsIntroAcceptedUseCase(null),
+      accepted: await _getIsIntroAccepted(null),
     ));
   }
 
   Future<void> accept() async {
     emit(IntroductionState.loaded(
-      accepted: await _acceptIntroUseCase(null),
+      accepted: await _acceptIntro(null),
     ));
   }
 }

@@ -2,7 +2,7 @@ name: verbeelding_verbindt_data_shared_preferences
 publish_to: none
 
 environment:
-  sdk: ">=2.14.0-0 <3.0.0"
+  sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -14,6 +14,8 @@ dependencies:
   rx_shared_preferences: ^2.3.0
   verbeelding_verbindt_core:
     path: ../verbeelding_verbindt_core
+  verbeelding_verbindt_data:
+    path: ../verbeelding_verbindt_data
 
 dev_dependencies:
   flutter_test:

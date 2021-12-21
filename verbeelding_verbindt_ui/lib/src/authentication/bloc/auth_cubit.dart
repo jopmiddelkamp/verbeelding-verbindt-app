@@ -6,13 +6,13 @@ import '../../../../verbeelding_verbindt_ui.dart';
 class AuthCubit extends CubitBase<AuthState> {
   AuthCubit({
     required StreamAuthenticatedUserUseCase streamAuthenticatedUserUseCase,
-  })  : _streamAuthenticatedUserUseCase = streamAuthenticatedUserUseCase,
+  })  : _streamAuthenticatedUser = streamAuthenticatedUserUseCase,
         super(const AuthState.initializing());
 
-  final StreamAuthenticatedUserUseCase _streamAuthenticatedUserUseCase;
+  final StreamAuthenticatedUserUseCase _streamAuthenticatedUser;
 
   Future<void> init() async {
-    final authenticatedUserStream = await _streamAuthenticatedUserUseCase(null);
+    final authenticatedUserStream = _streamAuthenticatedUser(null);
     authenticatedUserStream.takeUntil(close$).listen((user) async {
       emit(AuthState.loaded(
         authenticatedUser: user,
