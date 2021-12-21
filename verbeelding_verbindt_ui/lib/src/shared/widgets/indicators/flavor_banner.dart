@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
-import '../../../../verbeelding_verbindt_ui.dart';
-
 class FlavorBanner extends StatelessWidget {
-  final Widget child;
-  final GlobalKey<NavigatorState> navigatorKey;
-
   const FlavorBanner({
     required this.child,
-    required this.navigatorKey,
+    required this.environmentVariables,
     Key? key,
   }) : super(key: key);
+
+  final Widget child;
+  final EnvironmentVariables environmentVariables;
+
+  Environment get environment => environmentVariables.environment;
 
   @override
   Widget build(
     BuildContext context,
   ) {
-    final envVars = GetIt.instance<EnvironmentVariables>();
-    if (envVars.environment.isProduction) {
+    if (environment.isProduction) {
       return child;
     }
     return Stack(
@@ -27,7 +25,7 @@ class FlavorBanner extends StatelessWidget {
         child,
         _buildBanner(
           context,
-          env: envVars.environment,
+          env: environment,
         ),
       ],
     );
@@ -52,11 +50,6 @@ class FlavorBanner extends StatelessWidget {
           ),
         ),
       ),
-      onLongPress: () {
-        if (navigatorKey.currentContext != null) {
-          showDeviceInfoDialog(navigatorKey.currentContext!);
-        }
-      },
     );
   }
 

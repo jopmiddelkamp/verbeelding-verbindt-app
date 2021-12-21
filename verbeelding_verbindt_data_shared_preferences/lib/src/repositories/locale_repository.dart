@@ -1,25 +1,36 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
-class LocaleRepositoryImpl extends LocaleRepository {
+class LocaleRepositoryImpl extends RepositoryBase implements LocaleRepository {
   LocaleRepositoryImpl({
-    required SharedPreferences sharedPreferences,
+    required RxSharedPreferences sharedPreferences,
   }) : _prefs = sharedPreferences;
 
   static const activeLocaleKey = 'activeLocale';
 
-  final SharedPreferences _prefs;
+  final RxSharedPreferences _prefs;
 
   @override
-  Future<IsoLanguageGeoLocation?> getActiveIsoLanguage() async {
-    final isoLanguageCode = _prefs.getString(
+  Stream<IsoLanguage?> streamActiveIsoLanguage() {
+    return _prefs
+        .getStringStream(activeLocaleKey)
+        .asyncMap(_mapActiveIsoLanguage);
+  }
+
+  @override
+  Future<IsoLanguage?> getActiveIsoLanguage() async {
+    final isoLanguageCode = await _prefs.getString(
       activeLocaleKey,
     );
+    return await _mapActiveIsoLanguage(isoLanguageCode);
+  }
+
+  Future<IsoLanguage?> _mapActiveIsoLanguage(isoLanguageCode) async {
     if (isoLanguageCode == null) {
       return null;
     }
     try {
-      return IsoLanguageGeoLocation.fromIsoLanguageCode(isoLanguageCode);
+      return IsoLanguage.fromIsoLanguageCode(isoLanguageCode);
     } on Exception {
       await _prefs.remove(
         activeLocaleKey,
@@ -30,8 +41,12 @@ class LocaleRepositoryImpl extends LocaleRepository {
 
   @override
   Future<void> setActiveIsoLanguage(
-    IsoLanguageGeoLocation isoLanguage,
-  ) {
+    IsoLanguage isoLanguage,
+  ) async {
+    final current = await getActiveIsoLanguage();
+    if (isoLanguage == current) {
+      return;
+    }
     return _prefs.setString(
       activeLocaleKey,
       isoLanguage.isoLanguageCode,

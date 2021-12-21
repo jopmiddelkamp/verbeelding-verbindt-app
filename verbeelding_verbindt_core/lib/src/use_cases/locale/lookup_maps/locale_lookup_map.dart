@@ -1,11 +1,11 @@
 import '../../../../verbeelding_verbindt_core.dart';
 
-final Map<IsoLanguageGeoLocation, LocaleGeoLocation> localesLookup = {
-  const IsoLanguageGeoLocation(
+final Map<IsoLanguage, Locale> localesLookup = {
+  const IsoLanguage(
     languageCode: LanguageCode.nl,
     countryCode: CountryCode.nl,
-  ): const LocaleGeoLocation(
-    isoLanguage: IsoLanguageGeoLocation(
+  ): const Locale(
+    isoLanguage: IsoLanguage(
       languageCode: LanguageCode.nl,
       countryCode: CountryCode.nl,
     ),

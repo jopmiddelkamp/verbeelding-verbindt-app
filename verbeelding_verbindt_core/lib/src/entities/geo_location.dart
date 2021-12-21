@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-class GeoLocation extends Equatable {
-  const GeoLocation({
+class Geolocation extends Equatable {
+  const Geolocation({
     required this.longitude,
     required this.latitude,
   });

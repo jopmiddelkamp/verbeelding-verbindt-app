@@ -1,39 +1,55 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../verbeelding_verbindt_ui.dart';
 
 class App extends StatefulWidget {
-  const App._();
+  const App({
+    required this.appCubit,
+    required this.localizationCubit,
+    Key? key,
+  }) : super(key: key);
 
-  static Widget bloc({
-    required AppCubit appCubit,
-    required LocalizationCubit localizationCubit,
-  }) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider.value(value: appCubit),
-        BlocProvider.value(value: localizationCubit),
-      ],
-      child: const App._(),
-    );
-  }
+  final AppCubit appCubit;
+  final LocalizationCubit localizationCubit;
 
   @override
   State<App> createState() => _AppState();
 }
 
 class _AppState extends State<App> {
-  late GlobalKey<NavigatorState> navigatorKey;
-  late bool needNavigation;
+  late GoRouter router;
 
   @override
   void initState() {
-    navigatorKey = GlobalKey<NavigatorState>();
-    needNavigation = true;
     super.initState();
+    router = GoRouter(
+      initialLocation: StepsOverviewPage.path,
+      routes: kRoutes,
+      urlPathStrategy: UrlPathStrategy.path,
+      debugLogDiagnostics: kDebugMode,
+      redirect: (state) => topLevelGuard(widget.appCubit.state, state),
+      refreshListenable: GoRouterRefreshStream(
+        widget.appCubit.stream,
+      ),
+    );
+  }
+
+  MultiBlocProvider _blocProvider(
+    WidgetBuilder builder,
+  ) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider.value(value: widget.appCubit),
+        BlocProvider.value(value: widget.localizationCubit),
+      ],
+      child: Builder(builder: builder),
+    );
   }
 
   @override
@@ -43,92 +59,54 @@ class _AppState extends State<App> {
     final theme = CustomThemeData(
       colorScheme: kDefaultThemeColorSchemeLight,
     );
-    return BlocListener<AppCubit, AppState>(
-      listener: (context, appState) async {
-        if (appState is AppFailed) {
-          // TODO: Show correct message
-          await showErrorDialog(
-            context,
-            title: context.l10n.dialogErrorUnknownErrorTitle,
-            message: context.l10n.dialogErrorUnknownErrorMessage,
-          );
-          SystemChannels.platform.invokeMethod('SystemNavigator.pop');
-          return;
-        }
-      },
-      child: BlocBuilder<LocalizationCubit, LocalizationState>(
-        builder: (context, localizationState) {
-          return CustomTheme(
-            data: theme,
-            child: MaterialApp(
-              title: 'Verbeelding Verbindt',
-              theme: theme.materialTheme,
-              // Wrapped around home so there is a navigator present
-              home: Builder(
-                builder: (context) {
-                  // TODO: ugly work around improve by implementing Navigator 2.0
-                  _initialNavigation(context);
-                  return const Center(
-                    child: CircularProgressIndicator(),
+    return _blocProvider((context) {
+      return BlocListener<AppCubit, AppState>(
+        listener: (context, appState) async {
+          if (appState is AppFailed) {
+            // TODO: Show correct message
+            await showErrorDialog(
+              context,
+              title: context.l10n.dialogErrorUnknownErrorTitle,
+              message: context.l10n.dialogErrorUnknownErrorMessage,
+            );
+            SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+            return;
+          }
+        },
+        child: BlocBuilder<LocalizationCubit, LocalizationState>(
+          builder: (context, localizationState) {
+            return CustomTheme(
+              data: theme,
+              child: MaterialApp.router(
+                title: 'Verbeelding Verbindt',
+
+                // theming
+                theme: theme.materialTheme,
+
+                // Routing
+                routerDelegate: router.routerDelegate,
+                routeInformationParser: router.routeInformationParser,
+
+                // Localization
+                localizationsDelegates: const [
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  AppLocalizations.delegate,
+                ],
+                supportedLocales: AppLocalizations.supportedLocales,
+                locale: _getLocale(localizationState),
+
+                // Environment identifier
+                builder: (context, child) {
+                  return FlavorBanner(
+                    child: child!,
+                    environmentVariables: GetIt.instance(),
                   );
                 },
               ),
-              builder: (context, child) {
-                return FlavorBanner(
-                  child: child!,
-                  navigatorKey: navigatorKey,
-                );
-              },
-              onGenerateRoute: onGenerateRoute,
-              navigatorKey: navigatorKey,
-              localizationsDelegates: const [
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                AppLocalizations.delegate,
-              ],
-              supportedLocales: AppLocalizations.supportedLocales,
-              locale: _getLocale(localizationState),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  // TODO: ugly work around improve by implementing Navigator 2.0
-  Future<void> _initialNavigation(
-    BuildContext context,
-  ) async {
-    if (!needNavigation) {
-      return;
-    }
-    final state = context.read<AppCubit>().state;
-    if (state is! AppLoaded) {
-      return;
-    }
-    needNavigation = false;
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      if (state.hasNotAcceptedIntro) {
-        IntroductionPage.pushReplacement(context);
-        return;
-      }
-      if (state.hasNoActiveRoute) {
-        SelectInterestsPage.pushReplacement(context);
-        return;
-      }
-      SelectInterestsPage.pushReplacement(
-        context,
-        animation: false,
-      );
-      if (state.hasCompletedRoute) {
-        CompletedPage.push(
-          context,
-          routeId: state.route!.id!,
-        );
-      }
-      GuidePage.push(
-        context,
-        arguments: const OpenRouteGuidePageArguments(),
+            );
+          },
+        ),
       );
     });
   }

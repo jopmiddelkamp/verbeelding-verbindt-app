@@ -6,8 +6,8 @@ part 'location.g.dart';
 
 // Settings a default value build.yaml didn't work - 30-04-2020
 @JsonSerializable(explicitToJson: true)
-class LocationDataModel extends Equatable {
-  const LocationDataModel({
+class GeolocationDataModel extends Equatable {
+  const GeolocationDataModel({
     required this.latitude,
     required this.longitude,
   });
@@ -15,22 +15,22 @@ class LocationDataModel extends Equatable {
   final double latitude;
   final double longitude;
 
-  factory LocationDataModel.fromGeoPoint(
+  factory GeolocationDataModel.fromGeoPoint(
     GeoPoint geoPoint,
   ) {
-    return LocationDataModel(
+    return GeolocationDataModel(
       latitude: geoPoint.latitude,
       longitude: geoPoint.longitude,
     );
   }
 
-  factory LocationDataModel.fromDynamic(
+  factory GeolocationDataModel.fromDynamic(
     dynamic object,
   ) {
     if (object is Map) {
-      return LocationDataModel.fromJson(object as Map<String, dynamic>);
+      return GeolocationDataModel.fromJson(object as Map<String, dynamic>);
     } else if (object is GeoPoint) {
-      return LocationDataModel.fromGeoPoint(object);
+      return GeolocationDataModel.fromGeoPoint(object);
     }
     throw Exception(
       'Unsupported source object type provided ${object.runtimeType}',
@@ -46,7 +46,7 @@ class LocationDataModel extends Equatable {
   @override
   List<Object?> get props => [latitude, longitude];
 
-  static LocationDataModel fromJson(Map<String, dynamic> json) =>
-      _$LocationDataModelFromJson(json);
-  Map<String, dynamic> toJson() => _$LocationDataModelToJson(this);
+  static GeolocationDataModel fromJson(Map<String, dynamic> json) =>
+      _$GeolocationDataModelFromJson(json);
+  Map<String, dynamic> toJson() => _$GeolocationDataModelToJson(this);
 }

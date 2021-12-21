@@ -53,6 +53,11 @@ List<Factory> _initializeIntroUseCases() {
         introRepository: GetIt.instance(),
       ),
     ),
+    Factory<StreamIsIntroAcceptedUseCase>(
+      () => StreamIsIntroAcceptedUseCase(
+        introRepository: GetIt.instance(),
+      ),
+    ),
     Factory<GetIsIntroAcceptedUseCase>(
       () => GetIsIntroAcceptedUseCase(
         introRepository: GetIt.instance(),
@@ -65,6 +70,11 @@ List<Factory> _initializeLocaleUseCases() {
   return [
     Factory<GetActiveLocaleUseCase>(
       () => GetActiveLocaleUseCase(
+        localeRepository: GetIt.instance(),
+      ),
+    ),
+    Factory<StreamActiveLocaleUseCase>(
+      () => StreamActiveLocaleUseCase(
         localeRepository: GetIt.instance(),
       ),
     ),
@@ -117,8 +127,8 @@ List<Factory> _initializeRouteUseCases() {
         routeRepository: GetIt.instance(),
       ),
     ),
-    Factory<NextRouteStopUseCase>(
-      () => NextRouteStopUseCase(
+    Factory<CompleteRouteStopUseCase>(
+      () => CompleteRouteStopUseCase(
         routeRepository: GetIt.instance(),
       ),
     ),

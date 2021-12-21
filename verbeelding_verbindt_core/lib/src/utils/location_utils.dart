@@ -1,13 +1,11 @@
 import 'dart:math' show cos, sqrt, asin;
 
-import '../../verbeelding_verbindt_core.dart';
-
 class LocationUtils {
   // TODO: replace by the Latlng package as soon as it has up to date
   // dependencies
   static double distance(
-    GeoLocation locationA,
-    GeoLocation locationB,
+    locationA,
+    locationB,
   ) {
     var p = 0.017453292519943295;
     var c = cos;

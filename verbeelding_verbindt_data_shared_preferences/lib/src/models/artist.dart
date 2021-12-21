@@ -21,7 +21,7 @@ class ArtistDataModel extends Equatable {
   final String? id;
   final ProfileDataModel profile;
   final Map<String, SpecialityDataModel> specialities;
-  final LocationDataModel location;
+  final GeolocationDataModel location;
   final ArtistRoutePreviewDataModel previewContent;
   final ArtistRouteDetailsDataModel detailsContent;
   final String website;
@@ -67,7 +67,7 @@ class ArtistDataModel extends Equatable {
         map['profile'],
       ),
       specialities: specialities,
-      location: LocationDataModel.fromDynamic(
+      location: GeolocationDataModel.fromDynamic(
         map['location'],
       ),
       previewContent: ArtistRoutePreviewDataModel.fromJson(
@@ -83,7 +83,7 @@ class ArtistDataModel extends Equatable {
   ArtistDataModel copyWith({
     ProfileDataModel? profile,
     List<String>? specialities,
-    LocationDataModel? location,
+    GeolocationDataModel? location,
     ArtistRoutePreviewDataModel? previewContent,
     ArtistRouteDetailsDataModel? detailsContent,
     String? website,

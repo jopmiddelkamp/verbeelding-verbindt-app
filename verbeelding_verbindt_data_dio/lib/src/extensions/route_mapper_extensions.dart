@@ -2,26 +2,26 @@ import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../verbeelding_verbindt_data_dio.dart';
 
-extension RouteModelExtensions on RouteDataModel {
-  RouteGeoLocation toGeoLocation() {
-    return RouteGeoLocation(
+extension RouteModelX on RouteDataModel {
+  Route toEntity() {
+    return Route(
       id: id,
-      stops: stops.map((e) => e.toGeoLocation()).toList(),
+      stops: stops.map((e) => e.toEntity()).toList(),
     );
   }
 }
 
-extension RouteModelListExtensions on Iterable<RouteDataModel> {
-  List<RouteGeoLocation> toGeoLocationList() {
-    return map((e) => e.toGeoLocation()).toList();
+extension RouteModelListX on Iterable<RouteDataModel> {
+  List<Route> toEntityList() {
+    return map((e) => e.toEntity()).toList();
   }
 
-  Set<RouteGeoLocation> toGeoLocationSet() {
-    return map((e) => e.toGeoLocation()).toSet();
+  Set<Route> toSet() {
+    return map((e) => e.toEntity()).toSet();
   }
 }
 
-extension RouteGeoLocationExtensions on RouteGeoLocation {
+extension RouteX on Route {
   RouteDataModel toDataModel() {
     return RouteDataModel(
       id: id,
@@ -30,7 +30,7 @@ extension RouteGeoLocationExtensions on RouteGeoLocation {
   }
 }
 
-extension RouteGeoLocationListExtensions on Iterable<RouteGeoLocation> {
+extension RouteListX on Iterable<Route> {
   List<RouteDataModel> toDataModelList() {
     return map((e) => e.toDataModel()).toList();
   }

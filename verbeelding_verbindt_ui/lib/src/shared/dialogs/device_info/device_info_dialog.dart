@@ -22,7 +22,7 @@ class _DeviceInfoDialog extends StatelessWidget {
   Widget _getContent(
     BuildContext context,
   ) {
-    final diagnostics = GetIt.instance<DeviceInfoGeoLocation>();
+    final diagnostics = GetIt.instance<DeviceInfo>();
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

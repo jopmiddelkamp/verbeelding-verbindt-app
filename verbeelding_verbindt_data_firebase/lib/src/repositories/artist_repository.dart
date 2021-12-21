@@ -3,7 +3,7 @@ import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../../verbeelding_verbindt_data_firebase.dart';
 
-class ArtistRepositoryImpl extends ArtistRepository {
+class ArtistRepositoryImpl extends RepositoryBase implements ArtistRepository {
   ArtistRepositoryImpl({
     required FirebaseFirestore firestore,
   }) : _artistCollection =
@@ -22,29 +22,29 @@ class ArtistRepositoryImpl extends ArtistRepository {
   final CollectionReference<ArtistDataModel> _artistCollection;
 
   @override
-  Stream<List<ArtistGeoLocation>> streamArtistsBySpeciality(
+  Stream<List<Artist>> streamArtistsBySpeciality(
     Iterable<String> specialityIds,
   ) async* {
     final query = _filterArtistsBySpeciality(specialityIds);
 
-    yield* query.snapshots().map<List<ArtistGeoLocation>>((snapshot) {
-      final artists = snapshot.docs.map<ArtistGeoLocation>((doc) {
-        return doc.data().toGeoLocation();
+    yield* query.snapshots().map<List<Artist>>((snapshot) {
+      final artists = snapshot.docs.map<Artist>((doc) {
+        return doc.data().toEntity();
       }).toList(growable: false);
       return artists;
     });
   }
 
   @override
-  Future<List<ArtistGeoLocation>> getArtistsBySpeciality(
+  Future<List<Artist>> getArtistsBySpeciality(
     Iterable<String> specialityIds,
   ) async {
     final query = _filterArtistsBySpeciality(specialityIds);
 
     final result = await query.get();
 
-    return result.docs.map<ArtistGeoLocation>((doc) {
-      return doc.data().toGeoLocation();
+    return result.docs.map<Artist>((doc) {
+      return doc.data().toEntity();
     }).toList(growable: false);
   }
 
@@ -60,5 +60,18 @@ class ArtistRepositoryImpl extends ArtistRepository {
       );
     }
     return query;
+  }
+
+  @override
+  Future<Artist?> getArtist(String id) async {
+    final snapshot = await _artistCollection.doc(id).get();
+    return snapshot.data()?.toEntity();
+  }
+
+  @override
+  Stream<Artist?> streamArtist(String id) {
+    return _artistCollection.doc(id).snapshots().map((snapshot) {
+      return snapshot.data()?.toEntity();
+    });
   }
 }

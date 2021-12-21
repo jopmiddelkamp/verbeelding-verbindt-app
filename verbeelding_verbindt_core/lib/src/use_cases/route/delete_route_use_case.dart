@@ -1,6 +1,6 @@
 import '../../../verbeelding_verbindt_core.dart';
 
-class DeleteRouteUseCase extends UseCase<void, String> {
+class DeleteRouteUseCase extends UseCase<Future<void>, String> {
   DeleteRouteUseCase({
     required RouteRepository routeRepository,
   }) : _routeRepository = routeRepository;
@@ -9,10 +9,10 @@ class DeleteRouteUseCase extends UseCase<void, String> {
 
   @override
   Future<void> call(
-    String argument,
+    String params,
   ) async {
     await _routeRepository.delete(
-      argument,
+      params,
     );
   }
 }

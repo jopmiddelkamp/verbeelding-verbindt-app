@@ -2,29 +2,28 @@ import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../verbeelding_verbindt_data_firebase.dart';
 
-extension ArtistRouteDetailsModelExtensions on ArtistRouteDetailsDataModel {
-  ArtistRouteDetailsGeoLocation toGeoLocation() {
-    return ArtistRouteDetailsGeoLocation(
-      video: video.toGeoLocation(),
-      text: text.toGeoLocation(),
-      images: images.map((e) => e.toGeoLocation()).toList(),
+extension ArtistRouteDetailsModelX on ArtistRouteDetailsDataModel {
+  ArtistRouteDetails toEntity() {
+    return ArtistRouteDetails(
+      video: video.toEntity(),
+      text: text.toEntity(),
+      images: images.map((e) => e.toEntity()).toList(),
     );
   }
 }
 
 extension ArtistRouteDetailsModelListExtensions
     on Iterable<ArtistRouteDetailsDataModel> {
-  List<ArtistRouteDetailsGeoLocation> toGeoLocationlist() {
-    return map((e) => e.toGeoLocation()).toList();
+  List<ArtistRouteDetails> tolist() {
+    return map((e) => e.toEntity()).toList();
   }
 
-  Set<ArtistRouteDetailsGeoLocation> toGeoLocationSet() {
-    return map((e) => e.toGeoLocation()).toSet();
+  Set<ArtistRouteDetails> toSet() {
+    return map((e) => e.toEntity()).toSet();
   }
 }
 
-extension ArtistRouteDetailsGeoLocationExtensions
-    on ArtistRouteDetailsGeoLocation {
+extension ArtistRouteDetailsX on ArtistRouteDetails {
   ArtistRouteDetailsDataModel toDataModel() {
     return ArtistRouteDetailsDataModel(
       video: video.toDataModel(),
@@ -34,8 +33,7 @@ extension ArtistRouteDetailsGeoLocationExtensions
   }
 }
 
-extension ArtistRouteDetailsGeoLocationListExtensions
-    on Iterable<ArtistRouteDetailsGeoLocation> {
+extension ArtistRouteDetailsListX on Iterable<ArtistRouteDetails> {
   List<ArtistRouteDetailsDataModel> toDataModelList() {
     return map((e) => e.toDataModel()).toList();
   }

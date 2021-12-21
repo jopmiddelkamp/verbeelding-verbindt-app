@@ -2,40 +2,40 @@ import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../verbeelding_verbindt_data_shared_preferences.dart';
 
-extension LocationModelExtensions on LocationDataModel {
-  GeoLocation toGeoLocation() {
-    return GeoLocation(
+extension LocationModelX on GeolocationDataModel {
+  Geolocation toEntity() {
+    return Geolocation(
       latitude: latitude,
       longitude: longitude,
     );
   }
 }
 
-extension LocationModelListExtensions on Iterable<LocationDataModel> {
-  List<GeoLocation> toGeoLocationList() {
-    return map((e) => e.toGeoLocation()).toList();
+extension GeolocationDataModelLisX on Iterable<GeolocationDataModel> {
+  List<Geolocation> toEntityList() {
+    return map((e) => e.toEntity()).toList();
   }
 
-  Set<GeoLocation> toGeoLocationSet() {
-    return map((e) => e.toGeoLocation()).toSet();
+  Set<Geolocation> toSet() {
+    return map((e) => e.toEntity()).toSet();
   }
 }
 
-extension GeoLocationExtensions on GeoLocation {
-  LocationDataModel toDataModel() {
-    return LocationDataModel(
+extension GeolocationX on Geolocation {
+  GeolocationDataModel toDataModel() {
+    return GeolocationDataModel(
       latitude: latitude,
       longitude: longitude,
     );
   }
 }
 
-extension GeoLocationListExtensions on Iterable<GeoLocation> {
-  List<LocationDataModel> toDataModelList() {
+extension GeolocationListX on Iterable<Geolocation> {
+  List<GeolocationDataModel> toDataModelList() {
     return map((e) => e.toDataModel()).toList();
   }
 
-  Set<LocationDataModel> toDataModelSet() {
+  Set<GeolocationDataModel> toDataModelSet() {
     return map((e) => e.toDataModel()).toSet();
   }
 }

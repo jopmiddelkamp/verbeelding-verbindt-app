@@ -3,7 +3,7 @@ import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../verbeelding_verbindt_data_firebase.dart';
 
-class RouteRepositoryImpl extends RouteRepository {
+class RouteRepositoryImpl extends RepositoryBase implements RouteRepository {
   RouteRepositoryImpl({
     required FirebaseFirestore firestore,
   }) : _routeCollection =
@@ -23,26 +23,26 @@ class RouteRepositoryImpl extends RouteRepository {
 
   @override
   Future<void> createRoute(
-    RouteGeoLocation data,
+    Route data,
   ) async {
     await _routeCollection.doc(data.id).set(data.toDataModel());
   }
 
   @override
-  Stream<RouteGeoLocation?> getRouteStream(
+  Stream<Route?> getRouteStream(
     String id,
   ) async* {
     yield* _routeCollection.doc(id).snapshots().map((snapshot) {
-      return snapshot.data()?.toGeoLocation();
+      return snapshot.data()?.toEntity();
     });
   }
 
   @override
-  Future<RouteGeoLocation?> getRoute(
+  Future<Route?> getRoute(
     String id,
   ) async {
     final docSnap = await _routeCollection.doc(id).get();
-    return docSnap.data()?.toGeoLocation();
+    return docSnap.data()?.toEntity();
   }
 
   @override

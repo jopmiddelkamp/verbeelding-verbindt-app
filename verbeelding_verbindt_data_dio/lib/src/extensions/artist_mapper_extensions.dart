@@ -2,31 +2,31 @@ import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../verbeelding_verbindt_data_dio.dart';
 
-extension ArtistDataModelExtensions on ArtistDataModel {
-  ArtistGeoLocation toGeoLocation() {
-    return ArtistGeoLocation(
+extension ArtistDataModelX on ArtistDataModel {
+  Artist toEntity() {
+    return Artist(
       id: id,
-      profile: profile.toGeoLocation(),
-      specialities: specialities.map((k, v) => MapEntry(k, v.toGeoLocation())),
-      location: location.toGeoLocation(),
-      previewContent: previewContent.toGeoLocation(),
-      detailsContent: detailsContent.toGeoLocation(),
+      profile: profile.toEntity(),
+      specialities: specialities.map((k, v) => MapEntry(k, v.toEntity())),
+      location: location.toEntity(),
+      previewContent: previewContent.toEntity(),
+      detailsContent: detailsContent.toEntity(),
       website: website,
     );
   }
 }
 
-extension ArtistDataModelListExtensions on Iterable<ArtistDataModel> {
-  List<ArtistGeoLocation> toGeoLocationList() {
-    return map((e) => e.toGeoLocation()).toList();
+extension ArtistDataModelListX on Iterable<ArtistDataModel> {
+  List<Artist> toEntityList() {
+    return map((e) => e.toEntity()).toList();
   }
 
-  Set<ArtistGeoLocation> toGeoLocationSet() {
-    return map((e) => e.toGeoLocation()).toSet();
+  Set<Artist> toSet() {
+    return map((e) => e.toEntity()).toSet();
   }
 }
 
-extension ArtistGeoLocationExtensions on ArtistGeoLocation {
+extension ArtistX on Artist {
   ArtistDataModel toDataModel() {
     return ArtistDataModel(
       id: id,
@@ -40,7 +40,7 @@ extension ArtistGeoLocationExtensions on ArtistGeoLocation {
   }
 }
 
-extension ArtistGeoLocationListExtensions on Iterable<ArtistGeoLocation> {
+extension ArtistListX on Iterable<Artist> {
   List<ArtistDataModel> toDataModelList() {
     return map((e) => e.toDataModel()).toList();
   }

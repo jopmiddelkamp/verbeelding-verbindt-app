@@ -21,7 +21,7 @@ Future<DataDependencies> getDependencies(
         username: environmentVariables.routeXl.username,
         password: environmentVariables.routeXl.password,
       ),
-      dispose: (param) => param.dispose(),
+      dispose: (param) => (param as RouteXlRouteGeneratorRepository).dispose(),
     ),
   );
 }

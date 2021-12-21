@@ -1,4 +1,5 @@
 export 'bloc/bloc.dart';
+export 'combine_latest_tuple/combine_latest_tuple.dart';
 export 'dialogs/dialogs.dart';
 export 'extensions/extensions.dart';
 export 'failures/failures.dart';

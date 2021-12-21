@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Image;
 import 'package:photo_view/photo_view.dart';
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
@@ -13,7 +13,7 @@ class _ImageDialog extends StatelessWidget {
   }) : super(key: key);
 
   final ImageProvider imageProvider;
-  final SizeGeoLocation imageSize;
+  final Size imageSize;
 
   @override
   Widget build(
@@ -66,7 +66,7 @@ class _ImageDialog extends StatelessWidget {
 
 void showImageDialog(
   BuildContext context, {
-  required ImageGeoLocation image,
+  required Image image,
 }) {
   showDialog(
     context: context,

@@ -2,7 +2,7 @@ import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../../verbeelding_verbindt_data_dio.dart';
 
-extension RxTourResponseExtensions on RxTourResponseModel {
+extension RxTourResponseX on RxTourResponseModel {
   List<RouteStopDataModel> toRouteStopModels({
     required final Set<ArtistDataModel> artistsToVisit,
   }) {

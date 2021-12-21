@@ -2,26 +2,26 @@ import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../verbeelding_verbindt_data_dio.dart';
 
-extension YoutubeVideoDataModelExtensions on YoutubeVideoDataModel {
-  YoutubeVideoGeoLocation toGeoLocation() {
-    return YoutubeVideoGeoLocation(
+extension YoutubeVideoDataModelX on YoutubeVideoDataModel {
+  YoutubeVideo toEntity() {
+    return YoutubeVideo(
       aspectRatio: aspectRatio,
       videoId: videoId,
     );
   }
 }
 
-extension VideoModelListExtensions on Iterable<YoutubeVideoDataModel> {
-  List<YoutubeVideoGeoLocation> toGeoLocationlist() {
-    return map((e) => e.toGeoLocation()).toList();
+extension VideoModelListX on Iterable<YoutubeVideoDataModel> {
+  List<YoutubeVideo> tolist() {
+    return map((e) => e.toEntity()).toList();
   }
 
-  Set<YoutubeVideoGeoLocation> toGeoLocationSet() {
-    return map((e) => e.toGeoLocation()).toSet();
+  Set<YoutubeVideo> toSet() {
+    return map((e) => e.toEntity()).toSet();
   }
 }
 
-extension YoutubeVideoGeoLocationExtensions on YoutubeVideoGeoLocation {
+extension YoutubeVideoX on YoutubeVideo {
   YoutubeVideoDataModel toDataModel() {
     return YoutubeVideoDataModel(
       aspectRatio: aspectRatio,
@@ -30,8 +30,7 @@ extension YoutubeVideoGeoLocationExtensions on YoutubeVideoGeoLocation {
   }
 }
 
-extension YoutubeVideoGeoLocationListExtensions
-    on Iterable<YoutubeVideoGeoLocation> {
+extension YoutubeVideoListX on Iterable<YoutubeVideo> {
   List<YoutubeVideoDataModel> toDataModelList() {
     return map((e) => e.toDataModel()).toList();
   }

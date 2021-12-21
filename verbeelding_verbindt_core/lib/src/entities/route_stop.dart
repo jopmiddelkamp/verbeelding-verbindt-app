@@ -2,22 +2,22 @@ import 'package:equatable/equatable.dart';
 
 import '../../verbeelding_verbindt_core.dart';
 
-class RouteStopGeoLocation extends Equatable {
-  const RouteStopGeoLocation({
+class RouteStop extends Equatable {
+  const RouteStop({
     required this.artist,
     this.completed = false,
   });
 
-  final ArtistGeoLocation artist;
+  final Artist artist;
   final bool completed;
 
   bool get notCompleted => !completed;
 
-  RouteStopGeoLocation copyWith({
-    ArtistGeoLocation? artist,
+  RouteStop copyWith({
+    Artist? artist,
     bool? completed,
   }) {
-    return RouteStopGeoLocation(
+    return RouteStop(
       artist: artist ?? this.artist,
       completed: completed ?? this.completed,
     );

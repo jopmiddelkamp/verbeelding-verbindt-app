@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-class TranslatableStringGeoLocation extends Equatable {
-  const TranslatableStringGeoLocation(
+class TranslatableString extends Equatable {
+  const TranslatableString(
     this.data,
   );
 

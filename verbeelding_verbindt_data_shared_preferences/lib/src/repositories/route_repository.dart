@@ -1,66 +1,56 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../../verbeelding_verbindt_data_shared_preferences.dart';
 
-class RouteRepositoryImpl implements RouteRepository {
+class RouteRepositoryImpl extends RepositoryBase implements RouteRepository {
   RouteRepositoryImpl({
-    required SharedPreferences sharedPreferences,
+    required RxSharedPreferences sharedPreferences,
   }) : _prefs = sharedPreferences;
 
-  final SharedPreferences _prefs;
-
-  final _routeStreamController =
-      StreamController<RouteGeoLocation?>.broadcast();
+  final RxSharedPreferences _prefs;
 
   String _getRouteKey(String id) => 'route_$id';
 
   @override
   Future<void> createRoute(
-    RouteGeoLocation data,
-  ) async {
-    await _prefs.setString(
-      _getRouteKey(data.id!),
-      jsonEncode(data.toDataModel().toJson()),
+    Route data,
+  ) {
+    final routeKey = _getRouteKey(data.id!);
+    final encodedData = jsonEncode(data.toDataModel().toJson());
+    return _prefs.setString(
+      routeKey,
+      encodedData,
     );
-    _routeStreamController.add(data);
   }
 
   @override
-  Stream<RouteGeoLocation?> getRouteStream(
+  Stream<Route?> getRouteStream(
     String id,
-  ) async* {
-    final stringValue = _prefs.getString(
-      _getRouteKey(id),
-    );
-    if (stringValue == null) {
-      _routeStreamController.add(null);
-      yield null;
-    } else {
-      final value =
-          RouteDataModel.fromJson(jsonDecode(stringValue)).toGeoLocation();
-      _routeStreamController.add(value);
-      yield value;
-    }
-    yield* _routeStreamController.stream;
+  ) {
+    final routeKey = _getRouteKey(id);
+    return _prefs.getStringStream(routeKey).map(_mapGetRoute);
   }
 
   @override
-  Future<RouteGeoLocation?> getRoute(
+  Future<Route?> getRoute(
     String id,
   ) async {
-    final stringValue = _prefs.getString(
-      _getRouteKey(id),
-    );
+    final routeKey = _getRouteKey(id);
+    final stringValue = await _prefs.getString(routeKey);
+    return _mapGetRoute(stringValue);
+  }
+
+  Route? _mapGetRoute(
+    String? stringValue,
+  ) {
     if (stringValue == null) {
       return null;
     }
-    final value =
-        RouteDataModel.fromJson(jsonDecode(stringValue)).toGeoLocation();
-    return value;
+    return RouteDataModel.fromJson(jsonDecode(stringValue)).toEntity();
   }
 
   @override
@@ -89,10 +79,10 @@ class RouteRepositoryImpl implements RouteRepository {
     await createRoute(updatedRoute);
   }
 
-  MapEntry<int, RouteStopGeoLocation> _completeMap({
+  MapEntry<int, RouteStop> _completeMap({
     required int indexToComplete,
     required int index,
-    required RouteStopGeoLocation routeStop,
+    required RouteStop routeStop,
   }) {
     return MapEntry(
       index,
@@ -100,11 +90,6 @@ class RouteRepositoryImpl implements RouteRepository {
         completed: index == indexToComplete ? true : routeStop.completed,
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _routeStreamController.close();
   }
 
   @override

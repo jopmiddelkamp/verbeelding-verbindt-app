@@ -3,7 +3,8 @@ import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../../verbeelding_verbindt_data_firebase.dart';
 
-class SpecialityRepositoryImpl extends SpecialityRepository {
+class SpecialityRepositoryImpl extends RepositoryBase
+    implements SpecialityRepository {
   SpecialityRepositoryImpl({
     FirebaseFirestore? firestore,
   }) : _specialityCollection = (firestore ?? FirebaseFirestore.instance)
@@ -23,12 +24,10 @@ class SpecialityRepositoryImpl extends SpecialityRepository {
   final CollectionReference<SpecialityDataModel> _specialityCollection;
 
   @override
-  Stream<List<SpecialityGeoLocation>> getSpecialities() {
-    return _specialityCollection
-        .snapshots()
-        .map<List<SpecialityGeoLocation>>((docs) {
+  Stream<List<Speciality>> getSpecialities() {
+    return _specialityCollection.snapshots().map<List<Speciality>>((docs) {
       return docs.docs
-          .map<SpecialityGeoLocation>((doc) => doc.data().toGeoLocation())
+          .map<Speciality>((doc) => doc.data().toEntity())
           .toList(growable: false);
     });
   }

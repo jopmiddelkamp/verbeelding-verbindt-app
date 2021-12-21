@@ -1,9 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 
 import '../../../verbeelding_verbindt_data_firebase.dart';
 
-class AuthRepositoryImpl extends AuthRepository {
+class AuthRepositoryImpl extends RepositoryBase implements AuthRepository {
   AuthRepositoryImpl({
     required FirebaseAuth firebaseAuth,
   }) : _firebaseAuth = firebaseAuth;
@@ -11,21 +11,21 @@ class AuthRepositoryImpl extends AuthRepository {
   final FirebaseAuth _firebaseAuth;
 
   @override
-  Future<UserGeoLocation> signInAnonymously() async {
+  Future<User> signInAnonymously() async {
     final result = await _firebaseAuth.signInAnonymously();
-    return result.user!.toGeoLocation();
+    return result.user!.toEntity();
   }
 
   @override
-  Future<UserGeoLocation?> get authenticatedUser async {
-    return _firebaseAuth.currentUser?.toGeoLocation();
+  Future<User?> get authenticatedUser async {
+    return _firebaseAuth.currentUser?.toEntity();
   }
 
   @override
-  Stream<UserGeoLocation?> get authenticatedUserStream {
+  Stream<User?> get authenticatedUserStream {
     return _firebaseAuth
         .authStateChanges()
-        .map((user) => user?.toGeoLocation())
+        .map((user) => user?.toEntity())
         .asBroadcastStream();
   }
 }

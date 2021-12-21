@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-class UserGeoLocation extends Equatable {
-  const UserGeoLocation({
+class User extends Equatable {
+  const User({
     required this.id,
     required this.isAnonymous,
   });

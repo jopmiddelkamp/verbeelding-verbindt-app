@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../verbeelding_verbindt_ui.dart';
 
-extension BuildContextExtensions on BuildContext {
+extension BuildContextX on BuildContext {
   ScaffoldState get scaffold => Scaffold.of(this);
   MediaQueryData get mediaQuery => MediaQuery.of(this);
   double get textScaleFactor => mediaQuery.textScaleFactor;
