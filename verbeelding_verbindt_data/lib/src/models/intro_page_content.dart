@@ -14,7 +14,9 @@ class IntroPageContentDataModel {
   });
 
   final ImageDataModel headerImage;
+  @TranslatableStringDataModelJsonConverter()
   final TranslatableStringDataModel title;
+  @TranslatableStringDataModelJsonConverter()
   final TranslatableStringDataModel text;
 
   @override

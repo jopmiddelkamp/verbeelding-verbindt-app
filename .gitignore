@@ -132,6 +132,7 @@ app.*.map.json
 
 *.g.dart
 *.freezed.dart
-**/generated/
+**/generated/**
+!**/generated/generated.dart
 **/res/value/google_maps.xml
 

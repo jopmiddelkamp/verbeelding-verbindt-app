@@ -9,10 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  equatable: ^2.0.0
-  firebase_core: ^1.0.0
-  firebase_crashlytics: ^2.0.0
-  get_it: ^7.0.0
+
   verbeelding_verbindt_core:
     path: verbeelding_verbindt_core
   verbeelding_verbindt_data_route_xl:
@@ -24,9 +21,15 @@ dependencies:
   verbeelding_verbindt_ui:
     path: verbeelding_verbindt_ui
 
+  equatable: ^2.0.0
+  firebase_core: ^1.0.0
+  firebase_crashlytics: ^2.0.0
+  get_it: ^7.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
   flutter_lints: ^1.0.0
 
 flutter:

@@ -1,29 +1,38 @@
-fvm flutter clean
+
+echo "Running \"flutter clean\" in verbeelding_verbindt_app..."
+flutter clean
 
 cd verbeelding_verbindt_core
-fvm flutter clean
+echo "Running \"flutter clean\" in verbeelding_verbindt_core..."
+flutter clean
 cd ..
 
 cd verbeelding_verbindt_data
-fvm flutter clean
+echo "Running \"flutter clean\" in verbeelding_verbindt_data..."
+flutter clean
 cd ..
 
 cd verbeelding_verbindt_data_http
-fvm flutter clean
+echo "Running \"flutter clean\" in verbeelding_verbindt_data_http..."
+flutter clean
 cd ..
 
 cd verbeelding_verbindt_data_route_xl
-fvm flutter clean
+echo "Running \"flutter clean\" in verbeelding_verbindt_data_route_xl..."
+flutter clean
 cd ..
 
 cd verbeelding_verbindt_data_firebase
-fvm flutter clean
+echo "Running \"flutter clean\" in verbeelding_verbindt_data_firebase..."
+flutter clean
 cd ..
 
 cd verbeelding_verbindt_data_shared_preferences
-fvm flutter clean
+echo "Running \"flutter clean\" in verbeelding_verbindt_data_shared_preferences..."
+flutter clean
 cd ..
 
 cd verbeelding_verbindt_ui
-fvm flutter clean
+echo "Running \"flutter clean\" in verbeelding_verbindt_ui..."
+flutter clean
 cd ..

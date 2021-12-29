@@ -14,6 +14,7 @@ class SpecialityDataModel extends Equatable {
   });
 
   final String? id;
+  @TranslatableStringDataModelJsonConverter()
   final TranslatableStringDataModel name;
 
   @override

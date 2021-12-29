@@ -14,6 +14,7 @@ class ArtistRouteDetailsDataModel {
   });
 
   final YoutubeVideoDataModel video;
+  @TranslatableStringDataModelJsonConverter()
   final TranslatableStringDataModel text;
   final List<ImageDataModel> images;
 

@@ -13,6 +13,7 @@ class RouteCompletedPageContentDataModel {
   });
 
   final ImageDataModel headerImage;
+  @TranslatableStringDataModelJsonConverter()
   final TranslatableStringDataModel text;
 
   @override

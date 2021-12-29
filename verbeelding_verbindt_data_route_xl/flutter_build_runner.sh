@@ -1,6 +1,8 @@
 if [ "$1" == "build" ]
 then
-  fvm flutter pub run build_runner build --delete-conflicting-outputs
+  echo "Running \"flutter pub run build_runner build\" in verbeelding_verbindt_data_route_xl..."
+  flutter pub run build_runner build --delete-conflicting-outputs
 else
-  fvm flutter pub run build_runner watch --delete-conflicting-outputs
+  echo "Running \"flutter pub run build_runner watch\" in verbeelding_verbindt_data_route_xl..."
+  flutter pub run build_runner watch --delete-conflicting-outputs
 fi

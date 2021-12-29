@@ -11,6 +11,7 @@ class ArtistRoutePreviewDataModel {
     required this.text,
   });
 
+  @TranslatableStringDataModelJsonConverter()
   final TranslatableStringDataModel text;
 
   @override

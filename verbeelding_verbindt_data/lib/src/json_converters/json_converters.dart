@@ -1,0 +1,1 @@
+export 'translatable_string_data_model_json_converter.dart';
