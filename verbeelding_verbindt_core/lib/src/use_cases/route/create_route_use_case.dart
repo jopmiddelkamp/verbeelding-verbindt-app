@@ -36,38 +36,18 @@ class CreateRouteUseCase
     final artistsList = await _artistRepository.getArtistsBySpeciality(
       params.selectedSpecialityIds,
     );
-    _sortArtitstByDistance(
-      artistsList,
-      sourceLocation: params.userLocation,
-    );
-    final artists = artistsList.toSet();
-
-    final stops = await _routeGeneratorRepository.generateRouteStops(
-      artistToStartAt: artists.first,
-      artistsToVisit: artists,
+    final artistIds = artistsList.map((artist) => artist.id!).toSet();
+    final artists = await _routeGeneratorRepository.generateRoute(
+      artistIds: artistIds,
+      userLocation: params.userLocation,
     );
     final authenticatedUser = await _authRepository.authenticatedUser;
     final data = Route(
       id: authenticatedUser!.id,
-      stops: stops,
+      stops: artists.map((artist) {
+        return RouteStop(artist: artist);
+      }).toList(),
     );
     await _routeRepository.createRoute(data);
-  }
-
-  void _sortArtitstByDistance(
-    List<Artist> artists, {
-    required sourceLocation,
-  }) {
-    artists.sort((a, b) {
-      final distanceToA = LocationUtils.distance(
-        sourceLocation,
-        a.location,
-      );
-      final distanceToB = LocationUtils.distance(
-        sourceLocation,
-        b.location,
-      );
-      return distanceToA.compareTo(distanceToB); // Sort by closest
-    });
   }
 }

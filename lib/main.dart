@@ -7,8 +7,6 @@ import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart'
     as core;
 import 'package:verbeelding_verbindt_data_firebase/verbeelding_verbindt_data_firebase.dart'
     as data_firebase;
-import 'package:verbeelding_verbindt_data_route_xl/verbeelding_verbindt_data_route_xl.dart'
-    as data_route_xl;
 import 'package:verbeelding_verbindt_data_shared_preferences/verbeelding_verbindt_data_shared_preferences.dart'
     as data_shared_preferences;
 import 'package:verbeelding_verbindt_ui/verbeelding_verbindt_ui.dart' as ui;
@@ -23,9 +21,6 @@ Future<void> main() async {
 
   await _initFirebase();
 
-  final routeXl = await data_route_xl.getDependencies(
-    environmentVariables,
-  );
   final firebase = await data_firebase.getDependencies(
     environmentVariables,
   );
@@ -33,7 +28,7 @@ Future<void> main() async {
     environmentVariables,
   );
 
-  routeXl.routeGeneratorRepository.register();
+  firebase.routeGeneratorRepository.register();
   firebase.artistRepository.register();
   firebase.authRepository.register();
   firebase.specialityRepository.register();

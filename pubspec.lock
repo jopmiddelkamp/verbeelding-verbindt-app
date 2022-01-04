@@ -176,13 +176,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
-  dio:
-    dependency: transitive
-    description:
-      name: dio
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.0.4"
   disposebag:
     dependency: transitive
     description:
@@ -665,13 +658,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.2"
-  pretty_dio_logger:
-    dependency: transitive
-    description:
-      name: pretty_dio_logger
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.0-beta-1"
   process:
     dependency: transitive
     description:
@@ -968,20 +954,6 @@ packages:
     dependency: "direct main"
     description:
       path: verbeelding_verbindt_data_firebase
-      relative: true
-    source: path
-    version: "0.0.0"
-  verbeelding_verbindt_data_http:
-    dependency: transitive
-    description:
-      path: verbeelding_verbindt_data_http
-      relative: true
-    source: path
-    version: "0.0.0"
-  verbeelding_verbindt_data_route_xl:
-    dependency: "direct main"
-    description:
-      path: verbeelding_verbindt_data_route_xl
       relative: true
     source: path
     version: "0.0.0"

@@ -49,6 +49,7 @@ class ArtistDataModel extends Equatable {
                           }''';
 
   ArtistDataModel copyWith({
+    String? id,
     ProfileDataModel? profile,
     List<String>? specialities,
     GeolocationDataModel? location,
@@ -57,7 +58,7 @@ class ArtistDataModel extends Equatable {
     String? website,
   }) {
     return ArtistDataModel(
-      id: id,
+      id: id ?? this.id,
       profile: profile ?? this.profile,
       specialities: specialities as Map<String, SpecialityDataModel>? ??
           this.specialities,

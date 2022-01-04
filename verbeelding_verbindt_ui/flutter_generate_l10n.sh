@@ -6,4 +6,4 @@ flutter gen-l10n \
     --output-localization-file app_localizations.dart \
     --output-class AppLocalizations \
     --preferred-supported-locales=nl \
-    --no-synthetic-package --verbose
+    --no-synthetic-package

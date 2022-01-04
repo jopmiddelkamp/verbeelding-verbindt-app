@@ -12,16 +12,6 @@ echo "Running \"flutter clean\" in verbeelding_verbindt_data..."
 flutter clean
 cd ..
 
-cd verbeelding_verbindt_data_http
-echo "Running \"flutter clean\" in verbeelding_verbindt_data_http..."
-flutter clean
-cd ..
-
-cd verbeelding_verbindt_data_route_xl
-echo "Running \"flutter clean\" in verbeelding_verbindt_data_route_xl..."
-flutter clean
-cd ..
-
 cd verbeelding_verbindt_data_firebase
 echo "Running \"flutter clean\" in verbeelding_verbindt_data_firebase..."
 flutter clean

@@ -7,6 +7,6 @@ cd verbeelding_verbindt_data
 ./flutter_build_runner.sh build
 cd ..
 
-cd verbeelding_verbindt_data_route_xl
+cd verbeelding_verbindt_data_firebase
 ./flutter_build_runner.sh build
 cd ..

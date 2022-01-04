@@ -11,7 +11,9 @@ class GeolocationDataModel extends Equatable {
     required this.longitude,
   });
 
+  @JsonKey(name: '_latitude')
   final double latitude;
+  @JsonKey(name: '_longitude')
   final double longitude;
 
   @override

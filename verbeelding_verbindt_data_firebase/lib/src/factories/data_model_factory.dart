@@ -43,8 +43,8 @@ class DataModelFactoryImpl implements DataModelFactory {
       ),
       specialities: specialities,
       location: GeolocationDataModel.fromJson({
-        'latitude': geoPoint.latitude,
-        'longitude': geoPoint.longitude,
+        '_latitude': geoPoint.latitude,
+        '_longitude': geoPoint.longitude,
       }),
       previewContent: ArtistRoutePreviewDataModel.fromJson(
         map['previewContent'],
