@@ -68,6 +68,7 @@ class StepsOverviewPageRouteMap extends HookWidget {
         initialMapLocation.toLatLng(),
       ),
       markers: markers,
+      mapToolbarEnabled: false,
     );
   }
 
