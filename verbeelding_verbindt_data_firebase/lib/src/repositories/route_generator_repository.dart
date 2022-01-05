@@ -4,8 +4,7 @@ import 'package:verbeelding_verbindt_data/verbeelding_verbindt_data.dart';
 
 import '../../verbeelding_verbindt_data_firebase.dart';
 
-class RouteGeneratorRepositoryImpl extends RepositoryBase
-    implements RouteGeneratorRepository {
+class RouteGeneratorRepositoryImpl implements RouteGeneratorRepository {
   RouteGeneratorRepositoryImpl({
     required this.functions,
   });

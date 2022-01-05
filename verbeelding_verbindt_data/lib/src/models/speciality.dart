@@ -5,8 +5,7 @@ import '../../verbeelding_verbindt_data.dart';
 
 part 'speciality.g.dart';
 
-// Settings a default value build.yaml didn't work - 30-04-2020
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class SpecialityDataModel extends Equatable {
   const SpecialityDataModel({
     required this.id,
@@ -20,26 +19,18 @@ class SpecialityDataModel extends Equatable {
   @override
   List<Object?> get props => [id, name];
 
+  @override
+  bool? get stringify => true;
+
   SpecialityDataModel copyWith({
-    String? name,
+    String? id,
+    TranslatableStringDataModel? name,
   }) {
     return SpecialityDataModel(
-      id: id,
-      name: name as TranslatableStringDataModel? ?? this.name,
+      id: id ?? this.id,
+      name: name ?? this.name,
     );
   }
-
-  @override
-  String toString() => 'Speciality { id: $id, name: $name }';
-
-  static SpecialityDataModel fromFirebaseMap(
-    String id,
-    Map<String, dynamic> map,
-  ) =>
-      SpecialityDataModel(
-        id: id,
-        name: TranslatableStringDataModel.fromJson(map['name']),
-      );
 
   static SpecialityDataModel fromJson(
     Map<String, dynamic> json,

@@ -13,7 +13,6 @@ Future<DataDependencies> getDependencies(
   final auth = FirebaseAuth.instance;
   final firestore = FirebaseFirestore.instance;
   final functions = FirebaseFunctions.instance;
-  const dataModelFactory = DataModelFactoryImpl();
 
   if (environmentVariables.environment.isDevelopment) {
     // functions.useFunctionsEmulator('192.168.2.8', 5001);
@@ -23,34 +22,27 @@ Future<DataDependencies> getDependencies(
     artistRepository: SingletonAsync<ArtistRepository>(
       () async => ArtistRepositoryImpl(
         firestore: firestore,
-        dataModelFactory: dataModelFactory,
       ),
-      dispose: (param) => (param as ArtistRepositoryImpl).dispose(),
     ),
     specialityRepository: SingletonAsync<SpecialityRepository>(
       () async => SpecialityRepositoryImpl(
         firestore: firestore,
       ),
-      dispose: (param) => (param as SpecialityRepositoryImpl).dispose(),
     ),
     authRepository: SingletonAsync<AuthRepository>(
       () async => AuthRepositoryImpl(
         firebaseAuth: auth,
       ),
-      dispose: (param) => (param as AuthRepositoryImpl).dispose(),
     ),
     routeRepository: SingletonAsync<RouteRepository>(
       () async => RouteRepositoryImpl(
         firestore: firestore,
-        dataModelFactory: dataModelFactory,
       ),
-      dispose: (param) => (param as RouteRepositoryImpl).dispose(),
     ),
     routeGeneratorRepository: SingletonAsync<RouteGeneratorRepository>(
       () async => RouteGeneratorRepositoryImpl(
         functions: functions,
       ),
-      dispose: (param) => (param as RouteGeneratorRepositoryImpl).dispose(),
     ),
   );
 }

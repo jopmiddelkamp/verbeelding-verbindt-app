@@ -2,18 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 import 'package:verbeelding_verbindt_data/verbeelding_verbindt_data.dart';
 
-import '../../verbeelding_verbindt_data_firebase.dart';
-
-class ArtistRepositoryImpl extends RepositoryBase implements ArtistRepository {
+class ArtistRepositoryImpl implements ArtistRepository {
   ArtistRepositoryImpl({
     required FirebaseFirestore firestore,
-    required DataModelFactory dataModelFactory,
   }) : _artistCollection =
             firestore.collection('artists').withConverter<ArtistDataModel>(
           fromFirestore: (snapshot, _) {
-            return dataModelFactory.createArtistDataModel(
+            final json = snapshot.data()!;
+            return ArtistDataModel.fromJson(
+              json,
+            ).copyWith(
               id: snapshot.id,
-              map: snapshot.data()!,
             );
           },
           toFirestore: (value, _) {

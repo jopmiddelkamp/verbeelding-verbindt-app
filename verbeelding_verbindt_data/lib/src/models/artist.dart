@@ -5,8 +5,7 @@ import '../../verbeelding_verbindt_data.dart';
 
 part 'artist.g.dart';
 
-// Settings a default value build.yaml didn't work - 30-04-2020
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class ArtistDataModel extends Equatable {
   const ArtistDataModel({
     required this.id,
@@ -38,15 +37,7 @@ class ArtistDataModel extends Equatable {
       ];
 
   @override
-  String toString() => '''$runtimeType { 
-                            id: $id,
-                            profile: $profile,
-                            specialities: $specialities,
-                            location: $location,
-                            previewContent: $previewContent,
-                            detailsContent: $detailsContent,
-                            website: $website,
-                          }''';
+  bool? get stringify => true;
 
   ArtistDataModel copyWith({
     String? id,

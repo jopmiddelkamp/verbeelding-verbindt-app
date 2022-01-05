@@ -1,8 +1,7 @@
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
-import 'package:verbeelding_verbindt_data/verbeelding_verbindt_data.dart';
 
-class IntroRepositoryImpl extends RepositoryBase implements IntroRepository {
+class IntroRepositoryImpl implements IntroRepository {
   IntroRepositoryImpl({
     required RxSharedPreferences sharedPreferences,
   }) : _prefs = sharedPreferences;

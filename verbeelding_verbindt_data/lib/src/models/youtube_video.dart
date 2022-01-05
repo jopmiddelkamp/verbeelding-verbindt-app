@@ -1,10 +1,10 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'youtube_video.g.dart';
 
-// Settings a default value build.yaml didn't work - 30-04-2020
-@JsonSerializable(explicitToJson: true)
-class YoutubeVideoDataModel {
+@JsonSerializable()
+class YoutubeVideoDataModel extends Equatable {
   const YoutubeVideoDataModel({
     required this.aspectRatio,
     required this.videoId,
@@ -13,10 +13,10 @@ class YoutubeVideoDataModel {
   final String videoId;
 
   @override
-  String toString() => '''$runtimeType { 
-                            aspectRatio: $aspectRatio,
-                            videoId: $videoId,
-                          }''';
+  List<Object?> get props => [aspectRatio, videoId];
+
+  @override
+  bool? get stringify => true;
 
   static YoutubeVideoDataModel fromJson(Map<String, dynamic> json) =>
       _$YoutubeVideoDataModelFromJson(json);

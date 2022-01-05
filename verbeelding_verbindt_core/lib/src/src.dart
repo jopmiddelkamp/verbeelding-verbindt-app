@@ -1,3 +1,4 @@
+export 'contracts/contracts.dart';
 export 'dependencies.dart';
 export 'entities/entities.dart';
 export 'environment_variables.dart';

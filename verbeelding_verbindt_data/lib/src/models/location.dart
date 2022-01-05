@@ -3,24 +3,20 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'location.g.dart';
 
-// Settings a default value build.yaml didn't work - 30-04-2020
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class GeolocationDataModel extends Equatable {
   const GeolocationDataModel({
     required this.latitude,
     required this.longitude,
   });
 
-  @JsonKey(name: '_latitude')
   final double latitude;
-  @JsonKey(name: '_longitude')
   final double longitude;
 
-  @override
-  String toString() =>
-      '$runtimeType { latitude: $latitude, longitude: $longitude }';
-
   String toUrlParam() => '$latitude,$longitude';
+
+  @override
+  bool? get stringify => true;
 
   @override
   List<Object?> get props => [latitude, longitude];

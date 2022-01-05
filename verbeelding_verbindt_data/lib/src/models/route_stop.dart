@@ -1,12 +1,12 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../verbeelding_verbindt_data.dart';
 
 part 'route_stop.g.dart';
 
-// Settings a default value build.yaml didn't work - 30-04-2020
-@JsonSerializable(explicitToJson: true)
-class RouteStopDataModel {
+@JsonSerializable()
+class RouteStopDataModel extends Equatable {
   const RouteStopDataModel({
     required this.artist,
     this.completed = false,
@@ -14,6 +14,12 @@ class RouteStopDataModel {
 
   final ArtistDataModel artist;
   final bool completed;
+
+  @override
+  List<Object?> get props => [artist, completed];
+
+  @override
+  bool? get stringify => true;
 
   RouteStopDataModel copyWith({
     ArtistDataModel? artist,

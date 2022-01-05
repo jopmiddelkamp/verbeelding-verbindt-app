@@ -1,8 +1,7 @@
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
-import 'package:verbeelding_verbindt_data/verbeelding_verbindt_data.dart';
 
-class LocaleRepositoryImpl extends RepositoryBase implements LocaleRepository {
+class LocaleRepositoryImpl implements LocaleRepository {
   LocaleRepositoryImpl({
     required RxSharedPreferences sharedPreferences,
   }) : _prefs = sharedPreferences;

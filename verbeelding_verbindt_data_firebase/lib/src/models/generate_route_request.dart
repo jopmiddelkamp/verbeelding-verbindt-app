@@ -3,7 +3,7 @@ import 'package:verbeelding_verbindt_data/verbeelding_verbindt_data.dart';
 
 part 'generate_route_request.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class GenerateRouteRequestDataModel {
   const GenerateRouteRequestDataModel({
     required this.artistIds,

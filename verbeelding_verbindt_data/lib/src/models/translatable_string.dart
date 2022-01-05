@@ -1,4 +1,6 @@
-class TranslatableStringDataModel {
+import 'package:equatable/equatable.dart';
+
+class TranslatableStringDataModel extends Equatable {
   const TranslatableStringDataModel(
     this.data,
   );
@@ -6,7 +8,10 @@ class TranslatableStringDataModel {
   final Map<String, String> data;
 
   @override
-  String toString() => 'TranslatableString { ${data.keys.join(',')} }';
+  List<Object?> get props => [data];
+
+  @override
+  bool? get stringify => true;
 
   static TranslatableStringDataModel fromJson(
     Map<String, dynamic> json,

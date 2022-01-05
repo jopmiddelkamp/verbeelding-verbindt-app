@@ -2,18 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 import 'package:verbeelding_verbindt_data/verbeelding_verbindt_data.dart';
 
-import '../../verbeelding_verbindt_data_firebase.dart';
-
-class RouteRepositoryImpl extends RepositoryBase implements RouteRepository {
+class RouteRepositoryImpl implements RouteRepository {
   RouteRepositoryImpl({
     required FirebaseFirestore firestore,
-    required DataModelFactory dataModelFactory,
   }) : _routeCollection =
             firestore.collection('routes').withConverter<RouteDataModel>(
           fromFirestore: (snapshot, _) {
-            return dataModelFactory.createRouteDataModel(
-              snapshot.id,
-              snapshot.data()!,
+            final json = snapshot.data()!;
+            return RouteDataModel.fromJson(json).copyWith(
+              id: snapshot.id,
             );
           },
           toFirestore: (value, _) {

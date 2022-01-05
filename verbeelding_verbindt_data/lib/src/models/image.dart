@@ -5,8 +5,7 @@ import '../../verbeelding_verbindt_data.dart';
 
 part 'image.g.dart';
 
-// Settings a default value build.yaml didn't work - 30-04-2020
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class ImageDataModel extends Equatable {
   const ImageDataModel({
     required this.blurhash,
@@ -19,15 +18,10 @@ class ImageDataModel extends Equatable {
   final SizeDataModel size;
 
   @override
-  String toString() =>
-      '$runtimeType { blurhash: $blurhash, url: $url, size: $size }';
+  List<Object?> get props => [blurhash, url, size];
 
   @override
-  List<Object?> get props => [
-        blurhash,
-        url,
-        size,
-      ];
+  bool? get stringify => true;
 
   static ImageDataModel fromJson(Map<String, dynamic> json) =>
       _$ImageDataModelFromJson(json);

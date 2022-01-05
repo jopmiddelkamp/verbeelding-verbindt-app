@@ -22,19 +22,16 @@ Future<DataDependencies> getDependencies(
       () async => RouteRepositoryImpl(
         sharedPreferences: rxSharedPreferences,
       ),
-      dispose: (param) => (param as RouteRepositoryImpl).dispose(),
     ),
     localeRepository: SingletonAsync<LocaleRepository>(
       () async => LocaleRepositoryImpl(
         sharedPreferences: rxSharedPreferences,
       ),
-      dispose: (param) => (param as LocaleRepositoryImpl).dispose(),
     ),
     introRepository: SingletonAsync<IntroRepository>(
       () async => IntroRepositoryImpl(
         sharedPreferences: rxSharedPreferences,
       ),
-      dispose: (param) => (param as IntroRepositoryImpl).dispose(),
     ),
   );
 }

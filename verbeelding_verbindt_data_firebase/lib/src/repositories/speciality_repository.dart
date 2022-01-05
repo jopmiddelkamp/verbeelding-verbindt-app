@@ -2,17 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:verbeelding_verbindt_core/verbeelding_verbindt_core.dart';
 import 'package:verbeelding_verbindt_data/verbeelding_verbindt_data.dart';
 
-class SpecialityRepositoryImpl extends RepositoryBase
-    implements SpecialityRepository {
+class SpecialityRepositoryImpl implements SpecialityRepository {
   SpecialityRepositoryImpl({
     FirebaseFirestore? firestore,
   }) : _specialityCollection = (firestore ?? FirebaseFirestore.instance)
             .collection('specialities')
             .withConverter<SpecialityDataModel>(
           fromFirestore: (snapshot, _) {
-            return SpecialityDataModel.fromFirebaseMap(
-              snapshot.id,
-              snapshot.data()!,
+            final json = snapshot.data()!;
+            return SpecialityDataModel.fromJson(
+              json,
+            ).copyWith(
+              id: snapshot.id,
             );
           },
           toFirestore: (value, _) {

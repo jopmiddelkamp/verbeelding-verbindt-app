@@ -3,8 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'profile.g.dart';
 
-// Settings a default value build.yaml didn't work - 30-04-2020
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class ProfileDataModel extends Equatable {
   const ProfileDataModel({
     required this.firstName,
@@ -29,12 +28,7 @@ class ProfileDataModel extends Equatable {
   List<Object?> get props => [firstName, middleName, lastName, personalImage];
 
   @override
-  String toString() => '''$runtimeType { 
-                            firstName: $firstName, 
-                            middleName: $middleName, 
-                            lastName: $lastName, 
-                            personalImage: $personalImage 
-                          }''';
+  bool? get stringify => true;
 
   ProfileDataModel copyWith({
     String? firstName,

@@ -1,12 +1,12 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../verbeelding_verbindt_data.dart';
 
 part 'artist_route_preview.g.dart';
 
-// Settings a default value build.yaml didn't work - 30-04-2020
-@JsonSerializable(explicitToJson: true)
-class ArtistRoutePreviewDataModel {
+@JsonSerializable()
+class ArtistRoutePreviewDataModel extends Equatable {
   const ArtistRoutePreviewDataModel({
     required this.text,
   });
@@ -15,9 +15,12 @@ class ArtistRoutePreviewDataModel {
   final TranslatableStringDataModel text;
 
   @override
-  String toString() => '''$runtimeType { 
-                            text: $text,
-                          }''';
+  List<Object?> get props => [
+        text,
+      ];
+
+  @override
+  bool? get stringify => true;
 
   static ArtistRoutePreviewDataModel fromJson(Map<String, dynamic> json) =>
       _$ArtistRoutePreviewDataModelFromJson(json);
