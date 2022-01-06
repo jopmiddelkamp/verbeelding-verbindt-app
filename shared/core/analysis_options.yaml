@@ -1,0 +1,12 @@
+include: package:lints/recommended.yaml
+
+linter:
+  rules:
+    - directives_ordering
+    - prefer_relative_imports
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/generated/"

@@ -1,0 +1,33 @@
+name: verbeelding_verbindt_data_firebase
+publish_to: none
+
+environment:
+  sdk: ">=2.15.1 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  verbeelding_verbindt_core:
+    path: ../core
+  verbeelding_verbindt_data:
+    path: ../data
+
+  equatable: ^2.0.0
+  get_it: ^7.0.0
+  cloud_firestore: ^3.0.0
+  cloud_functions: ^3.0.0
+  firebase_auth: ^3.0.0
+  firebase_core: ^1.0.0
+  freezed_annotation: ^1.0.0
+  json_annotation: ^4.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  build_runner: ^2.0.0
+  freezed: ^1.0.0
+  json_serializable: ^6.1.3
+  lints: ^1.0.0
+  mocktail: ^0.2.0
